@@ -1,11 +1,11 @@
 import React from 'react'
 
-const WhoWeAre = () => {
+const Cpo = () => {
   return (
     <div>
-      Who We Are
+      CPO
     </div>
   )
 }
 
-export default WhoWeAre
+export default Cpo
