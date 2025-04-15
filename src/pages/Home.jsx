@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import gsap from 'gsap'
 import HeroSection from '../components/HeroSection'
+import ImpactMetrics from '../components/ImpactMetrics'
 import Navbar from '../components/common/Navbar'
 
 const Home = () => {
@@ -52,7 +53,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="bg-white w-full h-screen overflow-hidden flex items-center justify-center relative">
+    <div className="bg-white w-full min-h-screen flex flex-col items-center relative">
       {/* Hidden navbar that will be revealed by animation */}
       <div ref={navbarRef} className="w-full absolute top-0 left-0 z-50">
         <Navbar />
@@ -73,6 +74,11 @@ const Home = () => {
       >
         <HeroSection />
       </motion.div>
+
+      {/* ImpactMetrics section */}
+      <div className="w-full">
+        <ImpactMetrics />
+      </div>
     </div>
   )
 }
