@@ -3,20 +3,26 @@ import './App.css'
 
 // Page imports
 import Home from './pages/Home'
-import WhoWeAre from './pages/WhoWeAre'
 import EvCharging from './pages/EvCharging'
 import WasteToEnergy from './pages/WasteToEnergy'
+
+// Component imports
+import Footer from './components/common/Footer'
 
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/who-we-are" element={<WhoWeAre />} />
-        <Route path="/ev-charging" element={<EvCharging />} />
-        <Route path="/waste-to-energy" element={<WasteToEnergy />} />
-        <Route path="*" element={<h1>404 Not Found</h1>} />
-      </Routes>
+      <div className="flex flex-col min-h-screen">
+        <div className="flex-grow">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/ev-charging" element={<EvCharging />} />
+            <Route path="/waste-to-energy" element={<WasteToEnergy />} />
+            <Route path="*" element={<h1>404 Not Found</h1>} />
+          </Routes>
+        </div>
+        <Footer />
+      </div>
     </Router>
   )
 }
