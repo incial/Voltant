@@ -4,6 +4,7 @@ import ImpactMetrics from '../components/ImpactMetrics'
 import Navbar from '../components/common/Navbar'
 import WhoAreWe from '../components/WhoAreWe'
 import Footer from '../components/common/Footer'
+import ClientsSection from '../components/ClientsSection'
 
 const Home = () => {
   return (
@@ -21,7 +22,7 @@ const Home = () => {
         }}
       >
         <HeroSection />
-      </div>
+      </motion.div>
 
       {/* Content sections */}
       <div className="w-full">
