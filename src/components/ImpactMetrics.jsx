@@ -54,19 +54,19 @@ const ProgressCircle = ({ value, label, unit = "%", size = 180 }) => {
 
 const ImpactMetrics = () => {
   return (
-    <section className="flex flex-col items-center w-full max-w-[1200px] mx-auto mt-16 px-4 mb-16">
-      <h2 className="text-[#7F7F7F] text-4xl font-normal leading-[1.2] text-center mb-16">
+    <section className="flex flex-col items-center w-full max-w-[1200px] mx-auto mt-16 px-4 mb-16 max-md:mt-8 max-md:px-6">
+      <h2 className="text-[#7F7F7F] text-center font-[700] text-[24px] leading-[100%] mb-16 max-md:mb-8">
         Driving Sustainability,<br />
         Creating Impact.
       </h2>
-      <p className="text-[#7F7F7F] text-xl font-light leading-7 text-center max-w-[1000px] mb-20">
+      <p className="text-[#7F7F7F] text-xl font-light leading-7 text-center max-w-[1000px] mb-20 max-md:mb-10 max-md:text-center max-md:font-[300] max-md:text-[16px] max-md:leading-[16px] max-md:px-[25px]">
         At Voltant Energy, sustainability isn't just a commitment—it's the core
         of everything we do. We're redefining energy solutions by aligning with
         global and UAE sustainability initiatives, cutting carbon footprints,
         maximizing energy efficiency, and accelerating the shift toward a
         circular economy.
       </p>
-      <div className="flex justify-center gap-20 w-full max-w-[1000px] mx-auto max-md:flex-col max-md:items-center">
+      <div className="flex justify-center gap-20 w-full max-w-[1000px] mx-auto max-md:flex-col max-md:items-center max-md:gap-10 max-md:py-[40px]">
         <ProgressCircle value={3} label="CO₂ REDUCED" />
         <ProgressCircle value={15} label="WASTE PROCESSED" />
         <ProgressCircle value={45} label="ENERGY GENERATED" unit="MWh" />
