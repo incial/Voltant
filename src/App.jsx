@@ -6,7 +6,6 @@ import Home from './pages/Home'
 import EvCharging from './pages/EvCharging'
 import WasteToEnergy from './pages/WasteToEnergy'
 import EngineeringWorks from './pages/EngineeringWorks'
-import LargeScale from './pages/LargeScale'
 
 function App() {
   return (
