@@ -34,7 +34,7 @@ const Navbar = () => {
         </div>
         
         {/* Navigation Links */}
-        <div className="hidden md:flex items-center space-x-8 font-['Cairo']">
+        <div className="hidden md:flex items-center space-x-8 font-['Cairo'] text-xl">
           <NavLink to="/" label="Home" isActive={location.pathname === '/'} />
           <NavLink to="/ev-charging" label="EV Charging" isActive={location.pathname === '/ev-charging'} />
           <NavLink to="/waste-to-energy" label="Waste To Energy" isActive={location.pathname === '/waste-to-energy'} />
