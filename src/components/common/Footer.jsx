@@ -89,7 +89,7 @@ const Footer = () => {
       <div className="hidden md:block container mx-auto px-6 relative z-20 py-6">
         <div className="flex flex-row justify-between items-center">
           {/* Left side: Logo and Copyright */}
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-9">
             <div className="mb-4">
               <img src={whiteLogo} alt="Voltant Energy Logo" className="h-12" />
             </div>

@@ -23,7 +23,7 @@ Develop the Voltant Energy website based on the provided Figma design, ensuring 
 ### Amarnath
 
 - **Home Screen: Header**
-- **Home Screen: "Top Companies" Section**
+- **Home Screen: "Connect with us and the Above section of connect with us" Section**
 - **AC Page**
 
 ### Augusto

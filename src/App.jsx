@@ -6,9 +6,6 @@ import Home from './pages/Home'
 import EvCharging from './pages/EvCharging'
 import WasteToEnergy from './pages/WasteToEnergy'
 
-// Component imports
-import Footer from './components/common/Footer'
-
 function App() {
   return (
     <Router>
@@ -21,7 +18,6 @@ function App() {
             <Route path="*" element={<h1>404 Not Found</h1>} />
           </Routes>
         </div>
-        <Footer />
       </div>
     </Router>
   )
