@@ -8,14 +8,14 @@ const Footer = () => {
   const currentYear = new Date().getFullYear()
   
   return (
-    <footer className="bg-[#00251a] text-white relative py-10">
+    <footer className="bg-[#00251a] text-white relative py-10 font-['Cairo']">
       {/* Footer background image with overlay */}
       <div className="absolute inset-0 z-0">
         <img src={footerImage} alt="Footer background" className="w-full h-full object-cover" />
       </div>
       
       {/* Mobile Layout (Default) */}
-      <div className="container mx-auto px-4 relative z-20 flex flex-col items-center md:hidden">
+      <div className="container mx-auto px-4 relative z-20 flex flex-col items-center md:hidden font-['Cairo']">
         {/* Logo */}
         <div className="mb-10">
           <img src={whiteLogo} alt="Voltant Energy Logo" className="h-10" />
@@ -80,13 +80,13 @@ const Footer = () => {
         </div>
         
         {/* Copyright */}
-        <div className="text-center text-xs pt-3">
+        <div className="text-center text-xs pt-3 font-['Cairo']">
           <p>© Copyright {currentYear} Voltant Energy LLC FZ. All Rights Reserved</p>
         </div>
       </div>
 
       {/* Desktop Layout (md and up) */}
-      <div className="hidden md:block container mx-auto px-6 relative z-20 py-6">
+      <div className="hidden md:block container mx-auto px-6 relative z-20 py-6 font-['Cairo']">
         <div className="flex flex-row justify-between items-center">
           {/* Left side: Logo and Copyright */}
           <div className="flex flex-col gap-9">
