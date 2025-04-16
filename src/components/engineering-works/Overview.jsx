@@ -2,11 +2,11 @@ import React from "react";
 
 export function Overview() {
   return (
-    <section className="flex flex-col items-center w-full max-w-[1200px] mx-auto mt-16 px-4 mb-8 max-md:mt-8 max-md:px-6">
+    <section className="flex flex-col items-center w-full max-w-[1200px] mx-auto mt-[100px] mb-[100px] px-4 mb-8 max-md:mt-[100px] max-md:px-6">
       <h2 className="text-[#7F7F7F] text-center font-[700] text-[24px] leading-[100%] mb-16 max-md:mb-8">
       Engineering Works: Precision, Efficiency & Innovation
       </h2>
-      <p className="text-[#7F7F7F] text-xl font-light leading-7 text-center max-w-[1000px]  max-md:text-center max-md:font-[300] max-md:text-[16px] max-md:leading-[16px] max-md:px-[25px]">
+      <p className="text-[#7F7F7F] text-[24px] font-light leading-7 text-center max-w-[1000px] max-md:text-center max-md:font-[300] max-md:text-[20px] max-md:leading-20px max-md:px-[25px]">
       Our Engineering Works ensure seamless EV charging infrastructure
           deployment, from planning to execution. We specialize in site
           assessment, electrical integration, grid connectivity, and custom

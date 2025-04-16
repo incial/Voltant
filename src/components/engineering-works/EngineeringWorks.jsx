@@ -9,7 +9,7 @@ export default function EngineeringWorks() {
   return (
     <div className="bg-white w-full flex flex-col items-center overflow-hidden">
       {/* Hero section */}
-      <div className="relative bg-black w-full h-screen" style={{ overflow: 'hidden' }}>
+      <div className="relative bg-black w-full h-[691px] md:h-[434px]" style={{ overflow: 'hidden' }}>
         <Hero 
           title="Engineering Works"
           breadcrumbs={["Home", "EV Charging", "Engineering Works"]}
