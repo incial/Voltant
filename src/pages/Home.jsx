@@ -23,7 +23,6 @@ const Home = () => {
       >
         <HeroSection />
       </div>
-
       {/* Content sections */}
 
       {/* ClientsSection */}
