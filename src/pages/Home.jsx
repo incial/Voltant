@@ -5,6 +5,7 @@ import Navbar from '../components/common/Navbar'
 import ClientsSection from '../components/ClientsSection'
 import WhoAreWe from '../components/WhoAreWe'
 import Footer from '../components/common/Footer'
+import ClientsSection from '../components/ClientsSection'
 
 const Home = () => {
   return (
@@ -23,6 +24,7 @@ const Home = () => {
       >
         <HeroSection />
       </div>
+
       {/* Content sections */}
 
       {/* ClientsSection */}
