@@ -4,6 +4,7 @@ import gsap from 'gsap'
 import HeroSection from '../components/HeroSection'
 import ImpactMetrics from '../components/ImpactMetrics'
 import Navbar from '../components/common/Navbar'
+import ClientsSection from '../components/ClientsSection'
 
 const Home = () => {
   const heroContainerRef = useRef(null);
@@ -74,6 +75,11 @@ const Home = () => {
       >
         <HeroSection />
       </motion.div>
+
+      {/* ClientsSection */}
+      <div className="w-full">
+        <ClientsSection />
+      </div>
 
       {/* ImpactMetrics section */}
       <div className="w-full">
