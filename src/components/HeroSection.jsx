@@ -14,13 +14,13 @@ const HeroSection = () => {
   const videos = [HeroVideo_1, HeroVideo_2, HeroVideo_3];
   const videoCaptions = [
     {
-      title: "For a Sustainable Tomorrow,Save Energy Today.",
+      title: <>For a Sustainable Tomorrow,<br/>Save Energy Today.</>,
     },
     {
-      title: "Turning Waste into Power, Fueling a Greener Future. ",
+      title: <>Turning Waste into Power,<br/> Fueling a Greener Future.</>,
     },
     {
-      title: "Maximize Efficiency, Minimize Waste.",
+      title: <>Maximize Efficiency,<br/> Minimize Waste.</>,
     }
   ];
   const currentVideoRef = useRef(null);
@@ -227,7 +227,7 @@ const HeroSection = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
           style={{
             position: 'absolute',
-            bottom: '120px',
+            bottom: '200px',
             left: '100px',
             zIndex: 10,
             color: 'white',
@@ -236,7 +236,7 @@ const HeroSection = () => {
           }}
         >
           <h3 style={{ 
-            fontSize: '2.25rem', 
+            fontSize: '2.45rem', 
             lineHeight: '1',
             fontWeight: '100',
             margin: 0,
