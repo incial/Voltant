@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import Logo from '../../assets/images/white_logo.png';
+import Logo from '../../assets/images/white_logo.png'; // Ensure this logo file exists
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
 
+  // Handle scroll effect for navbar background
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
@@ -23,10 +24,12 @@ const Navbar = () => {
     };
   }, []);
 
+  // Close mobile menu when route changes
   useEffect(() => {
     setIsMobileMenuOpen(false);
   }, [location.pathname]);
 
+  // Toggle mobile menu
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
@@ -38,12 +41,14 @@ const Navbar = () => {
       } font-['Cairo']`}
     >
       <div className="container mx-auto flex justify-between items-center py-4 px-6">
+        {/* Logo */}
         <div className="flex items-center">
           <Link to="/" className="flex items-center">
             <img src={Logo} alt="Voltant Energy" className="h-10" />
           </Link>
         </div>
 
+        {/* Desktop Navigation Links */}
         <div className="hidden md:flex items-center space-x-8 text-xl">
           <NavLink to="/" label="Home" isActive={location.pathname === '/'} />
           <NavLink
@@ -63,6 +68,7 @@ const Navbar = () => {
           />
         </div>
 
+        {/* Call To Action Button (Desktop) */}
         <div className="hidden md:block">
           <Link to="/contact">
             <motion.button
@@ -75,43 +81,54 @@ const Navbar = () => {
           </Link>
         </div>
 
+        {/* Mobile Menu Button */}
         <div className="md:hidden flex items-center">
           <button onClick={toggleMobileMenu} className="text-white">
-            {isMobileMenuOpen ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="transition-transform duration-300"
+            >
+              <circle
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="white"
                 fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            ) : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-            )}
+              />
+              <AnimatePresence>
+                {isMobileMenuOpen ? (
+                  <motion.path
+                    key="close"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    d="M7 7 L17 17 M17 7 L7 17"
+                  />
+                ) : (
+                  <motion.g
+                    key="open"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                  >
+                    <path d="M7 10 H17" />
+                    <path d="M7 14 H17" />
+                  </motion.g>
+                )}
+              </AnimatePresence>
+            </svg>
           </button>
         </div>
       </div>
 
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
@@ -163,6 +180,7 @@ const Navbar = () => {
   );
 };
 
+// Navigation Link component for consistent styling
 const NavLink = ({ to, label, isActive, mobile }) => (
   <Link
     to={to}
