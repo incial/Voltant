@@ -22,7 +22,7 @@ const Home = () => {
         }}
       >
         <HeroSection />
-      </motion.div>
+      </div>
 
       {/* ClientsSection */}
       <div className="w-full">
