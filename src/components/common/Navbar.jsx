@@ -24,7 +24,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-black/20 backdrop-blur-sm' : 'bg-transparent'}`}>
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-black/20 backdrop-blur-sm' : 'bg-transparent'} font-['Cairo']`}>
       <div className="container mx-auto flex justify-between items-center py-8 px-6">
         {/* Logo */}
         <div className="flex items-center">
@@ -34,7 +34,7 @@ const Navbar = () => {
         </div>
         
         {/* Navigation Links */}
-        <div className="hidden md:flex items-center space-x-8">
+        <div className="hidden md:flex items-center space-x-8 font-['Cairo']">
           <NavLink to="/" label="Home" isActive={location.pathname === '/'} />
           <NavLink to="/ev-charging" label="EV Charging" isActive={location.pathname === '/ev-charging'} />
           <NavLink to="/waste-to-energy" label="Waste To Energy" isActive={location.pathname === '/waste-to-energy'} />
@@ -47,7 +47,7 @@ const Navbar = () => {
             <motion.button 
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-transparent text-white py-2 px-6 rounded-full font-medium border-2 border-white cursor-pointer"
+              className="bg-transparent text-white py-2 px-6 rounded-full font-medium border-2 border-white cursor-pointer font-['Cairo']"
             >
               Get in Touch
             </motion.button>
