@@ -2,6 +2,7 @@ import React from 'react'
 import HeroSection from '../components/HeroSection'
 import ImpactMetrics from '../components/ImpactMetrics'
 import Navbar from '../components/common/Navbar'
+import ClientsSection from '../components/ClientsSection'
 import WhoAreWe from '../components/WhoAreWe'
 import Footer from '../components/common/Footer'
 import ClientsSection from '../components/ClientsSection'
@@ -24,12 +25,13 @@ const Home = () => {
         <HeroSection />
       </div>
 
+      {/* Content sections */}
+
       {/* ClientsSection */}
       <div className="w-full">
         <ClientsSection />
       </div>
 
-      {/* Content sections */}
       <div className="w-full">
         {/* ImpactMetrics section */}
         <div className="w-full">
