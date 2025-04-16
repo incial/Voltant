@@ -24,6 +24,11 @@ const Home = () => {
         <HeroSection />
       </motion.div>
 
+      {/* ClientsSection */}
+      <div className="w-full">
+        <ClientsSection />
+      </div>
+
       {/* Content sections */}
       <div className="w-full">
         {/* ImpactMetrics section */}
