@@ -239,10 +239,9 @@ const HeroSection = () => {
             fontSize: '2.25rem', 
             lineHeight: '1',
             fontWeight: '100',
-            fontFamily: "'Cairo', sans-serif",
             margin: 0,
             textShadow: '2px 2px 4px rgba(0,0,0,0.5)'
-          }}>
+          }} className="font-['Cairo']">
             {videoCaptions[currentVideoIndex].title}
           </h3>
         </motion.div>

@@ -1,1 +1,11 @@
-@import "tailwindcss"
+@import "tailwindcss";
+
+@layer base {
+  html {
+    font-family: 'Cairo', sans-serif;
+  }
+  
+  body {
+    font-family: 'Cairo', sans-serif;
+  }
+}
