@@ -131,7 +131,7 @@ const EvCharging = () => {
         </section>
 
         {/* Services Grid Section */}
-        <section className='py-16 bg-white'>
+        <section className='py-16 px-32'>
           <div className='mx-auto max-w-[1500px] px-8'>
             <div className='grid grid-cols-3 gap-6'>
               {services.map((service, index) => (

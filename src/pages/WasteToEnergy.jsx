@@ -15,22 +15,22 @@ const WasteToEnergy = () => {
   // Services data array
   const services = [
     {
-      title: 'Containerized Plant',
+      title: <>Containerized<br/>Plant</>,
       image: containerizedPlantImage,
       path: '/waste-to-energy/containerized-plant'
     },
     {
-      title: 'Household',
+      title: <>Household</>,
       image: householdImage,
       path: '/waste-to-energy/household'
     },
     {
-      title: <>Large Scale Plant</>,
+      title: <>Large Scale<br/>Plant</>,
       image: largeScalePlantImage,
       path: '/waste-to-energy/large-scale'
     },
     {
-      title: <>Smart Waste <br/> Segregation <br/> Bins</>,
+      title: <>Smart Waste<br/>Segregation<br/>Bins</>,
       image: smartWasteImage,
       path: '/waste-to-energy/smart-waste'
     },
@@ -121,8 +121,8 @@ const WasteToEnergy = () => {
         </section>
 
         {/* Services Grid Section */}
-        <section className='py-16 bg-white'>
-          <div className='mx-auto max-w-[1500px] px-8'>
+        <section className='py-16 px-32'>
+          <div className='mx-auto max-w-[1500px] px-6'>
             <div className='grid grid-cols-3 gap-6'>
               {services.map((service, index) => (
                 <ServiceCard
