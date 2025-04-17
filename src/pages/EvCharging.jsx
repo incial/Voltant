@@ -2,16 +2,14 @@ import React from 'react'
 import Navbar from '../components/common/Navbar'
 import Footer from '../components/common/Footer'
 import ServiceCard from '../components/ServiceCard'
-import EVChargingVideo from '../assets/Videos/EV_charging _video.mp4'
+import EVChargingVideo from '/Videos/EV_charging _video.mp4'
 import acChargerImage from '../assets/images/AC_Chrager_image.png'
 import dcChargerImage from '../assets/images/DC_Charger_image.png'
 import engineeringImage from '../assets/images/Engineering_works.png'
 import cpoImage from '../assets/images/CPO.png'
 import moreImage from '../assets/images/More.png'
-import whiteLogo from '../assets/images/white_logo.png'
-import { FaYoutube, FaInstagram, FaFacebook, FaLinkedin } from 'react-icons/fa'
-import { FaXTwitter } from 'react-icons/fa6'
-import { BsWhatsapp } from 'react-icons/bs'
+import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
 
 const EvCharging = () => {
   // Services data array
@@ -146,6 +144,8 @@ const EvCharging = () => {
             </div>
           </div>
         </section>
+
+
       </div>
       <Footer />
     </>
