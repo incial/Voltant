@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 
 import Navbar from '../components/common/Navbar';
 import Footer from '../components/common/Footer';
+import ChatButton from '../components/common/ChatButton';
 import HeroSection from '../components/Cpo/HeroSection';
 import SeamlessChargingSection from '../components/Cpo/SeamlessChargingSection';
 import MidSection from '../components/Cpo/MidSection';
@@ -13,10 +14,13 @@ const Cpo = () => {
   return (
     <>
       <Navbar />
+      {/* Use the ChatButton component */}
+      <ChatButton phoneNumber="971555555555" />
+      
       <div className='flex flex-col min-h-screen bg-white'>
         <HeroSection />
         <div className='w-full flex flex-col items-center justify-center px-0 md:px-20'>
-        <SeamlessChargingSection />
+          <SeamlessChargingSection />
         </div>
         
         <motion.section 
