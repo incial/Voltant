@@ -1,30 +1,49 @@
-import React from "react";
+import React from 'react';
+// eslint-disable-next-line no-unused-vars
+import { motion } from 'framer-motion';
 import HeroImage from "../../assets/images/engineering_works/hero.png"
 
-export function Hero({ title, breadcrumbs }) {
+const fadeIn = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+};
+
+const Hero = ({ title = "Engineering Works", breadcrumbs = ["Home", "EV Charging", "Engineering Works"] }) => {
   return (
-    <div className="flex flex-col relative w-full h-full items-center justify-center text-white leading-none">
+    <motion.section 
+      className='relative w-full h-[80vh] overflow-hidden'
+      initial="hidden"
+      animate="visible"
+      variants={fadeIn}
+    >
+      <div className='absolute inset-0 bg-black/30'></div>
       <img
         src={HeroImage}
-        className="absolute h-full w-full object-cover inset-0"
-        alt="Engineering works hero background"
+        alt='EV Charging Stations'
+        className='w-full h-full object-cover'
       />
-      
-      <div className="absolute h-full w-full bg-black/30" />
-      
-      <div className="relative z-10 flex flex-col items-center justify-center h-full w-full px-[33px] py-[29px] max-md:max-w-full max-md:px-5">
-        <h1 className="text-[40px] max-md:text-3xl font-semibold text-center mb-6">
+      <div className='absolute inset-0 flex items-center justify-center'>
+        <motion.h1
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className='text-5xl md:text-5xl font-semibold text-white text-center'
+        >
           {title}
-        </h1>
-        <div className="flex items-stretch text-base font-light mt-auto self-start text-white font-['Cairo'] text-[16px] font-normal font-light leading-[100%] opacity-50 absolute bottom-10 left-10">
-          {breadcrumbs.map((crumb, index) => (
-            <div key={index}>
-              {index > 0 && " / "}
-              {crumb}
-            </div>
-          ))}
-        </div>
+        </motion.h1>
       </div>
-    </div>
+      
+      {/* Breadcrumbs */}
+      <div className="flex items-stretch text-base font-light md:font-semibold text-white font-['Cairo'] text-[16px] leading-[100%] opacity-50 absolute bottom-10 left-10 z-10">
+        {breadcrumbs.map((crumb, index) => (
+          <div key={index} className="flex items-center">
+            {index > 0 && <span className="mx-2">/</span>}
+            {crumb}
+          </div>
+        ))}
+      </div>
+    </motion.section>
   );
-}
+};
+
+export default Hero;
