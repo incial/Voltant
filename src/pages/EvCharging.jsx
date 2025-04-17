@@ -2,7 +2,7 @@ import React from 'react'
 import Navbar from '../components/common/Navbar'
 import Footer from '../components/common/Footer'
 import ServiceCard from '../components/ServiceCard'
-import EVChargingVideo from '../assets/Videos/EV_charging _video.mp4'
+import EVChargingVideo from '/Videos/EV_charging _video.mp4'
 import acChargerImage from '../assets/images/AC_Chrager_image.png'
 import dcChargerImage from '../assets/images/DC_Charger_image.png'
 import engineeringImage from '../assets/images/Engineering_works.png'
@@ -145,24 +145,7 @@ const EvCharging = () => {
           </div>
         </section>
 
-        {/* CPO Solutions Section */}
-        <section className="py-12 bg-white">
-          <div className="container mx-auto px-6 text-center">
-            <h2 className="text-2xl font-semibold mb-6">Explore Our CPO Solutions</h2>
-            <p className="text-gray-700 mb-8 max-w-3xl mx-auto">
-              Looking to operate your own charging network? Discover our comprehensive Charge Point Operator solutions designed for businesses.
-            </p>
-            <Link to="/cpo">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-full"
-              >
-                Learn About CPO Solutions
-              </motion.button>
-            </Link>
-          </div>
-        </section>
+
       </div>
       <Footer />
     </>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   FaYoutube,
   FaInstagram,
@@ -7,9 +7,15 @@ import {
   FaXTwitter,
   FaWhatsapp
 } from 'react-icons/fa6'
-import ConnectWithUsVideo from '../../assets/Videos/ConnectWithUs.mp4'
+import fallbackBg from '../../assets/images/fallbackBg.png'
 
 const ConnectWithUs = () => {
+  // State to track if the video fails to load
+  const [videoError, setVideoError] = useState(false)
+
+  // Path to the video file in the public directory - updated to new structure
+  const videoPath = '/videos/ConnectWithUs.mp4'
+
   return (
     <>
       {/* Desktop View */}
@@ -25,9 +31,20 @@ const ConnectWithUs = () => {
             loop
             muted
             playsInline
+            onError={() => setVideoError(true)}
           >
-            <source src={ConnectWithUsVideo} type='video/mp4' />
+            <source src={videoPath} type='video/mp4' />
           </video>
+          {/* Fallback background if video fails to load */}
+          {videoError && (
+            <div className='absolute inset-0'>
+              <img
+                src={fallbackBg}
+                alt="Fallback background"
+                className='w-full h-full object-cover'
+              />
+            </div>
+          )}
           <div className='absolute inset-0 bg-black opacity-20'></div>
         </div>
 
@@ -101,9 +118,14 @@ const ConnectWithUs = () => {
               loop
               muted
               playsInline
+              onError={() => setVideoError(true)}
             >
-              <source src={ConnectWithUsVideo} type='video/mp4' />
+              <source src={videoPath} type='video/mp4' />
             </video>
+            {/* Fallback background if video fails to load */}
+            {videoError && (
+              <div className='absolute inset-0 bg-gray-800 rounded-3xl'></div>
+            )}
             <div className='absolute inset-0 bg-black opacity-20 rounded-3xl'></div>
           </div>
 
