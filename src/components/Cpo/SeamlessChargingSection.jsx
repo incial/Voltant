@@ -30,7 +30,7 @@ const sectionFadeIn = {
 const SeamlessChargingSection = () => {
   return (
     <motion.section 
-      className='w-full py-28 px-6'
+      className='w-full py-20 md:py-28 px-6'
       initial="hidden"
       whileInView="visible"
       viewport={{ amount: 0.2 }}
@@ -52,7 +52,7 @@ const SeamlessChargingSection = () => {
           whileInView="visible"
           viewport={{ amount: 0.2 }}
           variants={fadeInRight}
-          className='text-gray-700 mb-6 text-center text-xl'
+          className='text-gray-700 mb-6 text-center text-xl font-normal'
         >
           As a Charge Point Operator (CPO), we manage the deployment,
           operation, and maintenance of EV charging stations, ensuring a
@@ -67,7 +67,7 @@ const SeamlessChargingSection = () => {
           whileInView="visible"
           viewport={{ amount: 0.2 }}
           variants={fadeInLeft}
-          className='text-gray-700 mb-8 text-center text-xl'
+          className='text-gray-700 mb-8 text-center text-xl font-normal'
         >
           With secure payment integrations, dynamic load balancing, and scalable cloud-based systems, we provide businesses, fleet operators, and public charging networks with a future-ready EV infrastructure that meets industry standards and regulatory requirements.
         </motion.p>

@@ -133,13 +133,13 @@ const ProfilesSection = () => {
                   ))}
                 </div>
                 <motion.div 
-                  className="flex items-center justify-start w-full my-[70px]"
+                  className="flex items-center justify-start w-full py-[40px] md:my-[70px]"
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ amount: 0.1 }}
                   variants={buttonAnimation}
                 >
-                  <button className="text-xl max-md:text-[16px] font-normal text-center leading-none px-9 py-[16px] rounded-[31px] border-[rgba(127,127,127,1)] border-solid border-2 hover:bg-[rgba(127,127,127,0.1)] transition-colors">
+                  <button className="text-lg md:text-[16px] font-normal text-center leading-none px-4 md:px-9 py-[16px] rounded-[31px] border-[rgba(127,127,127,1)] border-solid border-2 hover:bg-[rgba(127,127,127,0.1)] transition-colors">
                     Download Charging Profile
                   </button>
                 </motion.div>
