@@ -14,7 +14,7 @@ const Household = () => {
   return (
     <>
       <Navbar />
-      <div className='flex flex-col min-h-screen bg-white px-0'>
+      <div className='flex flex-col min-h-screen bg-white overflow-hidden'>
         {/* Use the ChatButton component */}
         <ChatButton phoneNumber='971555555555' />
         <HeroSection />
