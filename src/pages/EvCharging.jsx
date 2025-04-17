@@ -1,7 +1,7 @@
 import React from 'react'
 import Navbar from '../components/common/Navbar'
 import Footer from '../components/common/Footer'
-import ServiceCard from '../components/ServiceCard'
+import ServiceCard from '../components/common/ServiceCard'
 import EVChargingVideo from '/Videos/EV_charging _video.mp4'
 import acChargerImage from '../assets/images/AC_Chrager_image.png'
 import dcChargerImage from '../assets/images/DC_Charger_image.png'
