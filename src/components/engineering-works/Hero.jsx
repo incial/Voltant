@@ -4,11 +4,13 @@ import HeroImage from "../../assets/images/engineering_works/hero.png"
 export function Hero({ title, breadcrumbs }) {
   return (
     <div className="flex flex-col relative w-full h-full items-center justify-center text-white leading-none">
-      <img
-        src={HeroImage}
-        className="absolute h-full w-full object-cover inset-0"
-        alt="Engineering works hero background"
-      />
+      <div className="absolute inset-0 w-full h-full overflow-hidden">
+        <img
+          src={HeroImage}
+          className="absolute h-full w-full object-center inset-0"
+          alt="Engineering works hero background"
+        />
+      </div>
       
       <div className="absolute h-full w-full bg-black/30" />
       

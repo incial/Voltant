@@ -9,24 +9,24 @@ import GroupIcon from "../../assets/icons/engineering-works/Group.svg";
 
 function Feature({ icon, title, description }) {
   return (
-    <div className="flex items-start gap-[38px] mt-10 first:mt-20 first:max-md:mt-10">
+    <div className="flex items-start gap-[20px] px-[40px]">
       {/* Desktop and Mobile: Icon */}
       {icon && (
         <img
           src={icon}
-          className="aspect-[1] object-contain w-12 shrink-0 my-auto"
+          className="aspect-[1] object-contain w-[40px]  h-[40px] shrink-0 my-auto"
           alt={`${title} icon`}
         />
       )}
       
       {/* Desktop: Title and Description */}
-      <div className="grow shrink w-[415px] basis-auto max-md:max-w-full max-md:hidden">
-        <div className="text-white font-['Cairo'] text-[24px] font-[400] leading-[100%]">{title}</div>
-        <span className="text-white font-['Cairo'] font-[200]  block mt-1">{description}</span>
+      <div className="grow shrink w-[415px] basis-auto max-md:max-w-full max-md:hidden py-[20px] ">
+        <div className="text-white font-['Cairo'] text-[24px] font-[400] leading-[100%] ">{title}</div>
+        <span className="text-white font-['Cairo'] font-[200] block mt-1">{description}</span>
       </div>
       
       {/* Mobile: Title and Description */}
-      <div className="hidden max-md:block max-md:w-full">
+      <div className="hidden max-md:block max-md:w-full py-[20px]">
         <div className="text-white font-['Cairo'] text-[24px] font-[400] leading-[100%]">{title}</div>
         <span className="text-white font-['Cairo'] font-[200] block mt-1">{description}</span>
       </div>
@@ -37,13 +37,13 @@ function Feature({ icon, title, description }) {
 export function WhyChooseUs() {
   const features = [
     {
-      icon: ThumbUpIcon,
+      icon: StarIcon,
       title: "Expert-Led Solutions",
       description:
         "Our team of skilled engineers ensures precision in every stage of deployment.",
     },
     {
-      icon: HourglassIcon,
+      icon: GroupIcon,
       title: "Tailored for Your Needs",
       description:
         "Custom solutions for commercial hubs, fleet depots, and residential installations.",
@@ -61,13 +61,13 @@ export function WhyChooseUs() {
         "Adherence to UAE regulations and global industry standards.",
     },
     {
-      icon: StarIcon,
+      icon: ThumbUpIcon,
       title: "Future-Ready Infrastructure",
       description:
         "Scalable, smart, and equipped for evolving EV charging demands.",
     },
     {
-      icon: GroupIcon,
+      icon: HourglassIcon,
       title: "End-to-End Support",
       description:
         "From planning to execution, we handle every aspect for a hassle-free setup.",
@@ -75,17 +75,17 @@ export function WhyChooseUs() {
   ];
 
   return (
-    <section className="flex flex-col relative h-full w-full text-2xl text-white font-normal leading-6 mt-[100px] max-md:mt-10">
+    <section className="flex flex-col relative h-[918px] w-full text-2xl text-white font-normal leading-6 mt-[100px] max-md:mt-10">
       <div className="absolute inset-0 w-full h-full">
         <img
           src={MiddleImg}
-          className="absolute h-full w-full object-cover inset-0 md:blur-none max-md:blur-[7.5px]"
+          className="absolute h-full w-full inset-0 object-cover md:object-right max-md:object-right md:blur-none max-md:blur-[7.5px]"
           alt="Why choose us background"
         />
       </div>
-      <div className="relative bg-[rgba(0,0,0,0.5)] flex w-full md:w-[720px] max-w-full flex-col items-stretch justify-center px-5 py-10 md:px-20 md:py-[77px]">
+      <div className="relative bg-[rgba(0,0,0,0.5)] flex w-full md:w-[720px] max-w-full h-[918px] flex-col items-stretch justify-center px-5 py-10 md:px-20 md:py-[77px]">
         <div className="flex flex-col items-stretch max-md:max-w-full">
-          <h2 className="text-[40px] max-md:text-[24px] mt-[40px] font-bold leading-none max-md:text-center">Why Choose Us?</h2>
+          <h2 className="text-[40px] max-md:text-[24px] mt-[20px] mb-[40px]  max-md:mb-[20px] font-bold leading-none max-md:text-center">Why Choose Us?</h2>
 
           {features.map((feature, index) => (
             <Feature
