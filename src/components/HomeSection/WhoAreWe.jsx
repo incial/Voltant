@@ -1,6 +1,6 @@
 import React from 'react'
-import aboutBgImage from '../assets/images/About_us_section.jpg'
-import LogoImage from '../assets/images/Logo.png'
+import aboutBgImage from '../../assets/images/About_us_section.jpg'
+import LogoImage from '../../assets/images/Logo.png'
 import { FaFacebookF, FaInstagram, FaLinkedinIn, FaYoutube } from 'react-icons/fa'
 import { FaXTwitter } from 'react-icons/fa6'
 
@@ -158,7 +158,7 @@ const WhoAreWe = () => {
                 </a>
                 <a href="#" className="text-white hover:opacity-80 transition-opacity">
                   <FaXTwitter size={26} />
-                </a>
+                </a>../
               </div>
             </div>
           </div>
