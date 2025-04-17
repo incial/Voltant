@@ -8,7 +8,6 @@ import dcChargerImage from '../assets/images/DC_Charger_image.png'
 import engineeringImage from '../assets/images/Engineering_works.png'
 import cpoImage from '../assets/images/CPO.png'
 import moreImage from '../assets/images/More.png'
-import { Link } from 'react-router-dom'
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion'
 
