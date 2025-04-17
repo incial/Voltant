@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
+// eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from 'framer-motion'
 // Import video files
 import HeroVideo_1 from '/Videos/Hero-Section-1.mp4'
@@ -238,7 +239,7 @@ const HeroSection = () => {
           <h3 style={{ 
             fontSize: '2.45rem', 
             lineHeight: '1',
-            fontWeight: '100',
+            fontWeight: '400',
             margin: 0,
             textShadow: '2px 2px 4px rgba(0,0,0,0.5)'
           }} className="font-['Cairo']">
