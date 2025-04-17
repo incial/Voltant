@@ -5,6 +5,7 @@ import './App.css'
 import Home from './pages/Home'
 import EvCharging from './pages/EvCharging'
 import WasteToEnergy from './pages/WasteToEnergy'
+import EngineeringWorks from './pages/EngineeringWorks'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/ev-charging" element={<EvCharging />} />
             <Route path="/waste-to-energy" element={<WasteToEnergy />} />
+            <Route path="/engineering-works" element={<EngineeringWorks />} />
             <Route path="*" element={<h1>404 Not Found</h1>} />
           </Routes>
         </div>
