@@ -1,91 +1,100 @@
-import React from "react";
-import MiddleImg from "../../assets/images/engineering_works/middle.png"
-import ThumbUpIcon from "../../assets/icons/engineering-works/mdi-light_thumb-up.svg";
-import HourglassIcon from "../../assets/icons/engineering-works/fluent_hourglass-20-regular.svg";
-import VectorCombineIcon from "../../assets/icons/engineering-works/mdi-light_vector-combine.svg";
-import ShieldIcon from "../../assets/icons/engineering-works/si_shield-health-safety-line.svg";
-import StarIcon from "../../assets/icons/engineering-works/stash_star-light.svg";
-import GroupIcon from "../../assets/icons/engineering-works/Group.svg";
+import React from 'react'
+import MiddleImg from '../../assets/images/engineering_works/middle.png'
+import ThumbUpIcon from '../../assets/icons/engineering-works/mdi-light_thumb-up.svg'
+import HourglassIcon from '../../assets/icons/engineering-works/fluent_hourglass-20-regular.svg'
+import VectorCombineIcon from '../../assets/icons/engineering-works/mdi-light_vector-combine.svg'
+import ShieldIcon from '../../assets/icons/engineering-works/si_shield-health-safety-line.svg'
+import StarIcon from '../../assets/icons/engineering-works/stash_star-light.svg'
+import GroupIcon from '../../assets/icons/engineering-works/Group.svg'
 
-function Feature({ icon, title, description }) {
+function Feature ({ icon, title, description }) {
   return (
-    <div className="flex items-start gap-[38px] mt-10 first:mt-20 first:max-md:mt-10">
+    <div className='flex items-start gap-[38px] mt-10 first:mt-20 first:max-md:mt-10'>
       {/* Desktop and Mobile: Icon */}
       {icon && (
         <img
           src={icon}
-          className="aspect-[1] object-contain w-12 shrink-0 my-auto"
+          className='aspect-[1] object-contain w-12 shrink-0 my-auto'
           alt={`${title} icon`}
         />
       )}
-      
+
       {/* Desktop: Title and Description */}
-      <div className="grow shrink w-[415px] basis-auto max-md:max-w-full max-md:hidden">
-        <div className="text-white font-['Cairo'] text-[24px] font-[400] leading-[100%]">{title}</div>
-        <span className="text-white font-['Cairo'] font-[200]  block mt-1">{description}</span>
+      <div className='grow shrink w-[415px] basis-auto max-md:max-w-full max-md:hidden'>
+        <div className="text-white font-['Cairo'] text-[24px] font-[400] leading-[100%]">
+          {title}
+        </div>
+        <span className="text-white font-['Cairo'] font-[200]  block mt-1">
+          {description}
+        </span>
       </div>
-      
+
       {/* Mobile: Title and Description */}
-      <div className="hidden max-md:block max-md:w-full">
-        <div className="text-white font-['Cairo'] text-[24px] font-[400] leading-[100%]">{title}</div>
-        <span className="text-white font-['Cairo'] font-[200] block mt-1">{description}</span>
+      <div className='hidden max-md:block max-md:w-full'>
+        <div className="text-white font-['Cairo'] text-[24px] font-[400] leading-[100%]">
+          {title}
+        </div>
+        <span className="text-white font-['Cairo'] font-[200] block mt-1">
+          {description}
+        </span>
       </div>
     </div>
-  );
+  )
 }
 
-export function WhyChooseUs() {
+export function WhyChooseUs () {
   const features = [
     {
       icon: ThumbUpIcon,
-      title: "Expert-Led Solutions",
+      title: 'Expert-Led Solutions',
       description:
-        "Our team of skilled engineers ensures precision in every stage of deployment.",
+        'Our team of skilled engineers ensures precision in every stage of deployment.'
     },
     {
       icon: HourglassIcon,
-      title: "Tailored for Your Needs",
+      title: 'Tailored for Your Needs',
       description:
-        "Custom solutions for commercial hubs, fleet depots, and residential installations.",
+        'Custom solutions for commercial hubs, fleet depots, and residential installations.'
     },
     {
       icon: VectorCombineIcon,
-      title: "Seamless Grid Integration",
+      title: 'Seamless Grid Integration',
       description:
-        "Optimized power distribution with advanced load balancing technology.",
+        'Optimized power distribution with advanced load balancing technology.'
     },
     {
       icon: ShieldIcon,
-      title: "Compliance & Safety First",
-      description:
-        "Adherence to UAE regulations and global industry standards.",
+      title: 'Compliance & Safety First',
+      description: 'Adherence to UAE regulations and global industry standards.'
     },
     {
       icon: StarIcon,
-      title: "Future-Ready Infrastructure",
+      title: 'Future-Ready Infrastructure',
       description:
-        "Scalable, smart, and equipped for evolving EV charging demands.",
+        'Scalable, smart, and equipped for evolving EV charging demands.'
     },
     {
       icon: GroupIcon,
-      title: "End-to-End Support",
+      title: 'End-to-End Support',
       description:
-        "From planning to execution, we handle every aspect for a hassle-free setup.",
-    },
-  ];
+        'From planning to execution, we handle every aspect for a hassle-free setup.'
+    }
+  ]
 
   return (
-    <section className="flex flex-col relative h-full w-full text-2xl text-white font-normal leading-6 mt-[100px] max-md:mt-10">
-      <div className="absolute inset-0 w-full h-full">
+    <section className='flex flex-col relative h-full w-full text-2xl text-white font-normal leading-6 mt-[100px] max-md:mt-10'>
+      <div className='absolute inset-0 w-full h-full'>
         <img
           src={MiddleImg}
-          className="absolute h-full w-full object-cover inset-0 md:blur-none max-md:blur-[7.5px]"
-          alt="Why choose us background"
+          className='absolute h-full w-full object-cover inset-0 md:blur-none max-md:blur-[7.5px]'
+          alt='Why choose us background'
         />
       </div>
-      <div className="relative bg-[rgba(0,0,0,0.5)] flex w-full md:w-[720px] max-w-full flex-col items-stretch justify-center px-5 py-10 md:px-20 md:py-[77px]">
-        <div className="flex flex-col items-stretch max-md:max-w-full">
-          <h2 className="text-[40px] max-md:text-[24px] mt-[40px] font-bold leading-none max-md:text-center">Why Choose Us?</h2>
+      <div className='relative bg-[rgba(0,0,0,0.5)] flex w-full md:w-[720px] max-w-full flex-col items-stretch justify-center px-5 py-10 md:px-20 md:py-[77px]'>
+        <div className='flex flex-col items-stretch max-md:max-w-full'>
+          <h2 className='text-[40px] max-md:text-[24px] mt-[40px] font-bold leading-none max-md:text-center'>
+            Why Choose Us?
+          </h2>
 
           {features.map((feature, index) => (
             <Feature
@@ -98,5 +107,5 @@ export function WhyChooseUs() {
         </div>
       </div>
     </section>
-  );
+  )
 }

@@ -7,7 +7,7 @@ import {
   FaXTwitter,
   FaWhatsapp
 } from 'react-icons/fa6'
-import ConnectWithUsVideo from '../assets/Videos/ConnectWithUs.mp4'
+import ConnectWithUsVideo from '../../assets/Videos/ConnectWithUs.mp4'
 
 const ConnectWithUs = () => {
   return (

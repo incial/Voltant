@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 // Import video files
-import HeroVideo_1 from '../assets/Videos/Hero-Section-1.mp4'
-import HeroVideo_2 from '../assets/Videos/Hero-Section-2.mp4'
-import HeroVideo_3 from '../assets/Videos/Hero-Section-3.mp4'
+import HeroVideo_1 from '../../assets/Videos/Hero-Section-1.mp4'
+import HeroVideo_2 from '../../assets/Videos/Hero-Section-2.mp4'
+import HeroVideo_3 from '../../assets/Videos/Hero-Section-3.mp4'
 // Import social media icons
 import { FaYoutube, FaInstagram, FaFacebook, FaLinkedin, FaXTwitter } from 'react-icons/fa6'
 

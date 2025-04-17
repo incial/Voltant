@@ -1,6 +1,6 @@
 import React from "react";
-import client1 from "../assets/images/clients/client_1.png";
-import client2 from "../assets/images/clients/client_1.png";
+import client1 from "../../assets/images/clients/client_1.png";
+import client2 from "../../assets/images/clients/client_1.png";
 
 const ClientsSection = () => {
   // Create an array of clients (duplicate for seamless looping)
