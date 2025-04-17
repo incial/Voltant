@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+// eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion'
 
 const ServiceCard = ({ title, image, path }) => {
@@ -20,7 +21,7 @@ return (
         </div>
 
         {/* Desktop styling */}
-        <div className="hidden md:block relative w-[450px] h-[300px] rounded-xl overflow-hidden">
+        <div className="hidden md:block relative w-[370px] h-[300px] rounded-xl overflow-hidden">
             <img 
                 src={image} 
                 alt={title} 
