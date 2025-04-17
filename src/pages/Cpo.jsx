@@ -14,7 +14,9 @@ const Cpo = () => {
       <Navbar />
       <div className='flex flex-col min-h-screen bg-white'>
         <HeroSection />
+        <div className='w-full flex flex-col items-center justify-center px-0 md:px-20'>
         <SeamlessChargingSection />
+        </div>
         
         <motion.section 
           className='w-full py-16'

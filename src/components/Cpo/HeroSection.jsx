@@ -7,7 +7,7 @@ const fadeIn = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
 };
 
-const HeroSection = () => {
+const HeroSection = ({ title = "CPO", breadcrumbs = ["Home", "EV Charging", "CPO"] }) => {
   return (
     <motion.section 
       className='relative w-full h-[80vh] overflow-hidden'
@@ -28,8 +28,18 @@ const HeroSection = () => {
           transition={{ duration: 0.8 }}
           className='text-5xl md:text-5xl font-semibold text-white text-center'
         >
-          CPO
+          {title}
         </motion.h1>
+      </div>
+      
+      {/* Breadcrumbs */}
+      <div className="flex items-stretch text-base font-light md:font-semibold text-white font-['Cairo'] text-[16px] leading-[100%] opacity-50 absolute bottom-10 left-10 z-10">
+        {breadcrumbs.map((crumb, index) => (
+          <div key={index} className="flex items-center">
+            {index > 0 && <span className="mx-2">/</span>}
+            {crumb}
+          </div>
+        ))}
       </div>
     </motion.section>
   );
