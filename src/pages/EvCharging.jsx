@@ -28,7 +28,7 @@ const EvCharging = () => {
     {
       title: 'Engineering Works',
       image: engineeringImage,
-      path: '/engineering-works'
+      path: 'ev-charging/engineering-works'
     },
     {
       title: 'CPO',

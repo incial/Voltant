@@ -18,7 +18,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/ev-charging" element={<EvCharging />} />
             <Route path="/waste-to-energy" element={<WasteToEnergy />} />
-            <Route path="/engineering-works" element={<EngineeringWorks />} />
+            <Route path="/ev-charging/engineering-works" element={<EngineeringWorks />} />
             <Route path="/ev-charging/cpo" element={<Cpo />} />
             <Route path="/waste-to-energy/household" element={<Household />} />
 
