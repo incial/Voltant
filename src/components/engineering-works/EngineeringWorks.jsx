@@ -6,11 +6,13 @@ import { WhyChooseUs } from "./WhyChooseUs";
 import { EngineeringProfiles } from "./EngineeringProfiles";
 import Footer from "../common/Footer";
 import Navbar from "../common/Navbar";
+import ChatButton from "../common/ChatButton";
 
 const EngineeringWorks = () => {
   return (
     <>
       <Navbar />
+      <ChatButton />
       <div className='flex flex-col min-h-screen bg-white'>
       <Hero 
           title="Engineering Works"

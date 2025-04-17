@@ -112,7 +112,7 @@ export function WhyChooseUs () {
       <div className='absolute inset-0 w-full h-full'>
         <img
           src={MiddleImg}
-          className='absolute h-full w-full object-cover inset-0 md:blur-none max-md:blur-[7.5px]'
+          className='absolute h-full w-full object-right inset-0 md:blur-none max-md:blur-[7.5px]'
           alt='Why choose us background'
         />
       </div>
