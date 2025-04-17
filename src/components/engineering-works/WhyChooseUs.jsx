@@ -1,4 +1,6 @@
 import React from 'react'
+// eslint-disable-next-line no-unused-vars
+import { motion } from 'framer-motion'
 import MiddleImg from '../../assets/images/engineering_works/middle.png'
 import ThumbUpIcon from '../../assets/icons/engineering-works/mdi-light_thumb-up.svg'
 import HourglassIcon from '../../assets/icons/engineering-works/fluent_hourglass-20-regular.svg'
@@ -7,9 +9,33 @@ import ShieldIcon from '../../assets/icons/engineering-works/si_shield-health-sa
 import StarIcon from '../../assets/icons/engineering-works/stash_star-light.svg'
 import GroupIcon from '../../assets/icons/engineering-works/Group.svg'
 
+// Animation variants
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.3
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, x: -50 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.4, ease: "easeOut" } }
+};
+
+const blurSectionVariants = {
+  hidden: { opacity: 0, x: -100 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: "easeOut" } }
+};
+
 function Feature ({ icon, title, description }) {
   return (
-    <div className='flex items-start gap-[38px] mt-10 first:mt-20 first:max-md:mt-10'>
+    <motion.div 
+      className='flex items-start gap-[38px] mt-10 first:mt-20 first:max-md:mt-10'
+      variants={itemVariants}
+    >
       {/* Desktop and Mobile: Icon */}
       {icon && (
         <img
@@ -24,7 +50,7 @@ function Feature ({ icon, title, description }) {
         <div className="text-white font-['Cairo'] text-[24px] font-[400] leading-[100%]">
           {title}
         </div>
-        <span className="text-white font-['Cairo'] font-[200]  block mt-1">
+        <span className="text-white font-['Cairo'] font-[200] block mt-1">
           {description}
         </span>
       </div>
@@ -38,7 +64,7 @@ function Feature ({ icon, title, description }) {
           {description}
         </span>
       </div>
-    </div>
+    </motion.div>
   )
 }
 
@@ -90,11 +116,23 @@ export function WhyChooseUs () {
           alt='Why choose us background'
         />
       </div>
-      <div className='relative bg-[rgba(0,0,0,0.5)] flex w-full md:w-[720px] max-w-full flex-col items-stretch justify-center px-5 py-10 md:px-20 md:py-[77px]'>
-        <div className='flex flex-col items-stretch max-md:max-w-full'>
-          <h2 className='text-[40px] max-md:text-[24px] mt-[40px] font-bold leading-none max-md:text-center'>
+      <motion.div 
+        className='relative bg-[rgba(0,0,0,0.5)] flex w-full md:w-[720px] max-w-full flex-col items-stretch justify-center px-5 py-10 md:px-20 md:py-[77px]'
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ amount: 0.1 }}
+        variants={blurSectionVariants}
+      >
+        <motion.div 
+          className='flex flex-col items-stretch max-md:max-w-full'
+          variants={containerVariants}
+        >
+          <motion.h2 
+            className='text-[40px] max-md:text-[24px] mt-[40px] font-bold leading-none max-md:text-center'
+            variants={itemVariants}
+          >
             Why Choose Us?
-          </h2>
+          </motion.h2>
 
           {features.map((feature, index) => (
             <Feature
@@ -104,8 +142,8 @@ export function WhyChooseUs () {
               description={feature.description}
             />
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   )
 }

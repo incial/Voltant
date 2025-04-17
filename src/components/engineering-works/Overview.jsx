@@ -1,13 +1,61 @@
-import React from "react";
+import React from 'react';
+// eslint-disable-next-line no-unused-vars
+import { motion } from 'framer-motion';
 
-export function Overview() {
+const fadeIn = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+};
+
+const fadeInRight = {
+  hidden: { opacity: 0, x: -50 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.7 } }
+};
+
+const fadeInLeft = {
+  hidden: { opacity: 0, x: 50 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.7 } }
+};
+
+const sectionFadeIn = {
+  hidden: { opacity: 0 },
+  visible: { 
+    opacity: 1,
+    transition: { 
+      duration: 0.8,
+      staggerChildren: 0.25
+    }
+  }
+};
+
+const Overview = () => {
   return (
-    <section className="flex flex-col items-center w-full max-w-[1200px] mx-auto mt-[100px] mb-[100px] px-4 mb-8 max-md:mt-[100px] max-md:px-6">
-      <h2 className="text-[#7F7F7F] text-center font-[700] text-[24px] leading-[100%] mb-16 max-md:mb-8">
-      Engineering Works: Precision, Efficiency & Innovation
-      </h2>
-      <p className="text-[#7F7F7F] text-[24px] font-light leading-7 text-center max-w-[1000px] max-md:text-center max-md:font-[300] max-md:text-[20px] max-md:leading-20px max-md:px-[25px]">
-      Our Engineering Works ensure seamless EV charging infrastructure
+    <motion.section 
+      className='w-full py-20 md:py-28 px-6'
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ amount: 0.2 }}
+      variants={sectionFadeIn}
+    >
+      <div className='max-w-4xl mx-auto'>
+        <motion.h2
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ amount: 0.2 }}
+          variants={fadeIn}
+          className='text-4xl text-gray-500 font-black text-center mb-24'
+        >
+          Engineering Works: Precision, Efficiency & Innovation
+        </motion.h2>
+
+        <motion.p
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ amount: 0.2 }}
+          variants={fadeInRight}
+          className=' text-[#7F7F7F] font-300 mb-6 text-center text-xl'
+        >
+           Our Engineering Works ensure seamless EV charging infrastructure
           deployment, from planning to execution. We specialize in site
           assessment, electrical integration, grid connectivity, and custom
           installation solutions tailored to meet diverse operational needs.
@@ -18,12 +66,22 @@ export function Overview() {
           for efficiency, reliability, and scalability. Whether it's a
           commercial charging hub, fleet depot, or residential setup, our
           engineering solutions optimize performance while minimizing downtime.
-          <br />
-          <br />
+        </motion.p>
+
+        <motion.p
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ amount: 0.2 }}
+          variants={fadeInLeft}
+          className='text-[#7F7F7F] font-300 text-center text-xl font-normal'
+        >
           Through cutting-edge technology and industry best practices, we
           provide end-to-end support, ensuring your EV charging infrastructure
           is future-ready.
-      </p>
-    </section>
+        </motion.p>
+      </div>
+    </motion.section>
   );
-}
+};
+
+export default Overview;

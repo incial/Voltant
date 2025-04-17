@@ -1,43 +1,51 @@
 import React from "react";
-import { Hero } from "./Hero";
-import { Overview } from "./Overview";
+import { motion } from 'framer-motion';
+import Hero  from "./Hero";
+import Overview from "./Overview";
 import { WhyChooseUs } from "./WhyChooseUs";
 import { EngineeringProfiles } from "./EngineeringProfiles";
 import Footer from "../common/Footer";
+import Navbar from "../common/Navbar";
 
-export default function EngineeringWorks() {
+const EngineeringWorks = () => {
   return (
-    <div className="bg-white w-full flex flex-col items-center overflow-hidden">
-      {/* Hero section */}
-      <div className="relative bg-black w-full h-[691px] md:h-[434px]" style={{ overflow: 'hidden' }}>
-        <Hero 
+    <>
+      <Navbar />
+      <div className='flex flex-col min-h-screen bg-white'>
+      <Hero 
           title="Engineering Works"
           breadcrumbs={["Home", "EV Charging", "Engineering Works"]}
         />
-      </div>
-      
-      {/* Content sections */}
-      <div className="w-full">
-        {/* Overview section */}
-        <div className="w-full">
-          <Overview />
-        </div>
-
-        {/* Why Choose Us section */}
-        <div className="w-full">
-          <WhyChooseUs />
-        </div>
-
-        {/* Engineering Profiles section */}
-        <div className="w-full">
-          <EngineeringProfiles />
+        <div className='w-full flex flex-col items-center justify-center px-0 md:px-20'>
+        <Overview />
         </div>
         
-        {/* Footer */}
-        <div className="w-full">
-          <Footer />
-        </div>
+        <motion.section 
+          className='w-full py-16'
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ amount: 0.1 }}
+          variants={{ 
+            hidden: { opacity: 0 },
+            visible: { opacity: 1, transition: { duration: 0.5 } }
+          }}
+        >
+          <WhyChooseUs />
+        </motion.section>
+        
+        <EngineeringProfiles />
       </div>
-    </div>
+      <motion.footer
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ amount: 0.2 }}
+        transition={{ duration: 0.6 }}
+      >
+        <Footer />
+      </motion.footer>
+    </>
   );
-}
+};
+
+export default EngineeringWorks;
+
