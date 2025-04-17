@@ -17,7 +17,7 @@ const Cpo = () => {
       {/* Use the ChatButton component */}
       <ChatButton phoneNumber="971555555555" />
       
-      <div className='flex flex-col min-h-screen bg-white px-0'>
+      <div className='flex flex-col min-h-screen bg-white px-0 overflow-hidden'>
         <HeroSection />
         <div className='w-full flex flex-col items-center justify-center px-0 md:px-20'>
           <SeamlessChargingSection />
