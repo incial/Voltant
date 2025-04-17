@@ -9,6 +9,7 @@ import engineeringImage from '../assets/images/Engineering_works.png'
 import cpoImage from '../assets/images/CPO.png'
 import moreImage from '../assets/images/More.png'
 import { Link } from 'react-router-dom'
+// eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion'
 
 const EvCharging = () => {
@@ -32,7 +33,7 @@ const EvCharging = () => {
     {
       title: 'CPO',
       image: cpoImage,
-      path: '/cpo'
+      path: '/ev-charging/cpo'
     },
     {
       title: 'More',

@@ -7,6 +7,7 @@ import EvCharging from './pages/EvCharging'
 import WasteToEnergy from './pages/WasteToEnergy'
 import EngineeringWorks from './pages/EngineeringWorks'
 import Cpo from './pages/Cpo'
+import Household from './pages/Household'
 
 function App() {
   return (
@@ -18,7 +19,9 @@ function App() {
             <Route path="/ev-charging" element={<EvCharging />} />
             <Route path="/waste-to-energy" element={<WasteToEnergy />} />
             <Route path="/engineering-works" element={<EngineeringWorks />} />
-            <Route path="/cpo" element={<Cpo />} />
+            <Route path="/ev-charging/cpo" element={<Cpo />} />
+            <Route path="/waste-to-energy/household" element={<Household />} />
+
             <Route path="*" element={<h1>404 Not Found</h1>} />
           </Routes>
         </div>
