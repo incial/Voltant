@@ -1,14 +1,38 @@
-import React from 'react'
-import HeroSection from '../components/HeroSection'
-import ImpactMetrics from '../components/ImpactMetrics'
+import React, { useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
+import HeroSection from '../components/HomeSection/HeroSection'
+import ImpactMetrics from '../components/HomeSection/ImpactMetrics'
 import Navbar from '../components/common/Navbar'
-import ClientsSection from '../components/ClientsSection'
-import WhoAreWe from '../components/WhoAreWe'
+import ClientsSection from '../components/HomeSection/ClientsSection'
+import WhoAreWe from '../components/HomeSection/WhoAreWe'
 import Footer from '../components/common/Footer'
-import ConnectWithUs from '../components/ConncetWithUs'
-import VideoBanner from '../components/VideoBanner'
+import ConnectWithUs from '../components/HomeSection/ConncetWithUs'
+import VideoBanner from '../components/HomeSection/VideoBanner'
 
 const Home = () => {
+  const location = useLocation();
+
+  // Handle smooth scrolling to sections when hash changes
+  useEffect(() => {
+    if (location.hash) {
+      // Wait a moment for component to render
+      setTimeout(() => {
+        const element = document.getElementById(location.hash.slice(1));
+        if (element) {
+          // Offset to account for navbar height
+          const navbarHeight = 80; // Approximate height of navbar
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+          
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }
+      }, 100);
+    }
+  }, [location]);
+
   return (
     <div className='bg-white w-full min-h-screen flex flex-col items-center'>
       {/* Navbar */}
@@ -28,7 +52,7 @@ const Home = () => {
       {/* Content sections */}
 
       {/* WhoAreWe section */}
-      <div className='w-full flex justify-center'>
+      <div id="who-are-we" className='w-full flex justify-center'>
         <WhoAreWe />
       </div>
 

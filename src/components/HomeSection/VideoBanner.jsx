@@ -1,5 +1,5 @@
 import React from 'react'
-import BannerVideo from '../assets/Videos/Video_Banner.mp4' // Update this path based on your actual video filename
+import BannerVideo from '../../assets/Videos/Video_Banner.mp4' // Update this path based on your actual video filename
 
 const VideoBanner = () => {
   return (

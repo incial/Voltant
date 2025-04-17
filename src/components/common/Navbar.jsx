@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import Logo from '../../assets/images/white_logo.png'; // Ensure this logo file exists
@@ -6,6 +6,7 @@ import Logo from '../../assets/images/white_logo.png'; // Ensure this logo file 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
   const location = useLocation();
 
   // Handle scroll effect for navbar background
@@ -20,6 +21,37 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Set up intersection observer for Who We Are section
+  useEffect(() => {
+    if (location.pathname !== '/') {
+      setActiveSection(location.pathname.slice(1) || 'home');
+      return;
+    }
+
+    const whoAreWeSection = document.getElementById('who-are-we');
+    if (!whoAreWeSection) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          // When Who We Are section is in view
+          if (entry.isIntersecting) {
+            setActiveSection('who-are-we');
+          } else {
+            // When out of view, set to home if we're on the homepage
+            if (location.pathname === '/') {
+              setActiveSection('home');
+            }
+          }
+        });
+      },
+      { threshold: 0.3 } // At least 30% of the section needs to be visible
+    );
+
+    observer.observe(whoAreWeSection);
+    return () => observer.disconnect();
+  }, [location.pathname]);
 
   // Close mobile menu when route changes
   useEffect(() => {
@@ -46,7 +78,11 @@ const Navbar = () => {
 
         {/* Desktop Navigation Links */}
         <div className="hidden md:flex items-center space-x-8 text-xl">
-          <NavLink to="/" label="Home" isActive={location.pathname === '/'} />
+          <NavLink 
+            to="/" 
+            label="Home" 
+            isActive={location.pathname === '/' && activeSection === 'home'} 
+          />
           <NavLink
             to="/ev-charging"
             label="EV Charging"
@@ -58,9 +94,9 @@ const Navbar = () => {
             isActive={location.pathname === '/waste-to-energy'}
           />
           <NavLink
-            to="/about"
+            to="/#who-are-we"
             label="Who We Are"
-            isActive={location.pathname === '/about'}
+            isActive={location.pathname === '/' && activeSection === 'who-are-we'}
           />
         </div>
 
@@ -146,7 +182,7 @@ const Navbar = () => {
             </div>
             <div className="flex flex-col items-center space-y-6 text-white text-lg">
               <Link to="/" onClick={toggleMobileMenu}>
-                <span className={location.pathname === '/' ? 'text-green-400' : ''}>Home</span>
+                <span className={location.pathname === '/' && activeSection === 'home' ? 'text-green-400' : ''}>Home</span>
               </Link>
               <Link to="/ev-charging" onClick={toggleMobileMenu}>
                 <span className={location.pathname === '/ev-charging' ? 'text-green-400' : ''}>EV Charging</span>
@@ -154,8 +190,8 @@ const Navbar = () => {
               <Link to="/waste-to-energy" onClick={toggleMobileMenu}>
                 <span className={location.pathname === '/waste-to-energy' ? 'text-green-400' : ''}>Waste To Energy</span>
               </Link>
-              <Link to="/about" onClick={toggleMobileMenu}>
-                <span className={location.pathname === '/about' ? 'text-green-400' : ''}>Who We Are</span>
+              <Link to="/#who-are-we" onClick={toggleMobileMenu}>
+                <span className={location.pathname === '/' && activeSection === 'who-are-we' ? 'text-green-400' : ''}>Who We Are</span>
               </Link>
               <Link to="/contact" onClick={toggleMobileMenu}>
                 <motion.button
