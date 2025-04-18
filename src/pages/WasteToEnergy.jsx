@@ -2,36 +2,34 @@ import React from 'react'
 import Navbar from '../components/common/Navbar'
 import Footer from '../components/common/Footer'
 import ServiceCard from '../components/common/ServiceCard'
-import WasteToEnergyVideo from '/Videos/Waste_To_Energy.mp4'
-import containerizedPlantImage from '../assets/images/Containerized_plant.png'
-import householdImage from '../assets/images/Household.png'
-import largeScalePlantImage from '../assets/images/Large_Scale_plant.png'
-import smartWasteImage from '../assets/images/Smart_Waste.png'
 import { Link } from 'react-router-dom'
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion'
+import CloudinaryImage from '../components/common/CloudinaryImage'
+import CloudinaryVideo from '../components/common/CloudinaryVideo'
+import { getOptimizedAssetProps } from '../utils/cloudinaryHelper'
 
 const WasteToEnergy = () => {
   // Services data array
   const services = [
     {
       title: <>Containerized<br/>Plant</>,
-      image: containerizedPlantImage,
+      image: 'src/assets/images/Containerized_plant.png',
       path: '/waste-to-energy/containerized-plant'
     },
     {
       title: <>Household</>,
-      image: householdImage,
+      image: 'src/assets/images/Household_mid.png',
       path: '/waste-to-energy/household'
     },
     {
       title: <>Large Scale<br/>Plant</>,
-      image: largeScalePlantImage,
+      image: 'src/assets/images/Large_Scale_plant.png',
       path: '/waste-to-energy/large-scale'
     },
     {
       title: <>Smart Waste<br/>Segregation<br/>Bins</>,
-      image: smartWasteImage,
+      image: 'src/assets/images/Smart_Waste.png',
       path: '/waste-to-energy/smart-waste'
     },
   ]
@@ -46,15 +44,18 @@ const WasteToEnergy = () => {
         <div className='relative h-[550px]'>
           {/* Video Background */}
           <div className='absolute inset-0'>
-            <video
-              className='w-full h-full object-cover'
-              autoPlay
-              loop
-              muted
-              playsInline
-            >
-              <source src={WasteToEnergyVideo} type='video/mp4' />
-            </video>
+          <CloudinaryVideo
+                {...getOptimizedAssetProps(
+                  'public/Videos/Waste_To_Energy.mp4',
+                  'hero',
+                  'video'
+                )}
+                className='w-full h-full object-cover'
+                autoPlay={true}
+                loop={true}
+                muted={true}
+                controls={false}
+              />
             <div className="absolute inset-0 bg-black opacity-40"></div>
           </div>
 
@@ -78,7 +79,12 @@ const WasteToEnergy = () => {
               <ServiceCard 
                 key={index}
                 title={service.title}
-                image={service.image}
+                image={
+                  <CloudinaryImage
+                    {...getOptimizedAssetProps(service.image)}
+                    alt={service.title}
+                  />
+                }
                 path={service.path}
               />
             ))}
@@ -94,15 +100,18 @@ const WasteToEnergy = () => {
         <section className='relative w-full h-screen'>
           {/* Video Background */}
           <div className='absolute inset-0 w-full h-full overflow-hidden'>
-            <video
-              className='w-full h-full object-cover'
-              autoPlay
-              loop
-              muted
-              playsInline
-            >
-              <source src={WasteToEnergyVideo} type='video/mp4' />
-            </video>
+          <CloudinaryVideo
+                {...getOptimizedAssetProps(
+                  'public/Videos/Waste_To_Energy.mp4',
+                  'hero',
+                  'video'
+                )}
+                className='w-full h-full object-cover'
+                autoPlay={true}
+                loop={true}
+                muted={true}
+                controls={false}
+              />
             <div className="absolute inset-0 bg-black opacity-40"></div>
           </div>
 

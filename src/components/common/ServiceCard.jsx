@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import CloudinaryImage from './CloudinaryImage'
+import { getOptimizedAssetProps } from '../../utils/cloudinaryHelper'
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion'
 
@@ -8,8 +10,8 @@ return (
     <Link to={path} className="relative group overflow-hidden cursor-pointer font-['Cairo'] w-full">
         {/* Mobile styling */}
         <div className="md:hidden block relative aspect-square rounded-lg overflow-hidden">
-            <img 
-                src={image} 
+            <CloudinaryImage 
+                {...getOptimizedAssetProps(image, 'thumbnail')}
                 alt={title} 
                 className="w-full h-full object-cover"
             />
@@ -22,8 +24,8 @@ return (
 
         {/* Desktop styling */}
         <div className="hidden md:block relative w-[370px] h-[300px] rounded-xl overflow-hidden">
-            <img 
-                src={image} 
+            <CloudinaryImage 
+                {...getOptimizedAssetProps(image, 'thumbnail')}
                 alt={title} 
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
             />
