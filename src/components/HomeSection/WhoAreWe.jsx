@@ -1,6 +1,6 @@
 import React from 'react'
-import aboutBgImage from '../../assets/images/About_us_section.jpg'
-import LogoImage from '../../assets/images/Logo.png'
+import CloudinaryImage from '../common/CloudinaryImage'
+import { getOptimizedAssetProps } from '../../utils/cloudinaryHelper';
 import { FaFacebookF, FaInstagram, FaLinkedinIn, FaYoutube } from 'react-icons/fa'
 import { FaXTwitter } from 'react-icons/fa6'
 
@@ -11,8 +11,8 @@ const WhoAreWe = () => {
       <div className="md:hidden flex flex-col w-full">
         {/* White logo section - top */}
         <div className="w-full bg-white py-10 flex justify-center items-center">
-          <img
-            src={LogoImage}
+          <CloudinaryImage
+            {...getOptimizedAssetProps('src/assets/images/Logo.png')}
             alt="Voltant Energy Logo"
             className="h-14"
           />
@@ -22,8 +22,8 @@ const WhoAreWe = () => {
         <div className="relative w-full">
           {/* Background forest image */}
           <div className="absolute inset-0 w-full h-full">
-            <img 
-              src={aboutBgImage} 
+            <CloudinaryImage 
+              {...getOptimizedAssetProps('src/assets/images/About_us_section.jpg')}
               alt="Forest background" 
               className="w-full h-full object-cover"
             />
@@ -79,8 +79,8 @@ const WhoAreWe = () => {
         {/* Left side - Logo section with white background */}
         <div className="w-[30%] h-full flex flex-col justify-center items-center z-20">
           <div className="flex flex-col items-center">
-            <img
-              src={LogoImage}
+            <CloudinaryImage
+              {...getOptimizedAssetProps('src/assets/images/Logo.png')}
               alt="Voltant Energy Logo"
               className="h-16 bg" 
             />
@@ -91,8 +91,8 @@ const WhoAreWe = () => {
         <div className="relative w-[70%] h-full">
           {/* Background forest image - only on right side */}
           <div className="absolute inset-0 w-full h-full">
-            <img 
-              src={aboutBgImage} 
+            <CloudinaryImage 
+              {...getOptimizedAssetProps('src/assets/images/About_us_section.jpg')}
               alt="Forest background" 
               className="w-full h-full object-cover"
             />
@@ -158,7 +158,7 @@ const WhoAreWe = () => {
                 </a>
                 <a href="#" className="text-white hover:opacity-80 transition-opacity">
                   <FaXTwitter size={26} />
-                </a>../
+                </a>
               </div>
             </div>
           </div>

@@ -7,8 +7,6 @@ import {
 import { fill, scale } from '@cloudinary/url-gen/actions/resize';
 import { auto as autoFormat } from '@cloudinary/url-gen/qualifiers/format';
 import { auto as autoQuality } from '@cloudinary/url-gen/qualifiers/quality';
-import { predominant } from '@cloudinary/url-gen/qualifiers/background';
-import { blur } from '@cloudinary/url-gen/actions/effect';
 import cld from '../../utils/cloudinary';
 
 const CloudinaryImage = ({ 

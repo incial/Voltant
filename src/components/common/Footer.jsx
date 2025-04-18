@@ -1,8 +1,8 @@
 import React from 'react'
-import whiteLogo from '../../assets/images/white_logo.png'
-import footerImage from '../../assets/images/footer_image.png'
 import { FaYoutube, FaInstagram, FaFacebook, FaLinkedin, FaWhatsapp } from 'react-icons/fa'
 import { FaXTwitter } from 'react-icons/fa6'
+import CloudinaryImage from './CloudinaryImage'
+import { getOptimizedAssetProps } from '../../utils/cloudinaryHelper'
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()
@@ -11,14 +11,22 @@ const Footer = () => {
     <footer className="bg-[#00251a] text-white relative py-10 font-['Cairo']">
       {/* Footer background image with overlay */}
       <div className="absolute inset-0 z-0">
-        <img src={footerImage} alt="Footer background" className="w-full h-full object-cover" />
+        <CloudinaryImage
+          {...getOptimizedAssetProps('src/assets/images/footer_image.png', 'general', 'image')}
+          alt="Footer background"
+          className="w-full h-full object-cover"
+        />
       </div>
       
       {/* Mobile Layout (Default) */}
       <div className="container mx-auto px-4 relative z-20 flex flex-col items-center md:hidden font-['Cairo']">
         {/* Logo */}
         <div className="mb-10">
-          <img src={whiteLogo} alt="Voltant Energy Logo" className="h-10" />
+          <CloudinaryImage
+            {...getOptimizedAssetProps('src/assets/images/white_logo.png', 'logo', 'image')}
+            alt="Voltant Energy Logo"
+            className="h-10"
+          />
         </div>
         
         {/* Social Media Icons */}
@@ -91,7 +99,11 @@ const Footer = () => {
           {/* Left side: Logo and Copyright */}
           <div className="flex flex-col gap-9">
             <div className="mb-4">
-              <img src={whiteLogo} alt="Voltant Energy Logo" className="h-12" />
+              <CloudinaryImage
+                {...getOptimizedAssetProps('src/assets/images/white_logo.png', 'logo', 'image')}
+                alt="Voltant Energy Logo"
+                className="h-12"
+              />
             </div>
             <div className="text-sm">
               <p>© Copyright Voltant Energy LLC FZ. All Rights Reserved</p>

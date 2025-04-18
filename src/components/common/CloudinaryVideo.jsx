@@ -22,8 +22,7 @@ const CloudinaryVideo = ({
   startOffset = 0,
   width,
   height,
-  transformations = [],
-  sources
+  transformations = []
 }) => {
   // Guard against undefined publicId
   if (!publicId) {
@@ -72,28 +71,6 @@ const CloudinaryVideo = ({
     .delivery(quality('auto'))
     .toURL();
 
-  // Use default sources only if none are provided via props
-  const defaultSources = [
-    {
-      type: 'mp4',
-      transformations: ['vc_auto']  // Simplified to just one safe transformation
-    }
-  ];
-
-  // Safely prepare sources, ensuring transformations are strings
-  const safeSourcesArray = sources ? sources.map(source => {
-    // Make sure transformations is an array of strings
-    const safeTransformations = 
-      source.transformations && Array.isArray(source.transformations) 
-        ? source.transformations.filter(t => typeof t === 'string')
-        : ['vc_auto']; // Default safe transformation
-    
-    return {
-      ...source,
-      transformations: safeTransformations
-    };
-  }) : defaultSources;
-
   return (
     <AdvancedVideo
       cldVid={videoUrl}
@@ -104,12 +81,12 @@ const CloudinaryVideo = ({
       controls={controls}
       poster={posterUrl}
       plugins={plugins}
+      playsInline={true}
       onPlay={(e) => {
         if (startOffset > 0) {
           e.target.currentTime = startOffset;
         }
       }}
-      sources={safeSourcesArray}
     />
   );
 };

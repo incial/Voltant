@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react'
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from 'framer-motion'
 import { FaYoutube, FaInstagram, FaFacebook, FaLinkedin, FaXTwitter } from 'react-icons/fa6'
-// Import CloudinaryVideoFixed component
 import CloudinaryVideo from '../common/CloudinaryVideo'
 import { getOptimizedAssetProps } from '../../utils/cloudinaryHelper'
 
@@ -34,12 +33,16 @@ const HeroSection = () => {
   // Video duration and transition settings
   const videoDuration = 12000; // 12 seconds
   
-  // Play the current video when it changes
+  // Play the current video when it changes - with error handling
   useEffect(() => {
     if (currentVideoRef.current?.getInternalPlayer) {
-      const player = currentVideoRef.current.getInternalPlayer();
-      if (player) {
-        player.play().catch(e => console.error("Error playing current video:", e));
+      try {
+        const player = currentVideoRef.current.getInternalPlayer();
+        if (player && player.play) {
+          player.play().catch(e => console.error("Error playing current video:", e));
+        }
+      } catch (error) {
+        console.error("Error accessing video player:", error);
       }
     }
   }, [currentVideoIndex]);
@@ -130,7 +133,6 @@ const HeroSection = () => {
             muted={true}
             controls={false}
             useLazyLoading={currentVideoIndex !== 0} // Don't lazy load the first video
-            localPath={videoMappings[currentVideoIndex].path} // Pass local path for fallback
           />
           
           {/* Radial overlay with different colors for each video */}
