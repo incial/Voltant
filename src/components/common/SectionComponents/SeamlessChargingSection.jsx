@@ -1,5 +1,4 @@
 import React from 'react';
-// eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
 
 const fadeIn = {
@@ -9,6 +8,11 @@ const fadeIn = {
 
 const fadeInRight = {
   hidden: { opacity: 0, x: -50 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.7 } }
+};
+
+const fadeInLeft = {
+  hidden: { opacity: 0, x: 50 },
   visible: { opacity: 1, x: 0, transition: { duration: 0.7 } }
 };
 
@@ -23,7 +27,10 @@ const sectionFadeIn = {
   }
 };
 
-const SeamlessChargingSection = () => {
+const SeamlessChargingSection = ({ 
+  title = "Seamless Charging, Smarter Operations",
+  paragraphs = []
+}) => {
   return (
     <motion.section 
       className='w-full py-20 md:py-28 px-6'
@@ -40,20 +47,21 @@ const SeamlessChargingSection = () => {
           variants={fadeIn}
           className='text-4xl text-gray-500 font-black text-center mb-24'
         >
-          Household Biogas Solutions<br />
-          Clean Energy, Right at Home.
+          {title}
         </motion.h2>
 
-        <motion.p
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ amount: 0.2 }}
-          variants={fadeInRight}
-          className='text-gray-700 mb-6 text-center text-xl font-normal'
-        >
-          Our Household Biogas Plants provide an eco-friendly and cost-effective way to convert daily organic waste into renewable energy. Designed for homes, farms, and small communities, these compact systems generate biogas for cooking, heating, and other domestic uses while reducing waste disposal issues. Easy to install and maintain, they offer a sustainable alternative to conventional energy sources..
-        </motion.p>
-
+        {paragraphs.map((paragraph, index) => (
+          <motion.p
+            key={index}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ amount: 0.2 }}
+            variants={index % 2 === 0 ? fadeInRight : fadeInLeft}
+            className='text-gray-700 mb-6 text-center text-xl font-normal'
+          >
+            {paragraph}
+          </motion.p>
+        ))}
       </div>
     </motion.section>
   );

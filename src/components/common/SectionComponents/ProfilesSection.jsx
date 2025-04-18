@@ -1,5 +1,4 @@
 import React from 'react';
-// eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
 
 const fadeIn = {
@@ -50,35 +49,13 @@ const ProfileItem = ({ title, description }) => {
   );
 };
 
-const ProfilesSection = () => {
-  // Left column profile data
-  const leftProfiles = [
-    {
-      title: "Seamless Network Management",
-      description: "As a Charge-Point Operator, we oversee the end-to-end operation of EV charging stations, ensuring a stable, efficient, and user-friendly experience. Our role extends beyond installation, focusing on real-time monitoring, remote diagnostics, and optimized energy distribution."
-    },
-    {
-      title: "Smart Charge Point Management System (CPMS)",
-      description: "Our advanced CPMS enables live tracking, automated load balancing, and remote control of charging stations. With predictive maintenance and real-time analytics, we ensure maximum uptime and operational efficiency."
-    },
-    {
-      title: "Integrated Billing & Payment Solutions",
-      description: "We provide a seamless payment experience with multiple transaction options, including RFID, mobile apps, and contactless payments. Our billing system ensures transparent pricing and easy invoicing for both private and public charging networks."
-    }
-  ];
-
-  // Right column profile data
-  const rightProfiles = [
-    {
-      title: "Scalable & Future-Ready Infrastructure",
-      description: "Designed for expansion, our CPO solutions support businesses, fleet operators, and municipalities in growing their EV charging network. With flexible deployment models and advanced energy management, we future-proof charging infrastructure for evolving needs."
-    },
-    {
-      title: "24/7 Support & Maintenance",
-      description: "Our dedicated support team offers round-the-clock assistance, troubleshooting, and remote fixes to ensure uninterrupted charging services. With proactive monitoring and quick issue resolution, we keep every charging point running at peak performance."
-    }
-  ];
-
+const ProfilesSection = ({ 
+  sectionTitle = "Profiles",
+  leftProfiles = [],
+  rightProfiles = [],
+  buttonText = "Download Profile",
+  showButton = true
+}) => {
   return (
     <motion.section 
       className="flex flex-col items-center w-full mt-[100px] mb-[100px] px-4 max-md:mt-10"
@@ -95,7 +72,7 @@ const ProfilesSection = () => {
           viewport={{ amount: 0.1 }}
           variants={fadeIn}
         >
-          Profiles
+          {sectionTitle}
         </motion.h2>
         <div className="mt-[60px] max-md:mt-10">
           <div className="gap-2 justify-between flex max-md:flex-col max-md:mx-[50px]">
@@ -133,17 +110,19 @@ const ProfilesSection = () => {
                     />
                   ))}
                 </div>
-                <motion.div 
-                  className="flex items-center justify-start w-full py-[40px] md:my-[70px]"
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ amount: 0.1 }}
-                  variants={buttonAnimation}
-                >
-                  <button className="text-lg md:text-[16px] font-normal text-center leading-none px-4 md:px-9 py-[16px] rounded-[31px] border-[rgba(127,127,127,1)] border-solid border-2 hover:bg-[rgba(127,127,127,0.1)] transition-colors">
-                    Download Charging Profile
-                  </button>
-                </motion.div>
+                {showButton && (
+                  <motion.div 
+                    className="flex items-center justify-start w-full py-[40px] md:my-[70px]"
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ amount: 0.1 }}
+                    variants={buttonAnimation}
+                  >
+                    <button className="text-lg md:text-[16px] font-normal text-center leading-none px-4 md:px-9 py-[16px] rounded-[31px] border-[rgba(127,127,127,1)] border-solid border-2 hover:bg-[rgba(127,127,127,0.1)] transition-colors">
+                      {buttonText}
+                    </button>
+                  </motion.div>
+                )}
               </div>
             </motion.div>
           </div>

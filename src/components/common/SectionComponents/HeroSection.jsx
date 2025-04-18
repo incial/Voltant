@@ -1,14 +1,16 @@
 import React from 'react';
-// eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
-import HeroImage from "../../assets/images/engineering_works/hero.png"
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
 };
 
-const Hero = ({ title = "Engineering Works", breadcrumbs = ["Home", "EV Charging", "Engineering Works"] }) => {
+const HeroSection = ({ 
+  title = "Section Title", 
+  breadcrumbs = ["Home"], 
+  heroImage
+}) => {
   return (
     <motion.section 
       className='relative w-full h-[80vh] overflow-hidden'
@@ -18,8 +20,8 @@ const Hero = ({ title = "Engineering Works", breadcrumbs = ["Home", "EV Charging
     >
       <div className='absolute inset-0 bg-black/30'></div>
       <img
-        src={HeroImage}
-        alt='EV Charging Stations'
+        src={heroImage}
+        alt='Hero Image'
         className='w-full h-full object-cover'
       />
       <div className='absolute inset-0 flex items-center justify-center'>
@@ -46,4 +48,4 @@ const Hero = ({ title = "Engineering Works", breadcrumbs = ["Home", "EV Charging
   );
 };
 
-export default Hero;
+export default HeroSection;
