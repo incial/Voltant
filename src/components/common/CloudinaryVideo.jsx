@@ -1,5 +1,5 @@
 import React from 'react';
-import { AdvancedVideo } from '@cloudinary/react';
+import { AdvancedVideo, lazyload } from '@cloudinary/react';
 import { 
   quality, 
   format
@@ -18,8 +18,19 @@ const CloudinaryVideo = ({
   muted = true,
   controls = false,
   poster,
-  transformations = []
+  useLazyLoading = true,
+  startOffset = 0,
+  width,
+  height,
+  transformations = [],
+  sources
 }) => {
+  // Guard against undefined publicId
+  if (!publicId) {
+    console.error("CloudinaryVideo received undefined publicId");
+    return null;
+  }
+
   const videoUrl = cld.video(publicId);
 
   // Apply default optimizations
@@ -28,10 +39,60 @@ const CloudinaryVideo = ({
     .delivery(format(autoFormat()))
     .transcode(videoCodec(autoCodec()));
 
+  // Apply responsive sizing if provided
+  if (width) {
+    videoUrl.resize(`w_${width}`);
+  }
+  
+  if (height) {
+    videoUrl.resize(`h_${height}`);
+  }
+
   // Apply any custom transformations
-  transformations.forEach(transformation => {
-    videoUrl.addTransformation(transformation);
-  });
+  if (transformations && Array.isArray(transformations)) {
+    transformations.forEach(transformation => {
+      if (typeof transformation === 'string') {
+        videoUrl.addTransformation(transformation);
+      }
+    });
+  }
+
+  // Set up plugins
+  const plugins = [];
+  
+  // Add lazy loading
+  if (useLazyLoading) {
+    plugins.push(lazyload({ rootMargin: '10px 20px 10px 30px', threshold: 0.1 }));
+  }
+
+  // Create poster URL from the video if none provided
+  const posterUrl = poster || cld.image(publicId)
+    .setAssetType('video')
+    .delivery(format('auto'))
+    .delivery(quality('auto'))
+    .toURL();
+
+  // Use default sources only if none are provided via props
+  const defaultSources = [
+    {
+      type: 'mp4',
+      transformations: ['vc_auto']  // Simplified to just one safe transformation
+    }
+  ];
+
+  // Safely prepare sources, ensuring transformations are strings
+  const safeSourcesArray = sources ? sources.map(source => {
+    // Make sure transformations is an array of strings
+    const safeTransformations = 
+      source.transformations && Array.isArray(source.transformations) 
+        ? source.transformations.filter(t => typeof t === 'string')
+        : ['vc_auto']; // Default safe transformation
+    
+    return {
+      ...source,
+      transformations: safeTransformations
+    };
+  }) : defaultSources;
 
   return (
     <AdvancedVideo
@@ -41,7 +102,14 @@ const CloudinaryVideo = ({
       loop={loop}
       muted={muted}
       controls={controls}
-      poster={poster}
+      poster={posterUrl}
+      plugins={plugins}
+      onPlay={(e) => {
+        if (startOffset > 0) {
+          e.target.currentTime = startOffset;
+        }
+      }}
+      sources={safeSourcesArray}
     />
   );
 };

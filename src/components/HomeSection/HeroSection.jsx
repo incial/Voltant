@@ -1,29 +1,32 @@
 import React, { useState, useEffect, useRef } from 'react'
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from 'framer-motion'
-// Import video files
-import HeroVideo_1 from '/Videos/Hero-Section-1.mp4'
-import HeroVideo_2 from '/Videos/Hero-Section-2.mp4'
-import HeroVideo_3 from '/Videos/Hero-Section-3.mp4'
-// Import social media icons
 import { FaYoutube, FaInstagram, FaFacebook, FaLinkedin, FaXTwitter } from 'react-icons/fa6'
+// Import CloudinaryVideoFixed component
+import CloudinaryVideo from '../common/CloudinaryVideo'
+import { getOptimizedAssetProps } from '../../utils/cloudinaryHelper'
 
 const HeroSection = () => {
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
   const [progress, setProgress] = useState(0);
   const [showSocialTray, setShowSocialTray] = useState(false);
-  const videos = [HeroVideo_1, HeroVideo_2, HeroVideo_3];
-  const videoCaptions = [
+  
+  // Use video mapping with Cloudinary public IDs
+  const videoMappings = [
     {
-      title: <>For a Sustainable Tomorrow,<br/>Save Energy Today.</>,
+      path: 'public/Videos/Hero-Section-1.mp4',
+      title: <>For a Sustainable Tomorrow,<br/>Save Energy Today.</>
     },
     {
-      title: <>Turning Waste into Power,<br/> Fueling a Greener Future.</>,
+      path: 'public/Videos/Hero-Section-2.mp4',
+      title: <>Turning Waste into Power,<br/> Fueling a Greener Future.</>
     },
     {
-      title: <>Maximize Efficiency,<br/> Minimize Waste.</>,
+      path: 'public/Videos/Hero-Section-3.mp4',
+      title: <>Maximize Efficiency,<br/> Minimize Waste.</>
     }
   ];
+  
   const currentVideoRef = useRef(null);
   const intervalRef = useRef(null);
   const animationRef = useRef(null);
@@ -33,8 +36,11 @@ const HeroSection = () => {
   
   // Play the current video when it changes
   useEffect(() => {
-    if (currentVideoRef.current) {
-      currentVideoRef.current.play().catch(e => console.error("Error playing current video:", e));
+    if (currentVideoRef.current?.getInternalPlayer) {
+      const player = currentVideoRef.current.getInternalPlayer();
+      if (player) {
+        player.play().catch(e => console.error("Error playing current video:", e));
+      }
     }
   }, [currentVideoIndex]);
 
@@ -65,7 +71,7 @@ const HeroSection = () => {
     
     // Set up video transition at the end of video duration
     intervalRef.current = setTimeout(() => {
-      const next = (currentVideoIndex + 1) % videos.length;
+      const next = (currentVideoIndex + 1) % videoMappings.length;
       
       // Switch directly to the next video
       setCurrentVideoIndex(next);
@@ -78,7 +84,7 @@ const HeroSection = () => {
       if (currentAnimationRef) cancelAnimationFrame(currentAnimationRef);
       if (intervalRef.current) clearTimeout(intervalRef.current);
     };
-  }, [currentVideoIndex, videos.length]);
+  }, [currentVideoIndex, videoMappings.length]);
 
   // Show social media tray after 2.5 seconds instead of 4
   useEffect(() => {
@@ -114,24 +120,18 @@ const HeroSection = () => {
             backgroundColor: 'black'
           }}
         >
-          <video
+          {/* Use the fixed CloudinaryVideo component instead */}
+          <CloudinaryVideo
             ref={currentVideoRef}
-            autoPlay
-            muted
-            playsInline
-            preload="auto"
-            loop
-            style={{ 
-              width: '100%', 
-              height: '100%', 
-              objectFit: 'cover',
-            }}
-            onLoadedData={(e) => {
-              e.target.currentTime = 0.01;
-            }}
-          >
-            <source src={videos[currentVideoIndex]} type="video/mp4" />
-          </video>
+            {...getOptimizedAssetProps(videoMappings[currentVideoIndex].path, 'hero', 'video')}
+            className="w-full h-full object-cover"
+            autoPlay={true}
+            loop={true}
+            muted={true}
+            controls={false}
+            useLazyLoading={currentVideoIndex !== 0} // Don't lazy load the first video
+            localPath={videoMappings[currentVideoIndex].path} // Pass local path for fallback
+          />
           
           {/* Radial overlay with different colors for each video */}
           <div style={{
@@ -243,12 +243,10 @@ const HeroSection = () => {
             margin: 0,
             textShadow: '2px 2px 4px rgba(0,0,0,0.5)'
           }} className="font-['Cairo']">
-            {videoCaptions[currentVideoIndex].title}
+            {videoMappings[currentVideoIndex].title}
           </h3>
         </motion.div>
       </AnimatePresence>
-      
-  
       
       {/* White Bar Video Indicator */}
       <div style={{ 
@@ -261,7 +259,7 @@ const HeroSection = () => {
         gap: '20px',
         zIndex: 10
       }}>
-        {videos.map((_, index) => (
+        {videoMappings.map((_, index) => (
           <div 
             key={index} 
             style={{ 
@@ -279,7 +277,7 @@ const HeroSection = () => {
                 width: index === currentVideoIndex 
                   ? `${progress * 100}%` 
                   : index < currentVideoIndex || 
-                    (currentVideoIndex === 0 && index === videos.length - 1)
+                    (currentVideoIndex === 0 && index === videoMappings.length - 1)
                     ? '100%'
                     : '0%',
                 backgroundColor: index === currentVideoIndex 
