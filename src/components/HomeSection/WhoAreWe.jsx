@@ -28,7 +28,7 @@ const WhoAreWe = () => {
               className="w-full h-full object-cover"
             />
             {/* Black overlay */}
-            <div className="absolute inset-0 bg-black opacity-30"></div>
+            <div className="absolute inset-0 bg-black opacity-20"></div>
           </div>
           
           {/* Text content */}
@@ -97,7 +97,7 @@ const WhoAreWe = () => {
               className="w-full h-full object-cover"
             />
             {/* Black overlay with 50% opacity */}
-            <div className="absolute inset-0 bg-black opacity-30"></div>
+            <div className="absolute inset-0 bg-black opacity-20"></div>
           </div>
 
           {/* Content container with text and social icons */}

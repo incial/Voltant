@@ -50,6 +50,14 @@ export const imageAssets = {
   'src/assets/icons/cpo/pepicons-pencil_leaf-circle.svg': 'voltant-energy/icons/cpo/leaf-circle',
   'src/assets/icons/cpo/stash_folder-alt-light.svg': 'voltant-energy/icons/cpo/folder-alt',
   'src/assets/icons/cpo/stash_star-light.svg': 'voltant-energy/icons/cpo/star-light',
+
+  //More Section
+  'src/assets/images/morehero.png': 'voltant-energy/more/morehero',
+  'src/assets/images/moremidbanner.png': 'voltant-energy/more/moremidbanner',
+
+  //More icons
+  'src/assets/icons/more/lets-icons_lightning-light.svg': 'voltant-energy/icons/more/lets-icons-lightning-light',
+
   
   // Engineering Works icons
   'src/assets/icons/engineering-works/fluent_hourglass-20-regular.svg': 'voltant-energy/icons/engineering/hourglass',

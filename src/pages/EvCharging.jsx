@@ -34,7 +34,7 @@ const EvCharging = () => {
     {
       title: 'More',
       image: 'src/assets/images/More.png',
-      path: '/more'
+      path: '/ev-charging/more'
     }
   ]
 

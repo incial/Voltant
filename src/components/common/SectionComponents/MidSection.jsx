@@ -2,6 +2,9 @@ import React from 'react'
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion'
 
+import CloudinaryImage from '../CloudinaryImage'
+import { getOptimizedAssetProps } from '../../../utils/cloudinaryHelper'
+
 // Animation variants
 const containerVariants = {
   hidden: {},
@@ -11,31 +14,31 @@ const containerVariants = {
       delayChildren: 0.3
     }
   }
-};
+}
 
 const itemVariants = {
   hidden: { opacity: 0, x: -50 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.4, ease: "easeOut" } }
-};
+  visible: { opacity: 1, x: 0, transition: { duration: 0.4, ease: 'easeOut' } }
+}
 
 const blurSectionVariants = {
   hidden: { opacity: 0, x: -100 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: "easeOut" } }
-};
+  visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: 'easeOut' } }
+}
 
 function Feature ({ icon, title, description }) {
   return (
-    <motion.div 
+    <motion.div
       className='flex items-center gap-[38px] md:gap-[38px] mt-10 first:mt-20 first:max-md:mt-6'
       variants={itemVariants}
     >
       {/* Desktop and Mobile: Icon */}
       {icon && (
-        <div className="flex-shrink-0">
-          <img
-            src={icon}
-            className='aspect-[1] object-contain w-8 md:w-12 shrink-0 my-auto'
+        <div className='flex-shrink-0'>
+          <CloudinaryImage
+            {...getOptimizedAssetProps(icon)}
             alt={`${title} icon`}
+            className='aspect-[1] object-contain w-8 md:w-12 shrink-0 my-auto'
           />
         </div>
       )}
@@ -63,39 +66,39 @@ function Feature ({ icon, title, description }) {
   )
 }
 
-const MidSection = ({ 
+const MidSection = ({
   backgroundImage,
-  sectionTitle = "Why Choose Us?",
+  sectionTitle = 'Why Choose Us?',
   features = []
 }) => {
   return (
     <>
       <section className='relative h-auto min-h-screen md:h-[120vh] w-full overflow-hidden'>
-        <img
-          src={backgroundImage}
+        <CloudinaryImage
+          {...getOptimizedAssetProps(backgroundImage)}
           alt='Section Background'
           className='w-full h-full object-cover absolute inset-0'
         />
         <div className='absolute inset-0 bg-black/50 md:bg-black/30 z-10'></div>
-        <motion.div 
+        <motion.div
           className='relative md:absolute top-0 left-0 backdrop-blur-sm w-full md:w-1/2 min-h-screen md:h-full flex justify-center items-center z-20 px-5 py-16 md:py-0 md:px-24 bg-transparent'
-          initial="hidden"
-          whileInView="visible"
+          initial='hidden'
+          whileInView='visible'
           viewport={{ amount: 0.1 }}
           variants={blurSectionVariants}
         >
-          <motion.div 
+          <motion.div
             className='flex flex-col items-stretch w-full max-w-md mx-auto md:max-w-none md:mx-0'
             variants={containerVariants}
           >
-            <motion.h2 
+            <motion.h2
               className='text-[32px] md:text-[40px] text-white max-md:text-[28px] ml-0 font-bold text-center md:text-left mb-8 md:mb-0'
               variants={itemVariants}
             >
               {sectionTitle}
             </motion.h2>
 
-            <div className="space-y-8 space-x-4 md:space-x-0 md:space-y-0">
+            <div className='space-y-8 space-x-4 md:space-x-0 md:space-y-0'>
               {features.map((feature, index) => (
                 <Feature
                   key={index}
