@@ -7,14 +7,16 @@ import {
   FaXTwitter,
   FaWhatsapp
 } from 'react-icons/fa6'
-import fallbackBg from '../../assets/images/fallbackBg.png'
+import CloudinaryImage from '../common/CloudinaryImage'
+import CloudinaryVideo from '../common/CloudinaryVideo'
+import { getOptimizedAssetProps } from '../../utils/cloudinaryHelper'
 
 const ConnectWithUs = () => {
   // State to track if the video fails to load
   const [videoError, setVideoError] = useState(false)
 
   // Path to the video file in the public directory - updated to new structure
-  const videoPath = '/videos/ConnectWithUs.mp4'
+  const videoPath = 'public/Videos/Connectwithus.mp4'
 
   return (
     <>
@@ -25,22 +27,21 @@ const ConnectWithUs = () => {
       >
         {/* Video Background */}
         <div className='absolute inset-0'>
-          <video
+          <CloudinaryVideo
+            {...getOptimizedAssetProps(videoPath, 'hero', 'video')}
             className='w-full h-full object-cover'
-            autoPlay
-            loop
-            muted
-            playsInline
+            autoPlay={true}
+            loop={true}
+            muted={true}
+            controls={false}
             onError={() => setVideoError(true)}
-          >
-            <source src={videoPath} type='video/mp4' />
-          </video>
+          />
           {/* Fallback background if video fails to load */}
           {videoError && (
             <div className='absolute inset-0'>
-              <img
-                src={fallbackBg}
-                alt="Fallback background"
+              <CloudinaryImage
+                {...getOptimizedAssetProps('src/assets/images/fallbackBg.png', 'bannner', 'image')}
+                alt='Fallback background'
                 className='w-full h-full object-cover'
               />
             </div>
@@ -112,20 +113,25 @@ const ConnectWithUs = () => {
         {/* Middle section with video background and social icons */}
         <div className='relative w-full' style={{ height: '400px' }}>
           <div className='absolute inset-0 rounded-3xl'>
-            <video
-              className='w-full h-full object-cover rounded-3xl'
-              autoPlay
-              loop
-              muted
-              playsInline
-              onError={() => setVideoError(true)}
-            >
-              <source src={videoPath} type='video/mp4' />
-            </video>
-            {/* Fallback background if video fails to load */}
-            {videoError && (
-              <div className='absolute inset-0 bg-gray-800 rounded-3xl'></div>
-            )}
+          <CloudinaryVideo
+                        {...getOptimizedAssetProps(videoPath, 'hero', 'video')}
+                        className='w-full h-full object-cover'
+                        autoPlay={true}
+                        loop={true}
+                        muted={true}
+                        controls={false}
+                        onError={() => setVideoError(true)}
+                      />
+                      {/* Fallback background if video fails to load */}
+                      {videoError && (
+                        <div className='absolute inset-0'>
+                          <CloudinaryImage
+                            {...getOptimizedAssetProps('src/assets/images/fallbackBg.png', 'bannner', 'image')}
+                            alt='Fallback background'
+                            className='w-full h-full object-cover'
+                          />
+                        </div>
+                      )}
             <div className='absolute inset-0 bg-black opacity-20 rounded-3xl'></div>
           </div>
 
