@@ -6,6 +6,7 @@ import './App.css'
 import Home from './pages/Home'
 import EvCharging from './pages/EvCharging'
 import AC from './pages/AC'
+import DC from './pages/DC'
 import WasteToEnergy from './pages/WasteToEnergy'
 import EngineeringWorks from './pages/EngineeringWorks'
 import LargeScale from './pages/LargeScale'
@@ -38,7 +39,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/ev-charging" element={<EvCharging />} />
-            <Route path="/ac-chargers" element={<AC />} />
+            <Route path="/ev-charging/ac-chargers" element={<AC />} />
+            <Route path="/ev-charging/dc-chargers" element={<DC />} />
             <Route path="/waste-to-energy" element={<WasteToEnergy />} />
             <Route path="/ev-charging/engineering-works" element={<EngineeringWorks />} />
             <Route path="/ev-charging/cpo" element={<Cpo />} />

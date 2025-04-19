@@ -14,12 +14,12 @@ const EvCharging = () => {
     {
       title: 'AC Chargers',
       image: 'src/assets/images/AC_Chrager_image.png',
-      path: '/ac-chargers'
+      path: '/ev-charging/ac-chargers'
     },
     {
       title: 'DC Chargers',
       image: 'src/assets/images/DC_Charger_image.png',
-      path: '/dc-chargers'
+      path: '/ev-charging/dc-chargers'
     },
     {
       title: 'Engineering Works',

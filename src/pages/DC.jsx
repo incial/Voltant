@@ -15,7 +15,7 @@ import ProfilesSection from '../components/common/SectionComponents/ProfilesSect
 // Import data
 import { ACData } from '../utils/sectionData'
 
-const AC = () => {
+const DC = () => {
   return (
     <>
       <Navbar />
@@ -69,4 +69,4 @@ const AC = () => {
   )
 }
 
-export default AC
+export default DC

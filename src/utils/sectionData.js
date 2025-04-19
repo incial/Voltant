@@ -529,3 +529,72 @@ export const containerizedData = {
     showButton: true
   }
 }
+// AC Data
+export const ACData = {
+  hero: {
+    title: 'AC Chargers',
+    breadcrumbs: ['Home', 'EV Charging', 'AC Chargers'],
+    showSubtitle: false,
+    heroImage: 'src/assets/images/ac_charge.png'
+  },
+  seamlessCharging: {
+    title: ' AC Chargers: Smart, Efficient & Reliable EV Charging',
+    paragraphs: [
+      'AC chargers offer a seamless and cost-effective solution for home, workplace, and commercial EV charging, making electric vehicle ownership more convenient than ever. Designed for long-duration and overnight charging, they provide a steady, optimized power flow while ensuring energy efficiency and lower infrastructure costs.',
+      'Ideal for residential garages, offices, and public parking spaces, AC chargers integrate smart connectivity features, allowing remote monitoring, scheduling, and usage tracking. With universal compatibility, they support a wide range of EV models, making them a versatile and future-ready charging solution. Whether for personal use or building a broader EV charging network, our AC charging solutions deliver safe, reliable, and intelligent energy management for a sustainable future.'
+    ]
+  },
+  midSection: {
+    backgroundImage: 'src/assets/images/containerized/middle.png',
+    sectionTitle: 'Why Choose AC Charging ?',
+    features: [
+      {
+        icon: 'src/assets/icons/containerized/stash_star-light.svg',
+        title: 'Smart connectivity ',
+        description:
+          'with WiFi, Bluetooth, and RFID access control.'
+      },
+      {
+        icon: 'src/assets/icons/containerized/pepicons-pencil_leaf-circle.svg',
+        title: 'Energy-Efficient & Cost-Effective',
+        description:
+          'Delivers steady, optimized charging with lower infrastructure costs.'
+      },
+      {
+        icon: 'src/assets/icons/containerized/mdi-light_vector-combine.svg',
+        title: 'Multiple charging standards',
+        description:
+          '(GBT, Type 1, Type 2) for universal compatibility.'
+      },
+      {
+        icon: 'src/assets/icons/containerized/mdi-light_thumb-up.svg',
+        title: 'Integrated safety features',
+        description:
+          'including Type B leakage protection, overvoltage, and short circuit protection.'
+      },
+      {
+        icon: 'src/assets/icons/Drop.svg',
+        title: 'IP65-rated waterproof design',
+        description:
+          'ensuring durability in all weather conditions.'
+      },
+      {
+        icon: 'src/assets/icons/containerized/material-symbols-light_motion-blur-rounded.svg',
+        title: 'Human motion radar sensor',
+        description:
+          ' for automatic screen brightness adjustment.'
+      },
+      {
+        icon: 'src/assets/icons/containerized/icon-park-outline_tailoring.svg',
+        title: 'Customizable options',
+        description:
+          'including wall-mounted or pedestal installations.'
+      }
+    ]
+  },
+  profiles: {
+    sectionTitle: 'Profiles',
+    buttonText: 'Download Charging Profile',
+    showButton: true
+  }
+}

@@ -9,7 +9,12 @@ export const imageAssets = {
   'src/assets/images/Logo.png': 'voltant-energy/logos/logo_main',
   'src/assets/images/white_logo.png': 'voltant-energy/logos/logo_white',
 
+
+  //AC charge images
   'src/assets/images/ac_charge.png': 'voltant-energy/charging/ac_charge',
+
+  //AC Charge icons
+  'src/assets/icons/Drop.svg': 'voltant-energy/icons/cpo/Drop',
   
   // Hero and Banner images
   'src/assets/images/About_us_section.jpg': 'voltant-energy/about/about_us_section',
