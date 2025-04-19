@@ -6,6 +6,7 @@ import Home from './pages/Home'
 import EvCharging from './pages/EvCharging'
 import WasteToEnergy from './pages/WasteToEnergy'
 import EngineeringWorks from './pages/EngineeringWorks'
+import LargeScale from './pages/LargeScale'
 import Cpo from './pages/Cpo'
 import Household from './pages/Household'
 import More from './pages/More'
@@ -23,7 +24,7 @@ function App() {
             <Route path="/ev-charging/cpo" element={<Cpo />} />
             <Route path="/ev-charging/more" element={<More />} />
             <Route path="/waste-to-energy/household" element={<Household />} />
-
+            <Route path="/ev-charging/large-scale" element={<LargeScale />} />
             <Route path="*" element={<h1>404 Not Found</h1>} />
           </Routes>
         </div>

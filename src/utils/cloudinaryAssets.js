@@ -34,6 +34,10 @@ export const imageAssets = {
   // Engineering works images
   'src/assets/images/engineering_works/hero.png': 'voltant-energy/engineering/hero',
   'src/assets/images/engineering_works/middle.png': 'voltant-energy/engineering/middle',
+
+  // Large scale images
+  'src/assets/images/large_scale/hero.png': 'voltant-energy/large-scale/hero',
+  'src/assets/images/large_scale/middle.png': 'voltant-energy/large-scale/middle',
   
   // Social media icons
   'src/assets/icons/fb.svg': 'voltant-energy/icons/social/facebook',
