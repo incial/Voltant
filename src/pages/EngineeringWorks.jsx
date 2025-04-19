@@ -29,6 +29,7 @@ function EngineeringWorks() {
           title={engineeringWorksData.hero.title}
           breadcrumbs={engineeringWorksData.hero.breadcrumbs}
           heroImage={engineeringWorksData.hero.heroImage}
+          showSubtitle={engineeringWorksData.hero.showSubtitle}
         />
         
         <div className='w-full flex flex-col items-center justify-center px-0 md:px-20'>
