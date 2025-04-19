@@ -90,6 +90,7 @@ export const cpoData = {
     showButton: true
   }
 }
+
 // More Data
 export const moreData = {
   hero: {
@@ -300,6 +301,98 @@ export const engineeringWorksData = {
         title: 'End-to-End Support',
         description:
           'From planning to execution, we handle every aspect for a hassle-free setup.'
+      }
+    ]
+  },
+  profiles: {
+    sectionTitle: 'Profiles',
+    leftProfiles: [
+      {
+        title: 'Site Assessment & Feasibility Study',
+        description:
+          'We begin with a comprehensive evaluation of the site, analyzing power availability, load capacity, and infrastructure readiness. This helps determine the best charger placement while ensuring compliance with local regulations and safety standards.'
+      },
+      {
+        title: 'Design & Engineering Solutions',
+        description:
+          "Every project is designed for maximum efficiency, integrating smart energy management, optimal power distribution, and scalable solutions. Whether it's a single charging point or a large-scale network, our engineering team develops tailored layouts and electrical schematics that align with sustainability goals."
+      },
+      {
+        title: 'Installation & Commissioning',
+        description:
+          'From civil and electrical work to network setup, our team manages the entire installation process, ensuring seamless execution. We conduct rigorous testing and commissioning to guarantee smooth operation and long-term reliability.'
+      }
+    ],
+    rightProfiles: [
+      {
+        title: 'Maintenance & Support',
+        description:
+          "Our job doesn't end after installation. We provide ongoing maintenance, real-time monitoring, and remote diagnostics to ensure optimal charger performance. With preventive service schedules and 24/7 technical support, we keep charging stations running efficiently."
+      },
+      {
+        title: 'Software & Network Integration',
+        description:
+          'Seamless connectivity is key to modern EV charging. We integrate smart Charge Point Management Systems (CPMS) with real-time data analytics, load balancing, and OCPP-compliant backend systems. This allows for efficient monitoring, remote control, and a smooth user experience.'
+      }
+    ],
+    buttonText: 'Download Charging Profile',
+    showButton: true
+  }
+}
+
+// Large Scale Data
+export const largeScaleData = {
+  hero: {
+    title: 'Large Scale Plant',
+    breadcrumbs: ['Home', 'EV Charging', 'Large Scale Plant'],
+    showSubtitle: false,
+    heroImage: 'src/assets/images/large_scale/hero.png'
+  },
+  seamlessCharging: {
+    title: 'Powering Sustainability at Scale.',
+    paragraphs: [
+      'Our Large-Scale Biogas Plants are designed for high-volume organic waste processing, transforming waste into renewable energy on an industrial scale. These plants utilize advanced anaerobic digestion technology to maximize biogas production, reduce landfill dependency, and contribute to a circular economy. Ideal for municipalities, industries, and large commercial establishments, our solutions offer high efficiency, scalability, and long-term sustainability.'
+    ]
+  },
+  midSection: {
+    backgroundImage: 'src/assets/images/large_scale/middle.png',
+    sectionTitle: 'Big Impact, Sustainable Future.',
+    features: [
+      {
+        icon: 'src/assets/icons/engineering-works/mdi-light_thumb-up.svg',
+        title: 'High-Capacity Processing',
+        description:
+          'Handles large volumes of organic waste efficiently.'
+      },
+      {
+        icon: 'src/assets/icons/engineering-works/fluent_hourglass-20-regular.svg',
+        title: 'Customizable & Scalable',
+        description:
+          'Tailored solutions to meet industrial needs.'
+      },
+      {
+        icon: 'src/assets/icons/engineering-works/mdi-light_vector-combine.svg',
+        title: 'Advanced Anaerobic Digestion',
+        description:
+          'Maximizes biogas yield and energy recovery.'
+      },
+      {
+        icon: 'src/assets/icons/engineering-works/si_shield-health-safety-line.svg',
+        title: 'Cost-Effective & Sustainable ',
+        description:
+          'Reduces waste management costs and carbon footprint.'
+      },
+      {
+        icon: 'src/assets/icons/engineering-works/stash_star-light.svg',
+        title: 'Grid Integration Ready',
+        description:
+          'Seamless energy conversion for power or fuel applications.'
+      },
+      {
+        icon: 'src/assets/icons/engineering-works/Group.svg',
+        title: 'Robust & Durable',
+        description:
+          'Engineered for long-term performance with minimal maintenance.'
       }
     ]
   },
