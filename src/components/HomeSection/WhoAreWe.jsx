@@ -10,7 +10,7 @@ const WhoAreWe = () => {
       {/* Mobile layout - stacked */}
       <div className="md:hidden flex flex-col w-full">
         {/* White logo section - top */}
-        <div className="w-full bg-white py-10 flex justify-center items-center">
+        <div className="w-full py-10 flex justify-center items-center">
           <CloudinaryImage
             {...getOptimizedAssetProps('src/assets/images/Logo.png')}
             alt="Voltant Energy Logo"
@@ -88,7 +88,7 @@ const WhoAreWe = () => {
         </div>
         
         {/* Right side with forest background image and overlay */}
-        <div className="relative w-[70%] h-full">
+        <div className="relative w-[70%] h-[120vh]">
           {/* Background forest image - only on right side */}
           <div className="absolute inset-0 w-full h-full">
             <CloudinaryImage 
@@ -103,9 +103,9 @@ const WhoAreWe = () => {
           {/* Content container with text and social icons */}
           <div className="relative w-full h-full flex">
             {/* Text content */}
-            <div className="relative z-10 h-full w-[80%] py-16 pl-32 mr-16 pr-4 flex flex-col justify-center items-cente">
-              <div className="text-white">
-                <h2 className="text-4xl font-bold mb-14 ">Who We Are.</h2>
+            <div className="relative z-10 h-[120vh] w-[75%] py-16 pl-16 md:pl-20 lg:pl-32 pr-8 flex flex-col justify-center">
+              <div className="text-white max-w-3xl">
+                <h2 className="text-4xl font-bold mb-14">Who We Are.</h2>
                 
                 <p className="mb-6 text-lg font-normal">
                   A Sustainable Energy start up focused on providing innovative products &
