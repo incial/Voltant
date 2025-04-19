@@ -100,7 +100,7 @@ const ImpactMetrics = () => {
   return (
     <section className="flex flex-col items-center w-full max-w-[1200px] mx-auto mt-16 px-4 md:px-6 mb-16 md:mt-24">
       <motion.h2 
-        className="text-[#7F7F7F] text-center font-bold text-2xl md:text-[24px] leading-snug mb-8 md:mb-16"
+        className="text-[#7F7F7F] text-center font-bold text-2xl md:text-[40px] leading-snug mb-8 md:mb-16"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}

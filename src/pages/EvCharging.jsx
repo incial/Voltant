@@ -14,12 +14,12 @@ const EvCharging = () => {
     {
       title: 'AC Chargers',
       image: 'src/assets/images/AC_Chrager_image.png',
-      path: '/ac-chargers'
+      path: '/ev-charging/ac-chargers'
     },
     {
       title: 'DC Chargers',
       image: 'src/assets/images/DC_Charger_image.png',
-      path: '/dc-chargers'
+      path: '/ev-charging/dc-chargers'
     },
     {
       title: 'Engineering Works',
@@ -82,17 +82,12 @@ const EvCharging = () => {
         <div className='bg-white p-4 sm:p-8 py-12 sm:py-16'>
           <div className='grid grid-cols-2 gap-4 sm:gap-6'>
             {services.map((service, index) => (
-              <ServiceCard
-                key={index}
-                title={service.title}
-                image={
-                  <CloudinaryImage
-                    {...getOptimizedAssetProps(service.image)}
-                    alt={service.title}
-                  />
-                }
-                path={service.path}
-              />
+                <ServiceCard
+                  key={index}
+                  title={service.title}
+                  image={service.image}
+                  path={service.path}
+                />
             ))}
           </div>
         </div>
@@ -125,11 +120,9 @@ const EvCharging = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="absolute bottom-[200px] left-[100px] z-10 text-white text-left w-full max-w-[500px] px-4 md:px-0"
+            className='absolute bottom-[200px] left-[100px] z-10 text-white text-left w-full max-w-[500px] px-4 md:px-0'
           >
-            <h1
-              className="font-['Cairo'] text-[3rem] leading-tight font-semibold m-0"
-            >
+            <h1 className="font-['Cairo'] text-[3rem] leading-tight font-semibold m-0">
               EV Charging <br /> Infrastructure
             </h1>
             <p className="text-2xl text-white font-extralight font-['Cairo'] mt-10 md:mt-14 w-full max-w-[500px]">

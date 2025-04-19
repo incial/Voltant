@@ -19,7 +19,7 @@ const WhoAreWe = () => {
             className="h-12 sm:h-14"
           />
         </div>
-        
+
         {/* Content section with forest background - bottom */}
         <div className="relative w-full">
           {/* Background forest image */}
@@ -32,7 +32,7 @@ const WhoAreWe = () => {
             {/* Black overlay */}
             <div className="absolute inset-0 bg-black opacity-30"></div>
           </div>
-          
+
           {/* Text content */}
           <div className="relative z-10 px-6 px-12 py-10">
             <div className="text-white items-start">
@@ -45,7 +45,7 @@ const WhoAreWe = () => {
               >
                 Who We Are.
               </motion.h2>
-              
+
               <motion.div
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
@@ -56,31 +56,31 @@ const WhoAreWe = () => {
                   A Sustainable Energy start up focused on providing innovative products &
                   advanced technological solutions for industrial & commercial establishments
                 </p>
-                
+
                 <p className="mb-4 text-sm font-normal leading-relaxed">
                   At Voltant Energy, we're shaping a net-zero future with smart, sustainable
                   solutions. Our advanced anaerobic digestion technology turns organic waste 
                   into clean energy, fueling a circular economy while reducing environmental
                   impact.
                 </p>
-                
+
                 <p className="mb-4 text-sm font-normal leading-relaxed">
                   From feasibility studies and regulatory approvals to full-scale biogas plant
                   installation and maintenance, we deliver end-to-end waste-to-energy
                   solutions tailored to every need.
                 </p>
-                
+
                 <p className="mb-4 text-sm font-normal leading-relaxed">
                   Our Smart Energy Monitoring systems bring real-time insights, helping
                   businesses cut energy costs, boost efficiency, and drive profitability through
                   intelligent automation.
                 </p>
-                
+
                 <p className="mb-4 text-sm font-normal leading-relaxed">
                   Sustainability isn't just our mission—it's the future we're building.
                 </p>
               </motion.div>
-              
+
               <motion.div 
                 className="mt-8 sm:mt-14 flex justify-start items-start"
                 initial={{ opacity: 0, y: 20 }}
@@ -117,7 +117,7 @@ const WhoAreWe = () => {
             />
           </motion.div>
         </div>
-        
+
         {/* Right side with forest background image and overlay */}
         <div className="relative w-[70%] h-[120vh]">
           {/* Background forest image - only on right side */}
@@ -146,7 +146,7 @@ const WhoAreWe = () => {
                 >
                   Who We Are.
                 </motion.h2>
-                
+
                 <motion.div
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
@@ -157,31 +157,31 @@ const WhoAreWe = () => {
                     A Sustainable Energy start up focused on providing innovative products &
                     advanced technological solutions for industrial & commercial establishments
                   </p>
-                  
+
                   <p className="mb-6 text-base md:text-lg font-normal leading-relaxed">
                     At Voltant Energy, we're shaping a net-zero future with smart, sustainable
                     solutions. Our advanced anaerobic digestion technology turns organic waste 
                     into clean energy, fueling a circular economy while reducing environmental
                     impact.
                   </p>
-                  
+
                   <p className="mb-6 text-base md:text-lg font-normal leading-relaxed">
                     From feasibility studies and regulatory approvals to full-scale biogas plant
                     installation and maintenance, we deliver end-to-end waste-to-energy
                     solutions tailored to every need.
                   </p>
-                  
+
                   <p className="mb-6 text-base md:text-lg font-normal leading-relaxed">
                     Our Smart Energy Monitoring systems bring real-time insights, helping
                     businesses cut energy costs, boost efficiency, and drive profitability through
                     intelligent automation.
                   </p>
-                  
+
                   <p className="mb-6 text-base md:text-lg font-normal leading-relaxed">
                     Sustainability isn't just our mission—it's the future we're building.
                   </p>
                 </motion.div>
-                
+
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -195,6 +195,77 @@ const WhoAreWe = () => {
                   </Link>
                 </motion.div>
               </div>
+            </div>
+            
+            {/* Social media icons - Positioned on far right with better accessibility */}
+            <div className="relative z-10 h-full w-[25%] flex flex-col justify-center items-center">
+              <motion.div 
+                className="flex flex-col space-y-10"
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ 
+                  duration: 0.8, 
+                  staggerChildren: 0.1,
+                  delayChildren: 0.2 
+                }}
+              >
+                <motion.a 
+                  href="https://youtube.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-white hover:opacity-80 transition-opacity p-1"
+                  aria-label="YouTube"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <FaYoutube size={24} />
+                </motion.a>
+                <motion.a 
+                  href="https://instagram.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-white hover:opacity-80 transition-opacity p-1"
+                  aria-label="Instagram"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <FaInstagram size={24} />
+                </motion.a>
+                <motion.a 
+                  href="https://facebook.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-white hover:opacity-80 transition-opacity p-1"
+                  aria-label="Facebook"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <FaFacebookF size={24} />
+                </motion.a>
+                <motion.a 
+                  href="https://linkedin.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-white hover:opacity-80 transition-opacity p-1"
+                  aria-label="LinkedIn"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <FaLinkedinIn size={24} />
+                </motion.a>
+                <motion.a 
+                  href="https://twitter.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-white hover:opacity-80 transition-opacity p-1"
+                  aria-label="Twitter"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <FaXTwitter size={24} />
+                </motion.a>
+              </motion.div>
             </div>
           </div>
         </div>

@@ -6,6 +6,7 @@ import './App.css'
 import Home from './pages/Home'
 import EvCharging from './pages/EvCharging'
 import AC from './pages/AC'
+import DC from './pages/DC'
 import WasteToEnergy from './pages/WasteToEnergy'
 import EngineeringWorks from './pages/EngineeringWorks'
 import LargeScale from './pages/LargeScale'
@@ -13,6 +14,7 @@ import Cpo from './pages/Cpo'
 import Household from './pages/Household'
 import More from './pages/More'
 import Containerized from './pages/Containerized'
+import SmartWaste from './pages/SmartWaste'
 
 // ScrollToTop component ensures page starts at the top when navigating
 const ScrollToTop = () => {
@@ -38,7 +40,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/ev-charging" element={<EvCharging />} />
-            <Route path="/ac-chargers" element={<AC />} />
+            <Route path="/ev-charging/ac-chargers" element={<AC />} />
+            <Route path="/ev-charging/dc-chargers" element={<DC />} />
             <Route path="/waste-to-energy" element={<WasteToEnergy />} />
             <Route path="/ev-charging/engineering-works" element={<EngineeringWorks />} />
             <Route path="/ev-charging/cpo" element={<Cpo />} />
@@ -46,6 +49,7 @@ function App() {
             <Route path="/waste-to-energy/household" element={<Household />} />
             <Route path="/waste-to-energy/large-scale" element={<LargeScale />} />
             <Route path="/waste-to-energy/containerized-plant" element={<Containerized />} />
+            <Route path="/waste-to-energy/smart-waste" element={<SmartWaste />} />
             <Route path="*" element={<h1>404 Not Found</h1>} />
           </Routes>
         </div>

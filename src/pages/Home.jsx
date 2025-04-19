@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import HeroSection from '../components/HomeSection/HeroSection'
+import SplitHoverImages from '../components/HomeSection/SplitImages'
 import ImpactMetrics from '../components/HomeSection/ImpactMetrics'
 import Navbar from '../components/common/Navbar'
 import ClientsSection from '../components/HomeSection/ClientsSection'
@@ -59,6 +60,7 @@ const Home = () => {
         <HeroSection />
       </div>
       {/* Content sections */}
+      <SplitHoverImages />
 
       {/* WhoAreWe section */}
       <div id="who-are-we" className='w-full flex justify-center h-auto md:h-[120vh] md:items-center'>

@@ -13,9 +13,9 @@ import MidSection from '../components/common/SectionComponents/MidSection'
 import ProfilesSection from '../components/common/SectionComponents/ProfilesSection'
 
 // Import data
-import { ACData } from '../utils/sectionData'
+import { smartwasteData } from '../utils/sectionData'
 
-const AC = () => {
+const SmartWaste = () => {
   return (
     <>
       <Navbar />
@@ -24,17 +24,17 @@ const AC = () => {
 
       <div className='flex flex-col min-h-screen bg-white px-0 overflow-hidden'>
         <HeroSection
-          title={ACData.hero.title}
-          showSubtitle={ACData.hero.showSubtitle}
-          subtitle={ACData.hero.subtitle}
-          breadcrumbs={ACData.hero.breadcrumbs}
-          heroImage={ACData.hero.heroImage}
+          title={smartwasteData.hero.title}
+          showSubtitle={smartwasteData.hero.showSubtitle}
+          subtitle={smartwasteData.hero.subtitle}
+          breadcrumbs={smartwasteData.hero.breadcrumbs}
+          heroImage={smartwasteData.hero.heroImage}
         />
 
         <div className='w-full flex flex-col items-center justify-center px-0 md:px-20'>
           <SeamlessChargingSection
-            title={ACData.seamlessCharging.title}
-            paragraphs={ACData.seamlessCharging.paragraphs}
+            title={smartwasteData.seamlessCharging.title}
+            paragraphs={smartwasteData.seamlessCharging.paragraphs}
           />
         </div>
 
@@ -49,12 +49,19 @@ const AC = () => {
           }}
         >
           <MidSection
-            backgroundImage={ACData.midSection.backgroundImage}
-            sectionTitle={ACData.midSection.sectionTitle}
-            features={ACData.midSection.features}
+            backgroundImage={smartwasteData.midSection.backgroundImage}
+            sectionTitle={smartwasteData.midSection.sectionTitle}
+            features={smartwasteData.midSection.features}
           />
         </motion.section>
 
+        <ProfilesSection
+          sectionTitle={smartwasteData.profiles.sectionTitle}
+          leftProfiles={smartwasteData.profiles.leftProfiles}
+          rightProfiles={smartwasteData.profiles.rightProfiles}
+          buttonText={smartwasteData.profiles.buttonText}
+          showButton={smartwasteData.profiles.showButton}
+        />
       </div>
 
       <motion.footer
@@ -69,4 +76,4 @@ const AC = () => {
   )
 }
 
-export default AC
+export default SmartWaste

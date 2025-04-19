@@ -97,15 +97,10 @@ const WasteToEnergy = () => {
         <div className='bg-white p-4 sm:p-8 py-12 sm:py-16'>
           <div className='grid grid-cols-2 gap-4 sm:gap-6'>
             {services.map((service, index) => (
-              <ServiceCard
+                <ServiceCard
                 key={index}
                 title={service.title}
-                image={
-                  <CloudinaryImage
-                    {...getOptimizedAssetProps(service.image)}
-                    alt={typeof service.title === 'string' ? service.title : 'Service image'}
-                  />
-                }
+                image={service.image}
                 path={service.path}
               />
             ))}
