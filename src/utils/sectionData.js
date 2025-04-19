@@ -344,7 +344,7 @@ export const engineeringWorksData = {
 export const largeScaleData = {
   hero: {
     title: 'Large Scale Plant',
-    breadcrumbs: ['Home', 'EV Charging', 'Large Scale Plant'],
+    breadcrumbs: ['Home', 'Waste To Energy', 'Large Scale Plant'],
     showSubtitle: false,
     heroImage: 'src/assets/images/large_scale/hero.png'
   },

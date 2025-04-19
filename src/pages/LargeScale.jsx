@@ -28,6 +28,7 @@ function LargeScale() {
         <HeroSection 
           title={largeScaleData.hero.title}
           breadcrumbs={largeScaleData.hero.breadcrumbs}
+          showSubtitle={largeScaleData.hero.showSubtitle}
           heroImage={largeScaleData.hero.heroImage}
         />
         

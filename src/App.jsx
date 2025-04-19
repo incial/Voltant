@@ -24,7 +24,7 @@ function App() {
             <Route path="/ev-charging/cpo" element={<Cpo />} />
             <Route path="/ev-charging/more" element={<More />} />
             <Route path="/waste-to-energy/household" element={<Household />} />
-            <Route path="/ev-charging/large-scale" element={<LargeScale />} />
+            <Route path="/waste-to-energy/large-scale" element={<LargeScale />} />
             <Route path="*" element={<h1>404 Not Found</h1>} />
           </Routes>
         </div>
