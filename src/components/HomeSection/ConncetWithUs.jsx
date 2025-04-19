@@ -59,20 +59,25 @@ const ConnectWithUs = () => {
         {/* Social media icons in the center-top area */}
         <div className='absolute top-1/4 left-4/6 transform -translate-x-1/2 z-10'>
           <div className='flex space-x-10'>
-            <a href='#' className='text-white hover:text-gray-200'>
+            <a href='#' className='text-white hover:text-gray-200' aria-label="YouTube">
               <FaYoutube size={24} />
+              <span className="sr-only">Visit our YouTube channel</span>
             </a>
-            <a href='#' className='text-white hover:text-gray-200'>
+            <a href='#' className='text-white hover:text-gray-200' aria-label="Instagram">
               <FaInstagram size={24} />
+              <span className="sr-only">Visit our Instagram page</span>
             </a>
-            <a href='#' className='text-white hover:text-gray-200'>
+            <a href='#' className='text-white hover:text-gray-200' aria-label="Facebook">
               <FaFacebookF size={24} />
+              <span className="sr-only">Visit our Facebook page</span>
             </a>
-            <a href='#' className='text-white hover:text-gray-200'>
+            <a href='#' className='text-white hover:text-gray-200' aria-label="LinkedIn">
               <FaLinkedinIn size={24} />
+              <span className="sr-only">Visit our LinkedIn page</span>
             </a>
-            <a href='#' className='text-white hover:text-gray-200'>
+            <a href='#' className='text-white hover:text-gray-200' aria-label="Twitter">
               <FaXTwitter size={24} />
+              <span className="sr-only">Visit our Twitter page</span>
             </a>
           </div>
         </div>
@@ -98,11 +103,13 @@ const ConnectWithUs = () => {
           <a
             href='https://wa.me/971987655432'
             className='absolute right-8 bottom-8 '
+            aria-label="WhatsApp"
           >
             <FaWhatsapp
               size={28}
               className='text-gray-600 hover:text-gray-500'
             />
+            <span className="sr-only">Contact us on WhatsApp</span>
           </a>
         </div>
       </div>
@@ -138,20 +145,25 @@ const ConnectWithUs = () => {
           {/* Social media icons in the center */}
           <div className='absolute inset-0 flex items-center justify-center z-10'>
             <div className='flex space-x-8'>
-              <a href='#' className='text-white hover:text-gray-200'>
+              <a href='#' className='text-white hover:text-gray-200' aria-label="YouTube">
                 <FaYoutube size={24} />
+                <span className="sr-only">Visit our YouTube channel</span>
               </a>
-              <a href='#' className='text-white hover:text-gray-200'>
+              <a href='#' className='text-white hover:text-gray-200' aria-label="Instagram">
                 <FaInstagram size={24} />
+                <span className="sr-only">Visit our Instagram page</span>
               </a>
-              <a href='#' className='text-white hover:text-gray-200'>
+              <a href='#' className='text-white hover:text-gray-200' aria-label="Facebook">
                 <FaFacebookF size={24} />
+                <span className="sr-only">Visit our Facebook page</span>
               </a>
-              <a href='#' className='text-white hover:text-gray-200'>
+              <a href='#' className='text-white hover:text-gray-200' aria-label="LinkedIn">
                 <FaLinkedinIn size={24} />
+                <span className="sr-only">Visit our LinkedIn page</span>
               </a>
-              <a href='#' className='text-white hover:text-gray-200'>
+              <a href='#' className='text-white hover:text-gray-200' aria-label="Twitter">
                 <FaXTwitter size={24} />
+                <span className="sr-only">Visit our Twitter page</span>
               </a>
             </div>
           </div>
@@ -180,11 +192,13 @@ const ConnectWithUs = () => {
             <a
               href='https://wa.me/971987655432'
               className='absolute right-6 bottom-6'
+              aria-label="WhatsApp"
             >
               <FaWhatsapp
                 size={28}
                 className='text-gray-600 hover:text-gray-500'
               />
+              <span className="sr-only">Contact us on WhatsApp</span>
             </a>
           </div>
         </div>
