@@ -38,6 +38,19 @@ export const imageAssets = {
   // Large scale images
   'src/assets/images/large_scale/hero.png': 'voltant-energy/large-scale/hero',
   'src/assets/images/large_scale/middle.png': 'voltant-energy/large-scale/middle',
+
+  // Containerized images
+  'src/assets/images/containerized/hero.png': 'voltant-energy/containerized/hero',
+  'src/assets/images/containerized/middle.png': 'voltant-energy/containerized/middle',
+
+  //Containerized icons
+  'src/assets/icons/containerized/mdi-light_thumb-up.svg': 'voltant-energy/icons/containerized/thumb-up',
+  'src/assets/icons/containerized/icon-park-outline_tailoring.svg': 'voltant-energy/icons/containerized/tailoring',
+  'src/assets/icons/containerized/solar_scale-broken.svg': 'voltant-energy/icons/containerized/scale-broken',
+  'src/assets/icons/containerized/material-symbols-light_motion-blur-rounded.svg': 'voltant-energy/icons/containerized/motion-blur-rounded',
+  'src/assets/icons/containerized/stash_star-light.svg': 'voltant-energy/icons/containerized/star-light',
+  'src/assets/icons/containerized/pepicons-pencil_leaf-circle.svg': 'voltant-energy/icons/containerized/leaf-circle',
+  'src/assets/icons/containerized/mdi-light_vector-combine.svg': 'voltant-energy/icons/containerized/vector-combine',
   
   // Social media icons
   'src/assets/icons/fb.svg': 'voltant-energy/icons/social/facebook',
