@@ -13,9 +13,9 @@ import MidSection from '../components/common/SectionComponents/MidSection'
 import ProfilesSection from '../components/common/SectionComponents/ProfilesSection'
 
 // Import data
-import { ACData } from '../utils/sectionData'
+import { DCData } from '../utils/sectionData'
 
-const AC = () => {
+const DC = () => {
   return (
     <>
       <Navbar />
@@ -24,17 +24,17 @@ const AC = () => {
 
       <div className='flex flex-col min-h-screen bg-white px-0 overflow-hidden'>
         <HeroSection
-          title={ACData.hero.title}
-          showSubtitle={ACData.hero.showSubtitle}
-          subtitle={ACData.hero.subtitle}
-          breadcrumbs={ACData.hero.breadcrumbs}
-          heroImage={ACData.hero.heroImage}
+          title={DCData.hero.title}
+          showSubtitle={DCData.hero.showSubtitle}
+          subtitle={DCData.hero.subtitle}
+          breadcrumbs={DCData.hero.breadcrumbs}
+          heroImage={DCData.hero.heroImage}
         />
 
         <div className='w-full flex flex-col items-center justify-center px-0 md:px-20'>
           <SeamlessChargingSection
-            title={ACData.seamlessCharging.title}
-            paragraphs={ACData.seamlessCharging.paragraphs}
+            title={DCData.seamlessCharging.title}
+            paragraphs={DCData.seamlessCharging.paragraphs}
           />
         </div>
 
@@ -49,9 +49,9 @@ const AC = () => {
           }}
         >
           <MidSection
-            backgroundImage={ACData.midSection.backgroundImage}
-            sectionTitle={ACData.midSection.sectionTitle}
-            features={ACData.midSection.features}
+            backgroundImage={DCData.midSection.backgroundImage}
+            sectionTitle={DCData.midSection.sectionTitle}
+            features={DCData.midSection.features}
           />
         </motion.section>
 
@@ -69,4 +69,4 @@ const AC = () => {
   )
 }
 
-export default AC
+export default DC
