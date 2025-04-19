@@ -15,12 +15,18 @@ const CloudinaryImage = ({
   className,
   width,
   height,
-  breakpoints = [640, 768, 1024, 1280, 1536],
+  breakpoints = [375, 640, 768, 1024, 1280, 1536],
   useLazyLoading = true,
   useResponsive = true,
   usePlaceholder = true,
-  transformations = []
+  transformations = [],
+  loading = "lazy"
 }) => {
+  if (!publicId) {
+    console.error("CloudinaryImage received undefined publicId");
+    return null;
+  }
+
   const imageUrl = cld.image(publicId);
 
   // Apply default transformations
@@ -38,35 +44,59 @@ const CloudinaryImage = ({
   }
 
   // Apply any custom transformations
-  transformations.forEach(transformation => {
-    imageUrl.addTransformation(transformation);
-  });
+  if (Array.isArray(transformations)) {
+    transformations.forEach(transformation => {
+      if (transformation) {
+        imageUrl.addTransformation(transformation);
+      }
+    });
+  }
 
   // Set up plugins
   const plugins = [];
   
-  // Add lazy loading
+  // Add lazy loading with improved settings for better cross-browser support
   if (useLazyLoading) {
-    plugins.push(lazyload({ rootMargin: '10px 20px 10px 30px', threshold: 0.25 }));
+    plugins.push(lazyload({ 
+      rootMargin: '200px 0px', 
+      threshold: 0.1,
+      // Add data attributes for browsers that support native lazy loading
+      attributePlugin: {
+        loading: 'lazy'
+      }
+    }));
   }
   
-  // Add responsive resizing based on viewport
+  // Add responsive resizing based on viewport with better device coverage
   if (useResponsive) {
-    plugins.push(responsive({ steps: breakpoints }));
+    plugins.push(responsive({ 
+      steps: breakpoints,
+      // Add support for high-DPI displays
+      highDPI: true 
+    }));
   }
   
-  // Add low-quality image placeholder
+  // Add low-quality image placeholder with improved settings
   if (usePlaceholder) {
-    plugins.push(placeholder({ mode: 'blur' }));
+    plugins.push(placeholder({ 
+      mode: 'predominant-color' 
+    }));
   }
 
   return (
     <AdvancedImage 
       cldImg={imageUrl} 
-      alt={alt} 
+      alt={alt || ''} 
       className={className} 
       plugins={plugins}
-      loading="lazy"
+      loading={loading}
+      onError={(e) => {
+        // Fallback handling for image loading errors
+        console.warn(`Failed to load image: ${publicId}`);
+        if (e.target) {
+          e.target.style.opacity = '0.5';
+        }
+      }}
     />
   );
 };

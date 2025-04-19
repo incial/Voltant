@@ -11,18 +11,18 @@ const Navbar = () => {
   const [activeSection, setActiveSection] = useState('home')
   const location = useLocation()
 
-  // Handle scroll effect for navbar background
+  // Handle scroll effect for navbar background with better performance
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setScrolled(true)
-      } else {
-        setScrolled(false)
+      const shouldBeScrolled = window.scrollY > 50
+      if (scrolled !== shouldBeScrolled) {
+        setScrolled(shouldBeScrolled)
       }
     }
-    window.addEventListener('scroll', handleScroll)
+    
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [scrolled])
 
   // Set up intersection observer for Who We Are section
   useEffect(() => {
@@ -63,28 +63,41 @@ const Navbar = () => {
   // Toggle mobile menu
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen)
+    // Prevent scrolling when menu is open
+    if (!isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'auto'
+    }
   }
+
+  // Clean up any body styles when component unmounts
+  useEffect(() => {
+    return () => {
+      document.body.style.overflow = 'auto'
+    }
+  }, [])
 
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'backdrop-blur-md' : 'bg-transparent'
+        scrolled ? 'backdrop-blur-md bg-black/30' : 'bg-transparent'
       } font-['Cairo']`}
     >
-      <div className='container mx-auto flex justify-between items-center py-4 px-6'>
+      <div className='container mx-auto flex justify-between items-center py-4 px-4 md:px-32'>
         {/* Logo */}
         <div className='flex items-center'>
           <Link to='/' className='flex items-center'>
             <CloudinaryImage
               {...getOptimizedAssetProps('src/assets/images/white_logo.png')}
               alt='Voltant Energy'
-              className='h-10'
+              className='h-8 md:h-10'
             />
           </Link>
         </div>
 
         {/* Desktop Navigation Links */}
-        <div className='hidden md:flex items-center space-x-8 text-xl'>
+        <div className='hidden md:flex items-center space-x-6 lg:space-x-8 text-lg lg:text-xl'>
           <NavLink
             to='/'
             label='Home'
@@ -115,7 +128,7 @@ const Navbar = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className='bg-transparent text-white py-2 px-6 rounded-full font-medium border-2 border-white cursor-pointer'
+              className='bg-transparent text-white py-2 px-6 rounded-full font-medium border-2 border-white cursor-pointer transition-colors hover:bg-white/10'
             >
               Get in Touch
             </motion.button>
@@ -124,7 +137,11 @@ const Navbar = () => {
 
         {/* Mobile Menu Button */}
         <div className='md:hidden flex items-center'>
-          <button onClick={toggleMobileMenu} className='text-white'>
+          <button 
+            onClick={toggleMobileMenu} 
+            className='text-white p-2'
+            aria-label="Toggle mobile menu"
+          >
             <svg
               width='24'
               height='24'
@@ -166,21 +183,26 @@ const Navbar = () => {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ x: '100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '100%' }}
+            initial={{ opacity: 0, x: '100%' }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: '100%' }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className='md:hidden fixed inset-0 backdrop-blur-md flex flex-col items-center justify-center z-50'
+            className='md:hidden fixed inset-0 bg-black/90 backdrop-blur-md flex flex-col items-center justify-center z-50'
           >
             <div className='absolute top-4 left-4 p-4'>
               <Link to='/' className='flex items-center'>
-                <img src={Logo} alt='Voltant Energy' className='h-10' />
+                <CloudinaryImage
+                  {...getOptimizedAssetProps('src/assets/images/white_logo.png')}
+                  alt='Voltant Energy'
+                  className='h-8'
+                />
               </Link>
             </div>
             <div className='absolute top-4 right-4'>
               <button
                 onClick={toggleMobileMenu}
                 className='w-10 h-10 mt-4 flex items-center justify-center'
+                aria-label="Close mobile menu"
               >
                 <svg
                   width='24'
@@ -189,6 +211,8 @@ const Navbar = () => {
                   fill='none'
                   stroke='white'
                   strokeWidth='2'
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
                 >
                   <circle cx='12' cy='12' r='10' />
                   <path d='M8 8 L16 16' />
@@ -243,7 +267,7 @@ const Navbar = () => {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className='bg-transparent text-white py-2 px-6 rounded-full font-medium border-2 border-white cursor-pointer'
+                  className='bg-transparent text-white py-2 px-6 rounded-full font-medium border-2 border-white cursor-pointer mt-4'
                 >
                   Get In Touch
                 </motion.button>
@@ -262,7 +286,7 @@ const NavLink = ({ to, label, isActive }) => (
     to={to}
     className={`${
       isActive ? 'text-green-400' : 'text-white'
-    } hover:text-blue-100 font-medium relative group`}
+    } hover:text-blue-100 font-medium relative group transition-colors`}
   >
     {label}
     <span
