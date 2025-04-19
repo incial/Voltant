@@ -16,6 +16,7 @@ const HeroSection = () => {
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0)
   const [progress, setProgress] = useState(0)
   const [showSocialTray, setShowSocialTray] = useState(false)
+  const [videoLoaded, setVideoLoaded] = useState(false)
 
   // Use video mapping with Cloudinary public IDs
   const videoMappings = [
@@ -56,31 +57,49 @@ const HeroSection = () => {
   // Video duration and transition settings
   const videoDuration = 12000 // 12 seconds
 
-  // Generate the Cloudinary video URL
+  // Generate the Cloudinary video URL with format optimization for wider browser support
   const getVideoUrl = (path) => {
     const publicId = getCloudinaryId(path, 'video')
     if (!publicId) {
       return null
     }
-    return cld.video(publicId).toURL()
+    
+    return cld.video(publicId)
+      .format('auto')
+      .quality('auto')
+      .toURL()
   }
 
-  // Play the current video when it changes - with error handling
+  // Handle video loading
+  const handleVideoLoaded = () => {
+    setVideoLoaded(true)
+  }
+
+  // Play the current video when it changes - with enhanced error handling for browser compatibility
   useEffect(() => {
     if (currentVideoRef.current) {
       try {
+        // Reset the video loaded state when changing videos
+        setVideoLoaded(false)
+        
+        // Make sure video is muted for autoplay compatibility across browsers
+        currentVideoRef.current.muted = true
+        
         const playPromise = currentVideoRef.current.play()
         if (playPromise !== undefined) {
           playPromise
             .then(() => {
               // Video started playing successfully
             })
-            .catch(() => {
-              // Try muting the video and playing again (autoplay policy workaround)
-              if (currentVideoRef.current) {
-                currentVideoRef.current.muted = true
-                currentVideoRef.current.play()
-              }
+            .catch((error) => {
+              console.log("Video play error:", error)
+              // iOS Safari specific handling - try playing on user interaction
+              document.addEventListener('touchstart', function videoTouchPlayHandler() {
+                if (currentVideoRef.current) {
+                  currentVideoRef.current.play();
+                }
+                document.removeEventListener('touchstart', videoTouchPlayHandler);
+              }, { once: true });
             })
         }
       } catch (error) {
@@ -91,6 +110,9 @@ const HeroSection = () => {
 
   // Set up the progression and transitions with improved reliability
   useEffect(() => {
+    // Don't start timing until video is loaded
+    if (!videoLoaded) return;
+    
     // Capture current ref values at the start of the effect
     const currentIntervalRef = intervalRef.current
     const currentAnimationRef = animationRef.current
@@ -128,9 +150,9 @@ const HeroSection = () => {
       if (currentAnimationRef) cancelAnimationFrame(currentAnimationRef)
       if (intervalRef.current) clearTimeout(intervalRef.current)
     }
-  }, [currentVideoIndex, videoMappings.length])
+  }, [currentVideoIndex, videoMappings.length, videoLoaded])
 
-  // Show social media tray after 2.5 seconds instead of 4
+  // Show social media tray after 2.5 seconds
   useEffect(() => {
     const socialTrayTimer = setTimeout(() => {
       setShowSocialTray(true)
@@ -140,61 +162,42 @@ const HeroSection = () => {
   }, [])
 
   return (
-    <div
-      style={{
-        position: 'relative',
-        width: '100%',
-        height: '100vh',
-        overflow: 'hidden',
-        backgroundColor: 'black'
-      }}
-    >
+    <div className="relative w-full h-screen overflow-hidden bg-black">
       <AnimatePresence mode='wait'>
         <motion.div
           key={`current-${currentVideoIndex}`}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.05, ease: 'easeInOut' }}
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            zIndex: 1,
-            backgroundColor: 'black'
-          }}
+          transition={{ duration: 0.5, ease: 'easeInOut' }}
+          className="absolute inset-0 z-[1] bg-black"
         >
-          {/* Use direct HTML5 video element instead of CloudinaryVideo */}
+          {/* Video Element with cross-browser compatibility improvements */}
           {getVideoUrl(videoMappings[currentVideoIndex].path) && (
             <video
               ref={currentVideoRef}
               src={getVideoUrl(videoMappings[currentVideoIndex].path)}
-              className='w-full h-full object-cover'
+              className="w-full h-full object-cover"
               autoPlay
               muted
               loop
               playsInline
+              preload="auto"
+              onLoadedData={handleVideoLoaded}
             />
           )}
 
           {/* Radial overlay with different colors for each video */}
           <div
+            className="absolute inset-0 pointer-events-none"
             style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              width: '100%',
-              height: '100%',
               background:
                 currentVideoIndex === 0
                   ? 'radial-gradient(circle, rgba(144, 238, 144, 0.15) 0%, rgba(0, 0, 0, 0.4) 100%)'
                   : currentVideoIndex === 1
                   ? 'radial-gradient(circle, rgba(135, 206, 235, 0.15) 0%, rgba(0, 0, 0, 0.4) 100%)'
                   : 'radial-gradient(circle, rgba(135, 206, 235, 0.15) 0%, rgba(0, 0, 0, 0.4) 100%)',
-              mixBlendMode: 'multiply',
-              pointerEvents: 'none'
+              mixBlendMode: 'multiply'
             }}
           />
         </motion.div>
@@ -212,22 +215,14 @@ const HeroSection = () => {
               damping: 20,
               duration: 0.4
             }}
-            style={{
-              position: 'absolute',
-              right: '50px',
-              top: '32%',
-              transform: 'translateY(-50%)',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '50px',
-              zIndex: 20
-            }}
+            className="absolute right-8 md:right-[50px] top-1/3 md:top-[32%] transform -translate-y-1/2 flex flex-col gap-8 md:gap-[50px] z-20"
           >
             <a
               href='https://youtube.com'
               target='_blank'
               rel='noopener noreferrer'
-              style={{ color: 'white' }}
+              className="text-white p-1 block"
+              aria-label="YouTube"
             >
               <motion.div
                 whileHover={{ scale: 1.2 }}
@@ -240,7 +235,8 @@ const HeroSection = () => {
               href='https://instagram.com'
               target='_blank'
               rel='noopener noreferrer'
-              style={{ color: 'white' }}
+              className="text-white p-1 block"
+              aria-label="Instagram"
             >
               <motion.div
                 whileHover={{ scale: 1.2 }}
@@ -253,7 +249,8 @@ const HeroSection = () => {
               href='https://facebook.com'
               target='_blank'
               rel='noopener noreferrer'
-              style={{ color: 'white' }}
+              className="text-white p-1 block"
+              aria-label="Facebook"
             >
               <motion.div
                 whileHover={{ scale: 1.2 }}
@@ -266,7 +263,8 @@ const HeroSection = () => {
               href='https://linkedin.com'
               target='_blank'
               rel='noopener noreferrer'
-              style={{ color: 'white' }}
+              className="text-white p-1 block"
+              aria-label="LinkedIn"
             >
               <motion.div
                 whileHover={{ scale: 1.2 }}
@@ -279,7 +277,8 @@ const HeroSection = () => {
               href='https://twitter.com'
               target='_blank'
               rel='noopener noreferrer'
-              style={{ color: 'white' }}
+              className="text-white p-1 block"
+              aria-label="Twitter"
             >
               <motion.div
                 whileHover={{ scale: 1.2 }}
@@ -300,25 +299,10 @@ const HeroSection = () => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
-          style={{
-            position: 'absolute',
-            bottom: '200px',
-            left: '100px',
-            zIndex: 10,
-            color: 'white',
-            textAlign: 'left',
-            width: '500px'
-          }}
+          className="absolute bottom-20 sm:bottom-32 md:bottom-[200px] left-8 sm:left-12 md:left-[100px] z-10 text-white text-left w-full max-w-[280px] sm:max-w-[400px] md:max-w-[500px]"
         >
           <h3
-            style={{
-              fontSize: '2.45rem',
-              lineHeight: '1',
-              fontWeight: '400',
-              margin: 0,
-              textShadow: '2px 2px 4px rgba(0,0,0,0.5)'
-            }}
-            className="font-['Cairo']"
+            className="text-3xl sm:text-4xl md:text-[2.45rem] leading-tight font-normal m-0 font-['Cairo'] drop-shadow-lg"
           >
             {videoMappings[currentVideoIndex].title}
           </h3>
@@ -326,33 +310,19 @@ const HeroSection = () => {
       </AnimatePresence>
 
       {/* White Bar Video Indicator */}
-      <div
-        style={{
-          position: 'absolute',
-          bottom: '30px',
-          left: '0',
-          right: '0',
-          display: 'flex',
-          justifyContent: 'center',
-          gap: '20px',
-          zIndex: 10
-        }}
-      >
+      <div className="absolute bottom-6 sm:bottom-8 md:bottom-[30px] left-0 right-0 flex justify-center gap-3 sm:gap-5 md:gap-[20px] z-10">
         {videoMappings.map((_, index) => (
           <div
             key={index}
+            className="h-1 md:h-[4px] rounded-[2px] overflow-hidden transition-[width] duration-800"
             style={{
-              width: index === currentVideoIndex ? '160px' : '80px',
-              height: '4px',
+              width: index === currentVideoIndex ? '100px' : '50px',
               backgroundColor: 'rgba(255,255,255,0.3)',
-              borderRadius: '2px',
-              overflow: 'hidden',
-              transition: 'width 0.8s ease'
             }}
           >
             <motion.div
+              className="h-full rounded-[2px]"
               style={{
-                height: '100%',
                 width:
                   index === currentVideoIndex
                     ? `${progress * 100}%`
@@ -365,7 +335,6 @@ const HeroSection = () => {
                   index === currentVideoIndex
                     ? 'rgba(255,255,255,1)'
                     : 'rgba(255,255,255,0.4)',
-                borderRadius: '2px'
               }}
               transition={{ ease: 'linear' }}
             />

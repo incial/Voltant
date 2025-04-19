@@ -35,6 +35,7 @@ The work is divided among the three developers, with each responsible for the fo
 * **Engineering and Design Page**
 * **Large Scale Page**
 * **Containerized Page**
+* Smart Waste Segergation Bin
 
 ### Abin
 

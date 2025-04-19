@@ -22,7 +22,8 @@ const CloudinaryVideo = ({
   startOffset = 0,
   width,
   height,
-  transformations = []
+  transformations = [],
+  playsInline = true
 }) => {
   // Guard against undefined publicId
   if (!publicId) {
@@ -59,9 +60,16 @@ const CloudinaryVideo = ({
   // Set up plugins
   const plugins = [];
   
-  // Add lazy loading
+  // Add lazy loading with appropriate thresholds for better performance
   if (useLazyLoading) {
-    plugins.push(lazyload({ rootMargin: '10px 20px 10px 30px', threshold: 0.1 }));
+    plugins.push(lazyload({ 
+      rootMargin: '100px 0px', 
+      threshold: 0.1,
+      // Add data attributes for browsers that support loading="lazy"
+      attributePlugin: {
+        loading: 'lazy'
+      }
+    }));
   }
 
   // Create poster URL from the video if none provided
@@ -74,19 +82,26 @@ const CloudinaryVideo = ({
   return (
     <AdvancedVideo
       cldVid={videoUrl}
-      className={className}
+      className={className || 'w-full h-full object-cover'}
       autoPlay={autoPlay}
       loop={loop}
       muted={muted}
       controls={controls}
       poster={posterUrl}
       plugins={plugins}
-      playsInline={true}
+      playsInline={playsInline}
       onPlay={(e) => {
-        if (startOffset > 0) {
+        if (startOffset > 0 && e.target) {
           e.target.currentTime = startOffset;
         }
       }}
+      onLoadStart={(e) => {
+        // Some browsers need muted to be set directly on the element
+        if (muted && e.target) {
+          e.target.muted = true;
+        }
+      }}
+      preload="auto"
     />
   );
 };
