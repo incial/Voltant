@@ -1,4 +1,5 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
+import { useEffect } from 'react'
 import './App.css'
 
 // Page imports
@@ -11,10 +12,26 @@ import Cpo from './pages/Cpo'
 import Household from './pages/Household'
 import More from './pages/More'
 
+// ScrollToTop component ensures page starts at the top when navigating
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'instant' // Use 'instant' for better cross-browser support than 'auto'
+    });
+  }, [pathname]);
+
+  return null;
+};
+
 function App() {
   return (
     <Router>
-      <div className="flex flex-col min-h-screen">
+      <ScrollToTop />
+      <div className="flex flex-col min-h-screen overflow-x-hidden">
         <div className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
