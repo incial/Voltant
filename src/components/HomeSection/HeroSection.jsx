@@ -8,8 +8,9 @@ import {
   FaLinkedin,
   FaXTwitter
 } from 'react-icons/fa6'
-import CloudinaryVideo from '../common/CloudinaryVideo'
-import { getOptimizedAssetProps } from '../../utils/cloudinaryHelper'
+// Import only the cloudinary utilities we need
+import { getCloudinaryId } from '../../utils/cloudinaryAssets'
+import cld from '../../utils/cloudinary'
 
 const HeroSection = () => {
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0)
@@ -55,14 +56,35 @@ const HeroSection = () => {
   // Video duration and transition settings
   const videoDuration = 12000 // 12 seconds
 
+  // Generate the Cloudinary video URL
+  const getVideoUrl = (path) => {
+    const publicId = getCloudinaryId(path, 'video')
+    if (!publicId) {
+      return null
+    }
+    return cld.video(publicId).toURL()
+  }
+
   // Play the current video when it changes - with error handling
   useEffect(() => {
     if (currentVideoRef.current) {
       try {
-        currentVideoRef.current.play()
-          .catch(e => console.error('Error playing current video:', e))
+        const playPromise = currentVideoRef.current.play()
+        if (playPromise !== undefined) {
+          playPromise
+            .then(() => {
+              // Video started playing successfully
+            })
+            .catch(() => {
+              // Try muting the video and playing again (autoplay policy workaround)
+              if (currentVideoRef.current) {
+                currentVideoRef.current.muted = true
+                currentVideoRef.current.play()
+              }
+            })
+        }
       } catch (error) {
-        console.error('Error accessing video player:', error)
+        // Error handling silently
       }
     }
   }, [currentVideoIndex])
@@ -144,17 +166,18 @@ const HeroSection = () => {
             backgroundColor: 'black'
           }}
         >
-          {/* Use the fixed CloudinaryVideo component instead */}
-          <CloudinaryVideo
-            ref={currentVideoRef}
-            {...getOptimizedAssetProps(
-              videoMappings[currentVideoIndex].path,
-              'hero',
-              'video'
-            )}
-            className='w-full h-full object-cover'
-
-          />
+          {/* Use direct HTML5 video element instead of CloudinaryVideo */}
+          {getVideoUrl(videoMappings[currentVideoIndex].path) && (
+            <video
+              ref={currentVideoRef}
+              src={getVideoUrl(videoMappings[currentVideoIndex].path)}
+              className='w-full h-full object-cover'
+              autoPlay
+              muted
+              loop
+              playsInline
+            />
+          )}
 
           {/* Radial overlay with different colors for each video */}
           <div
