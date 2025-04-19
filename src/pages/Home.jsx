@@ -52,7 +52,7 @@ const Home = () => {
       {/* Content sections */}
 
       {/* WhoAreWe section */}
-      <div id="who-are-we" className='w-full flex justify-center'>
+      <div id="who-are-we" className='w-full flex justify-center h-auto md:h-[120vh] md:items-center'>
         <WhoAreWe />
       </div>
 

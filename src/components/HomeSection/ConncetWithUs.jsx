@@ -115,7 +115,7 @@ const ConnectWithUs = () => {
           <div className='absolute inset-0 rounded-3xl'>
           <CloudinaryVideo
                         {...getOptimizedAssetProps(videoPath, 'hero', 'video')}
-                        className='w-full h-full object-cover'
+                        className='w-full h-full object-cover rounded-3xl'
                         autoPlay={true}
                         loop={true}
                         muted={true}
