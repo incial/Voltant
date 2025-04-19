@@ -12,9 +12,21 @@ export const imageAssets = {
 
   //AC charge images
   'src/assets/images/ac_charge.png': 'voltant-energy/charging/ac_charge',
+  'src/assets/images/Ac_mid.png': 'voltant-energy/charging/ac_mid',
 
   //AC Charge icons
   'src/assets/icons/Drop.svg': 'voltant-energy/icons/cpo/Drop',
+
+  //DC charge images
+  'src/assets/images/DC_hero.png': 'voltant-energy/charging/dc_hero',
+  'src/assets/images/DC_mid.png': 'voltant-energy/charging/dc_mid',
+
+  //Smart Waste charge images
+  'src/assets/images/SmartWaste_hero.png': 'voltant-energy/charging/SmartWaste_hero',
+  'src/assets/images/SmartWaste_mid.png': 'voltant-energy/charging/SmartWaste_mid',
+
+  //DC Charge icons
+  'src/assets/icons/iconoir_sun-light.svg': 'voltant-energy/icons/Sun',
   
   // Hero and Banner images
   'src/assets/images/About_us_section.jpg': 'voltant-energy/about/about_us_section',
