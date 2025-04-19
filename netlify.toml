@@ -8,23 +8,40 @@
 # deploy settings will inherit these settings
 [context.production]
   # Environmental variables for production
-  environment = { NODE_VERSION = "18", NPM_FLAGS = "--no-optional" }
+  environment = { 
+    NODE_VERSION = "18", 
+    NPM_FLAGS = "--no-optional", 
+    ROLLUP_SKIP_LOAD_NATIVE_PLUGIN = "true", 
+    ROLLUP_NATIVE_PLUGIN = "none"
+  }
 
 # Branch deploy context: all deploys that are not from the Production branch
 # will inherit these settings
 [context.branch-deploy]
   # Different settings for branch deploys
   command = "npm run build"
+  environment = { 
+    ROLLUP_SKIP_LOAD_NATIVE_PLUGIN = "true", 
+    ROLLUP_NATIVE_PLUGIN = "none"
+  }
 
 # Development context: deploys from branches that are not Production
 # and not branch deploys, like Pull Requests
 [context.dev]
   command = "npm run build"
+  environment = { 
+    ROLLUP_SKIP_LOAD_NATIVE_PLUGIN = "true", 
+    ROLLUP_NATIVE_PLUGIN = "none"
+  }
 
 # Specific branch deployment
 [context.staging]
   command = "npm run build"
-  environment = { NODE_ENV = "staging" }
+  environment = { 
+    NODE_ENV = "staging", 
+    ROLLUP_SKIP_LOAD_NATIVE_PLUGIN = "true", 
+    ROLLUP_NATIVE_PLUGIN = "none"
+  }
 
 # Redirects and rewrite rules
 [[redirects]]
