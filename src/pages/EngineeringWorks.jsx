@@ -27,6 +27,8 @@ function EngineeringWorks() {
       <main className="w-full">
         <HeroSection 
           title={engineeringWorksData.hero.title}
+          showSubtitle={engineeringWorksData.hero.showSubtitle}
+          subtitle={engineeringWorksData.hero.subtitle}
           breadcrumbs={engineeringWorksData.hero.breadcrumbs}
           heroImage={engineeringWorksData.hero.heroImage}
         />
