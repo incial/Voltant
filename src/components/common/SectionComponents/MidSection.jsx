@@ -73,7 +73,7 @@ const MidSection = ({
 }) => {
   return (
     <>
-      <section className='relative h-auto min-h-screen md:h-[120vh] w-full overflow-hidden'>
+      <section className='relative h-auto min-h-screen md:h-[140vh] w-full overflow-hidden'>
         <CloudinaryImage
           {...getOptimizedAssetProps(backgroundImage)}
           alt='Section Background'
