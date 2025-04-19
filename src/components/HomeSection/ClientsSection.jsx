@@ -1,8 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import client1 from '../../assets/images/clients/client_1.png'
 import client2 from '../../assets/images/clients/client_1.png'
-import CloudinaryImage from '../common/CloudinaryImage'
-import { getOptimizedAssetProps } from '../../utils/cloudinaryHelper'
 
 const ClientsSection = () => {
   const scrollerRef = useRef(null);
@@ -98,36 +96,7 @@ const ClientsSection = () => {
       </div>
 
       {/* Animation styles with improved cross-browser support */}
-      <style jsx global>{`
-        @keyframes scroll {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-100%);
-          }
-        }
-        .client-scroller {
-          display: inline-block;
-          will-change: transform;
-        }
-        
-        /* Only use animation if no reduced motion is preferred */
-        @media (prefers-reduced-motion: no-preference) {
-          .client-scroller {
-            animation: scroll 30s linear infinite;
-          }
-        }
-        
-        /* Fallback for browsers that don't support CSS animations */
-        @supports not (animation: scroll 30s linear infinite) {
-          .client-scroller {
-            position: relative;
-            left: 0;
-            transition: left 0.5s ease-out;
-          }
-        }
-      `}</style>
+     
     </section>
   )
 }
