@@ -8,6 +8,25 @@ export const imageAssets = {
   'public/Logo_icon.svg': 'voltant-energy/logos/logo_icon',
   'src/assets/images/Logo.png': 'voltant-energy/logos/logo_main',
   'src/assets/images/white_logo.png': 'voltant-energy/logos/logo_white',
+
+
+  //AC charge images
+  'src/assets/images/ac_charge.png': 'voltant-energy/charging/ac_charge',
+  'src/assets/images/Ac_mid.png': 'voltant-energy/charging/ac_mid',
+
+  //AC Charge icons
+  'src/assets/icons/Drop.svg': 'voltant-energy/icons/cpo/Drop',
+
+  //DC charge images
+  'src/assets/images/DC_hero.png': 'voltant-energy/charging/dc_hero',
+  'src/assets/images/DC_mid.png': 'voltant-energy/charging/dc_mid',
+
+  //Smart Waste charge images
+  'src/assets/images/SmartWaste_hero.png': 'voltant-energy/charging/SmartWaste_hero',
+  'src/assets/images/SmartWaste_mid.png': 'voltant-energy/charging/SmartWaste_mid',
+
+  //DC Charge icons
+  'src/assets/icons/iconoir_sun-light.svg': 'voltant-energy/icons/Sun',
   
   // Hero and Banner images
   'src/assets/images/About_us_section.jpg': 'voltant-energy/about/about_us_section',
@@ -75,6 +94,19 @@ export const imageAssets = {
   //More icons
   'src/assets/icons/more/lets-icons_lightning-light.svg': 'voltant-energy/icons/more/lets-icons-lightning-light',
 
+
+  // Containerized images
+  'src/assets/images/containerized/hero.png': 'voltant-energy/containerized/hero',
+  'src/assets/images/containerized/middle.png': 'voltant-energy/containerized/middle',
+
+  //Containerized icons
+  'src/assets/icons/containerized/mdi-light_thumb-up.svg': 'voltant-energy/icons/containerized/thumb-up',
+  'src/assets/icons/containerized/icon-park-outline_tailoring.svg': 'voltant-energy/icons/containerized/tailoring',
+  'src/assets/icons/containerized/solar_scale-broken.svg': 'voltant-energy/icons/containerized/scale-broken',
+  'src/assets/icons/containerized/material-symbols-light_motion-blur-rounded.svg': 'voltant-energy/icons/containerized/motion-blur-rounded',
+  'src/assets/icons/containerized/stash_star-light.svg': 'voltant-energy/icons/containerized/star-light',
+  'src/assets/icons/containerized/pepicons-pencil_leaf-circle.svg': 'voltant-energy/icons/containerized/leaf-circle',
+  'src/assets/icons/containerized/mdi-light_vector-combine.svg': 'voltant-energy/icons/containerized/vector-combine',
   
   // Engineering Works icons
   'src/assets/icons/engineering-works/fluent_hourglass-20-regular.svg': 'voltant-energy/icons/engineering/hourglass',

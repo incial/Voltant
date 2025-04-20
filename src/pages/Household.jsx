@@ -25,6 +25,8 @@ const Household = () => {
         
         <HeroSection 
           title={householdData.hero.title}
+          showSubtitle={householdData.hero.showSubtitle}
+          subtitle={householdData.hero.subtitle}
           breadcrumbs={householdData.hero.breadcrumbs}
           heroImage={householdData.hero.heroImage}
         />

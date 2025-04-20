@@ -25,6 +25,8 @@ const Cpo = () => {
       <div className='flex flex-col min-h-screen bg-white px-0 overflow-hidden'>
         <HeroSection 
           title={cpoData.hero.title}
+          showSubtitle={cpoData.hero.showSubtitle}
+          subtitle={cpoData.hero.subtitle}
           breadcrumbs={cpoData.hero.breadcrumbs}
           heroImage={cpoData.hero.heroImage}
         />

@@ -13,9 +13,9 @@ import MidSection from '../components/common/SectionComponents/MidSection'
 import ProfilesSection from '../components/common/SectionComponents/ProfilesSection'
 
 // Import data
-import { containerizedData } from '../utils/sectionData'
+import { smartwasteData } from '../utils/sectionData'
 
-const Containerized = () => {
+const SmartWaste = () => {
   return (
     <>
       <Navbar />
@@ -24,17 +24,17 @@ const Containerized = () => {
 
       <div className='flex flex-col min-h-screen bg-white px-0 overflow-hidden'>
         <HeroSection
-          title={containerizedData.hero.title}
-          showSubtitle={containerizedData.hero.showSubtitle}
-          subtitle={containerizedData.hero.subtitle}
-          breadcrumbs={containerizedData.hero.breadcrumbs}
-          heroImage={containerizedData.hero.heroImage}
+          title={smartwasteData.hero.title}
+          showSubtitle={smartwasteData.hero.showSubtitle}
+          subtitle={smartwasteData.hero.subtitle}
+          breadcrumbs={smartwasteData.hero.breadcrumbs}
+          heroImage={smartwasteData.hero.heroImage}
         />
 
         <div className='w-full flex flex-col items-center justify-center px-0 md:px-20'>
           <SeamlessChargingSection
-            title={containerizedData.seamlessCharging.title}
-            paragraphs={containerizedData.seamlessCharging.paragraphs}
+            title={smartwasteData.seamlessCharging.title}
+            paragraphs={smartwasteData.seamlessCharging.paragraphs}
           />
         </div>
 
@@ -49,18 +49,18 @@ const Containerized = () => {
           }}
         >
           <MidSection
-            backgroundImage={containerizedData.midSection.backgroundImage}
-            sectionTitle={containerizedData.midSection.sectionTitle}
-            features={containerizedData.midSection.features}
+            backgroundImage={smartwasteData.midSection.backgroundImage}
+            sectionTitle={smartwasteData.midSection.sectionTitle}
+            features={smartwasteData.midSection.features}
           />
         </motion.section>
 
         <ProfilesSection
-          sectionTitle={containerizedData.profiles.sectionTitle}
-          leftProfiles={containerizedData.profiles.leftProfiles}
-          rightProfiles={containerizedData.profiles.rightProfiles}
-          buttonText={containerizedData.profiles.buttonText}
-          showButton={containerizedData.profiles.showButton}
+          sectionTitle={smartwasteData.profiles.sectionTitle}
+          leftProfiles={smartwasteData.profiles.leftProfiles}
+          rightProfiles={smartwasteData.profiles.rightProfiles}
+          buttonText={smartwasteData.profiles.buttonText}
+          showButton={smartwasteData.profiles.showButton}
         />
       </div>
 
@@ -76,4 +76,4 @@ const Containerized = () => {
   )
 }
 
-export default Containerized
+export default SmartWaste

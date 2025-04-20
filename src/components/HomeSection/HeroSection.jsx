@@ -1,23 +1,26 @@
-import React, { useState, useEffect, useRef } from 'react'
-// eslint-disable-next-line no-unused-vars
-import { motion, AnimatePresence } from 'framer-motion'
+import React, { useState, useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
 import {
   FaYoutube,
   FaInstagram,
   FaFacebook,
   FaLinkedin,
   FaXTwitter
-} from 'react-icons/fa6'
-// Import only the cloudinary utilities we need
-import { getCloudinaryId } from '../../utils/cloudinaryAssets'
-import cld from '../../utils/cloudinary'
+} from 'react-icons/fa6';
+import { getCloudinaryId } from '../../utils/cloudinaryAssets';
+import cld from '../../utils/cloudinary';
 
 const HeroSection = () => {
-  const [currentVideoIndex, setCurrentVideoIndex] = useState(0)
-  const [progress, setProgress] = useState(0)
-  const [showSocialTray, setShowSocialTray] = useState(false)
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+  const [progress, setProgress] = useState(0);
+  const [showSocialTray, setShowSocialTray] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
 
-  // Use video mapping with Cloudinary public IDs
+  const videoElements = useRef([]);
+  const progressInterval = useRef(null);
+  const videoDuration = 8000; // 8 seconds per video
+
   const videoMappings = [
     {
       path: 'public/Videos/Hero-Section-1.mp4',
@@ -47,333 +50,224 @@ const HeroSection = () => {
         </>
       )
     }
-  ]
+  ];
 
-  const currentVideoRef = useRef(null)
-  const intervalRef = useRef(null)
-  const animationRef = useRef(null)
-
-  // Video duration and transition settings
-  const videoDuration = 12000 // 12 seconds
-
-  // Generate the Cloudinary video URL
   const getVideoUrl = (path) => {
-    const publicId = getCloudinaryId(path, 'video')
-    if (!publicId) {
-      return null
-    }
-    return cld.video(publicId).toURL()
-  }
+    const publicId = getCloudinaryId(path, 'video');
+    if (!publicId) return null;
+    return cld.video(publicId)
+      .format('auto:video')
+      .quality('auto')
+      .toURL();
+  };
 
-  // Play the current video when it changes - with error handling
+  // Handle mobile detection
   useEffect(() => {
-    if (currentVideoRef.current) {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Initialize videos and handle playback
+  useEffect(() => {
+    let mounted = true;
+
+    const startPlayback = async () => {
       try {
-        const playPromise = currentVideoRef.current.play()
-        if (playPromise !== undefined) {
-          playPromise
-            .then(() => {
-              // Video started playing successfully
-            })
-            .catch(() => {
-              // Try muting the video and playing again (autoplay policy workaround)
-              if (currentVideoRef.current) {
-                currentVideoRef.current.muted = true
-                currentVideoRef.current.play()
-              }
-            })
+        // Play the current video
+        const currentVideo = videoElements.current[currentVideoIndex];
+        if (currentVideo) {
+          await currentVideo.play();
+          setIsPlaying(true);
         }
-      } catch (error) {
-        // Error handling silently
+      } catch (err) {
+        console.log("Autoplay prevented, waiting for interaction");
+        const handleInteraction = () => {
+          if (mounted) {
+            videoElements.current[currentVideoIndex]?.play();
+            setIsPlaying(true);
+          }
+          document.removeEventListener('click', handleInteraction);
+          document.removeEventListener('touchstart', handleInteraction);
+        };
+        document.addEventListener('click', handleInteraction);
+        document.addEventListener('touchstart', handleInteraction);
       }
-    }
-  }, [currentVideoIndex])
+    };
 
-  // Set up the progression and transitions with improved reliability
-  useEffect(() => {
-    // Capture current ref values at the start of the effect
-    const currentIntervalRef = intervalRef.current
-    const currentAnimationRef = animationRef.current
-
-    if (currentIntervalRef) clearTimeout(currentIntervalRef)
-    if (currentAnimationRef) cancelAnimationFrame(currentAnimationRef)
-
-    setProgress(0)
-
-    const startTime = Date.now()
-
-    const animateProgress = () => {
-      const elapsedTime = Date.now() - startTime
-      const newProgress = Math.min(elapsedTime / videoDuration, 1)
-      setProgress(newProgress)
-
-      if (newProgress < 1) {
-        animationRef.current = requestAnimationFrame(animateProgress)
-      }
+    // Clear previous interval
+    if (progressInterval.current) {
+      clearInterval(progressInterval.current);
     }
 
-    animationRef.current = requestAnimationFrame(animateProgress)
+    // Start progress bar
+    let startTime = Date.now();
+    progressInterval.current = setInterval(() => {
+      const elapsed = Date.now() - startTime;
+      const newProgress = Math.min(elapsed / videoDuration, 1);
+      setProgress(newProgress);
 
-    // Set up video transition at the end of video duration
-    intervalRef.current = setTimeout(() => {
-      const next = (currentVideoIndex + 1) % videoMappings.length
+      if (newProgress >= 1) {
+        clearInterval(progressInterval.current);
+        transitionToNextVideo();
+      }
+    }, 50); // Update progress every 50ms for smoother animation
 
-      // Switch directly to the next video
-      setCurrentVideoIndex(next)
-    }, videoDuration)
+    startPlayback();
 
     return () => {
-      // Use captured values in cleanup function
-      if (currentIntervalRef) clearTimeout(currentIntervalRef)
-      if (currentAnimationRef) cancelAnimationFrame(currentAnimationRef)
-      if (intervalRef.current) clearTimeout(intervalRef.current)
+      mounted = false;
+      clearInterval(progressInterval.current);
+    };
+  }, [currentVideoIndex]);
+
+  const transitionToNextVideo = () => {
+    // Reset progress
+    setProgress(0);
+
+    // Pause current video
+    videoElements.current[currentVideoIndex]?.pause();
+
+    // Switch to next video
+    const nextIndex = (currentVideoIndex + 1) % videoMappings.length;
+    setCurrentVideoIndex(nextIndex);
+  };
+
+  // Handle video errors and retries
+  const handleVideoError = (index) => {
+    console.log(`Video ${index} error, attempting to reload`);
+    const video = videoElements.current[index];
+    if (video) {
+      video.load();
+      if (index === currentVideoIndex) {
+        video.play().catch(err => console.log("Retry play failed:", err));
+      }
     }
-  }, [currentVideoIndex, videoMappings.length])
+  };
 
-  // Show social media tray after 2.5 seconds instead of 4
+  // Show social tray only on desktop
   useEffect(() => {
-    const socialTrayTimer = setTimeout(() => {
-      setShowSocialTray(true)
-    }, 2500)
-
-    return () => clearTimeout(socialTrayTimer)
-  }, [])
+    if (isMobile) return;
+    const timer = setTimeout(() => setShowSocialTray(true), 2500);
+    return () => clearTimeout(timer);
+  }, [isMobile]);
 
   return (
-    <div
-      style={{
-        position: 'relative',
-        width: '100%',
-        height: '100vh',
-        overflow: 'hidden',
-        backgroundColor: 'black'
-      }}
-    >
-      <AnimatePresence mode='wait'>
-        <motion.div
-          key={`current-${currentVideoIndex}`}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.05, ease: 'easeInOut' }}
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            zIndex: 1,
-            backgroundColor: 'black'
-          }}
-        >
-          {/* Use direct HTML5 video element instead of CloudinaryVideo */}
-          {getVideoUrl(videoMappings[currentVideoIndex].path) && (
-            <video
-              ref={currentVideoRef}
-              src={getVideoUrl(videoMappings[currentVideoIndex].path)}
-              className='w-full h-full object-cover'
-              autoPlay
-              muted
-              loop
-              playsInline
-            />
-          )}
-
-          {/* Radial overlay with different colors for each video */}
-          <div
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              width: '100%',
-              height: '100%',
-              background:
-                currentVideoIndex === 0
-                  ? 'radial-gradient(circle, rgba(144, 238, 144, 0.15) 0%, rgba(0, 0, 0, 0.4) 100%)'
-                  : currentVideoIndex === 1
-                  ? 'radial-gradient(circle, rgba(135, 206, 235, 0.15) 0%, rgba(0, 0, 0, 0.4) 100%)'
-                  : 'radial-gradient(circle, rgba(135, 206, 235, 0.15) 0%, rgba(0, 0, 0, 0.4) 100%)',
-              mixBlendMode: 'multiply',
-              pointerEvents: 'none'
+    <div className="relative w-full h-screen overflow-hidden bg-black">
+      {/* Video Container */}
+      <div className="absolute inset-0 z-[1] bg-black overflow-hidden">
+        {videoMappings.map((video, index) => (
+          <video
+            key={index}
+            ref={el => {
+              videoElements.current[index] = el;
             }}
+            src={getVideoUrl(video.path)}
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${index === currentVideoIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'
+              }`}
+            muted
+            loop
+            playsInline
+            preload="auto"
+            onError={() => handleVideoError(index)}
           />
-        </motion.div>
-      </AnimatePresence>
+        ))}
+      </div>
 
-      {/* Social Media Icons Sidebar */}
-      <AnimatePresence>
-        {showSocialTray && (
-          <motion.div
-            initial={{ x: 100, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{
-              type: 'spring',
-              stiffness: 260,
-              damping: 20,
-              duration: 0.4
-            }}
-            style={{
-              position: 'absolute',
-              right: '50px',
-              top: '32%',
-              transform: 'translateY(-50%)',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '50px',
-              zIndex: 20
-            }}
-          >
-            <a
-              href='https://youtube.com'
-              target='_blank'
-              rel='noopener noreferrer'
-              style={{ color: 'white' }}
-            >
-              <motion.div
-                whileHover={{ scale: 1.2 }}
-                transition={{ duration: 0.2 }}
-              >
-                <FaYoutube size={24} />
-              </motion.div>
-            </a>
-            <a
-              href='https://instagram.com'
-              target='_blank'
-              rel='noopener noreferrer'
-              style={{ color: 'white' }}
-            >
-              <motion.div
-                whileHover={{ scale: 1.2 }}
-                transition={{ duration: 0.2 }}
-              >
-                <FaInstagram size={24} />
-              </motion.div>
-            </a>
-            <a
-              href='https://facebook.com'
-              target='_blank'
-              rel='noopener noreferrer'
-              style={{ color: 'white' }}
-            >
-              <motion.div
-                whileHover={{ scale: 1.2 }}
-                transition={{ duration: 0.2 }}
-              >
-                <FaFacebook size={24} />
-              </motion.div>
-            </a>
-            <a
-              href='https://linkedin.com'
-              target='_blank'
-              rel='noopener noreferrer'
-              style={{ color: 'white' }}
-            >
-              <motion.div
-                whileHover={{ scale: 1.2 }}
-                transition={{ duration: 0.2 }}
-              >
-                <FaLinkedin size={24} />
-              </motion.div>
-            </a>
-            <a
-              href='https://twitter.com'
-              target='_blank'
-              rel='noopener noreferrer'
-              style={{ color: 'white' }}
-            >
-              <motion.div
-                whileHover={{ scale: 1.2 }}
-                transition={{ duration: 0.2 }}
-              >
-                <FaXTwitter size={24} />
-              </motion.div>
-            </a>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Bottom Left Text Caption */}
-      <AnimatePresence mode='wait'>
-        <motion.div
-          key={`caption-${currentVideoIndex}`}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
-          style={{
-            position: 'absolute',
-            bottom: '200px',
-            left: '100px',
-            zIndex: 10,
-            color: 'white',
-            textAlign: 'left',
-            width: '500px'
-          }}
-        >
-          <h3
-            style={{
-              fontSize: '2.45rem',
-              lineHeight: '1',
-              fontWeight: '400',
-              margin: 0,
-              textShadow: '2px 2px 4px rgba(0,0,0,0.5)'
-            }}
-            className="font-['Cairo']"
-          >
-            {videoMappings[currentVideoIndex].title}
-          </h3>
-        </motion.div>
-      </AnimatePresence>
-
-      {/* White Bar Video Indicator */}
+      {/* Gradient Overlay */}
       <div
+        className="absolute inset-0 pointer-events-none"
         style={{
-          position: 'absolute',
-          bottom: '30px',
-          left: '0',
-          right: '0',
-          display: 'flex',
-          justifyContent: 'center',
-          gap: '20px',
-          zIndex: 10
+          background:
+            currentVideoIndex === 0
+              ? 'radial-gradient(circle, rgba(144, 238, 144, 0.15) 0%, rgba(0, 0, 0, 0.4) 100%)'
+              : currentVideoIndex === 1
+                ? 'radial-gradient(circle, rgba(135, 206, 235, 0.15) 0%, rgba(0, 0, 0, 0.4) 100%)'
+                : 'radial-gradient(circle, rgba(135, 206, 235, 0.15) 0%, rgba(0, 0, 0, 0.4) 100%)',
+          mixBlendMode: 'multiply'
         }}
+      />
+
+      {/* Social Media Icons - Desktop Only */}
+      {!isMobile && showSocialTray && (
+        <motion.div
+          initial={{ x: 100, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{
+            type: 'spring',
+            stiffness: 260,
+            damping: 20,
+            duration: 0.4
+          }}
+          className="fixed right-8 top-1/2 transform -translate-y-1/2 flex flex-col gap-6 z-20"
+        >
+          {[FaYoutube, FaInstagram, FaFacebook, FaLinkedin, FaXTwitter].map((Icon, index) => (
+            <a
+              key={index}
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white p-1 block hover:text-primary transition-colors duration-200"
+              aria-label={Icon.name.replace('Fa', '')}
+            >
+              <motion.div whileHover={{ scale: 1.2 }} transition={{ duration: 0.2 }}>
+                <Icon size={24} />
+              </motion.div>
+            </a>
+          ))}
+        </motion.div>
+      )}
+
+      {/* Text Content - Now using dvh units */}
+      <motion.div
+        key={`caption-${currentVideoIndex}`}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
+        className={`absolute ${isMobile ? 'bottom-[20dvh] left-4 max-w-[80%]'
+            : 'bottom-20 sm:bottom-32 md:bottom-[200px] left-8 sm:left-12 md:left-[100px]'
+          } z-10 text-white text-left`}
+        style={{ maxWidth: isMobile ? '80%' : '500px' }}
       >
+        <h3 className={`${isMobile ? 'text-xl leading-snug'
+            : 'text-3xl sm:text-4xl md:text-[2.45rem] leading-tight'
+          } font-normal m-0 font-['Cairo'] drop-shadow-lg`}>
+          {videoMappings[currentVideoIndex].title}
+        </h3>
+      </motion.div>
+
+      {/* Progress Indicators - Using dvh units */}
+      <div className={`absolute ${isMobile ? 'bottom-[10dvh]'
+          : 'bottom-6 sm:bottom-8 md:bottom-[30px]'
+        } left-0 right-0 flex justify-center gap-2 sm:gap-5 md:gap-[20px] z-10`}>
         {videoMappings.map((_, index) => (
           <div
             key={index}
+            className={`${isMobile ? 'h-1' : 'h-1 md:h-[4px]'
+              } rounded-[2px] overflow-hidden transition-all duration-300`}
             style={{
-              width: index === currentVideoIndex ? '160px' : '80px',
-              height: '4px',
+              width: index === currentVideoIndex ? (isMobile ? '80px' : '100px') : (isMobile ? '40px' : '50px'),
               backgroundColor: 'rgba(255,255,255,0.3)',
-              borderRadius: '2px',
-              overflow: 'hidden',
-              transition: 'width 0.8s ease'
             }}
           >
-            <motion.div
+            <div
+              className="h-full rounded-[2px] bg-white transition-all duration-100"
               style={{
-                height: '100%',
-                width:
-                  index === currentVideoIndex
-                    ? `${progress * 100}%`
-                    : index < currentVideoIndex ||
-                      (currentVideoIndex === 0 &&
-                        index === videoMappings.length - 1)
+                width: index === currentVideoIndex
+                  ? `${progress * 100}%`
+                  : index < currentVideoIndex
                     ? '100%'
-                    : '0%',
-                backgroundColor:
-                  index === currentVideoIndex
-                    ? 'rgba(255,255,255,1)'
-                    : 'rgba(255,255,255,0.4)',
-                borderRadius: '2px'
+                    : '0%'
               }}
-              transition={{ ease: 'linear' }}
             />
           </div>
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default HeroSection
+export default HeroSection;

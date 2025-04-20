@@ -13,9 +13,9 @@ import MidSection from '../components/common/SectionComponents/MidSection'
 import ProfilesSection from '../components/common/SectionComponents/ProfilesSection'
 
 // Import data
-import { containerizedData } from '../utils/sectionData'
+import { ACData } from '../utils/sectionData'
 
-const Containerized = () => {
+const AC = () => {
   return (
     <>
       <Navbar />
@@ -24,17 +24,17 @@ const Containerized = () => {
 
       <div className='flex flex-col min-h-screen bg-white px-0 overflow-hidden'>
         <HeroSection
-          title={containerizedData.hero.title}
-          showSubtitle={containerizedData.hero.showSubtitle}
-          subtitle={containerizedData.hero.subtitle}
-          breadcrumbs={containerizedData.hero.breadcrumbs}
-          heroImage={containerizedData.hero.heroImage}
+          title={ACData.hero.title}
+          showSubtitle={ACData.hero.showSubtitle}
+          subtitle={ACData.hero.subtitle}
+          breadcrumbs={ACData.hero.breadcrumbs}
+          heroImage={ACData.hero.heroImage}
         />
 
         <div className='w-full flex flex-col items-center justify-center px-0 md:px-20'>
           <SeamlessChargingSection
-            title={containerizedData.seamlessCharging.title}
-            paragraphs={containerizedData.seamlessCharging.paragraphs}
+            title={ACData.seamlessCharging.title}
+            paragraphs={ACData.seamlessCharging.paragraphs}
           />
         </div>
 
@@ -49,19 +49,12 @@ const Containerized = () => {
           }}
         >
           <MidSection
-            backgroundImage={containerizedData.midSection.backgroundImage}
-            sectionTitle={containerizedData.midSection.sectionTitle}
-            features={containerizedData.midSection.features}
+            backgroundImage={ACData.midSection.backgroundImage}
+            sectionTitle={ACData.midSection.sectionTitle}
+            features={ACData.midSection.features}
           />
         </motion.section>
 
-        <ProfilesSection
-          sectionTitle={containerizedData.profiles.sectionTitle}
-          leftProfiles={containerizedData.profiles.leftProfiles}
-          rightProfiles={containerizedData.profiles.rightProfiles}
-          buttonText={containerizedData.profiles.buttonText}
-          showButton={containerizedData.profiles.showButton}
-        />
       </div>
 
       <motion.footer
@@ -76,4 +69,4 @@ const Containerized = () => {
   )
 }
 
-export default Containerized
+export default AC

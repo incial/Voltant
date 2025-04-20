@@ -14,12 +14,12 @@ const EvCharging = () => {
     {
       title: 'AC Chargers',
       image: 'src/assets/images/AC_Chrager_image.png',
-      path: '/ac-chargers'
+      path: '/ev-charging/ac-chargers'
     },
     {
       title: 'DC Chargers',
       image: 'src/assets/images/DC_Charger_image.png',
-      path: '/dc-chargers'
+      path: '/ev-charging/dc-chargers'
     },
     {
       title: 'Engineering Works',
@@ -46,7 +46,7 @@ const EvCharging = () => {
         {/* Hero Section */}
         <div className='relative h-[550px]'>
           {/* Video Background */}
-          <div className='absolute inset-0'>
+          <div className='absolute inset-0 overflow-hidden'>
             <CloudinaryVideo
               {...getOptimizedAssetProps(
                 'public/Videos/EV_charging _video.mp4',
@@ -58,18 +58,19 @@ const EvCharging = () => {
               loop={true}
               muted={true}
               controls={false}
+              playsInline={true}
             />
 
             <div className='absolute inset-0 bg-black opacity-40'></div>
           </div>
 
           {/* Hero Content - Positioned at absolute bottom left */}
-          <div className='absolute bottom-10 left-8 z-10 max-w-[85%]'>
-            <h1 className="text-2xl font-semibold text-white mb-6 font-['Cairo']">
+          <div className='absolute bottom-10 left-8 z-10 max-w-[85%] px-2'>
+            <h1 className="text-2xl font-semibold text-white mb-6 font-['Cairo'] leading-snug">
               EV Charging <br /> Infrastructure
             </h1>
 
-            <p className="text-md text-white font-light font-['Cairo'] w-[300px]">
+            <p className="text-md text-white font-light font-['Cairo'] w-full max-w-[300px]">
               Powering the future of mobility with smart, efficient and scalable
               EV charging solutions designed for homes, businesses, and public
               spaces.
@@ -78,20 +79,15 @@ const EvCharging = () => {
         </div>
 
         {/* Services Grid Section - Improved grid layout */}
-        <div className='bg-white p-8 py-16'>
-          <div className='grid grid-cols-2 gap-6 '>
+        <div className='bg-white p-4 sm:p-8 py-12 sm:py-16'>
+          <div className='grid grid-cols-2 gap-4 sm:gap-6'>
             {services.map((service, index) => (
-              <ServiceCard
-                key={index}
-                title={service.title}
-                image={
-                  <CloudinaryImage
-                    {...getOptimizedAssetProps(service.image)}
-                    alt={service.title}
-                  />
-                }
-                path={service.path}
-              />
+                <ServiceCard
+                  key={index}
+                  title={service.title}
+                  image={service.image}
+                  path={service.path}
+                />
             ))}
           </div>
         </div>
@@ -115,23 +111,26 @@ const EvCharging = () => {
               muted={true}
               controls={false}
             />
-            <div className='absolute inset-0 bg-black opacity-40'></div>
+            <div className='absolute inset-0 bg-black opacity-60'></div>
           </div>
 
           {/* Hero Content - Positioned at bottom left */}
-          <div className='relative z-10 container mx-auto px-6 flex flex-col h-full'>
-            <div className='max-w-xl absolute bottom-35 left-0 '>
-              <h1 className="text-3xl md:text-5xl font-semibold text-white leading-tight mb-12 font-['Cairo']">
-                EV Charging <br /> Infrastructure
-              </h1>
-
-              <p className="text-2xl text-white font-extralight font-['Cairo'] mb-4 w-[500px]">
-                Powering the future of mobility with smart, efficient and
-                scalable EV charging infrastructure solutions for homes,
-                businesses, and public spaces.
-              </p>
-            </div>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+            className='absolute bottom-[200px] left-[100px] z-10 text-white text-left w-full max-w-[500px] px-4 md:px-0'
+          >
+            <h1 className="font-['Cairo'] text-[3rem] leading-tight font-semibold m-0">
+              EV Charging <br /> Infrastructure
+            </h1>
+            <p className="text-2xl text-white font-extralight font-['Cairo'] mt-10 md:mt-14 w-full max-w-[500px]">
+              Powering the future of mobility with smart, efficient and scalable
+              EV charging infrastructure solutions for homes, businesses, and
+              public spaces.
+            </p>
+          </motion.div>
         </section>
 
         {/* Services Grid Section */}

@@ -431,6 +431,7 @@ export const largeScaleData = {
     showButton: true
   }
 }
+
 // Containerized Data
 export const containerizedData = {
   hero: {
@@ -524,6 +525,223 @@ export const containerizedData = {
           'Seamless connectivity is key to modern EV charging. We integrate smart Charge Point Management Systems (CPMS) with real-time data analytics, load balancing, and OCPP-compliant backend systems. This allows for efficient monitoring, remote control, and a smooth user experience.'
       }
     ],
+    buttonText: 'Download Charging Profile',
+    showButton: true
+  }
+}
+// SmartWaste Data
+export const smartwasteData = {
+  hero: {
+    title: 'Smart Waste Segregation Bins',
+    breadcrumbs: ['Home', 'Waste To Energy', 'Smart Waste Segregation Bins'],
+    showSubtitle: false,
+    heroImage: 'src/assets/images/SmartWaste_hero.png'
+  },
+  seamlessCharging: {
+    title: 'Automated Sorting, Sustainable Living.',
+    paragraphs: [
+      'Efficient waste management starts with proper segregation. Our Smart Waste Segregation Bins use advanced sensors and AI-powered technology to automatically sort waste into recyclable, organic, and non-recyclable categories. Designed for homes, offices, and public spaces, these bins reduce landfill waste, promote recycling, and contribute to a cleaner environment.'
+    ]
+  },
+  midSection: {
+    backgroundImage: 'src/assets/images/SmartWaste_mid.png',
+    sectionTitle: 'Sort Smart, Waste Less.',
+    features: [
+      {
+        icon: 'src/assets/icons/containerized/stash_star-light.svg',
+        title: 'Automated Sorting',
+        description:
+          'AI-powered identification of waste types for precise segregation.'
+      },
+      {
+        icon: 'src/assets/icons/containerized/material-symbols-light_motion-blur-rounded.svg',
+        title: 'Smart Monitoring',
+        description:
+          'Real-time fill level tracking and alerts for optimized waste collection.'
+      },
+      {
+        icon: 'src/assets/icons/containerized/pepicons-pencil_leaf-circle.svg',
+        title: 'Energy Efficient',
+        description:
+          'Low-power consumption with sustainable battery/solar options.'
+      },
+      {
+        icon: 'src/assets/icons/containerized/mdi-light_thumb-up.svg',
+        title: 'Odor Control',
+        description:
+          'Sealed compartments with deodorizing technology for a hygienic experience.'
+      },
+      {
+        icon: 'src/assets/icons/containerized/solar_scale-broken.svg',
+        title: 'Versatile Applications',
+        description:
+          'Ideal for households, businesses, and public spaces.'
+      }
+    ]
+  },
+  profiles: {
+    sectionTitle: 'Engineering Profiles',
+    leftProfiles: [
+      {
+        title: 'Site Assessment & Feasibility Study',
+        description:
+          'We begin with a comprehensive evaluation of the site, analyzing power availability, load capacity, and infrastructure readiness. This helps determine the best charger placement while ensuring compliance with local regulations and safety standards.'
+      },
+      {
+        title: 'Design & Engineering Solutions',
+        description:
+          "Every project is designed for maximum efficiency, integrating smart energy management, optimal power distribution, and scalable solutions. Whether it's a single charging point or a large-scale network, our engineering team develops tailored layouts and electrical schematics that align with sustainability goals."
+      },
+      {
+        title: 'Installation & Commissioning',
+        description:
+          'From civil and electrical work to network setup, our team manages the entire installation process, ensuring seamless execution. We conduct rigorous testing and commissioning to guarantee smooth operation and long-term reliability.'
+      }
+    ],
+    rightProfiles: [
+      {
+        title: 'Maintenance & Support',
+        description:
+          "Our job doesn't end after installation. We provide ongoing maintenance, real-time monitoring, and remote diagnostics to ensure optimal charger performance. With preventive service schedules and 24/7 technical support, we keep charging stations running efficiently."
+      },
+      {
+        title: 'Software & Network Integration',
+        description:
+          'Seamless connectivity is key to modern EV charging. We integrate smart Charge Point Management Systems (CPMS) with real-time data analytics, load balancing, and OCPP-compliant backend systems. This allows for efficient monitoring, remote control, and a smooth user experience.'
+      }
+    ],
+    buttonText: 'Download Charging Profile',
+    showButton: true
+  }
+}
+// AC Data
+export const ACData = {
+  hero: {
+    title: 'AC Chargers',
+    breadcrumbs: ['Home', 'EV Charging', 'AC Chargers'],
+    showSubtitle: false,
+    heroImage: 'src/assets/images/ac_charge.png'
+  },
+  seamlessCharging: {
+    title: ' AC Chargers: Smart, Efficient & Reliable EV Charging',
+    paragraphs: [
+      'AC chargers offer a seamless and cost-effective solution for home, workplace, and commercial EV charging, making electric vehicle ownership more convenient than ever. Designed for long-duration and overnight charging, they provide a steady, optimized power flow while ensuring energy efficiency and lower infrastructure costs.',
+      'Ideal for residential garages, offices, and public parking spaces, AC chargers integrate smart connectivity features, allowing remote monitoring, scheduling, and usage tracking. With universal compatibility, they support a wide range of EV models, making them a versatile and future-ready charging solution. Whether for personal use or building a broader EV charging network, our AC charging solutions deliver safe, reliable, and intelligent energy management for a sustainable future.'
+    ]
+  },
+  midSection: {
+    backgroundImage: 'src/assets/images/Ac_mid.png',
+    sectionTitle: 'Why Choose AC Charging ?',
+    features: [
+      {
+        icon: 'src/assets/icons/containerized/stash_star-light.svg',
+        title: 'Smart connectivity ',
+        description:
+          'with WiFi, Bluetooth, and RFID access control.'
+      },
+      {
+        icon: 'src/assets/icons/containerized/pepicons-pencil_leaf-circle.svg',
+        title: 'Energy-Efficient & Cost-Effective',
+        description:
+          'Delivers steady, optimized charging with lower infrastructure costs.'
+      },
+      {
+        icon: 'src/assets/icons/containerized/mdi-light_vector-combine.svg',
+        title: 'Multiple charging standards',
+        description:
+          '(GBT, Type 1, Type 2) for universal compatibility.'
+      },
+      {
+        icon: 'src/assets/icons/containerized/mdi-light_thumb-up.svg',
+        title: 'Integrated safety features',
+        description:
+          'including Type B leakage protection, overvoltage, and short circuit protection.'
+      },
+      {
+        icon: 'src/assets/icons/Drop.svg',
+        title: 'IP65-rated waterproof design',
+        description:
+          'ensuring durability in all weather conditions.'
+      },
+      {
+        icon: 'src/assets/icons/containerized/material-symbols-light_motion-blur-rounded.svg',
+        title: 'Human motion radar sensor',
+        description:
+          ' for automatic screen brightness adjustment.'
+      },
+      {
+        icon: 'src/assets/icons/containerized/icon-park-outline_tailoring.svg',
+        title: 'Customizable options',
+        description:
+          'including wall-mounted or pedestal installations.'
+      }
+    ]
+  },
+  profiles: {
+    sectionTitle: 'Profiles',
+    buttonText: 'Download Charging Profile',
+    showButton: true
+  }
+}
+// DC Data
+export const DCData = {
+  hero: {
+    title: 'DC Chargers',
+    breadcrumbs: ['Home', 'EV Charging', 'DC Chargers'],
+    showSubtitle: false,
+    heroImage: 'src/assets/images/DC_hero.png'
+  },
+  seamlessCharging: {
+    title: ' DC Chargers: Fast, Powerful & Future-Ready',
+    paragraphs: [
+      'Voltant Energy’s AMPHAWK DC Fast Chargers deliver high-speed, efficient, and reliable EV charging solutions for a wide range of applications. Designed to support CCS, CHAdeMO, and AC Type 2, these chargers cater to both current and next-generation electric vehicles.',
+      'With power outputs ranging from 30kW to 510kW, AMPHAWK DC chargers are ideal for public charging stations, commercial fleets, logistics hubs, and highway corridors. They feature modular system architecture, ensuring scalability and easy maintenance while maintaining low operational costs.'
+    ]
+  },
+  midSection: {
+    backgroundImage: 'src/assets/images/DC_mid.png',
+    sectionTitle: 'Why Choose AC Charging ?',
+    features: [
+      {
+        icon: 'src/assets/icons/more/lets-icons_lightning-light.svg',
+        title: 'Smart connectivity ',
+        description:
+          'with WiFi, Bluetooth, and RFID access control.'
+      },
+      {
+        icon: 'src/assets/icons/engineering-works/fluent_hourglass-20-regular.svg',
+        title: 'Energy-Efficient & Cost-Effective',
+        description:
+          'Delivers steady, optimized charging with lower infrastructure costs.'
+      },
+      {
+        icon: 'src/assets/icons/containerized/mdi-light_vector-combine.svg',
+        title: 'Multiple charging standards',
+        description:
+          '(GBT, Type 1, Type 2) for universal compatibility.'
+      },
+      {
+        icon: 'src/assets/icons/containerized/mdi-light_thumb-up.svg',
+        title: 'Integrated safety features',
+        description:
+          'including Type B leakage protection, overvoltage, and short circuit protection.'
+      },
+      {
+        icon: 'src/assets/icons/containerized/stash_star-light.svg',
+        title: 'IP65-rated waterproof design',
+        description:
+          'ensuring durability in all weather conditions.'
+      },
+      {
+        icon: 'src/assets/icons/iconoir_sun-light.svg',
+        title: 'Human motion radar sensor',
+        description:
+          ' for automatic screen brightness adjustment.'
+      }
+    ]
+  },
+  profiles: {
+    sectionTitle: 'Profiles',
     buttonText: 'Download Charging Profile',
     showButton: true
   }
