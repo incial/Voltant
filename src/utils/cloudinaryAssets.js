@@ -13,6 +13,7 @@ export const imageAssets = {
   //AC charge images
   'src/assets/images/ac_charge.png': 'voltant-energy/charging/ac_charge',
   'src/assets/images/Ac_mid.png': 'voltant-energy/charging/ac_mid',
+  'src/assets/images/charger.png': 'voltant-energy/charging/ac_charger_model',
 
   //AC Charge icons
   'src/assets/icons/Drop.svg': 'voltant-energy/icons/cpo/Drop',
