@@ -10,6 +10,12 @@ export const imageAssets = {
   'src/assets/images/white_logo.png': 'voltant-energy/logos/logo_white',
 
 
+  // Hero icons
+
+  'src/assets/icons/battery.svg': 'voltant-energy/icons/battery',
+  'src/assets/icons/circle.svg': 'voltant-energy/icons/circle',
+
+
   //AC charge images
   'src/assets/images/ac_charge.png': 'voltant-energy/charging/ac_charge',
   'src/assets/images/Ac_mid.png': 'voltant-energy/charging/ac_mid',
