@@ -12,8 +12,8 @@ import EngineeringWorks from './pages/EngineeringWorks'
 import LargeScale from './pages/LargeScale'
 import Cpo from './pages/Cpo'
 import Household from './pages/Household'
-import More from './pages/More'
 import Containerized from './pages/Containerized'
+import More from './pages/More'
 import SmartWaste from './pages/SmartWaste'
 
 // ScrollToTop component ensures page starts at the top when navigating

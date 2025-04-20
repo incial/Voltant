@@ -30,6 +30,7 @@ function LargeScale() {
           showSubtitle={largeScaleData.hero.showSubtitle}
           subtitle={largeScaleData.hero.subtitle}
           breadcrumbs={largeScaleData.hero.breadcrumbs}
+          showSubtitle={largeScaleData.hero.showSubtitle}
           heroImage={largeScaleData.hero.heroImage}
         />
         

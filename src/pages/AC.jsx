@@ -11,7 +11,7 @@ import HeroSection from '../components/common/SectionComponents/HeroSection'
 import SeamlessChargingSection from '../components/common/SectionComponents/SeamlessChargingSection'
 import MidSection from '../components/common/SectionComponents/MidSection'
 import ProfilesSection from '../components/common/SectionComponents/ProfilesSection'
-
+import Charger from '../components/common/SectionComponents/charger'
 // Import data
 import { ACData } from '../utils/sectionData'
 
@@ -63,6 +63,7 @@ const AC = () => {
         viewport={{ amount: 0.2 }}
         transition={{ duration: 0.6 }}
       >
+        <Charger />
         <Footer />
       </motion.footer>
     </>
