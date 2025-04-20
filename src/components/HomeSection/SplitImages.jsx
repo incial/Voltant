@@ -30,7 +30,7 @@ const SplitHoverImages = () => {
     const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 
     return (
-        <div className="flex md:flex-row flex-col h-[80vh] md:h-[80vh] w-full overflow-hidden">
+        <div className="flex md:flex-row flex-col h-[95vh] md:h-[95vh] w-full overflow-hidden">
             {images.map((item) => {
                 const isActive = activeId === item.id;
                 const isPlayed = playedId === item.id;

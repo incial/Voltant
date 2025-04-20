@@ -202,7 +202,7 @@ const HeroSection = () => {
             damping: 20,
             duration: 0.4
           }}
-          className="fixed right-8 top-1/2 transform -translate-y-1/2 flex flex-col gap-6 z-20"
+          className="absolute right-8 top-1/2 transform -translate-y-1/2 flex flex-col gap-6 z-20"
         >
           {[FaYoutube, FaInstagram, FaFacebook, FaLinkedin, FaXTwitter].map((Icon, index) => (
             <a
@@ -228,12 +228,12 @@ const HeroSection = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
         className={`absolute ${isMobile ? 'bottom-[20dvh] left-4 max-w-[80%]'
-            : 'bottom-20 sm:bottom-32 md:bottom-[200px] left-8 sm:left-12 md:left-[100px]'
+          : 'bottom-20 sm:bottom-32 md:bottom-[200px] left-8 sm:left-12 md:left-[100px]'
           } z-10 text-white text-left`}
         style={{ maxWidth: isMobile ? '80%' : '500px' }}
       >
         <h3 className={`${isMobile ? 'text-xl leading-snug'
-            : 'text-3xl sm:text-4xl md:text-[2.45rem] leading-tight'
+          : 'text-3xl sm:text-4xl md:text-[2.45rem] leading-tight'
           } font-normal m-0 font-['Cairo'] drop-shadow-lg`}>
           {videoMappings[currentVideoIndex].title}
         </h3>
@@ -241,7 +241,7 @@ const HeroSection = () => {
 
       {/* Progress Indicators - Using dvh units */}
       <div className={`absolute ${isMobile ? 'bottom-[10dvh]'
-          : 'bottom-6 sm:bottom-8 md:bottom-[30px]'
+        : 'bottom-6 sm:bottom-8 md:bottom-[30px]'
         } left-0 right-0 flex justify-center gap-2 sm:gap-5 md:gap-[20px] z-10`}>
         {videoMappings.map((_, index) => (
           <div
