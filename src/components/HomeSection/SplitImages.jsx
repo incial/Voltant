@@ -80,8 +80,8 @@ const SplitHoverImages = () => {
                         style={{
                             flexBasis: isMobile ? '100%' : isActive ? '66.66%' : '33.33%',
                             transition: 'flex-basis 0.8s cubic-bezier(0.83, 0, 0.17, 1)',
-                            aspectRatio: isMobile ? '16 / 9' : undefined,
-                            height: isMobile ? 'auto' : '100%'
+                            aspectRatio: isMobile ? '14 / 14' : undefined, // Increased height in mobile view by changing aspect ratio
+                            height: isMobile ? '70vh' : '100%' // Set explicit height for mobile
                         }}
                     >
 
