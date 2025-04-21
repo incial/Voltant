@@ -14,6 +14,7 @@ import ProfilesSection from '../components/common/SectionComponents/ProfilesSect
 
 // Import data
 import { DCData } from '../utils/sectionData'
+import Charger from '../components/common/SectionComponents/charger'
 
 const DC = () => {
   return (
@@ -63,6 +64,7 @@ const DC = () => {
         viewport={{ amount: 0.2 }}
         transition={{ duration: 0.6 }}
       >
+        <Charger type={2} /> {/* 2 for DC chargers */}
         <Footer />
       </motion.footer>
     </>

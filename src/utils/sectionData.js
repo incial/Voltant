@@ -809,5 +809,70 @@ export const DCData = {
     sectionTitle: 'Profiles',
     buttonText: 'Download Charging Profile',
     showButton: true
-  }
+  },
+  chargerData: {
+    title: "AMPHAWK",
+    subtitle: "DC Charger",
+    chargerModels: [
+      {
+        power: "7 kW",
+        imageUrl: "src/assets/images/charger.png",
+        model: "EVE07W",
+        current: "32A",
+        maxPower: "7.4kW"
+      },
+      {
+        power: "11 kW",
+        imageUrl: "src/assets/images/charger.png",
+        model: "EVE11W",
+        current: "32A",
+        maxPower: "11kW"
+      },
+      {
+        power: "22 kW",
+        imageUrl: "src/assets/images/charger.png",
+        model: "EVE22W",
+        current: "32A",
+        maxPower: "22kW"
+      }
+    ],
+    specifications: [
+      {
+        category: "Electrical Specifications",
+        items: [
+          { label: "Product Model:", values: ["EVE07W", "EVE11W", "EVE22W"] },
+          { label: "Max Current:", values: ["32A", "32A", "32A"] },
+          { label: "Max Power:", values: ["7.4kW", "11kW", "22kW"] }
+        ]
+      },
+      {
+        category: "Function and Accessory",
+        items: [
+          { label: "LED Indicators:", values: ["Yes", "Yes", "Yes"] },
+          { label: "Integrated RCD:", values: ["Type B", "Type B", "Type B"] },
+          { label: "RFID / App / Touch Controls:", values: ["Yes", "Yes", "Yes"] },
+          { label: "WiFi / Bluetooth:", values: ["Yes (WiFi 2.4GHz)", "Yes (WiFi 2.4GHz)", "Yes (WiFi 2.4GHz)"] },
+          { label: "LCD Screen:", values: ["3.0-inch", "3.0-inch", "3.0-inch"] }
+        ]
+      },
+      {
+        category: "Working Environment",
+        items: [
+          { label: "Protection Degree:", values: ["IP65", "IP65", "IP65"] },
+          { label: "Operational Temperature:", values: ["-30°C to 55°C", "-30°C to 55°C", "-30°C to 55°C"] },
+          { label: "Cooling:", values: ["Natural Air Cooling", "Natural Air Cooling", "Natural Air Cooling"] }
+        ]
+      },
+      {
+        category: "Mechanical Parameters",
+        items: [
+          { label: "Charging Cable:", values: ["5m Type 2 Connector", "5m Type 2 Connector", "5m Type 2 Connector"] },
+          { label: "Control Box Dimensions:", values: ["HxWxD = 180mm * 180mm * 70mm", "HxWxD = 180mm * 180mm * 70mm", "HxWxD = 180mm * 180mm * 70mm"] },
+          { label: "Weight:", values: ["≤6kg", "≤6kg", "≤6kg"] },
+          { label: "Colour:", values: ["White / Dark Grey unit, Black cable", "White or Dark Grey unit, Black cable", "White or Dark Grey unit, Black cable"] },
+          { label: "Compliance:", values: ["IEC-61851, CE/RoHS", "IEC-61851, CE/RoHS", "IEC-61851, CE/RoHS"] }
+        ]
+      }
+    ]
+  },
 }

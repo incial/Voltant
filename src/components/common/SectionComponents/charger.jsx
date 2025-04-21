@@ -1,5 +1,7 @@
 import React from "react";
-import { ACData } from "../../../utils/sectionData";
+import { ACData, DCData } from "../../../utils/sectionData";
+import CloudinaryImage from '../CloudinaryImage'
+import { getOptimizedAssetProps } from '../../../utils/cloudinaryHelper'
 
 // Inline ChargerModel component since the import was removed
 const ChargerModel = ({ power, imageUrl, specifications }) => {
@@ -9,66 +11,63 @@ const ChargerModel = ({ power, imageUrl, specifications }) => {
         <h2 className="text-3xl font-bold text-center">{power}</h2>
       </div>
       <div className="w-full h-64 mb-6">
-        <img 
-          src={imageUrl} 
-          alt={`${power} Charger`} 
-          className="w-full h-full object-contain" 
+        <img
+          src={imageUrl}
+          alt={`${power} Charger`}
+          className="w-full h-full object-contain"
         />
       </div>
     </div>
   );
 };
 
-export const Charger = () => {
+export const ChargerAC = () => {
   const { chargerData } = ACData;
   const { chargerModels, specifications } = chargerData;
 
-  // Calculate total table width based on columns with extra padding
-  const labelWidth = 280;
-  const valueWidth = 300;
-  const totalWidth = labelWidth + (valueWidth * chargerModels.length) + 100;
-
-  // Responsive design - Mobile view
   const MobileView = () => {
     // Only showing the first model for mobile
     const model = chargerModels[0];
-    
+
     return (
       <div className="bg-white p-5">
         <div className="text-center mb-5">
-          <h1 className="text-2xl font-bold text-gray-700">Models</h1>
+          <h1 className="text-2xl font-bold text-gray-500">Models</h1>
         </div>
-        
+
         {/* Single charger display */}
-        <div className="mb-8">
-          <div className="bg-white rounded-xl shadow-md py-8 px-10">
-            <div className="flex flex-col items-center">
-              <div className="mb-2">
-                <h2 className="text-xl font-bold text-center">{chargerData.title}</h2>
-                <h3 className="text-lg font-medium text-center">{chargerData.subtitle}</h3>
-              </div>
-              <div className="w-full max-w-xs h-48 mb-4">
-                <img 
-                  src={model.imageUrl} 
-                  alt={`${model.power} Charger`} 
-                  className="w-full h-full object-contain"
-                />
+        <div className="h-80 flex flex-col items-center justify-end pb-2"> {/* Increased container height */}
+          <div className="mb-4 relative w-full"> {/* Added relative positioning */}
+            <div className="w-full h-64 bg-white rounded-xl relative"> {/* Increased image height */}
+              <CloudinaryImage
+                {...getOptimizedAssetProps(model.imageUrl, 'charging', 'image')}
+                alt='Hero Image'
+                className='w-full h-full object-contain'
+              />
+              {/* Centered Text Overlay */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="text-lg font-bold text-white drop-shadow-md rounded-xl">
+                  <h2 className="text-xl font-bold text-center">{chargerData.title}</h2>
+                  <h3 className="text-lg font-medium text-center mb-10">{chargerData.subtitle}</h3>
+
+                  <span className="text-md font-thin text-center ml-6">{model.power}</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        
+
         {/* Specification sections - vertical layout */}
         {specifications.map((specSection, sectionIndex) => (
-          <div key={sectionIndex} className="mb-6">
-            <h3 className="text-lg font-medium text-gray-600 mb-3">{specSection.category}</h3>
+          <div key={sectionIndex} className="mb-6 px-12">
+            <h3 className="text-md font-bold text-gray-500 mb-5">{specSection.category}</h3>
             <div className="space-y-2">
               {specSection.items.map((item, itemIndex) => (
-                <div key={itemIndex} className="flex flex-row py-1">
-                  <div className="w-1/2 text-right pr-4 text-gray-600">
+                <div key={itemIndex} className="flex flex-col py-1">
+                  <div className="text-gray-400 mb-2 text-xs">
                     {item.label}
                   </div>
-                  <div className="w-1/2 pl-4 text-gray-800">
+                  <div className="text-gray-400 text-sm">
                     {item.values[0]} {/* Only showing first value */}
                   </div>
                 </div>
@@ -83,75 +82,77 @@ export const Charger = () => {
   // Desktop view with horizontal scrolling
   const DesktopView = () => {
     return (
-      <div 
-        className="overflow-x-auto" 
-        style={{ 
-          width: '100%', 
+      <div className="overflow-x-auto bg-white py-8 w-full"
+        style={{
           WebkitOverflowScrolling: 'touch',
-          overflowX: 'scroll',
           scrollbarWidth: 'thin'
         }}
       >
-        <div style={{ 
-          width: `${totalWidth}px`, 
-          minWidth: '1000px', 
-          maxWidth: 'none' 
-        }}>
-          <table className="w-full border-collapse table-fixed">
+        <div className="w-full px-8 min-w-[1200px]">
+          <table className="w-full border-collapse">
             <colgroup>
-              <col style={{ width: `${labelWidth}px` }} />
+              <col className="w-[280px]" />
               {chargerModels.map((_, index) => (
-                <col key={index} style={{ width: `${valueWidth}px` }} />
+                <col key={index} className="w-[300px]" />
               ))}
             </colgroup>
             <thead>
               <tr>
-                <th className="text-left" style={{ verticalAlign: 'middle' }}>
-                  <div className="h-60 flex flex-col justify-center">
-                    <h1 className="text-3xl font-bold text-gray-700">{chargerData.title}</h1>
-                    <h2 className="text-2xl font-medium text-gray-600">{chargerData.subtitle}</h2>
+                <th className="text-left align-middle">
+                  <div className="h-60 flex flex-col justify-center pr-8 ml-18">
+                    <h1 className="text-3xl font-bold text-gray-500 mb-2">AMPHAWK</h1>
+                    <h2 className="text-2xl font-medium text-gray-500">AC Charger</h2>
                   </div>
                 </th>
-                
+
                 {chargerModels.map((model, index) => (
-                  <th key={index} className="text-center" style={{ verticalAlign: 'bottom', paddingRight: '10px', paddingLeft: '10px' }}>
-                    <div className="h-60 flex flex-col items-center justify-end">
-                      <div className="mb-2">
-                        <h2 className="text-3xl font-bold">{model.power}</h2>
-                      </div>
-                      <div className="w-full h-48">
-                        <img 
-                          src={model.imageUrl} 
-                          alt={`${model.power} Charger`} 
-                          className="w-full h-full object-contain" 
-                        />
+                  <th key={index} className="text-center align-bottom px-4">
+                    <div className="h-80 flex flex-col items-center justify-end pb-2"> {/* Increased container height */}
+                      <div className="mb-4 relative w-full"> {/* Added relative positioning */}
+                        <div className="w-full h-64 bg-white rounded-xl relative"> {/* Increased image height */}
+                          <CloudinaryImage
+                            {...getOptimizedAssetProps(model.imageUrl, 'charging', 'image')}
+                            alt='Hero Image'
+                            className='w-full h-full object-contain'
+                          />
+                          {/* Centered Text Overlay */}
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <h2 className="text-xl font-bold text-white drop-shadow-md rounded-xl">
+                              {model.power}
+                            </h2>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </th>
                 ))}
-                <th style={{ width: '20px' }}></th>
               </tr>
             </thead>
             <tbody>
               {specifications.map((specSection, sectionIndex) => (
                 <React.Fragment key={sectionIndex}>
                   <tr>
-                    <td colSpan={chargerModels.length + 2} className="py-6">
-                      <div className="text-left text-xl font-medium text-gray-600">{specSection.category}</div>
+                    <td colSpan={chargerModels.length + 1} className="pt-8 pb-4">
+                      <div className="flex items-center justify-start ml-18 text-left text-xl font-semibold text-gray-700 border-b-2 border-gray-200 pb-2">
+                        {specSection.category}
+                      </div>
                     </td>
                   </tr>
-                  
+
                   {specSection.items.map((item, itemIndex) => (
-                    <tr key={itemIndex}>
-                      <td className="py-2 text-right pr-6 text-gray-600">
-                        {item.label}
+                    <tr key={itemIndex} className="group hover:bg-gray-50">
+                      <td className="py-3 text-right pr-20 text-gray-400 font-medium align-start">
+                        <div className="h-full flex items-center justify-end">
+                          {item.label}
+                        </div>
                       </td>
                       {item.values.map((value, valueIndex) => (
-                        <td key={valueIndex} className="py-2 text-center text-gray-800">
-                          {value}
+                        <td key={valueIndex} className="py-3 text-center text-gray-400 align-middle px-4">
+                          <div className="min-h-[10spx] flex items-start justify-start ml-12">
+                            {value}
+                          </div>
                         </td>
                       ))}
-                      <td></td>
                     </tr>
                   ))}
                 </React.Fragment>
@@ -164,12 +165,168 @@ export const Charger = () => {
   };
 
   return (
-    <section className="bg-white" style={{ maxWidth: '100vw', overflowX: 'hidden' }}>
-      {/* Mobile view - shown only on small screens */}
+    <section className="bg-white w-full" style={{ overflowX: 'hidden' }}>
       <div className="md:hidden">
         <MobileView />
       </div>
-      
+
+      {/* Desktop view - hidden on small screens */}
+      <div className="hidden md:block">
+        <DesktopView />
+      </div>
+    </section>
+  );
+};
+
+export const ChargerDC = () => {
+  const { chargerData } = DCData;
+  const { chargerModels, specifications } = chargerData;
+
+  const MobileView = () => {
+    // Only showing the first model for mobile
+    const model = chargerModels[0];
+
+    return (
+      <div className="bg-white p-5">
+        <div className="text-center mb-5">
+          <h1 className="text-2xl font-bold text-gray-500">Models</h1>
+        </div>
+
+        {/* Single charger display */}
+        <div className="h-80 flex flex-col items-center justify-end pb-2"> {/* Increased container height */}
+          <div className="mb-4 relative w-full"> {/* Added relative positioning */}
+            <div className="w-full h-64 bg-white rounded-xl relative"> {/* Increased image height */}
+              <CloudinaryImage
+                {...getOptimizedAssetProps(model.imageUrl, 'charging', 'image')}
+                alt='Hero Image'
+                className='w-full h-full object-contain'
+              />
+              {/* Centered Text Overlay */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="text-lg font-bold text-white drop-shadow-md rounded-xl">
+                  <h2 className="text-xl font-bold text-center">{chargerData.title}</h2>
+                  <h3 className="text-lg font-medium text-center mb-10">{chargerData.subtitle}</h3>
+
+                  <span className="text-md font-thin text-center ml-6">{model.power}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Specification sections - vertical layout */}
+        {specifications.map((specSection, sectionIndex) => (
+          <div key={sectionIndex} className="mb-6 px-12">
+            <h3 className="text-md font-bold text-gray-500 mb-5">{specSection.category}</h3>
+            <div className="space-y-s2">
+              {specSection.items.map((item, itemIndex) => (
+                <div key={itemIndex} className="flex flex-col py-1">
+                  <div className="text-gray-400 mb-2 text-xs">
+                    {item.label}
+                  </div>
+                  <div className="text-gray-400 text-sm">
+                    {item.values[0]} {/* Only showing first value */}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+  };
+
+  // Desktop view with horizontal scrolling
+  const DesktopView = () => {
+    return (
+      <div className="overflow-x-auto bg-white py-8 w-full"
+        style={{
+          WebkitOverflowScrolling: 'touch',
+          scrollbarWidth: 'thin'
+        }}
+      >
+        <div className="w-full px-8 min-w-[1200px]">
+          <table className="w-full border-collapse">
+            <colgroup>
+              <col className="w-[280px]" />
+              {chargerModels.map((_, index) => (
+                <col key={index} className="w-[300px]" />
+              ))}
+            </colgroup>
+            <thead>
+              <tr>
+                <th className="text-left align-middle">
+                  <div className="h-60 flex flex-col justify-center pr-8 ml-18">
+                    <h1 className="text-3xl font-bold text-gray-500 mb-2">AMPHAWK</h1>
+                    <h2 className="text-2xl font-medium text-gray-500">AC Charger</h2>
+                  </div>
+                </th>
+
+                {chargerModels.map((model, index) => (
+                  <th key={index} className="text-center align-bottom px-4">
+                    <div className="h-80 flex flex-col items-center justify-end pb-2"> {/* Increased container height */}
+                      <div className="mb-4 relative w-full"> {/* Added relative positioning */}
+                        <div className="w-full h-64 bg-white rounded-xl relative"> {/* Increased image height */}
+                          <CloudinaryImage
+                            {...getOptimizedAssetProps(model.imageUrl, 'charging', 'image')}
+                            alt='Hero Image'
+                            className='w-full h-full object-contain'
+                          />
+                          {/* Centered Text Overlay */}
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <h2 className="text-xl font-bold text-white drop-shadow-md rounded-xl">
+                              {model.power}
+                            </h2>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {specifications.map((specSection, sectionIndex) => (
+                <React.Fragment key={sectionIndex}>
+                  <tr>
+                    <td colSpan={chargerModels.length + 1} className="pt-8 pb-4">
+                      <div className="flex items-center justify-start ml-18 text-left text-xl font-semibold text-gray-700 border-b-2 border-gray-200 pb-2">
+                        {specSection.category}
+                      </div>
+                    </td>
+                  </tr>
+
+                  {specSection.items.map((item, itemIndex) => (
+                    <tr key={itemIndex} className="group hover:bg-gray-50">
+                      <td className="py-3 text-right pr-20 text-gray-400 font-medium align-start">
+                        <div className="h-full flex items-center justify-end">
+                          {item.label}
+                        </div>
+                      </td>
+                      {item.values.map((value, valueIndex) => (
+                        <td key={valueIndex} className="py-3 text-center text-gray-400 align-middle px-4">
+                          <div className="min-h-[10spx] flex items-start justify-start ml-12">
+                            {value}
+                          </div>
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </React.Fragment>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <section className="bg-white w-full" style={{ overflowX: 'hidden' }}>
+      <div className="md:hidden">
+        <MobileView />
+      </div>
+
       {/* Desktop view - hidden on small screens */}
       <div className="hidden md:block">
         <DesktopView />
@@ -179,4 +336,8 @@ export const Charger = () => {
 };
 
 // Add default export
+const Charger = ({ type }) => {
+  return type === 1 ? <ChargerAC /> : <ChargerDC />;
+}
+
 export default Charger;

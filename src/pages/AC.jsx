@@ -63,7 +63,7 @@ const AC = () => {
         viewport={{ amount: 0.2 }}
         transition={{ duration: 0.6 }}
       >
-        <Charger />
+        <Charger type={1} />
         <Footer />
       </motion.footer>
     </>
