@@ -15,6 +15,7 @@ import Household from './pages/Household'
 import Containerized from './pages/Containerized'
 import More from './pages/More'
 import SmartWaste from './pages/SmartWaste'
+import GetInTouch from './pages/GetInTouch'
 
 // ScrollToTop component ensures page starts at the top when navigating
 const ScrollToTop = () => {
@@ -50,6 +51,7 @@ function App() {
             <Route path="/waste-to-energy/large-scale" element={<LargeScale />} />
             <Route path="/waste-to-energy/containerized-plant" element={<Containerized />} />
             <Route path="/waste-to-energy/smart-waste" element={<SmartWaste />} />
+            <Route path="/get-in-touch" element={<GetInTouch />} />
             <Route path="*" element={<h1>404 Not Found</h1>} />
           </Routes>
         </div>

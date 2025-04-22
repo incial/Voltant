@@ -9,6 +9,7 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const location = useLocation();
+  const isContactPage = location.pathname === '/get-in-touch';
 
   // Handle scroll effect for navbar background
   useEffect(() => {
@@ -119,11 +120,11 @@ const Navbar = () => {
 
         {/* Call To Action Button (Desktop) */}
         <div className="hidden md:block">
-          <Link to="/contact">
+          <Link to="/get-in-touch">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-transparent text-white py-2 px-6 rounded-full font-medium border-2 border-white cursor-pointer transition-colors hover:bg-white/10"
+              className={`${isContactPage ? 'bg-white/10 text-green-400 border-green-400' : 'bg-transparent text-white border-white hover:bg-white/10'} py-2 px-6 rounded-full font-medium border-2 cursor-pointer transition-colors`}
             >
               Get in Touch
             </motion.button>
@@ -261,11 +262,11 @@ const Navbar = () => {
                     Who We Are
                   </span>
                 </Link>
-                <Link to="/contact" onClick={toggleMobileMenu}>
+                <Link to="/get-in-touch" onClick={toggleMobileMenu}>
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="bg-transparent text-white py-2 px-6 rounded-full font-medium border-2 border-white cursor-pointer mt-4"
+                    className={`${isContactPage ? 'bg-white/10 text-green-400 border-green-400' : 'bg-transparent text-white border-white'} py-2 px-6 rounded-full font-medium border-2 cursor-pointer mt-4`}
                   >
                     Get In Touch
                   </motion.button>
