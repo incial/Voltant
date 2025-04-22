@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
-// Removing the splitVendorChunkPlugin since it's not effective with manual chunks
+import { resolve } from 'path'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -41,5 +41,7 @@ export default defineConfig({
   // Optimize dependencies
   optimizeDeps: {
     include: ['react', 'react-dom', 'react-router-dom', 'framer-motion']
-  }
+  },
+  // Ensure public files like _redirects are copied to build output
+  publicDir: 'public'
 })
