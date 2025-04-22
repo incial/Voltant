@@ -24,3 +24,10 @@ dist-ssr
 *.sln
 *.sw?
 pnpm-lock.yaml
+# Local Netlify folder
+.netlify
+
+#env
+.env
+.env.*.local
+*.env.

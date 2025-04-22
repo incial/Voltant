@@ -22,8 +22,8 @@ const formSchema = yup.object().shape({
     .min(10, "Message must be at least 10 characters")
 });
 
-// Define the server URL - it can be replaced with your production URL when deployed
-const SERVER_URL = import.meta.env.VITE_SERVER_URL || 'http://localhost:3001';
+// Update this to use Netlify Functions
+const FUNCTION_URL = '/.netlify/functions/send-email';
 
 const ContactForm = ({ onClose }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -84,15 +84,15 @@ const ContactForm = ({ onClose }) => {
     setSubmitError(null);
 
     try {
-      if (import.meta.env.MODE === 'development' && !SERVER_URL.startsWith('http')) {
-        // In development mode without server URL, just simulate sending email
+      if (import.meta.env.MODE === 'development' && import.meta.env.VITE_USE_MOCK === 'true') {
+        // In development mode with mock flag, just simulate sending email
         console.log('Development mode - Email would be sent with:', data);
         await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API delay
         setSubmitSuccess(true);
         reset();
       } else {
-        // Send to our custom mail server
-        const response = await fetch(`${SERVER_URL}/api/send-email`, {
+        // Send to our Netlify Function
+        const response = await fetch(FUNCTION_URL, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
