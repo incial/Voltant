@@ -1,22 +1,24 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, lazy, Suspense } from 'react'
 import './App.css'
 import { motion, AnimatePresence } from 'framer-motion';
 
-// Page imports
+// Only import Home page eagerly as it's needed for the initial route
 import Home from './pages/Home'
-import EvCharging from './pages/EvCharging'
-import AC from './pages/AC'
-import DC from './pages/DC'
-import WasteToEnergy from './pages/WasteToEnergy'
-import EngineeringWorks from './pages/EngineeringWorks'
-import LargeScale from './pages/LargeScale'
-import Cpo from './pages/Cpo'
-import Household from './pages/Household'
-import Containerized from './pages/Containerized'
-import More from './pages/More'
-import SmartWaste from './pages/SmartWaste'
-import GetInTouch from './pages/GetInTouch'
+
+// Lazy load all other pages
+const EvCharging = lazy(() => import('./pages/EvCharging'))
+const AC = lazy(() => import('./pages/AC'))
+const DC = lazy(() => import('./pages/DC'))
+const WasteToEnergy = lazy(() => import('./pages/WasteToEnergy'))
+const EngineeringWorks = lazy(() => import('./pages/EngineeringWorks'))
+const LargeScale = lazy(() => import('./pages/LargeScale'))
+const Cpo = lazy(() => import('./pages/Cpo'))
+const Household = lazy(() => import('./pages/Household'))
+const Containerized = lazy(() => import('./pages/Containerized'))
+const More = lazy(() => import('./pages/More'))
+const SmartWaste = lazy(() => import('./pages/SmartWaste'))
+const GetInTouch = lazy(() => import('./pages/GetInTouch'))
 
 // Common components
 import Navbar from './components/common/Navbar'
@@ -25,6 +27,16 @@ import ContactForm from './components/common/ContactForm'
 
 // Context
 import { ContactFormProvider, useContactForm } from './context/ContactFormContext'
+
+// Loading component for Suspense fallback
+const PageLoader = () => (
+  <div className="flex items-center justify-center w-full h-[60vh]">
+    <div className="flex flex-col items-center">
+      <div className="w-16 h-16 border-4 border-green-400 border-t-transparent rounded-full animate-spin"></div>
+      <p className="mt-4 text-gray-600">Loading page...</p>
+    </div>
+  </div>
+);
 
 // ScrollToTop component ensures page starts at the top when navigating
 const ScrollToTop = () => {
@@ -83,22 +95,24 @@ function App() {
         <div className="flex flex-col min-h-screen overflow-x-hidden">
           <Navbar />
           <div className="flex-grow">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/ev-charging" element={<EvCharging />} />
-              <Route path="/ev-charging/ac-chargers" element={<AC />} />
-              <Route path="/ev-charging/dc-chargers" element={<DC />} />
-              <Route path="/waste-to-energy" element={<WasteToEnergy />} />
-              <Route path="/ev-charging/engineering-works" element={<EngineeringWorks />} />
-              <Route path="/ev-charging/cpo" element={<Cpo />} />
-              <Route path="/ev-charging/more" element={<More />} />
-              <Route path="/waste-to-energy/household" element={<Household />} />
-              <Route path="/waste-to-energy/large-scale" element={<LargeScale />} />
-              <Route path="/waste-to-energy/containerized-plant" element={<Containerized />} />
-              <Route path="/waste-to-energy/smart-waste" element={<SmartWaste />} />
-              <Route path="/get-in-touch" element={<GetInTouch />} />
-              <Route path="*" element={<h1>404 Not Found</h1>} />
-            </Routes>
+            <Suspense fallback={<PageLoader />}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/ev-charging" element={<EvCharging />} />
+                <Route path="/ev-charging/ac-chargers" element={<AC />} />
+                <Route path="/ev-charging/dc-chargers" element={<DC />} />
+                <Route path="/waste-to-energy" element={<WasteToEnergy />} />
+                <Route path="/ev-charging/engineering-works" element={<EngineeringWorks />} />
+                <Route path="/ev-charging/cpo" element={<Cpo />} />
+                <Route path="/ev-charging/more" element={<More />} />
+                <Route path="/waste-to-energy/household" element={<Household />} />
+                <Route path="/waste-to-energy/large-scale" element={<LargeScale />} />
+                <Route path="/waste-to-energy/containerized-plant" element={<Containerized />} />
+                <Route path="/waste-to-energy/smart-waste" element={<SmartWaste />} />
+                <Route path="/get-in-touch" element={<GetInTouch />} />
+                <Route path="*" element={<h1>404 Not Found</h1>} />
+              </Routes>
+            </Suspense>
           </div>
           <Footer />
           {/* Contact Form Modal rendered at the root level */}
