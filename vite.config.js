@@ -1,14 +1,14 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
-import { splitVendorChunkPlugin } from 'vite'
+// Removing the splitVendorChunkPlugin since it's not effective with manual chunks
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
     react(),
-    tailwindcss(),
-    splitVendorChunkPlugin()
+    tailwindcss()
+    // Removed splitVendorChunkPlugin as it doesn't work with manual chunks
   ],
   build: {
     rollupOptions: {
