@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -50,7 +51,7 @@ const ContactForm = ({ onClose }) => {
     setSubmitError(null);
 
     try {
-      if (process.env.NODE_ENV === 'development' && !SERVER_URL.startsWith('http')) {
+      if (import.meta.env.MODE === 'development' && !SERVER_URL.startsWith('http')) {
         // In development mode without server URL, just simulate sending email
         console.log('Development mode - Email would be sent with:', data);
         await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API delay

@@ -1,7 +1,8 @@
-require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
-const nodemailer = require('nodemailer');
+import 'dotenv/config';
+import express from 'express';
+import cors from 'cors';
+import nodemailer from 'nodemailer';
+import process from 'node:process';
 
 // Create Express app
 const app = express();

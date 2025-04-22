@@ -745,7 +745,13 @@ export const ACData = {
           { label: "Compliance:", values: ["IEC-61851, CE/RoHS", "IEC-61851, CE/RoHS", "IEC-61851, CE/RoHS"] }
         ]
       }
-    ]
+    ],
+    buttonText: "Download Datasheet",
+    buttonText2: "Download Charging Profile",
+    showButton: true,
+    showButton2: true,
+    pdfUrl: "",
+    pdfUrl2: "",
   },
 }
 // DC Data
@@ -759,7 +765,7 @@ export const DCData = {
   seamlessCharging: {
     title: ' DC Chargers: Fast, Powerful & Future-Ready',
     paragraphs: [
-      'Voltant Energy’s AMPHAWK DC Fast Chargers deliver high-speed, efficient, and reliable EV charging solutions for a wide range of applications. Designed to support CCS, CHAdeMO, and AC Type 2, these chargers cater to both current and next-generation electric vehicles.',
+      'Voltant Energy\'s AMPHAWK DC Fast Chargers deliver high-speed, efficient, and reliable EV charging solutions for a wide range of applications. Designed to support CCS, CHAdeMO, and AC Type 2, these chargers cater to both current and next-generation electric vehicles.',
       'With power outputs ranging from 30kW to 510kW, AMPHAWK DC chargers are ideal for public charging stations, commercial fleets, logistics hubs, and highway corridors. They feature modular system architecture, ensuring scalability and easy maintenance while maintaining low operational costs.'
     ]
   },
@@ -873,6 +879,12 @@ export const DCData = {
           { label: "Compliance:", values: ["IEC-61851, CE/RoHS", "IEC-61851, CE/RoHS", "IEC-61851, CE/RoHS"] }
         ]
       }
-    ]
+    ],
+    buttonText: "Download Datasheet",
+    buttonText2: "Download Charging Profile",
+    showButton: true,
+    showButton2: true,
+    pdfUrl: "",
+    pdfUrl2: "",
   },
 }

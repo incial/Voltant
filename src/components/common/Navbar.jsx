@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+// eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from 'framer-motion';
 import CloudinaryImage from './CloudinaryImage';
 import { getOptimizedAssetProps } from '../../utils/cloudinaryHelper';
@@ -100,7 +101,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed px-20 top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed px-0 md:px-20 top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled ? 'backdrop-blur-md bg-black/30' : 'bg-transparent'
       } font-['Cairo']`}
       id="navbar"

@@ -34,7 +34,8 @@ const Home = () => {
               top: offsetPosition,
               behavior: 'smooth'
             });
-          } catch (error) {
+            // eslint-disable-next-line no-unused-vars
+          } catch (_) {
             // Fallback for browsers that don't support smooth scrolling
             window.scrollTo(0, offsetPosition);
           }

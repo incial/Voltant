@@ -10,11 +10,10 @@ import ChatButton from '../components/common/ChatButton'
 import HeroSection from '../components/common/SectionComponents/HeroSection'
 import SeamlessChargingSection from '../components/common/SectionComponents/SeamlessChargingSection'
 import MidSection from '../components/common/SectionComponents/MidSection'
-import ProfilesSection from '../components/common/SectionComponents/ProfilesSection'
-
+import Charger from '../components/common/SectionComponents/charger'
 // Import data
 import { DCData } from '../utils/sectionData'
-import Charger from '../components/common/SectionComponents/charger'
+
 
 const DC = () => {
   return (
@@ -55,7 +54,6 @@ const DC = () => {
             features={DCData.midSection.features}
           />
         </motion.section>
-
       </div>
 
       <motion.footer
@@ -64,7 +62,16 @@ const DC = () => {
         viewport={{ amount: 0.2 }}
         transition={{ duration: 0.6 }}
       >
-        <Charger type={2} /> {/* 2 for DC chargers */}
+        <Charger
+          title={DCData.chargerData.title}
+          subtitle={DCData.chargerData.subtitle}
+          chargerModels={DCData.chargerData.chargerModels}
+          specifications={DCData.chargerData.specifications}
+          buttonText={DCData.chargerData.buttonText}
+          buttonText2={DCData.chargerData.buttonText2}
+          showButton={DCData.chargerData.showButton}
+          showButton2={DCData.chargerData.showButton2}
+        />
         <Footer />
       </motion.footer>
     </>

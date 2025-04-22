@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "../components/common/Navbar";
 import ContactForm from "../components/common/ContactForm";
 import Footer from "../components/common/Footer";
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
 import CloudinaryVideo from "../components/common/CloudinaryVideo";
 import { getOptimizedAssetProps } from "../utils/cloudinaryHelper";
 
@@ -49,14 +49,14 @@ const GetInTouch = () => {
 
           <Navbar />
 
-          <motion.div 
+          <Motion.div 
             className="relative bg-[rgba(0,0,0,0.3)] self-center flex w-[874px] max-w-full flex-col items-center font-light mt-[88px] -mb-9 px-20 py-[71px] rounded-[20px] border-[rgba(255,255,255,0.5)] border-solid border-2 max-md:mt-[100px] max-md:mb-2.5 max-md:px-5"
             variants={formContainerVariants}
             initial="hidden"
             animate="visible"
           >
             <ContactForm />
-          </motion.div>
+          </Motion.div>
           
         </div>
       </section>
