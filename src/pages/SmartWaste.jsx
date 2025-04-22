@@ -18,7 +18,6 @@ import { smartwasteData } from '../utils/sectionData'
 const SmartWaste = () => {
   return (
     <>
-      <Navbar />
       {/* Use the ChatButton component */}
       <ChatButton phoneNumber='+971506419857' />
 
@@ -70,7 +69,7 @@ const SmartWaste = () => {
         viewport={{ amount: 0.2 }}
         transition={{ duration: 0.6 }}
       >
-        <Footer />
+
       </motion.footer>
     </>
   )

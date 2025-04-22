@@ -18,7 +18,7 @@ import { DCData } from '../utils/sectionData'
 const DC = () => {
   return (
     <>
-      <Navbar />
+
       {/* Use the ChatButton component */}
       <ChatButton phoneNumber='+971506419857' />
 
@@ -72,7 +72,7 @@ const DC = () => {
           showButton={DCData.chargerData.showButton}
           showButton2={DCData.chargerData.showButton2}
         />
-        <Footer />
+
       </motion.footer>
     </>
   )

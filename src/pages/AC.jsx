@@ -17,7 +17,6 @@ import { ACData } from '../utils/sectionData'
 const AC = () => {
   return (
     <>
-      <Navbar />
       {/* Use the ChatButton component */}
       <ChatButton phoneNumber='+971506419857' />
 
@@ -72,7 +71,6 @@ const AC = () => {
           showButton={ACData.chargerData.showButton}
           showButton2={ACData.chargerData.showButton2}
         />
-        <Footer />
       </motion.footer>
     </>
   )

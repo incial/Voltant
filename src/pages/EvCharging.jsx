@@ -1,6 +1,4 @@
 import React from 'react'
-import Navbar from '../components/common/Navbar'
-import Footer from '../components/common/Footer'
 import ServiceCard from '../components/common/ServiceCard'
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion'
@@ -40,7 +38,6 @@ const EvCharging = () => {
 
   return (
     <>
-      <Navbar />
       {/* Mobile View - Only visible on small screens */}
       <div className="md:hidden min-h-screen flex flex-col font-['Cairo'] bg-white">
         {/* Hero Section */}
@@ -149,7 +146,6 @@ const EvCharging = () => {
           </div>
         </section>
       </div>
-      <Footer />
     </>
   )
 }

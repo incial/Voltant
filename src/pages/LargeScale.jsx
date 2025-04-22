@@ -18,9 +18,6 @@ function LargeScale() {
   return (
     <div className="bg-white w-full min-h-screen flex flex-col items-center relative">
       {/* Navbar */}
-      <div className="w-full z-50">
-        <Navbar />
-      </div>
       
       <ChatButton phoneNumber="+971506419857" />
       
@@ -73,7 +70,6 @@ function LargeScale() {
         transition={{ duration: 0.6 }}
         className="w-full"
       >
-        <Footer />
       </motion.footer>
     </div>
   );

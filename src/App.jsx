@@ -17,6 +17,10 @@ import More from './pages/More'
 import SmartWaste from './pages/SmartWaste'
 import GetInTouch from './pages/GetInTouch'
 
+// Common components
+import Navbar from './components/common/Navbar'
+import Footer from './components/common/Footer'
+
 // ScrollToTop component ensures page starts at the top when navigating
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -37,6 +41,7 @@ function App() {
     <Router>
       <ScrollToTop />
       <div className="flex flex-col min-h-screen overflow-x-hidden">
+        <Navbar />
         <div className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
@@ -55,6 +60,7 @@ function App() {
             <Route path="*" element={<h1>404 Not Found</h1>} />
           </Routes>
         </div>
+        <Footer />
       </div>
     </Router>
   )

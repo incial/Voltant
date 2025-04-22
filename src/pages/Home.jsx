@@ -3,10 +3,8 @@ import { useLocation } from 'react-router-dom'
 import HeroSection from '../components/HomeSection/HeroSection'
 import SplitHoverImages from '../components/HomeSection/SplitImages'
 import ImpactMetrics from '../components/HomeSection/ImpactMetrics'
-import Navbar from '../components/common/Navbar'
 import ClientsSection from '../components/HomeSection/ClientsSection'
 import WhoAreWe from '../components/HomeSection/WhoAreWe'
-import Footer from '../components/common/Footer'
 import ConnectWithUs from '../components/HomeSection/ConncetWithUs'
 import VideoBanner from '../components/HomeSection/VideoBanner'
 
@@ -46,11 +44,6 @@ const Home = () => {
 
   return (
     <div className='bg-white w-full min-h-screen flex flex-col items-center overflow-x-hidden'>
-      {/* Navbar */}
-      <div className='w-full absolute top-0 left-0 z-50'>
-        <Navbar />
-      </div>
-
       {/* Hero section */}
       <div
         className='relative bg-black w-full h-screen'
@@ -84,11 +77,6 @@ const Home = () => {
         </div>
         <div className='w-full py-8 md:py-16 lg:py-24 flex justify-center px-4 sm:px-7'>
           <ConnectWithUs />
-        </div>
-
-        {/* Footer */}
-        <div className='w-full'>
-          <Footer />
         </div>
       </div>
     </div>
