@@ -4,13 +4,14 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import CloudinaryImage from './CloudinaryImage';
 import { getOptimizedAssetProps } from '../../utils/cloudinaryHelper';
+import { useContactForm } from '../../context/ContactFormContext';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const location = useLocation();
-  const isContactPage = location.pathname === '/get-in-touch';
+  const { toggleContactForm, isContactFormOpen } = useContactForm();
 
   // Handle scroll effect for navbar background - optimized with useCallback
   const handleScroll = useCallback(() => {
@@ -150,15 +151,14 @@ const Navbar = () => {
 
         {/* Call To Action Button (Desktop) */}
         <div className="hidden md:block z-10">
-          <Link to="/get-in-touch">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className={`${isContactPage ? 'bg-white bg-opacity-10 text-green-400 border-green-400' : 'bg-transparent text-white border-white hover:bg-white hover:bg-opacity-10'} py-2 px-6 rounded-full font-medium border-2 cursor-pointer transition-colors`}
-            >
-              Get in Touch
-            </motion.button>
-          </Link>
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={toggleContactForm}
+            className={`${isContactFormOpen ? 'bg-white bg-opacity-10 text-green-400 border-green-400' : 'bg-transparent text-white border-white hover:bg-white hover:bg-opacity-10'} py-2 px-6 rounded-full font-medium border-2 cursor-pointer transition-colors`}
+          >
+            Get in Touch
+          </motion.button>
         </div>
 
         {/* Mobile Menu Button */}
@@ -293,15 +293,17 @@ const Navbar = () => {
                     Who We Are
                   </span>
                 </Link>
-                <Link to="/get-in-touch" onClick={toggleMobileMenu}>
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className={`${isContactPage ? 'bg-white/10 text-green-400 border-green-400' : 'bg-transparent text-white border-white'} py-2 px-6 rounded-full font-medium border-2 cursor-pointer mt-4`}
-                  >
-                    Get In Touch
-                  </motion.button>
-                </Link>
+                <motion.button
+                  onClick={() => {
+                    toggleMobileMenu();
+                    setTimeout(() => toggleContactForm(), 300);
+                  }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className={`${isContactFormOpen ? 'bg-white/10 text-green-400 border-green-400' : 'bg-transparent text-white border-white'} py-2 px-6 rounded-full font-medium border-2 cursor-pointer mt-4`}
+                >
+                  Get In Touch
+                </motion.button>
               </div>
             </div>
           </motion.div>
