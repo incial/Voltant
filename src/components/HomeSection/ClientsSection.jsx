@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import client1 from '../../assets/images/clients/client_1.png'
-import client2 from '../../assets/images/clients/client_1.png'
+import client2 from '../../assets/images/clients/client_2.png' // Fixed the path to client_2.png
 import { motion } from 'framer-motion'
 import gsap from 'gsap'
 
