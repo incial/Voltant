@@ -30,4 +30,4 @@ pnpm-lock.yaml
 #env
 .env
 .env.*.local
-*.env.
+*.env
