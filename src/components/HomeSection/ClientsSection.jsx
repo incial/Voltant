@@ -7,7 +7,6 @@ import gsap from 'gsap'
 const ClientsSection = () => {
   const scrollerRef = useRef(null)
   const scrollerContentRef = useRef(null)
-  const [scrollWidth, setScrollWidth] = useState(0)
   const [hovering, setHovering] = useState(false)
   
   // Create an array of clients (duplicate for seamless looping)
@@ -24,9 +23,8 @@ const ClientsSection = () => {
     if (prefersReducedMotion) return
     
     // Get the width of a single set of clients
+    // Get the width of a single set of clients
     const contentWidth = scrollerContentRef.current.offsetWidth
-    setScrollWidth(contentWidth)
-    
     // Create the GSAP animation
     const animation = gsap.to(scrollerContentRef.current, {
       x: -contentWidth, // Move the content left by its width
