@@ -78,7 +78,7 @@ const Footer = () => {
             <FaXTwitter />
           </a>
           <a 
-            href="https://wa.me/15551234567" 
+            href="https://wa.me/+971506419857" 
             target="_blank" 
             rel="noopener noreferrer" 
             className="text-white text-xl transform hover:scale-110 transition-all duration-300 p-1"
@@ -159,7 +159,7 @@ const Footer = () => {
               <FaXTwitter size={22} />
             </a>
             <a 
-              href="https://wa.me/15551234567" 
+              href="https://wa.me/+971506419857" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="text-white hover:opacity-80 transition p-1"

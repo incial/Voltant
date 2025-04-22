@@ -21,7 +21,7 @@ const Household = () => {
       <Navbar />
       <div className='flex flex-col min-h-screen bg-white overflow-hidden'>
         {/* Use the ChatButton component */}
-        <ChatButton phoneNumber='971555555555' />
+        <ChatButton phoneNumber='+971506419857' />
         
         <HeroSection 
           title={householdData.hero.title}

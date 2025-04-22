@@ -22,7 +22,7 @@ function LargeScale() {
         <Navbar />
       </div>
       
-      <ChatButton phoneNumber="971555555555" />
+      <ChatButton phoneNumber="+971506419857" />
       
       <main className="w-full">
         <HeroSection 
