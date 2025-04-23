@@ -89,7 +89,7 @@ const ConnectWithUs = () => {
               <p className='text-xl text-gray-600 font-black'>
                 Email:{' '}
                 <span className='text-gray-800 font-medium'>
-                  example@gmail.com
+                Contact@voltant.energy
                 </span>
               </p>
               <p className='text-xl text-gray-600 font-black'>
@@ -101,7 +101,7 @@ const ConnectWithUs = () => {
             </div>
           </div>
           <a
-            href='https://wa.me/971987655432'
+            href='https://wa.me/+971506419857'
             className='absolute right-8 bottom-8 '
             aria-label="WhatsApp"
           >
@@ -179,7 +179,7 @@ const ConnectWithUs = () => {
               <p className='text-lg text-gray-600 font-black'>
                 Email:{' '}
                 <span className='text-gray-800 font-medium'>
-                  example@gmail.com
+                Contact@voltant.energy
                 </span>
               </p>
               <p className='text-lg text-gray-600 font-black'>

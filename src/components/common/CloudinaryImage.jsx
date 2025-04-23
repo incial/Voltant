@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { AdvancedImage, lazyload, responsive, placeholder } from '@cloudinary/react';
 import { 
   quality, 
@@ -9,7 +9,8 @@ import { auto as autoFormat } from '@cloudinary/url-gen/qualifiers/format';
 import { auto as autoQuality } from '@cloudinary/url-gen/qualifiers/quality';
 import cld from '../../utils/cloudinary';
 
-const CloudinaryImage = ({ 
+// Memoized CloudinaryImage component to prevent unnecessary re-renders
+const CloudinaryImage = memo(({ 
   publicId,
   alt,
   className,
@@ -23,7 +24,10 @@ const CloudinaryImage = ({
   loading = "lazy"
 }) => {
   if (!publicId) {
-    console.error("CloudinaryImage received undefined publicId");
+    // Avoid console error in production to reduce JavaScript overhead
+    if (process.env.NODE_ENV !== 'production') {
+      console.error("CloudinaryImage received undefined publicId");
+    }
     return null;
   }
 
@@ -52,7 +56,7 @@ const CloudinaryImage = ({
     });
   }
 
-  // Set up plugins
+  // Set up plugins - only include what's needed to reduce bundle size
   const plugins = [];
   
   // Add lazy loading with improved settings for better cross-browser support
@@ -60,7 +64,6 @@ const CloudinaryImage = ({
     plugins.push(lazyload({ 
       rootMargin: '200px 0px', 
       threshold: 0.1,
-      // Add data attributes for browsers that support native lazy loading
       attributePlugin: {
         loading: 'lazy'
       }
@@ -71,7 +74,6 @@ const CloudinaryImage = ({
   if (useResponsive) {
     plugins.push(responsive({ 
       steps: breakpoints,
-      // Add support for high-DPI displays
       highDPI: true 
     }));
   }
@@ -91,14 +93,23 @@ const CloudinaryImage = ({
       plugins={plugins}
       loading={loading}
       onError={(e) => {
-        // Fallback handling for image loading errors
-        console.warn(`Failed to load image: ${publicId}`);
+        // Simplified error handling for production
+        // Check for development mode without relying on process directly
+        if (process.env.NODE_ENV !== 'production' && e.target) {
+          console.warn(`Failed to load image: ${publicId}`);
+        }
         if (e.target) {
           e.target.style.opacity = '0.5';
         }
       }}
     />
   );
-};
+}, (prevProps, nextProps) => {
+  // Custom comparison function to prevent unnecessary re-renders
+  return prevProps.publicId === nextProps.publicId &&
+    prevProps.className === nextProps.className &&
+    prevProps.width === nextProps.width &&
+    prevProps.height === nextProps.height;
+});
 
 export default CloudinaryImage;

@@ -18,11 +18,9 @@ function EngineeringWorks() {
   return (
     <div className="bg-white w-full min-h-screen flex flex-col items-center relative">
       {/* Navbar */}
-      <div className="w-full z-50">
-        <Navbar />
-      </div>
+
       
-      <ChatButton phoneNumber="971555555555" />
+      <ChatButton phoneNumber="+971506419857" />
       
       <main className="w-full">
         <HeroSection 
@@ -31,7 +29,6 @@ function EngineeringWorks() {
           subtitle={engineeringWorksData.hero.subtitle}
           breadcrumbs={engineeringWorksData.hero.breadcrumbs}
           heroImage={engineeringWorksData.hero.heroImage}
-          showSubtitle={engineeringWorksData.hero.showSubtitle}
         />
         
         <div className='w-full flex flex-col items-center justify-center px-0 md:px-20'>
@@ -74,7 +71,7 @@ function EngineeringWorks() {
         transition={{ duration: 0.6 }}
         className="w-full"
       >
-        <Footer />
+  
       </motion.footer>
     </div>
   );

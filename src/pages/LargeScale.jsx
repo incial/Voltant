@@ -18,11 +18,8 @@ function LargeScale() {
   return (
     <div className="bg-white w-full min-h-screen flex flex-col items-center relative">
       {/* Navbar */}
-      <div className="w-full z-50">
-        <Navbar />
-      </div>
       
-      <ChatButton phoneNumber="971555555555" />
+      <ChatButton phoneNumber="+971506419857" />
       
       <main className="w-full">
         <HeroSection 
@@ -30,7 +27,6 @@ function LargeScale() {
           showSubtitle={largeScaleData.hero.showSubtitle}
           subtitle={largeScaleData.hero.subtitle}
           breadcrumbs={largeScaleData.hero.breadcrumbs}
-          showSubtitle={largeScaleData.hero.showSubtitle}
           heroImage={largeScaleData.hero.heroImage}
         />
         
@@ -74,7 +70,6 @@ function LargeScale() {
         transition={{ duration: 0.6 }}
         className="w-full"
       >
-        <Footer />
       </motion.footer>
     </div>
   );

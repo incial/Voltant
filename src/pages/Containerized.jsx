@@ -18,9 +18,9 @@ import { containerizedData } from '../utils/sectionData'
 const Containerized = () => {
   return (
     <>
-      <Navbar />
+
       {/* Use the ChatButton component */}
-      <ChatButton phoneNumber='971555555555' />
+      <ChatButton phoneNumber='+971506419857' />
 
       <div className='flex flex-col min-h-screen bg-white px-0 overflow-hidden'>
         <HeroSection
@@ -70,7 +70,6 @@ const Containerized = () => {
         viewport={{ amount: 0.2 }}
         transition={{ duration: 0.6 }}
       >
-        <Footer />
       </motion.footer>
     </>
   )

@@ -56,7 +56,7 @@ const WasteToEnergy = () => {
 
   return (
     <>
-      <Navbar />
+
       {/* Mobile View - Only visible on small screens */}
       <div className="md:hidden min-h-screen flex flex-col font-['Cairo'] bg-white">
         {/* Hero Section */}
@@ -167,7 +167,6 @@ const WasteToEnergy = () => {
           </div>
         </section>
       </div>
-      <Footer />
     </>
   )
 }
