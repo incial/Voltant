@@ -4,6 +4,7 @@ import { getOptimizedAssetProps } from '../../utils/cloudinaryHelper';
 import { FaFacebookF, FaInstagram, FaLinkedinIn, FaYoutube } from 'react-icons/fa'
 import { FaXTwitter } from 'react-icons/fa6'
 import { Link } from 'react-router-dom';
+// eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
 
 const WhoAreWe = () => {

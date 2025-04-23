@@ -10,7 +10,6 @@ import ChatButton from '../components/common/ChatButton'
 import HeroSection from '../components/common/SectionComponents/HeroSection'
 import SeamlessChargingSection from '../components/common/SectionComponents/SeamlessChargingSection'
 import MidSection from '../components/common/SectionComponents/MidSection'
-import ProfilesSection from '../components/common/SectionComponents/ProfilesSection'
 import Charger from '../components/common/SectionComponents/charger'
 // Import data
 import { ACData } from '../utils/sectionData'
@@ -18,9 +17,8 @@ import { ACData } from '../utils/sectionData'
 const AC = () => {
   return (
     <>
-      <Navbar />
       {/* Use the ChatButton component */}
-      <ChatButton phoneNumber='971555555555' />
+      <ChatButton phoneNumber='+971506419857' />
 
       <div className='flex flex-col min-h-screen bg-white px-0 overflow-hidden'>
         <HeroSection
@@ -63,8 +61,16 @@ const AC = () => {
         viewport={{ amount: 0.2 }}
         transition={{ duration: 0.6 }}
       >
-        <Charger type={1} />
-        <Footer />
+        <Charger 
+          title={ACData.chargerData.title}
+          subtitle={ACData.chargerData.subtitle}
+          chargerModels={ACData.chargerData.chargerModels}
+          specifications={ACData.chargerData.specifications}
+          buttonText={ACData.chargerData.buttonText}
+          buttonText2={ACData.chargerData.buttonText2}
+          showButton={ACData.chargerData.showButton}
+          showButton2={ACData.chargerData.showButton2}
+        />
       </motion.footer>
     </>
   )

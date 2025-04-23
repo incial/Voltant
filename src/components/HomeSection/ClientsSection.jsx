@@ -1,13 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react'
 import client1 from '../../assets/images/clients/client_1.png'
-import client2 from '../../assets/images/clients/client_1.png'
+import client2 from '../../assets/images/clients/client_2.png' // Fixed the path to client_2.png
 import { motion } from 'framer-motion'
 import gsap from 'gsap'
 
 const ClientsSection = () => {
   const scrollerRef = useRef(null)
   const scrollerContentRef = useRef(null)
-  const [scrollWidth, setScrollWidth] = useState(0)
   const [hovering, setHovering] = useState(false)
   
   // Create an array of clients (duplicate for seamless looping)
@@ -19,16 +18,18 @@ const ClientsSection = () => {
     // Skip animation if the refs aren't available
     if (!scrollerContentRef.current || !scrollerRef.current) return
     
+    // Store a reference to the DOM element that won't change on cleanup
+    const scrollerElement = scrollerRef.current;
+    const contentElement = scrollerContentRef.current;
+    
     // Check if user prefers reduced motion
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (prefersReducedMotion) return
     
     // Get the width of a single set of clients
-    const contentWidth = scrollerContentRef.current.offsetWidth
-    setScrollWidth(contentWidth)
-    
+    const contentWidth = contentElement.offsetWidth
     // Create the GSAP animation
-    const animation = gsap.to(scrollerContentRef.current, {
+    const animation = gsap.to(contentElement, {
       x: -contentWidth, // Move the content left by its width
       duration: 20,
       repeat: -1, // Infinite loop
@@ -47,22 +48,39 @@ const ClientsSection = () => {
       setHovering(false)
     }
     
-    scrollerRef.current.addEventListener('mouseenter', handleMouseEnter)
-    scrollerRef.current.addEventListener('mouseleave', handleMouseLeave)
+    // Using passive listeners for touch events to improve scrolling performance
+    scrollerElement.addEventListener('mouseenter', handleMouseEnter)
+    scrollerElement.addEventListener('mouseleave', handleMouseLeave)
     
-    // Touch device support
-    scrollerRef.current.addEventListener('touchstart', handleMouseEnter)
-    scrollerRef.current.addEventListener('touchend', handleMouseLeave)
+    // Touch device support with passive listeners
+    scrollerElement.addEventListener('touchstart', handleMouseEnter, { passive: true })
+    scrollerElement.addEventListener('touchend', handleMouseLeave, { passive: true })
+    
+    // Add wheel event with passive listener
+    const handleWheel = () => {
+      // Only pause if user is actively scrolling
+      if (!hovering) {
+        animation.pause()
+        setHovering(true)
+        
+        // Resume animation after a short delay
+        setTimeout(() => {
+          animation.play()
+          setHovering(false)
+        }, 1000);
+      }
+    }
+    
+    scrollerElement.addEventListener('wheel', handleWheel, { passive: true })
     
     // Cleanup
     return () => {
       animation.kill()
-      if (scrollerRef.current) {
-        scrollerRef.current.removeEventListener('mouseenter', handleMouseEnter)
-        scrollerRef.current.removeEventListener('mouseleave', handleMouseLeave)
-        scrollerRef.current.removeEventListener('touchstart', handleMouseEnter)
-        scrollerRef.current.removeEventListener('touchend', handleMouseLeave)
-      }
+      scrollerElement.removeEventListener('mouseenter', handleMouseEnter)
+      scrollerElement.removeEventListener('mouseleave', handleMouseLeave)
+      scrollerElement.removeEventListener('touchstart', handleMouseEnter)
+      scrollerElement.removeEventListener('touchend', handleMouseLeave)
+      scrollerElement.removeEventListener('wheel', handleWheel)
     }
   }, [])
   

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+// eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from 'framer-motion';
 import { getOptimizedAssetProps } from '../../utils/cloudinaryHelper';
 import CloudinaryVideo from '../common/CloudinaryVideo';

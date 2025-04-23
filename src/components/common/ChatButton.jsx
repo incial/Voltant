@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FaWhatsapp } from 'react-icons/fa';
 
-const ChatButton = ({ phoneNumber = '971XXXXXXXXX' }) => {
+const ChatButton = ({ phoneNumber = '+971506419857' }) => {
   const [isMobile, setIsMobile] = useState(false);
   
   // Check if viewport is mobile
@@ -25,6 +25,8 @@ const ChatButton = ({ phoneNumber = '971XXXXXXXXX' }) => {
   return (
     <motion.a 
       href={`https://wa.me/${phoneNumber}`} 
+      
+      
       target="_blank" 
       rel="noopener noreferrer"
       className="fixed right-0 top-1/2 -translate-y-1/2 z-50 flex items-center backdrop-blur-sm bg-white/20 text-gray-400 rounded-full rounded-r-none py-3 pl-4 md:pl-4 pr-5 shadow-lg border-2 border-[#7F7F7F] border-r-0"

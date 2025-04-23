@@ -1,14 +1,23 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, lazy, Suspense } from 'react'
 import { useLocation } from 'react-router-dom'
+
+// Only import components needed for the initial viewport eagerly
 import HeroSection from '../components/HomeSection/HeroSection'
 import SplitHoverImages from '../components/HomeSection/SplitImages'
-import ImpactMetrics from '../components/HomeSection/ImpactMetrics'
-import Navbar from '../components/common/Navbar'
-import ClientsSection from '../components/HomeSection/ClientsSection'
-import WhoAreWe from '../components/HomeSection/WhoAreWe'
-import Footer from '../components/common/Footer'
-import ConnectWithUs from '../components/HomeSection/ConncetWithUs'
-import VideoBanner from '../components/HomeSection/VideoBanner'
+
+// Lazy load components that appear below the fold
+const ImpactMetrics = lazy(() => import('../components/HomeSection/ImpactMetrics'))
+const ClientsSection = lazy(() => import('../components/HomeSection/ClientsSection'))
+const WhoAreWe = lazy(() => import('../components/HomeSection/WhoAreWe'))
+const ConnectWithUs = lazy(() => import('../components/HomeSection/ConncetWithUs'))
+const VideoBanner = lazy(() => import('../components/HomeSection/VideoBanner'))
+
+// Simple loading component for below-the-fold sections
+const SectionLoader = () => (
+  <div className="flex items-center justify-center w-full py-16">
+    <div className="w-12 h-12 border-4 border-green-400 border-t-transparent rounded-full animate-spin"></div>
+  </div>
+);
 
 const Home = () => {
   const location = useLocation();
@@ -34,7 +43,8 @@ const Home = () => {
               top: offsetPosition,
               behavior: 'smooth'
             });
-          } catch (error) {
+            // eslint-disable-next-line no-unused-vars
+          } catch (_) {
             // Fallback for browsers that don't support smooth scrolling
             window.scrollTo(0, offsetPosition);
           }
@@ -45,11 +55,6 @@ const Home = () => {
 
   return (
     <div className='bg-white w-full min-h-screen flex flex-col items-center overflow-x-hidden'>
-      {/* Navbar */}
-      <div className='w-full absolute top-0 left-0 z-50'>
-        <Navbar />
-      </div>
-
       {/* Hero section */}
       <div
         className='relative bg-black w-full h-screen'
@@ -62,33 +67,41 @@ const Home = () => {
       {/* Content sections */}
       <SplitHoverImages />
 
-      {/* WhoAreWe section */}
-      <div id="who-are-we" className='w-full flex justify-center h-auto md:h-[120vh] md:items-center'>
-        <WhoAreWe />
-      </div>
+      {/* WhoAreWe section - Wrapped in Suspense for lazy loading */}
+      <Suspense fallback={<SectionLoader />}>
+        <div id="who-are-we" className='w-full flex justify-center h-auto md:h-[120vh] md:items-center'>
+          <WhoAreWe />
+        </div>
+      </Suspense>
 
-      {/* ClientsSection */}
-      <div className='w-full'>
-        <ClientsSection />
-      </div>
-
-      <div className='w-full'>
-        {/* ImpactMetrics section */}
+      {/* ClientsSection - Wrapped in Suspense for lazy loading */}
+      <Suspense fallback={<SectionLoader />}>
         <div className='w-full'>
-          <ImpactMetrics />
+          <ClientsSection />
         </div>
+      </Suspense>
 
-        <div className='w-full flex justify-center py-4 md:py-10'>
-          <VideoBanner />
-        </div>
-        <div className='w-full py-8 md:py-16 lg:py-24 flex justify-center px-4 sm:px-7'>
-          <ConnectWithUs />
-        </div>
+      <div className='w-full'>
+        {/* ImpactMetrics section - Wrapped in Suspense for lazy loading */}
+        <Suspense fallback={<SectionLoader />}>
+          <div className='w-full'>
+            <ImpactMetrics />
+          </div>
+        </Suspense>
 
-        {/* Footer */}
-        <div className='w-full'>
-          <Footer />
-        </div>
+        {/* VideoBanner - Wrapped in Suspense for lazy loading */}
+        <Suspense fallback={<SectionLoader />}>
+          <div className='w-full flex justify-center py-4 md:py-10'>
+            <VideoBanner />
+          </div>
+        </Suspense>
+        
+        {/* ConnectWithUs - Wrapped in Suspense for lazy loading */}
+        <Suspense fallback={<SectionLoader />}>
+          <div className='w-full py-8 md:py-16 lg:py-24 flex justify-center px-4 sm:px-7'>
+            <ConnectWithUs />
+          </div>
+        </Suspense>
       </div>
     </div>
   )

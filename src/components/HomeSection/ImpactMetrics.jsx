@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import gsap from "gsap";
 
@@ -173,7 +174,7 @@ const ImpactMetrics = () => {
         whileInView="visible"
         viewport={{ once: true, amount: 0.1 }}
       >
-        {metricsData.map((metric, index) => (
+        {metricsData.map((metric) => (
           <motion.div 
             key={metric.label}
             variants={fadeInUp}
