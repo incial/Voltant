@@ -20,7 +20,6 @@ const Household = lazy(() => import('./pages/Household'))
 const Containerized = lazy(() => import('./pages/Containerized'))
 const More = lazy(() => import('./pages/More'))
 const SmartWaste = lazy(() => import('./pages/SmartWaste'))
-const GetInTouch = lazy(() => import('./pages/GetInTouch'))
 
 // Common components
 import Navbar from './components/common/Navbar'
@@ -111,7 +110,6 @@ function App() {
                 <Route path="/waste-to-energy/large-scale" element={<LargeScale />} />
                 <Route path="/waste-to-energy/containerized-plant" element={<Containerized />} />
                 <Route path="/waste-to-energy/smart-waste" element={<SmartWaste />} />
-                <Route path="/get-in-touch" element={<GetInTouch />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </Suspense>
