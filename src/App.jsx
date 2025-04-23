@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 // Only import Home page eagerly as it's needed for the initial route
 import Home from './pages/Home'
+// Import NotFound page eagerly for better error handling
+import NotFound from './pages/NotFound'
 
 // Lazy load all other pages
 const EvCharging = lazy(() => import('./pages/EvCharging'))
@@ -110,7 +112,7 @@ function App() {
                 <Route path="/waste-to-energy/containerized-plant" element={<Containerized />} />
                 <Route path="/waste-to-energy/smart-waste" element={<SmartWaste />} />
                 <Route path="/get-in-touch" element={<GetInTouch />} />
-                <Route path="*" element={<h1>404 Not Found</h1>} />
+                <Route path="*" element={<NotFound />} />
               </Routes>
             </Suspense>
           </div>
