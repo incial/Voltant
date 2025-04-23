@@ -158,7 +158,7 @@ This message was sent through the Voltant Energy website contact form.
           <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-collapse: collapse;">
             <tr>
               <td style="background-color: #00251a; padding: 20px; text-align: center;">
-                <img src="https://res.cloudinary.com/drzpgff2h/image/upload/v1744971858/voltant-energy/logos/logo_white.png" alt="Voltant Energy Logo" width="180" height="auto" style="display: block; margin: 0 auto;">
+                <img src="https://github.com/incial/Voltant/blob/master/src/assets/images/logo_white.png" alt="Voltant Energy Logo" width="180" height="auto" style="display: block; margin: 0 auto;">
               </td>
             </tr>
             <tr>
