@@ -1,25 +1,25 @@
-import nodemailer from 'nodemailer';
+import nodemailer from 'nodemailer'
 // Import dotenv to access environment variables
-import dotenv from 'dotenv';
+import dotenv from 'dotenv'
 
 // Initialize dotenv
-dotenv.config();
+dotenv.config()
 
 // Netlify serverless function
-export const handler = async function(event) {
+export const handler = async function (event) {
   // Set CORS headers
   const headers = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'Content-Type',
     'Access-Control-Allow-Methods': 'POST, OPTIONS'
-  };
+  }
 
   // Handle preflight OPTIONS request
   if (event.httpMethod === 'OPTIONS') {
     return {
       statusCode: 200,
       headers
-    };
+    }
   }
 
   // Only handle POST requests
@@ -28,34 +28,42 @@ export const handler = async function(event) {
       statusCode: 405,
       headers,
       body: JSON.stringify({ success: false, message: 'Method not allowed' })
-    };
+    }
   }
 
   try {
     // Parse the request body
-    const { name, email, message } = JSON.parse(event.body);
+    const { name, email, message } = JSON.parse(event.body)
 
-    console.log(`📧 Attempting to send email with contact from: ${email} (${name})`);
+    console.log(
+      `📧 Attempting to send email with contact from: ${email} (${name})`
+    )
 
     // Validate required fields
     if (!name || !email || !message) {
-      console.log('❌ Missing required fields');
+      console.log('❌ Missing required fields')
       return {
         statusCode: 400,
         headers,
-        body: JSON.stringify({ success: false, message: 'Please provide name, email, and message' })
-      };
+        body: JSON.stringify({
+          success: false,
+          message: 'Please provide name, email, and message'
+        })
+      }
     }
 
     // Basic email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if (!emailRegex.test(email)) {
-      console.log('❌ Invalid email format');
+      console.log('❌ Invalid email format')
       return {
         statusCode: 400,
         headers,
-        body: JSON.stringify({ success: false, message: 'Please provide a valid email address' })
-      };
+        body: JSON.stringify({
+          success: false,
+          message: 'Please provide a valid email address'
+        })
+      }
     }
 
     // Create mail transporter with improved configuration
@@ -63,27 +71,29 @@ export const handler = async function(event) {
       service: process.env.EMAIL_SERVICE || 'gmail',
       auth: {
         user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASSWORD,
+        pass: process.env.EMAIL_PASSWORD
       },
       // Improved security and deliverability settings
       secure: true, // Use TLS
       port: 465, // Secure SMTP port
       tls: {
         rejectUnauthorized: true
-      },
+      }
       // DKIM would normally be configured here if you have the keys
-    });
+    })
 
     // Clean up and prepare the inputs for email
-    const sanitizedName = name.trim();
-    const sanitizedEmail = email.trim().toLowerCase();
-    const sanitizedMessage = message.trim();
+    const sanitizedName = name.trim()
+    const sanitizedEmail = email.trim().toLowerCase()
+    const sanitizedMessage = message.trim()
 
     // Get recipient email from environment variables
-    const recipientEmail = process.env.RECIPIENT_EMAIL || process.env.EMAIL_USER;
-    
+    const recipientEmail = process.env.RECIPIENT_EMAIL || process.env.EMAIL_USER
+
     // Construct proper message ID with your domain
-    const messageId = `${Date.now()}.${Math.random().toString(36).substring(2)}@voltant.energy`;
+    const messageId = `${Date.now()}.${Math.random()
+      .toString(36)
+      .substring(2)}@voltant.energy`
 
     // Email options with improved headers and formatting
     const mailOptions = {
@@ -107,7 +117,7 @@ export const handler = async function(event) {
       headers: {
         'X-Mailer': 'Voltant Energy Contact Form',
         'X-Contact-Form': 'true',
-        'Precedence': 'bulk'
+        Precedence: 'bulk'
       },
       // Include both text and HTML versions
       text: `
@@ -148,7 +158,7 @@ This message was sent through the Voltant Energy website contact form.
           <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-collapse: collapse;">
             <tr>
               <td style="background-color: #00251a; padding: 20px; text-align: center;">
-                <img src="https://res.cloudinary.com/voltant-energy/image/upload/v1711438127/voltant-energy/logos/logo_white.png" alt="Voltant Energy" width="180" style="display: block; margin: 0 auto;">
+                <img src="https://res.cloudinary.com/drzpgff2h/image/upload/v1744971858/voltant-energy/logos/logo_white.png" alt="Voltant Energy Logo" width="180" height="auto" style="display: block; margin: 0 auto;">
               </td>
             </tr>
             <tr>
@@ -181,7 +191,10 @@ This message was sent through the Voltant Energy website contact form.
                   <tr>
                     <td style="padding: 10px 0 12px;">
                       <div style="padding: 20px; background-color: #f9f9f9; border-radius: 8px; border-left: 4px solid #4AB757;">
-                        <p style="margin: 0; font-size: 15px; color: #333333; line-height: 1.6;">${sanitizedMessage.replace(/\n/g, '<br>')}</p>
+                        <p style="margin: 0; font-size: 15px; color: #333333; line-height: 1.6;">${sanitizedMessage.replace(
+                          /\n/g,
+                          '<br>'
+                        )}</p>
                       </div>
                     </td>
                   </tr>
@@ -193,7 +206,9 @@ This message was sent through the Voltant Energy website contact form.
                 <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tr>
                     <td>
-                      <p style="margin: 0; font-size: 13px; color: #777777;">This is an automated email from the Voltant Energy website contact form. ID: ${messageId.split('@')[0]}</p>
+                      <p style="margin: 0; font-size: 13px; color: #777777;">This is an automated email from the Voltant Energy website contact form. ID: ${
+                        messageId.split('@')[0]
+                      }</p>
                     </td>
                     <td align="right">
                       <a href="https://voltant.energy" style="color: #4AB757; text-decoration: none; font-weight: 500; font-size: 13px;">voltant.energy</a>
@@ -206,34 +221,38 @@ This message was sent through the Voltant Energy website contact form.
         </body>
         </html>
       `
-    };
+    }
 
     // Send email
-    const info = await transporter.sendMail(mailOptions);
-    
+    const info = await transporter.sendMail(mailOptions)
+
     // Log successful sending with message ID for tracking
-    console.log('✅ Email sent successfully!');
-    console.log(`📝 Message ID: ${info.messageId}`);
-    console.log(`📤 Sent to: ${recipientEmail}`);
-    
+    console.log('✅ Email sent successfully!')
+    console.log(`📝 Message ID: ${info.messageId}`)
+    console.log(`📤 Sent to: ${recipientEmail}`)
+
     // Return success response
     return {
       statusCode: 200,
       headers,
-      body: JSON.stringify({ 
-        success: true, 
+      body: JSON.stringify({
+        success: true,
         message: 'Email sent successfully',
         messageId: info.messageId
       })
-    };
+    }
   } catch (error) {
-    console.error('❌ Error sending email:', error);
-    
+    console.error('❌ Error sending email:', error)
+
     // Return error response
     return {
       statusCode: 500,
       headers,
-      body: JSON.stringify({ success: false, message: 'Failed to send email', error: error.message })
-    };
+      body: JSON.stringify({
+        success: false,
+        message: 'Failed to send email',
+        error: error.message
+      })
+    }
   }
-};
+}
