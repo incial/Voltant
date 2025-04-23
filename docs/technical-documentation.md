@@ -155,7 +155,7 @@ const cld = new Cloudinary({
 export default cld;
 ```
 
-### Asset Mapping
+### Asset Mapping System
 
 Local assets are mapped to their Cloudinary public IDs in `src/utils/cloudinaryAssets.js`:
 
@@ -170,28 +170,207 @@ export const videoAssets = {
   'public/Videos/Connectwithus.mp4': 'voltant-energy/videos/connect_with_us',
   // More mappings...
 };
+
+// Helper function to get Cloudinary ID from local path
+export function getCloudinaryId(localPath, type = 'image') {
+  if (type === 'image') {
+    return imageAssets[localPath] || null;
+  } else if (type === 'video') {
+    return videoAssets[localPath] || null;
+  }
+  return null;
+}
 ```
+
+This mapping system allows the application to:
+1. Track which assets have been uploaded to Cloudinary
+2. Maintain consistent naming conventions
+3. Easily switch between local and cloud-based assets
+4. Organize assets logically in the Cloudinary Media Library
 
 ### Cloudinary Components
 
 Two components handle Cloudinary asset delivery:
 
-1. **`CloudinaryImage.jsx`**: Delivers optimized images with responsive sizing
-2. **`CloudinaryVideo.jsx`**: Delivers optimized videos with appropriate transformations
+#### 1. CloudinaryImage.jsx
 
-Both components implement:
-- Format optimization (WebP/AVIF for images, VP9/H.265 for videos)
-- Responsive sizing
-- Lazy loading
-- Device-appropriate transformations
+This component handles responsive image delivery with:
+
+```jsx
+import React, { memo } from 'react';
+import { AdvancedImage, lazyload, responsive, placeholder } from '@cloudinary/react';
+import { quality, format } from '@cloudinary/url-gen/actions/delivery';
+import { fill, scale } from '@cloudinary/url-gen/actions/resize';
+import { auto as autoFormat } from '@cloudinary/url-gen/qualifiers/format';
+import { auto as autoQuality } from '@cloudinary/url-gen/qualifiers/quality';
+import cld from '../../utils/cloudinary';
+
+const CloudinaryImage = memo(({ 
+  publicId,
+  alt,
+  className,
+  width,
+  height,
+  breakpoints = [375, 640, 768, 1024, 1280, 1536],
+  useLazyLoading = true,
+  useResponsive = true,
+  usePlaceholder = true,
+  transformations = [],
+  loading = "lazy"
+}) => {
+  // Component implementation...
+});
+
+export default CloudinaryImage;
+```
+
+This component provides:
+- Format optimization (WebP/AVIF when supported)
+- Responsive sizing based on viewport
+- Lazy loading for improved performance
+- Low-quality image placeholders for perceived performance
+- Support for custom transformations
+- Error handling with fallbacks
+
+#### 2. CloudinaryVideo.jsx
+
+This component handles video delivery with adaptive streaming:
+
+```jsx
+import React from 'react';
+import { AdvancedVideo, lazyload } from '@cloudinary/react';
+import { quality, format } from '@cloudinary/url-gen/actions/delivery';
+import { videoCodec } from '@cloudinary/url-gen/actions/transcode';
+import { auto as autoFormat } from '@cloudinary/url-gen/qualifiers/format';
+import { auto as autoCodec } from '@cloudinary/url-gen/qualifiers/videoCodec';
+import { auto as autoQuality } from '@cloudinary/url-gen/qualifiers/quality';
+import cld from '../../utils/cloudinary';
+
+const CloudinaryVideo = ({ 
+  publicId,
+  className,
+  autoPlay = true,
+  loop = true,
+  muted = true,
+  controls = false,
+  poster,
+  useLazyLoading = true,
+  startOffset = 0,
+  width,
+  height,
+  transformations = [],
+  playsInline = true
+}) => {
+  // Component implementation...
+});
+
+export default CloudinaryVideo;
+```
+
+This component provides:
+- Codec optimization (VP9/H.265)
+- Adaptive bitrate streaming
+- Lazy loading for videos below the fold
+- Poster image generation
+- Mobile-friendly playback options
+- Support for time ranges and offsets
+
+### Helper Functions
+
+The `cloudinaryHelper.js` file provides utility functions that abstract common operations:
+
+```javascript
+import { imageAssets, videoAssets } from './cloudinaryAssets';
+import cld from './cloudinary';
+import { getCloudinaryId } from './cloudinaryAssets';
+
+// Create optimized image props based on context
+export const getOptimizedAssetProps = (localPath, section = 'general', type = 'image') => {
+  // Preset configurations based on section
+  const presets = {
+    hero: { /* Hero section optimizations */ },
+    banner: { /* Banner section optimizations */ },
+    thumbnail: { /* Thumbnail optimizations */ },
+    icon: { /* Icon optimizations */ },
+    general: { /* Default optimizations */ }
+  };
+  
+  // Get appropriate settings and combine with base props
+  const defaultProps = presets[section]?.[type] || presets.general[type] || {};
+  const baseProps = getCloudinaryComponentProps(localPath, type);
+  
+  return { ...defaultProps, ...baseProps };
+};
+
+// More utility functions...
+```
+
+These helpers allow components to use contextual optimizations based on where media appears in the UI, making it easy to apply consistent delivery strategies across the application.
 
 ### Asset Upload Process
 
-Assets are uploaded using `scripts/upload-to-cloudinary.js`, which:
+Assets are uploaded using `scripts/upload-to-cloudinary.js`, which provides a complete workflow:
+
+```javascript
+import dotenv from 'dotenv';
+import { v2 as cloudinary } from 'cloudinary';
+import fs from 'fs';
+import path from 'path';
+import { imageAssets, videoAssets } from '../src/utils/cloudinaryAssets.js';
+
+async function uploadFile(localPath, publicId, resourceType = 'image') {
+  // File handling, upload options, and API calls
+}
+
+async function uploadAllAssets() {
+  // Batch upload all mapped assets
+}
+
+async function verifyAllAssets() {
+  // Verify assets exist in Cloudinary without uploading
+}
+
+// Command-line interface
+const args = process.argv.slice(2);
+const command = args[0] && args[0].startsWith('--') ? args[0] : null;
+const assetPaths = command ? args.slice(1) : args;
+
+if (command === '--verify') {
+  verifyAllAssets();
+} else if (assetPaths.length > 0) {
+  // Upload specific assets
+} else {
+  uploadAllAssets();
+}
+```
+
+Key features of the upload process:
 1. Reads asset mappings from `cloudinaryAssets.js`
-2. Authenticates with Cloudinary API
+2. Authenticates with Cloudinary API using environment variables
 3. Uploads local assets that don't yet exist in Cloudinary
-4. Maintains a consistent naming convention
+4. Supports verification without uploading
+5. Allows targeting specific assets for upload
+6. Includes optimizations specific to image and video types
+7. Provides detailed reporting of success/failure
+
+### Folder Structure in Cloudinary
+
+Assets in Cloudinary are organized using the following folder structure:
+
+- `voltant-energy/logos/` - Logo files and branding assets
+- `voltant-energy/charging/` - EV charging related images
+- `voltant-energy/waste/` - Waste management section images
+- `voltant-energy/cpo/` - CPO section images
+- `voltant-energy/engineering/` - Engineering works section images
+- `voltant-energy/household/` - Household section images
+- `voltant-energy/containerized/` - Containerized plant images
+- `voltant-energy/large-scale/` - Large-scale plant images
+- `voltant-energy/layout/` - Common layout-related images
+- `voltant-energy/clients/` - Client logos
+- `voltant-energy/icons/` - Icons with sub-folders by section
+- `voltant-energy/videos/` - All video content
+
+This organization makes it easier to manage assets, apply transformations by category, and maintain consistency.
 
 ## Data Management
 
@@ -419,19 +598,49 @@ The Vite configuration is defined in `vite.config.js`:
 ```javascript
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite'
+import { resolve } from 'path'
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), tailwindcss()],
   build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+          'animation-vendor': ['framer-motion'],
+          'ui-components': [
+            './src/components/common/Navbar.jsx',
+            './src/components/common/Footer.jsx',
+          ],
+        },
+      },
+    },
+    chunkSizeWarningLimit: 1000,
     minify: 'terser',
     terserOptions: {
       compress: {
         drop_console: true,
-      },
+        drop_debugger: true
+      }
     },
-  }
+    modulePreload: {
+      polyfill: true
+    }
+  },
+  optimizeDeps: {
+    include: ['react', 'react-dom', 'react-router-dom', 'framer-motion']
+  },
+  publicDir: 'public'
 })
 ```
+
+This configuration:
+- Implements code splitting with manual chunks for core libraries
+- Applies advanced minification with Terser
+- Removes console and debugger statements in production
+- Includes module preloading polyfills for better browser compatibility
+- Preserves the public directory structure in the build output
 
 ### Netlify Deployment
 
@@ -441,17 +650,207 @@ Deployment to Netlify is configured in `netlify.toml`:
 [build]
   command = "npm run build"
   publish = "dist"
+  functions = "netlify/functions"
 
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+  
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
 ```
 
 This configuration ensures:
 - The correct build command is run
-- The built files from the `dist` directory are served
+- Built files from the `dist` directory are served as static assets
 - Client-side routing works correctly with redirects to the index
+- API routes are properly directed to serverless functions
+
+### Netlify Serverless Functions
+
+The project uses Netlify Functions for backend processing without requiring a dedicated server:
+
+#### Function Structure
+
+Functions are located in the `netlify/functions` directory:
+
+```
+netlify/
+  functions/
+    send-email.js
+    package.json
+```
+
+Each function is an individual JavaScript file that exports a handler function:
+
+```javascript
+// Example from send-email.js
+export const handler = async function(event, context) {
+  // Function implementation
+};
+```
+
+#### Contact Form Processing
+
+The `send-email.js` function handles contact form submissions:
+
+```javascript
+import nodemailer from 'nodemailer';
+
+export const handler = async function(event, context) {
+  // Set CORS headers
+  const headers = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS'
+  };
+
+  // Handle preflight requests
+  if (event.httpMethod === 'OPTIONS') {
+    return { statusCode: 200, headers };
+  }
+
+  try {
+    // Parse form data
+    const { name, email, message } = JSON.parse(event.body);
+    
+    // Validate required fields
+    if (!name || !email || !message) {
+      return {
+        statusCode: 400,
+        headers,
+        body: JSON.stringify({ 
+          success: false, 
+          message: 'Please provide name, email, and message' 
+        })
+      };
+    }
+
+    // Configure email transport
+    const transporter = nodemailer.createTransport({
+      service: process.env.EMAIL_SERVICE || 'gmail',
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASSWORD,
+      },
+    });
+
+    // Send email
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: process.env.RECIPIENT_EMAIL || process.env.EMAIL_USER,
+      subject: `New Contact Form Submission from ${name}`,
+      html: `
+        <h3>New Contact Form Submission</h3>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Message:</strong></p>
+        <p>${message}</p>
+      `,
+    });
+
+    // Return success response
+    return {
+      statusCode: 200,
+      headers,
+      body: JSON.stringify({ 
+        success: true, 
+        message: 'Email sent successfully' 
+      })
+    };
+  } catch (error) {
+    console.error('Error sending email:', error);
+    
+    // Return error response
+    return {
+      statusCode: 500,
+      headers,
+      body: JSON.stringify({ 
+        success: false, 
+        message: 'Failed to send email', 
+        error: error.message 
+      })
+    };
+  }
+};
+```
+
+#### Function Dependencies
+
+Each function can have its own dependencies, managed through a dedicated `package.json`:
+
+```json
+{
+  "name": "netlify-functions",
+  "version": "1.0.0",
+  "description": "Serverless functions for Voltant Energy",
+  "dependencies": {
+    "nodemailer": "^6.9.9"
+  },
+  "type": "module"
+}
+```
+
+#### Client Integration
+
+The frontend communicates with serverless functions through fetch API calls:
+
+```javascript
+// In ContactForm.jsx
+const FUNCTION_URL = '/.netlify/functions/send-email';
+
+const onSubmit = async (data) => {
+  setIsSubmitting(true);
+  try {
+    const response = await fetch(FUNCTION_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+    
+    const result = await response.json();
+    
+    if (result.success) {
+      setSubmitSuccess(true);
+      reset();
+    } else {
+      setSubmitError(result.message || 'Failed to send message');
+    }
+  } catch (error) {
+    setSubmitError('Network error. Please try again.');
+  } finally {
+    setIsSubmitting(false);
+  }
+};
+```
+
+#### Environment Variables for Functions
+
+Netlify Functions require their own environment variables, configured in the Netlify dashboard:
+
+- `EMAIL_SERVICE`: Email service provider (e.g., 'gmail')
+- `EMAIL_USER`: Email account username/address
+- `EMAIL_PASSWORD`: Email account password or app-specific password
+- `RECIPIENT_EMAIL`: Email address to receive form submissions
+
+#### Local Development with Functions
+
+For local development with functions:
+
+1. Install Netlify CLI:
+   ```bash
+   npm install -g netlify-cli
+   ```
+
+2. Start the development server with Netlify Functions:
+   ```bash
+   netlify dev
+   ```
+
+3. Access functions locally at `http://localhost:8888/.netlify/functions/[function-name]`
 
 ### Continuous Deployment
 
@@ -459,6 +858,29 @@ The repository is set up for continuous deployment:
 1. Changes pushed to the main branch trigger a new build
 2. Netlify builds and deploys the site automatically
 3. Deploy previews are generated for pull requests
+4. Build caching speeds up deployment times
+
+### Build Optimization
+
+Several optimization techniques are applied during the build:
+
+1. **Code Splitting**: Core libraries are separated into dedicated chunks
+2. **Tree Shaking**: Unused code is eliminated from the bundle
+3. **Asset Optimization**: Images and other static assets are compressed
+4. **Script Loading**: Non-critical scripts are deferred
+5. **CSS Minification**: Style rules are compressed and optimized
+
+### CI/CD Pipeline
+
+The CI/CD pipeline includes:
+
+1. **Source Control**: Code changes committed to GitHub
+2. **Build Trigger**: Netlify monitors the repository for changes
+3. **Build Process**: Vite builds the application with optimizations
+4. **Function Deployment**: Netlify Functions are packaged and deployed
+5. **Post-processing**: Extra optimizations for assets and redirects
+6. **Deploy**: Site is published to Netlify's global CDN
+7. **Cache Invalidation**: CDN cache is purged for updated assets
 
 ## Best Practices
 

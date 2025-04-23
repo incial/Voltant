@@ -5,20 +5,19 @@
 > Modern, responsive React website for Voltant Energy, showcasing sustainable energy solutions including EV charging infrastructure, waste-to-energy technology, and smart waste management systems.
 
 ## 📑 Table of Contents
-- [Project Overview](#-project-overview)
+- [Overview](#-overview)
 - [Key Features](#-key-features)
 - [Technologies](#-technologies)
 - [Getting Started](#-getting-started)
 - [Project Structure](#-project-structure)
-- [Backend Server](#-backend-server)
+- [Cloudinary Integration](#-cloudinary-integration)
+- [Netlify Deployment & Functions](#-netlify-deployment--functions)
 - [Service Offerings](#-service-offerings)
-- [Media Integration](#-media-integration)
-- [Deployment](#-deployment)
-- [Best Practices](#-best-practices) 
+- [Development Guidelines](#-development-guidelines)
 - [Contributing](#-contributing)
 - [License](#-license)
 
-## 🌟 Project Overview
+## 🌟 Overview
 
 Voltant Energy's website serves as a digital platform highlighting their innovative sustainable energy solutions in:
 
@@ -31,12 +30,12 @@ The platform delivers a cohesive brand experience while providing in-depth infor
 ## ✨ Key Features
 
 - **Responsive Design**: Seamless experience across all devices (mobile, tablet, desktop)
-- **Optimized Media**: Advanced media delivery through Cloudinary integration
+- **Optimized Media Delivery**: Advanced asset management through Cloudinary integration
 - **Modern UI/UX**: Smooth animations and transitions powered by Framer Motion and GSAP
 - **Component Architecture**: Modular, reusable components for consistent UI
-- **Content Management**: Centralized content in sectionData.js for easy updates
-- **Performance Focused**: Lazy loading, optimized assets, and efficient code structure
-- **Backend Integration**: Simple Express server for contact form processing and API integrations
+- **Centralized Content**: Data management in sectionData.js for easy updates
+- **Performance Optimized**: Lazy loading, code splitting, and efficient delivery
+- **Serverless Functions**: Netlify Functions for backend processing
 
 ## 🛠️ Technologies
 
@@ -44,11 +43,11 @@ The platform delivers a cohesive brand experience while providing in-depth infor
 - **Frontend**: React 19, Vite 6, React Router DOM 7
 - **Styling**: Tailwind CSS 4, PostCSS, Autoprefixer
 - **Animations**: Framer Motion, GSAP
-- **Backend**: Express.js (for contact form processing and API endpoints)
+- **Backend**: Netlify Functions (serverless) for API endpoints
 
 ### Media Management
-- **Cloudinary**: Image/video optimization, transformation, and delivery
-- **Cloudinary SDK**: @cloudinary/react, @cloudinary/url-gen
+- **Cloudinary**: Advanced asset optimization, transformation, and delivery
+- **Cloudinary SDK**: @cloudinary/react, @cloudinary/url-gen for responsive media
 
 ### Development Tools
 - **Code Quality**: ESLint 9
@@ -62,6 +61,7 @@ The platform delivers a cohesive brand experience while providing in-depth infor
 ### Prerequisites
 - Node.js (v18+ recommended)
 - npm or yarn
+- Cloudinary account for media optimization
 
 ### Installation
 
@@ -71,19 +71,12 @@ The platform delivers a cohesive brand experience while providing in-depth infor
    cd voltant-energy
    ```
 
-2. Install dependencies for frontend
+2. Install dependencies
    ```bash
    npm install
    ```
 
-3. Install dependencies for backend
-   ```bash
-   cd server
-   npm install
-   cd ..
-   ```
-
-4. Create environment variables
+3. Create environment variables
    Create a `.env` file in the root directory:
    ```
    VITE_CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
@@ -91,155 +84,195 @@ The platform delivers a cohesive brand experience while providing in-depth infor
    VITE_CLOUDINARY_API_SECRET=your_cloudinary_api_secret
    ```
 
-5. Start development server for frontend
+4. Start development server
    ```bash
    npm run dev
    ```
-   
-6. Start the backend server (in a separate terminal)
-   ```bash
-   cd server
-   node index.js
-   ```
-   
-7. Open http://localhost:5173 in your browser
+
+5. Open http://localhost:5173 in your browser
 
 ### Building for Production
 
 ```bash
-# Build frontend
+# Build for production
 npm run build
 
-# For production deployment, see deployment section
+# Preview production build locally
+npm run preview
 ```
 
 The optimized build files will be in the `dist` directory.
-
-To preview the production build:
-```bash
-npm run preview
-```
 
 ## 📁 Project Structure
 
 ```
 ├── docs/                         # Project documentation
 │   ├── cloudinary-documentation.md  # Cloudinary integration guide
-│   └── technical-documentation.md   # Detailed technical documentation
+│   └── technical-documentation.md   # Technical documentation
+│
+├── netlify/                      # Netlify configuration
+│   └── functions/                # Serverless functions
+│       ├── send-email.js         # Contact form email processing
+│       └── package.json          # Function dependencies
 │
 ├── public/                       # Public static assets
-│   └── Logo_icon.svg             # Site favicon and logo
+│   ├── Logo_icon.svg             # Site favicon and logo
+│   ├── _redirects                # Netlify routing configuration
+│   └── robots.txt                # Search engine directives
 │
 ├── scripts/                      # Utility scripts
-│   └── upload-to-cloudinary.js   # Script for uploading assets to Cloudinary
-│
-├── server/                       # Backend Express server
-│   ├── index.js                  # Main server file with API endpoints
-│   └── package.json              # Server dependencies
+│   └── upload-to-cloudinary.js   # Asset upload automation
 │
 ├── src/                          # Frontend source code
-│   ├── assets/                   # Local assets
+│   ├── assets/                   # Local assets (pre-optimization)
 │   │   ├── icons/                # SVG icons organized by section
-│   │   │   └── containerized/    # Icons for containerized plants section
 │   │   └── images/               # Images organized by section
-│   │       └── clients/          # Client logos and images
-│   │       └── containerized/    # Images for containerized plants section
 │   │
 │   ├── components/               # React components
 │   │   ├── common/               # Shared UI components
-│   │   │   ├── ChatButton.jsx    # WhatsApp chat button 
+│   │   │   ├── ChatButton.jsx    # WhatsApp button component
 │   │   │   ├── CloudinaryImage.jsx # Optimized image component
 │   │   │   ├── CloudinaryVideo.jsx # Optimized video component
-│   │   │   ├── ContactForm.jsx   # Contact form component
 │   │   │   ├── Footer.jsx        # Site footer component
 │   │   │   ├── Navbar.jsx        # Navigation component
-│   │   │   ├── ServiceCard.jsx   # Service display card
 │   │   │   └── SectionComponents/ # Reusable section templates
-│   │   │       ├── charger.jsx   # EV charger specifications
-│   │   │       ├── HeroSection.jsx # Page hero sections
-│   │   │       ├── MidSection.jsx # Feature showcase sections
-│   │   │       ├── ProfilesSection.jsx # Detailed service profiles
-│   │   │       └── SeamlessChargingSection.jsx # Content sections
-│   │   │
 │   │   └── HomeSection/          # Home page specific components
-│   │       ├── ClientsSection.jsx # Client logos showcase
-│   │       ├── ConncetWithUs.jsx  # Contact prompt section
-│   │       ├── HeroSection.jsx    # Home page hero
-│   │       ├── ImpactMetrics.jsx  # Statistics display
-│   │       ├── SplitImages.jsx    # Image grid layout
-│   │       ├── VideoBanner.jsx    # Video banner section
-│   │       └── WhoAreWe.jsx       # Company introduction
 │   │
 │   ├── context/                  # React context providers
-│   │   └── ContactFormContext.jsx # Contact form state management
 │   │
 │   ├── pages/                    # Page components (routes)
 │   │   ├── AC.jsx                # AC chargers page
-│   │   ├── Containerized.jsx     # Containerized plants page
-│   │   ├── Cpo.jsx               # Charge Point Operator page
 │   │   ├── DC.jsx                # DC chargers page
-│   │   ├── EngineeringWorks.jsx  # Engineering services page
-│   │   ├── EvCharging.jsx        # EV charging main page
-│   │   ├── GetInTouch.jsx        # Contact page
 │   │   ├── Home.jsx              # Homepage
-│   │   ├── Household.jsx         # Household solutions page
-│   │   ├── LargeScale.jsx        # Large-scale plants page
-│   │   ├── More.jsx              # Additional services page
-│   │   ├── SmartWaste.jsx        # Smart waste management page
-│   │   └── WasteToEnergy.jsx     # Waste-to-energy main page
+│   │   └── [Other pages]         # Various service pages
 │   │
 │   ├── utils/                    # Utility functions
-│   │   ├── cloudinary.js         # Cloudinary instance configuration
+│   │   ├── cloudinary.js         # Cloudinary configuration
 │   │   ├── cloudinaryAssets.js   # Asset mapping for Cloudinary
-│   │   ├── cloudinaryHelper.js   # Helper functions for Cloudinary
+│   │   ├── cloudinaryHelper.js   # Helper functions
 │   │   └── sectionData.js        # Centralized content data
 │   │
-│   ├── App.css                   # Global CSS styles
 │   ├── App.jsx                   # Main application component
-│   ├── index.css                 # Base CSS styles
 │   └── main.jsx                  # Application entry point
 │
 ├── eslint.config.js              # ESLint configuration
-├── index.html                    # HTML entry point
-├── LICENSE                       # Project license file
 ├── netlify.toml                  # Netlify deployment configuration
-├── package.json                  # Frontend dependencies and scripts
 ├── tailwind.config.js            # Tailwind CSS configuration
 └── vite.config.js                # Vite build configuration
 ```
 
-## 🖥️ Backend Server
+## 🖼️ Cloudinary Integration
 
-The project includes a simple Express backend server for handling functionality that requires server-side processing:
+The project implements advanced media optimization through Cloudinary:
 
-### Server Structure
+### Configuration
 
-- **Location**: `/server` directory
-- **Main File**: `index.js` - Contains API routes and server configuration
-- **Dependencies**: Listed in `/server/package.json`
+Cloudinary setup is handled in `src/utils/cloudinary.js`, which initializes the Cloudinary SDK with environment variables:
 
-### API Endpoints
-
-The backend server provides the following endpoints:
-
-1. **Contact Form Submission**
-   - `POST /api/contact` - Processes contact form submissions and sends email notifications
-
-2. **Newsletter Subscription**
-   - `POST /api/subscribe` - Handles newsletter subscription requests
-
-### Starting the Server
-
-```bash
-cd server
-node index.js
+```javascript
+const cld = new Cloudinary({
+  cloud: {
+    cloudName: import.meta.env.VITE_CLOUDINARY_CLOUD_NAME,
+  },
+  url: {
+    secure: true,
+  }
+});
 ```
 
-The server runs on port 3000 by default and can be configured through environment variables.
+### Asset Management
 
-### Production Deployment
+1. **Asset Mapping**: Local files are mapped to Cloudinary IDs in `src/utils/cloudinaryAssets.js`:
+   ```javascript
+   export const imageAssets = {
+     'public/Logo_icon.svg': 'voltant-energy/logos/logo_icon',
+     // More mappings...
+   };
+   ```
 
-For production, the server should be deployed to a suitable hosting environment (e.g., Heroku, AWS, DigitalOcean) with appropriate environment variables set.
+2. **Optimized Components**: `CloudinaryImage.jsx` and `CloudinaryVideo.jsx` handle:
+   - Format optimization (WebP/AVIF for images, VP9/H.265 for videos)
+   - Responsive sizing with viewport breakpoints
+   - Lazy loading with proper thresholds
+   - Automated placeholders for better loading UX
+
+3. **Utility Functions**: The `cloudinaryHelper.js` provides context-aware optimizations:
+   ```javascript
+   // Get optimal settings for hero section images
+   getOptimizedAssetProps('src/assets/images/hero.jpg', 'hero', 'image')
+   ```
+
+### Upload Automation
+
+The `scripts/upload-to-cloudinary.js` utility handles asset uploading:
+
+```bash
+# Upload all assets
+node scripts/upload-to-cloudinary.js
+
+# Verify existing assets
+node scripts/upload-to-cloudinary.js --verify
+
+# Upload specific assets
+node scripts/upload-to-cloudinary.js "src/assets/images/logo.png"
+```
+
+For detailed implementation guides, refer to `docs/cloudinary-documentation.md`.
+
+## 🚢 Netlify Deployment & Functions
+
+### Deployment Configuration
+
+The project is configured for seamless deployment on Netlify through `netlify.toml`:
+
+```toml
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+```
+
+This ensures:
+- Proper build process using Vite
+- SPA routing support through redirects
+- Optimized asset delivery
+
+### Serverless Functions
+
+Netlify Functions provide backend processing without a dedicated server:
+
+1. **Contact Form Processing**:
+   - `netlify/functions/send-email.js` handles form submissions
+   - Uses nodemailer for email delivery
+   - Implements CORS handling and validation
+
+2. **Environment Variables**:
+   Required in Netlify dashboard:
+   ```
+   EMAIL_SERVICE=gmail
+   EMAIL_USER=your-email@gmail.com
+   EMAIL_PASSWORD=your-app-password
+   RECIPIENT_EMAIL=contact@voltant-energy.com
+   ```
+
+3. **Local Development**:
+   ```bash
+   # Install Netlify CLI
+   npm install -g netlify-cli
+
+   # Start with functions
+   netlify dev
+   ```
+
+### CI/CD Integration
+
+- Automatic deployment from the main branch
+- Deploy previews for pull requests
+- Build caching for faster deployments
 
 ## 🔍 Service Offerings
 
@@ -256,42 +289,37 @@ For production, the server should be deployed to a suitable hosting environment 
 - Containerized Plants: Modular, plug-and-play biogas systems
 - Smart Waste Management: Technology-enabled waste segregation and processing
 
-## 🖼️ Media Integration
+## 📋 Development Guidelines
 
-This project uses Cloudinary for efficient media management:
+### Adding New Pages
 
-1. Asset mapping in `src/utils/cloudinaryAssets.js`
-2. Upload processing via `scripts/upload-to-cloudinary.js`
-3. Delivery optimization through `CloudinaryImage` and `CloudinaryVideo` components
+1. Create component in `src/pages/`
+2. Add route in `App.jsx`
+3. Create content in `sectionData.js`
+4. Reuse existing section components where possible
 
-For detailed implementation guides, refer to `docs/cloudinary-documentation.md`.
+### Adding Media Assets
 
-## 🚢 Deployment
+1. Place asset in appropriate folder in `src/assets/`
+2. Add mapping in `cloudinaryAssets.js`
+3. Upload to Cloudinary using the script
+4. Use `getOptimizedAssetProps` with appropriate section context:
+   ```jsx
+   <CloudinaryImage 
+     {...getOptimizedAssetProps('src/assets/images/image.jpg', 'hero', 'image')} 
+     alt="Description"
+   />
+   ```
 
-The project is configured for seamless deployment on Netlify:
+### Best Practices
 
-- Configuration in `netlify.toml`
-- Automatic deployment from main branch
-- Support for SPA routing
-- Performance optimization features
-
-### Backend Deployment
-
-The backend server should be deployed separately to a platform that supports Node.js:
-
-1. Set up the appropriate environment variables
-2. Configure CORS to allow requests from your frontend domain
-3. Set up a production process manager like PM2
-
-## 🏆 Best Practices
-
-- **Component Reusability**: Abstracted UI elements for consistent interfaces
-- **Performance Optimization**: Lazy loading, code splitting, asset optimization
-- **Responsive Design**: Mobile-first approach with responsive breakpoints
-- **Accessibility**: Semantic HTML and ARIA attributes
-- **Code Organization**: Clear structure and separation of concerns
-- **DRY Principles**: Minimal code duplication through utilities and reusable components
-- **API Integration**: Proper error handling and loading states
+- **Component Reusability**: Use abstracted UI elements for consistency
+- **Performance**: Implement lazy loading and code splitting
+- **Responsive Design**: Start with mobile layouts first
+- **Accessibility**: Use semantic HTML and ARIA attributes
+- **Code Organization**: Follow established project structure
+- **DRY Principle**: Reuse components and utility functions
+- **Error Handling**: Implement proper fallbacks and error states
 
 ## 👥 Contributing
 
