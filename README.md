@@ -1,6 +1,6 @@
 # Voltant Energy
 
-![Voltant Energy](src/assets/images/Logo.png)
+![Voltant Energy](https://res.cloudinary.com/drzpgff2h/image/upload/v1744971858/voltant-energy/logos/logo_white.png)
 
 > Modern, responsive React website for Voltant Energy, showcasing sustainable energy solutions including EV charging infrastructure, waste-to-energy technology, and smart waste management systems.
 
