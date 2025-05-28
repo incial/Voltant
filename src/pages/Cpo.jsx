@@ -2,8 +2,6 @@ import React from 'react';
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
 
-import Navbar from '../components/common/Navbar';
-import Footer from '../components/common/Footer';
 import ChatButton from '../components/common/ChatButton';
 
 // Import common section components
@@ -20,7 +18,6 @@ const Cpo = () => {
     <>
       {/* Use the ChatButton component */}
       <ChatButton phoneNumber="+971506419857" />
-      
       <div className='flex flex-col min-h-screen bg-white px-0 overflow-hidden'>
         <HeroSection 
           title={cpoData.hero.title}

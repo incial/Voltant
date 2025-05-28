@@ -70,7 +70,7 @@ const Home = () => {
       {/* WhoAreWe section - Wrapped in Suspense for lazy loading */}
       <Suspense fallback={<SectionLoader />}>
         <div id="who-are-we" className='w-full flex justify-center h-auto md:h-[120vh] md:items-center'>
-          <WhoAreWe />
+          <WhoAreWe /> 
         </div>
       </Suspense>
 

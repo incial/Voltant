@@ -7,16 +7,12 @@ import {
   FaXTwitter,
   FaWhatsapp
 } from 'react-icons/fa6'
-import CloudinaryImage from '../common/CloudinaryImage'
-import CloudinaryVideo from '../common/CloudinaryVideo'
-import { getOptimizedAssetProps } from '../../utils/cloudinaryHelper'
+import { vids } from '../../utils/localAssets'
 
 const ConnectWithUs = () => {
   // State to track if the video fails to load
   const [videoError, setVideoError] = useState(false)
 
-  // Path to the video file in the public directory - updated to new structure
-  const videoPath = 'public/Videos/Connectwithus.mp4'
 
   return (
     <>
@@ -27,8 +23,8 @@ const ConnectWithUs = () => {
       >
         {/* Video Background */}
         <div className='absolute inset-0'>
-          <CloudinaryVideo
-            {...getOptimizedAssetProps(videoPath, 'hero', 'video')}
+          <video
+            src={vids.subfooter}
             className='w-full h-full object-cover'
             autoPlay={true}
             loop={true}
@@ -39,8 +35,8 @@ const ConnectWithUs = () => {
           {/* Fallback background if video fails to load */}
           {videoError && (
             <div className='absolute inset-0'>
-              <CloudinaryImage
-                {...getOptimizedAssetProps('src/assets/images/fallbackBg.png', 'bannner', 'image')}
+              <img
+                src={'public/assets/images/fallbackBg.png'}
                 alt='Fallback background'
                 className='w-full h-full object-cover'
               />
@@ -59,25 +55,45 @@ const ConnectWithUs = () => {
         {/* Social media icons in the center-top area */}
         <div className='absolute top-1/4 left-4/6 transform -translate-x-1/2 z-10'>
           <div className='flex space-x-10'>
-            <a href='#' className='text-white hover:text-gray-200' aria-label="YouTube">
+            <a
+              href='#'
+              className='text-white hover:text-gray-200'
+              aria-label='YouTube'
+            >
               <FaYoutube size={24} />
-              <span className="sr-only">Visit our YouTube channel</span>
+              <span className='sr-only'>Visit our YouTube channel</span>
             </a>
-            <a href='#' className='text-white hover:text-gray-200' aria-label="Instagram">
+            <a
+              href='#'
+              className='text-white hover:text-gray-200'
+              aria-label='Instagram'
+            >
               <FaInstagram size={24} />
-              <span className="sr-only">Visit our Instagram page</span>
+              <span className='sr-only'>Visit our Instagram page</span>
             </a>
-            <a href='#' className='text-white hover:text-gray-200' aria-label="Facebook">
+            <a
+              href='#'
+              className='text-white hover:text-gray-200'
+              aria-label='Facebook'
+            >
               <FaFacebookF size={24} />
-              <span className="sr-only">Visit our Facebook page</span>
+              <span className='sr-only'>Visit our Facebook page</span>
             </a>
-            <a href='#' className='text-white hover:text-gray-200' aria-label="LinkedIn">
+            <a
+              href='#'
+              className='text-white hover:text-gray-200'
+              aria-label='LinkedIn'
+            >
               <FaLinkedinIn size={24} />
-              <span className="sr-only">Visit our LinkedIn page</span>
+              <span className='sr-only'>Visit our LinkedIn page</span>
             </a>
-            <a href='#' className='text-white hover:text-gray-200' aria-label="Twitter">
+            <a
+              href='#'
+              className='text-white hover:text-gray-200'
+              aria-label='Twitter'
+            >
               <FaXTwitter size={24} />
-              <span className="sr-only">Visit our Twitter page</span>
+              <span className='sr-only'>Visit our Twitter page</span>
             </a>
           </div>
         </div>
@@ -89,7 +105,7 @@ const ConnectWithUs = () => {
               <p className='text-xl text-gray-600 font-black'>
                 Email:{' '}
                 <span className='text-gray-800 font-medium'>
-                Contact@voltant.energy
+                  Contact@voltant.energy
                 </span>
               </p>
               <p className='text-xl text-gray-600 font-black'>
@@ -103,13 +119,13 @@ const ConnectWithUs = () => {
           <a
             href='https://wa.me/+971506419857'
             className='absolute right-8 bottom-8 '
-            aria-label="WhatsApp"
+            aria-label='WhatsApp'
           >
             <FaWhatsapp
               size={28}
               className='text-gray-600 hover:text-gray-500'
             />
-            <span className="sr-only">Contact us on WhatsApp</span>
+            <span className='sr-only'>Contact us on WhatsApp</span>
           </a>
         </div>
       </div>
@@ -120,50 +136,70 @@ const ConnectWithUs = () => {
         {/* Middle section with video background and social icons */}
         <div className='relative w-full' style={{ height: '400px' }}>
           <div className='absolute inset-0 rounded-3xl'>
-          <CloudinaryVideo
-                        {...getOptimizedAssetProps(videoPath, 'hero', 'video')}
-                        className='w-full h-full object-cover rounded-3xl'
-                        autoPlay={true}
-                        loop={true}
-                        muted={true}
-                        controls={false}
-                        onError={() => setVideoError(true)}
-                      />
-                      {/* Fallback background if video fails to load */}
-                      {videoError && (
-                        <div className='absolute inset-0'>
-                          <CloudinaryImage
-                            {...getOptimizedAssetProps('src/assets/images/fallbackBg.png', 'bannner', 'image')}
-                            alt='Fallback background'
-                            className='w-full h-full object-cover'
-                          />
-                        </div>
-                      )}
+            <video
+              src={vids.subfooter}
+              className='w-full h-full object-cover rounded-3xl'
+              autoPlay={true}
+              loop={true}
+              muted={true}
+              controls={false}
+              onError={() => setVideoError(true)}
+            />
+            {/* Fallback background if video fails to load */}
+            {videoError && (
+              <div className='absolute inset-0'>
+                <img
+                  src={'public/assets/images/fallbackBg.png'}
+                  alt='Fallback background'
+                  className='w-full h-full object-cover'
+                />
+              </div>
+            )}
             <div className='absolute inset-0 bg-black opacity-20 rounded-3xl'></div>
           </div>
 
           {/* Social media icons in the center */}
           <div className='absolute inset-0 flex items-center justify-center z-10'>
             <div className='flex space-x-8'>
-              <a href='#' className='text-white hover:text-gray-200' aria-label="YouTube">
+              <a
+                href='#'
+                className='text-white hover:text-gray-200'
+                aria-label='YouTube'
+              >
                 <FaYoutube size={24} />
-                <span className="sr-only">Visit our YouTube channel</span>
+                <span className='sr-only'>Visit our YouTube channel</span>
               </a>
-              <a href='#' className='text-white hover:text-gray-200' aria-label="Instagram">
+              <a
+                href='#'
+                className='text-white hover:text-gray-200'
+                aria-label='Instagram'
+              >
                 <FaInstagram size={24} />
-                <span className="sr-only">Visit our Instagram page</span>
+                <span className='sr-only'>Visit our Instagram page</span>
               </a>
-              <a href='#' className='text-white hover:text-gray-200' aria-label="Facebook">
+              <a
+                href='#'
+                className='text-white hover:text-gray-200'
+                aria-label='Facebook'
+              >
                 <FaFacebookF size={24} />
-                <span className="sr-only">Visit our Facebook page</span>
+                <span className='sr-only'>Visit our Facebook page</span>
               </a>
-              <a href='#' className='text-white hover:text-gray-200' aria-label="LinkedIn">
+              <a
+                href='#'
+                className='text-white hover:text-gray-200'
+                aria-label='LinkedIn'
+              >
                 <FaLinkedinIn size={24} />
-                <span className="sr-only">Visit our LinkedIn page</span>
+                <span className='sr-only'>Visit our LinkedIn page</span>
               </a>
-              <a href='#' className='text-white hover:text-gray-200' aria-label="Twitter">
+              <a
+                href='#'
+                className='text-white hover:text-gray-200'
+                aria-label='Twitter'
+              >
                 <FaXTwitter size={24} />
-                <span className="sr-only">Visit our Twitter page</span>
+                <span className='sr-only'>Visit our Twitter page</span>
               </a>
             </div>
           </div>
@@ -179,7 +215,7 @@ const ConnectWithUs = () => {
               <p className='text-lg text-gray-600 font-black'>
                 Email:{' '}
                 <span className='text-gray-800 font-medium'>
-                Contact@voltant.energy
+                  Contact@voltant.energy
                 </span>
               </p>
               <p className='text-lg text-gray-600 font-black'>
@@ -192,13 +228,13 @@ const ConnectWithUs = () => {
             <a
               href='https://wa.me/971987655432'
               className='absolute right-6 bottom-6'
-              aria-label="WhatsApp"
+              aria-label='WhatsApp'
             >
               <FaWhatsapp
                 size={28}
                 className='text-gray-600 hover:text-gray-500'
               />
-              <span className="sr-only">Contact us on WhatsApp</span>
+              <span className='sr-only'>Contact us on WhatsApp</span>
             </a>
           </div>
         </div>

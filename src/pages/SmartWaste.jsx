@@ -13,7 +13,7 @@ import MidSection from '../components/common/SectionComponents/MidSection'
 import ProfilesSection from '../components/common/SectionComponents/ProfilesSection'
 
 // Import data
-import { smartwasteData } from '../utils/sectionData'
+import { smartWasteData } from '../utils/sectionData'
 
 const SmartWaste = () => {
   return (
@@ -21,19 +21,17 @@ const SmartWaste = () => {
       {/* Use the ChatButton component */}
       <ChatButton phoneNumber='+971506419857' />
 
-      <div className='flex flex-col min-h-screen bg-white px-0 overflow-hidden'>
-        <HeroSection
-          title={smartwasteData.hero.title}
-          showSubtitle={smartwasteData.hero.showSubtitle}
-          subtitle={smartwasteData.hero.subtitle}
-          breadcrumbs={smartwasteData.hero.breadcrumbs}
-          heroImage={smartwasteData.hero.heroImage}
+      <div className='flex flex-col min-h-screen bg-white px-0 overflow-hidden'>        <HeroSection
+          title={smartWasteData.hero.title}
+          showSubtitle={smartWasteData.hero.showSubtitle}
+          subtitle={smartWasteData.hero.subtitle}
+          breadcrumbs={smartWasteData.hero.breadcrumbs}
+          heroImage={smartWasteData.hero.heroImage}
         />
 
-        <div className='w-full flex flex-col items-center justify-center px-0 md:px-20'>
-          <SeamlessChargingSection
-            title={smartwasteData.seamlessCharging.title}
-            paragraphs={smartwasteData.seamlessCharging.paragraphs}
+        <div className='w-full flex flex-col items-center justify-center px-0 md:px-20'>          <SeamlessChargingSection
+            title={smartWasteData.seamlessCharging.title}
+            paragraphs={smartWasteData.seamlessCharging.paragraphs}
           />
         </div>
 
@@ -46,20 +44,17 @@ const SmartWaste = () => {
             hidden: { opacity: 0 },
             visible: { opacity: 1, transition: { duration: 0.5 } }
           }}
-        >
-          <MidSection
-            backgroundImage={smartwasteData.midSection.backgroundImage}
-            sectionTitle={smartwasteData.midSection.sectionTitle}
-            features={smartwasteData.midSection.features}
+        >          <MidSection
+            backgroundImage={smartWasteData.midSection.backgroundImage}
+            sectionTitle={smartWasteData.midSection.sectionTitle}
+            features={smartWasteData.midSection.features}
           />
-        </motion.section>
-
-        <ProfilesSection
-          sectionTitle={smartwasteData.profiles.sectionTitle}
-          leftProfiles={smartwasteData.profiles.leftProfiles}
-          rightProfiles={smartwasteData.profiles.rightProfiles}
-          buttonText={smartwasteData.profiles.buttonText}
-          showButton={smartwasteData.profiles.showButton}
+        </motion.section>        <ProfilesSection
+          sectionTitle={smartWasteData.profiles.sectionTitle}
+          leftProfiles={smartWasteData.profiles.leftProfiles}
+          rightProfiles={smartWasteData.profiles.rightProfiles}
+          buttonText={smartWasteData.profiles.buttonText}
+          showButton={smartWasteData.profiles.showButton}
         />
       </div>
 
