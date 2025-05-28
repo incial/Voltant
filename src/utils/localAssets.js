@@ -105,6 +105,7 @@ export const evImgs = {
   engineeringWorks: '/src/assets/images/EV_charging/Engineering_works.jpg',
   ewAbout: '/src/assets/images/EV_charging/EW_about.jpg',
   moreAbout: '/src/assets/images/EV_charging/More_about.jpg',
+  charger: '/src/assets/images/EV_charging/charger.png',
   more: '/src/assets/images/EV_charging/More.jpg'
 };
 
