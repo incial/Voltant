@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
-import client1 from '../../assets/images/clients/client_1.png'
-import client2 from '../../assets/images/clients/client_2.png' // Fixed the path to client_2.png
+import client1 from '../../assets/images/Home/clients/client_1.png'
+import client2 from '../../assets/images/Home/clients/client_2.png'
 import { motion } from 'framer-motion'
 import gsap from 'gsap'
 
@@ -134,18 +134,7 @@ const ClientsSection = () => {
                   loading="lazy"
                   style={{ filter: 'grayscale(100%)', transition: 'filter 0.3s ease' }}
                   onMouseOver={(e) => hovering && (e.currentTarget.style.filter = 'grayscale(0%)')}
-                  onMouseOut={(e) => (e.currentTarget.style.filter = 'grayscale(100%)')}
-                />
-                {/* use this commented instead of img tag for cloudinary image */}
-                {/* <CloudinaryImage
-                  {...getOptimizedAssetProps(client)}
-                  alt={`Client ${(index % clients.length) + 1}`}
-                  className='h-12 md:h-16 object-contain max-w-[150px] md:max-w-[200px]'
-                  loading="lazy"
-                  style={{ filter: 'grayscale(100%)', transition: 'filter 0.3s ease' }}
-                  onMouseOver={(e) => hovering && (e.currentTarget.style.filter = 'grayscale(0%)')}
-                  onMouseOut={(e) => (e.currentTarget.style.filter = 'grayscale(100%)')}
-                /> */}
+                  onMouseOut={(e) => (e.currentTarget.style.filter = 'grayscale(100%)')}                />
               </motion.div>
             ))}
           </div>

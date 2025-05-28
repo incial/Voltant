@@ -7,8 +7,7 @@ import {
   FaLinkedin,
   FaXTwitter
 } from 'react-icons/fa6';
-import { getCloudinaryId } from '../../utils/cloudinaryAssets';
-import cld from '../../utils/cloudinary';
+import { heroVids } from '../../utils/localAssets';
 
 const HeroSection = () => {
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
@@ -20,10 +19,9 @@ const HeroSection = () => {
   const videoElements = useRef([]);
   const progressInterval = useRef(null);
   const videoDuration = 8000; // 8 seconds per video
-
   const videoMappings = [
     {
-      path: 'public/Videos/Hero-Section-1.mp4',
+      path: heroVids.heroSection1,
       title: (
         <>
           For a Sustainable Tomorrow,
@@ -33,7 +31,7 @@ const HeroSection = () => {
       )
     },
     {
-      path: 'public/Videos/Hero-Section-2.mp4',
+      path: heroVids.heroSection2,
       title: (
         <>
           Turning Waste into Power,
@@ -42,7 +40,7 @@ const HeroSection = () => {
       )
     },
     {
-      path: 'public/Videos/Hero-Section-3.mp4',
+      path: heroVids.heroSection3,
       title: (
         <>
           Maximize Efficiency,
@@ -53,12 +51,7 @@ const HeroSection = () => {
   ];
 
   const getVideoUrl = (path) => {
-    const publicId = getCloudinaryId(path, 'video');
-    if (!publicId) return null;
-    return cld.video(publicId)
-      .format('auto:video')
-      .quality('auto')
-      .toURL();
+    return path; // Return local path directly
   };
 
   // Handle mobile detection
@@ -69,11 +62,21 @@ const HeroSection = () => {
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
-  // Initialize videos and handle playback
+  }, []);  // Initialize videos and handle playback
   useEffect(() => {
     let mounted = true;
+
+    const transitionToNextVideo = () => {
+      // Reset progress
+      setProgress(0);
+
+      // Pause current video
+      videoElements.current[currentVideoIndex]?.pause();
+
+      // Switch to next video
+      const nextIndex = (currentVideoIndex + 1) % videoMappings.length;
+      setCurrentVideoIndex(nextIndex);
+    };
 
     const startPlayback = async () => {
       try {
@@ -83,7 +86,7 @@ const HeroSection = () => {
           await currentVideo.play();
           setIsPlaying(true);
         }
-      } catch (err) {
+      } catch {
         console.log("Autoplay prevented, waiting for interaction");
         const handleInteraction = () => {
           if (mounted) {
@@ -122,20 +125,7 @@ const HeroSection = () => {
       mounted = false;
       clearInterval(progressInterval.current);
     };
-  }, [currentVideoIndex]);
-
-  const transitionToNextVideo = () => {
-    // Reset progress
-    setProgress(0);
-
-    // Pause current video
-    videoElements.current[currentVideoIndex]?.pause();
-
-    // Switch to next video
-    const nextIndex = (currentVideoIndex + 1) % videoMappings.length;
-    setCurrentVideoIndex(nextIndex);
-  };
-
+  }, [currentVideoIndex, videoDuration, videoMappings.length]);
   // Handle video errors and retries
   const handleVideoError = (index) => {
     console.log(`Video ${index} error, attempting to reload`);

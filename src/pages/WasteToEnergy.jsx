@@ -1,15 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Navbar from '../components/common/Navbar'
 import Footer from '../components/common/Footer'
 import ServiceCard from '../components/common/ServiceCard'
 import { Link } from 'react-router-dom'
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion'
-import CloudinaryImage from '../components/common/CloudinaryImage'
-import CloudinaryVideo from '../components/common/CloudinaryVideo'
-import { getOptimizedAssetProps } from '../utils/cloudinaryHelper'
+import { vids, wasteImgs } from '../utils/localAssets'
 
 const WasteToEnergy = () => {
+  const [videoLoaded, setVideoLoaded] = useState(false)
+
   // Services data array
   const services = [
     {
@@ -20,12 +20,12 @@ const WasteToEnergy = () => {
           Plant
         </>
       ),
-      image: 'src/assets/images/Containerized_plant.png',
+      image: wasteImgs.containerizedPlant,
       path: '/waste-to-energy/containerized-plant'
     },
     {
       title: <>Household</>,
-      image: 'src/assets/images/Household_mid.png',
+      image: wasteImgs.household,
       path: '/waste-to-energy/household'
     },
     {
@@ -36,7 +36,7 @@ const WasteToEnergy = () => {
           Plant
         </>
       ),
-      image: 'src/assets/images/Large_Scale_plant.png',
+      image: wasteImgs.largeScalePlant,
       path: '/waste-to-energy/large-scale'
     },
     {
@@ -49,7 +49,7 @@ const WasteToEnergy = () => {
           Bins
         </>
       ),
-      image: 'src/assets/images/Smart_Waste.png',
+      image: wasteImgs.smartWaste,
       path: '/waste-to-energy/smart-waste'
     }
   ]
@@ -63,18 +63,21 @@ const WasteToEnergy = () => {
         <div className='relative h-[550px]'>
           {/* Video Background */}
           <div className='absolute inset-0 overflow-hidden'>
-            <CloudinaryVideo
-              {...getOptimizedAssetProps(
-                'public/Videos/Waste_To_Energy.mp4',
-                'hero',
-                'video'
-              )}
+            {!videoLoaded && (
+              <div className='absolute inset-0 bg-gray-800 z-10 flex items-center justify-center'>
+                <div className="w-12 h-12 border-4 border-green-400 border-t-transparent rounded-full animate-spin" />
+              </div>
+            )}
+            <video
+              src={vids.wasteToEnergy}
               className='w-full h-full object-cover'
               autoPlay={true}
               loop={true}
               muted={true}
               controls={false}
               playsInline={true}
+              onLoadedData={() => setVideoLoaded(true)}
+              style={{ opacity: videoLoaded ? 1 : 0, transition: 'opacity 1s' }}
             />
             <div className='absolute inset-0 bg-black opacity-40'></div>
           </div>
@@ -109,23 +112,25 @@ const WasteToEnergy = () => {
       </div>
 
       {/* Desktop View - Only visible on medium and larger screens */}
-      <div className='hidden md:flex min-h-screen flex-col'>
-        {/* Hero Section with Video Background */}
+      <div className='hidden md:flex min-h-screen flex-col'>        {/* Hero Section with Video Background */}
         <section className='relative w-full h-screen'>
           {/* Video Background */}
           <div className='absolute inset-0 w-full h-full overflow-hidden'>
-            <CloudinaryVideo
-              {...getOptimizedAssetProps(
-                'public/Videos/Waste_To_Energy.mp4',
-                'hero',
-                'video'
-              )}
+            {!videoLoaded && (
+              <div className='absolute inset-0 bg-gray-800 z-10 flex items-center justify-center'>
+                <div className="w-12 h-12 border-4 border-green-400 border-t-transparent rounded-full animate-spin" />
+              </div>
+            )}
+            <video
+              src={vids.wasteToEnergy}
               className='w-full h-full object-cover'
               autoPlay={true}
               loop={true}
               muted={true}
               controls={false}
               playsInline={true}
+              onLoadedData={() => setVideoLoaded(true)}
+              style={{ opacity: videoLoaded ? 1 : 0, transition: 'opacity 1s' }}
             />
             <div className='absolute inset-0 bg-black opacity-40'></div>
           </div>
