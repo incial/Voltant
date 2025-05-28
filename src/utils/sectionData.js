@@ -547,35 +547,35 @@ export const smartwasteData = {
     ]
   },
   midSection: {
-    backgroundImage: 'src/assets/images/SmartWaste_mid.png',
+    backgroundImage: wasteImgs.swAbout,
     sectionTitle: 'Sort Smart, Waste Less.',
     features: [
       {
-        icon: 'src/assets/icons/containerized/stash_star-light.svg',
+        icon: heroIcons.star,
         title: 'Automated Sorting',
         description:
           'AI-powered identification of waste types for precise segregation.'
       },
       {
-        icon: 'src/assets/icons/containerized/material-symbols-light_motion-blur-rounded.svg',
+        icon: heroIcons.comet,
         title: 'Smart Monitoring',
         description:
           'Real-time fill level tracking and alerts for optimized waste collection.'
       },
       {
-        icon: 'src/assets/icons/containerized/pepicons-pencil_leaf-circle.svg',
+        icon: heroIcons.leaf,
         title: 'Energy Efficient',
         description:
           'Low-power consumption with sustainable battery/solar options.'
       },
       {
-        icon: 'src/assets/icons/containerized/mdi-light_thumb-up.svg',
+        icon: heroIcons.thumbUp,
         title: 'Odor Control',
         description:
           'Sealed compartments with deodorizing technology for a hygienic experience.'
       },
       {
-        icon: 'src/assets/icons/containerized/solar_scale-broken.svg',
+        icon: heroIcons.scale,
         title: 'Versatile Applications',
         description:
           'Ideal for households, businesses, and public spaces.'
@@ -891,3 +891,5 @@ export const DCData = {
     pdfUrl2: "",
   },
 }
+// SmartWaste Data
+export const smartWasteData = smartwasteData;
