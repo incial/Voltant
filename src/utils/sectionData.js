@@ -1,10 +1,13 @@
+import e from "cors"
+import { evImgs, heroIcons, wasteImgs } from "./localAssets"
+
 // CPO Data
 export const cpoData = {
   hero: {
     title: 'CPO',
     breadcrumbs: ['Home', 'EV Charging', 'CPO'],
     showSubtitle: false,
-    heroImage: 'src/assets/images/CPO_main.png'
+    heroImage: evImgs.cpo
   },
   seamlessCharging: {
     title: 'Seamless Charging, Smarter Operations',
@@ -14,41 +17,41 @@ export const cpoData = {
     ]
   },
   midSection: {
-    backgroundImage: 'src/assets/images/CPO_main_sub.png',
+    backgroundImage: evImgs.cpoAbout,
     sectionTitle: 'Why Choose Us?',
     features: [
       {
-        icon: 'src/assets/icons/cpo/stash_folder-alt-light.svg',
+        icon: heroIcons.folder,
         title: 'End-to-End Charging Network Management',
         description:
           'We oversee the installation, operation, and maintenance of charging stations, ensuring seamless functionality.'
       },
       {
-        icon: 'src/assets/icons/cpo/Group.svg',
+        icon: heroIcons.stat,
         title: 'Real-Time Monitoring & Remote Diagnostics',
         description:
           'Our smart platform enables live tracking, fault detection, and remote troubleshooting for minimal downtime.'
       },
       {
-        icon: 'src/assets/icons/cpo/pepicons-pencil_leaf-circle.svg',
+        icon: heroIcons.leaf,
         title: 'Dynamic Load Balancing & Energy Optimization',
         description:
           'We optimize power distribution across multiple chargers, reducing energy costs while maximizing efficiency.'
       },
       {
-        icon: 'src/assets/icons/cpo/mdi-light_thumb-up.svg',
+        icon: heroIcons.thumbUp,
         title: 'User Access & Payment Solutions',
         description:
           'Integrated RFID, mobile app, and contactless payment systems provide a hassle-free charging experience.'
       },
       {
-        icon: 'src/assets/icons/cpo/mdi-light_vector-combine.svg',
+        icon: heroIcons.vectorCombine,
         title: 'Scalable & Future-Ready Infrastructure',
         description:
           'Our modular, cloud-based systems support network expansion and easy upgrades for long-term scalability.'
       },
       {
-        icon: 'src/assets/icons/cpo/stash_star-light.svg',
+        icon: heroIcons.star,
         title: 'Compliance & Data Security',
         description:
           'We ensure all transactions, user data, and system operations meet the highest security and regulatory standards.'
@@ -99,7 +102,7 @@ export const moreData = {
     showSubtitle: true,
     subtitle:
       'EV Charging Accessories, AMC, EV Converisons, CPMS Billing System',
-    heroImage: 'src/assets/images/morehero.png'
+    heroImage: evImgs.more
   },
   seamlessCharging: {
     title: 'Enhancing EV Charging with Smart Solutions',
@@ -108,29 +111,29 @@ export const moreData = {
     ]
   },
   midSection: {
-    backgroundImage: 'src/assets/images/moremidbanner.png',
+    backgroundImage: evImgs.moreAbout,
     sectionTitle: 'Why Choose Us?',
     features: [
       {
-        icon: 'src/assets/icons/more/lets-icons_lightning-light.svg',
+        icon: heroIcons.power,
         title: 'EV Charging Accessories',
         description:
           'From cables and connectors to mounting solutions and surge protectors, we provide high-quality accessories to enhance charging efficiency and safety.'
       },
       {
-        icon: 'src/assets/icons/cpo/mdi-light_thumb-up.svg',
+        icon: heroIcons.like,
         title: 'Annual Maintenance Contracts (AMC)',
         description:
           'Keep your charging network running at peak performance with our preventive maintenance, on-demand support, and system health monitoring.'
       },
       {
-        icon: 'src/assets/icons/cpo/mdi-light_vector-combine.svg',
+        icon: heroIcons.vectorCombine,
         title: 'Seamless Grid Integration',
         description:
           'Transform conventional vehicles into eco-friendly EVs with our expert conversion solutions, enabling businesses and individuals to embrace sustainability.'
       },
       {
-        icon: 'src/assets/icons/cpo/stash_star-light.svg',
+        icon: heroIcons.star,
         title: 'CPMS & Billing System',
         description:
           'Our Charge Point Management System (CPMS) offers real-time monitoring, automated billing, RFID authentication, and seamless payment integration for a hassle-free charging experience'
@@ -174,7 +177,7 @@ export const householdData = {
     title: 'Household',
     breadcrumbs: ['Home', 'Waste To Energy', 'Household'],
     showSubtitle: false,
-    heroImage: 'src/assets/images/Household_hero.png'
+    heroImage: wasteImgs.household
   },
   seamlessCharging: {
     title: 'Sustainable Solutions for Home Waste Management',
@@ -184,32 +187,32 @@ export const householdData = {
     ]
   },
   midSection: {
-    backgroundImage: 'src/assets/images/Household_mid.png',
+    backgroundImage: wasteImgs.hsAbout,
     sectionTitle: 'Why Choose Us?',
     features: [
       {
-        icon: 'src/assets/icons/household/icon-park-outline_tailoring.svg',
+        icon: heroIcons.tailoring,
         title: 'Compact & Space-Saving',
         description: 'Perfect for home and small-scale setups.'
       },
       {
-        icon: 'src/assets/icons/household/stash_star-light.svg',
+        icon: heroIcons.star,
         title: 'Waste-to-Energy Convenience',
         description: 'Converts kitchen and organic waste into usable biogas.'
       },
       {
-        icon: 'src/assets/icons/household/Group.svg',
+        icon: heroIcons.scaleMoney,
         title: 'Eco-Friendly & Cost-Effective',
         description:
           'Reduces reliance on fossil fuels and lowers waste management costs.'
       },
       {
-        icon: 'src/assets/icons/household/mdi-light_thumb-up.svg',
+        icon: heroIcons.thumbUp,
         title: 'Low Maintenance',
         description: 'Simple operation with minimal upkeep.'
       },
       {
-        icon: 'src/assets/icons/household/pepicons-pencil_leaf-circle.svg',
+        icon: heroIcons.leaf,
         title: 'Sustainable Living',
         description: 'Supports a circular economy and reduces carbon footprint.'
       }
@@ -252,7 +255,7 @@ export const engineeringWorksData = {
     title: 'Engineering Works',
     breadcrumbs: ['Home', 'EV Charging', 'Engineering Works'],
     showSubtitle: false,
-    heroImage: 'src/assets/images/engineering_works/hero.png'
+    heroImage: evImgs.engineeringWorks
   },
   seamlessCharging: {
     title: 'Engineering Works: Precision, Efficiency & Innovation',
@@ -263,41 +266,41 @@ export const engineeringWorksData = {
     ]
   },
   midSection: {
-    backgroundImage: 'src/assets/images/engineering_works/middle.png',
+    backgroundImage: evImgs.ewAbout,
     sectionTitle: 'Why Choose Us?',
     features: [
       {
-        icon: 'src/assets/icons/engineering-works/mdi-light_thumb-up.svg',
+        icon: heroIcons.star,
         title: 'Expert-Led Solutions',
         description:
           'Our team of skilled engineers ensures precision in every stage of deployment.'
       },
       {
-        icon: 'src/assets/icons/engineering-works/fluent_hourglass-20-regular.svg',
+        icon: heroIcons.tailoring,
         title: 'Tailored for Your Needs',
         description:
           'Custom solutions for commercial hubs, fleet depots, and residential installations.'
       },
       {
-        icon: 'src/assets/icons/engineering-works/mdi-light_vector-combine.svg',
+        icon: heroIcons.vectorCombine,
         title: 'Seamless Grid Integration',
         description:
           'Optimized power distribution with advanced load balancing technology.'
       },
       {
-        icon: 'src/assets/icons/engineering-works/si_shield-health-safety-line.svg',
+        icon: heroIcons.shield,
         title: 'Compliance & Safety First',
         description:
           'Adherence to UAE regulations and global industry standards.'
       },
       {
-        icon: 'src/assets/icons/engineering-works/stash_star-light.svg',
+        icon: heroIcons.time,
         title: 'Future-Ready Infrastructure',
         description:
           'Scalable, smart, and equipped for evolving EV charging demands.'
       },
       {
-        icon: 'src/assets/icons/engineering-works/Group.svg',
+        icon: heroIcons.thumbUp,
         title: 'End-to-End Support',
         description:
           'From planning to execution, we handle every aspect for a hassle-free setup.'
@@ -346,7 +349,7 @@ export const largeScaleData = {
     title: 'Large Scale Plant',
     breadcrumbs: ['Home', 'Waste To Energy', 'Large Scale Plant'],
     showSubtitle: false,
-    heroImage: 'src/assets/images/large_scale/hero.png'
+    heroImage: wasteImgs.largeScalePlant
   },
   seamlessCharging: {
     title: 'Powering Sustainability at Scale.',
@@ -355,41 +358,41 @@ export const largeScaleData = {
     ]
   },
   midSection: {
-    backgroundImage: 'src/assets/images/large_scale/middle.png',
+    backgroundImage: wasteImgs.lsAbout,
     sectionTitle: 'Big Impact, Sustainable Future.',
     features: [
       {
-        icon: 'src/assets/icons/engineering-works/mdi-light_thumb-up.svg',
+        icon: heroIcons.thumbUp,
         title: 'High-Capacity Processing',
         description:
           'Handles large volumes of organic waste efficiently.'
       },
       {
-        icon: 'src/assets/icons/engineering-works/fluent_hourglass-20-regular.svg',
+        icon: heroIcons.tailoring,
         title: 'Customizable & Scalable',
         description:
           'Tailored solutions to meet industrial needs.'
       },
       {
-        icon: 'src/assets/icons/engineering-works/mdi-light_vector-combine.svg',
+        icon: heroIcons.scale,
         title: 'Advanced Anaerobic Digestion',
         description:
           'Maximizes biogas yield and energy recovery.'
       },
       {
-        icon: 'src/assets/icons/engineering-works/si_shield-health-safety-line.svg',
+        icon: heroIcons.comet,
         title: 'Cost-Effective & Sustainable ',
         description:
           'Reduces waste management costs and carbon footprint.'
       },
       {
-        icon: 'src/assets/icons/engineering-works/stash_star-light.svg',
+        icon: heroIcons.star,
         title: 'Grid Integration Ready',
         description:
           'Seamless energy conversion for power or fuel applications.'
       },
       {
-        icon: 'src/assets/icons/engineering-works/Group.svg',
+        icon: heroIcons.leaf,
         title: 'Robust & Durable',
         description:
           'Engineered for long-term performance with minimal maintenance.'
@@ -438,7 +441,7 @@ export const containerizedData = {
     title: 'Containerized Plant',
     breadcrumbs: ['Home', 'Waste To Energy', 'Containerized Plant'],
     showSubtitle: false,
-    heroImage: 'src/assets/images/containerized/hero.png'
+    heroImage: wasteImgs.containerizedPlant
   },
   seamlessCharging: {
     title: 'Containerized Biogas Plants: Scalable & Sustainable Energy Solutions',
@@ -447,47 +450,47 @@ export const containerizedData = {
     ]
   },
   midSection: {
-    backgroundImage: 'src/assets/images/containerized/middle.png',
+    backgroundImage: wasteImgs.cpAbout,
     sectionTitle: 'Big Impact, Sustainable Future.',
     features: [
       {
-        icon: 'src/assets/icons/containerized/mdi-light_thumb-up.svg',
+        icon: heroIcons.thumbUp,
         title: 'Modular & Pre-Assembled ',
         description:
           'Ready-to-install design for quick deployment.'
       },
       {
-        icon: 'src/assets/icons/containerized/icon-park-outline_tailoring.svg',
+        icon: heroIcons.tailoring,
         title: 'Compact & Space-Efficient',
         description:
           'Ideal for limited spaces without compromising efficiency.'
       },
       {
-        icon: 'src/assets/icons/containerized/solar_scale-broken.svg',
+        icon: heroIcons.scale,
         title: 'Scalable Capacity',
         description:
           'Expandable solutions to match waste processing needs.'
       },
       {
-        icon: 'src/assets/icons/containerized/material-symbols-light_motion-blur-rounded.svg',
+        icon: heroIcons.comet,
         title: 'Advanced Anaerobic Digestion',
         description:
           ' Efficiently converts organic waste into biogas and bio-fertilizer.'
       },
       {
-        icon: 'src/assets/icons/containerized/stash_star-light.svg',
+        icon: heroIcons.star,
         title: 'Low Maintenance & High Durability',
         description:
           'Built for long-term, hassle-free operation.'
       },
       {
-        icon: 'src/assets/icons/containerized/pepicons-pencil_leaf-circle.svg',
+        icon: heroIcons.leaf,
         title: 'Eco-Friendly & Sustainable',
         description:
           ' Reduces landfill waste and promotes a circular economy.'
       },
       {
-        icon: 'src/assets/icons/containerized/mdi-light_vector-combine.svg',
+        icon: heroIcons.vectorCombine,
         title: 'Remote Monitoring & Automation',
         description:
           'Smart controls for optimized performance and minimal manual intervention.'
@@ -535,7 +538,7 @@ export const smartwasteData = {
     title: 'Smart Waste Segregation Bins',
     breadcrumbs: ['Home', 'Waste To Energy', 'Smart Waste Segregation Bins'],
     showSubtitle: false,
-    heroImage: 'src/assets/images/SmartWaste_hero.png'
+    heroImage: wasteImgs.smartWaste
   },
   seamlessCharging: {
     title: 'Automated Sorting, Sustainable Living.',
@@ -544,35 +547,35 @@ export const smartwasteData = {
     ]
   },
   midSection: {
-    backgroundImage: 'src/assets/images/SmartWaste_mid.png',
+    backgroundImage: wasteImgs.swAbout,
     sectionTitle: 'Sort Smart, Waste Less.',
     features: [
       {
-        icon: 'src/assets/icons/containerized/stash_star-light.svg',
+        icon: heroIcons.star,
         title: 'Automated Sorting',
         description:
           'AI-powered identification of waste types for precise segregation.'
       },
       {
-        icon: 'src/assets/icons/containerized/material-symbols-light_motion-blur-rounded.svg',
+        icon: heroIcons.comet,
         title: 'Smart Monitoring',
         description:
           'Real-time fill level tracking and alerts for optimized waste collection.'
       },
       {
-        icon: 'src/assets/icons/containerized/pepicons-pencil_leaf-circle.svg',
+        icon: heroIcons.leaf,
         title: 'Energy Efficient',
         description:
           'Low-power consumption with sustainable battery/solar options.'
       },
       {
-        icon: 'src/assets/icons/containerized/mdi-light_thumb-up.svg',
+        icon: heroIcons.thumbUp,
         title: 'Odor Control',
         description:
           'Sealed compartments with deodorizing technology for a hygienic experience.'
       },
       {
-        icon: 'src/assets/icons/containerized/solar_scale-broken.svg',
+        icon: heroIcons.scale,
         title: 'Versatile Applications',
         description:
           'Ideal for households, businesses, and public spaces.'
@@ -620,7 +623,7 @@ export const ACData = {
     title: 'AC Chargers',
     breadcrumbs: ['Home', 'EV Charging', 'AC Chargers'],
     showSubtitle: false,
-    heroImage: 'src/assets/images/ac_charge.png'
+    heroImage: evImgs.acCharger
   },
   seamlessCharging: {
     title: ' AC Chargers: Smart, Efficient & Reliable EV Charging',
@@ -630,47 +633,47 @@ export const ACData = {
     ]
   },
   midSection: {
-    backgroundImage: 'src/assets/images/Ac_mid.png',
+    backgroundImage: evImgs.acAbout,
     sectionTitle: 'Why Choose AC Charging ?',
     features: [
       {
-        icon: 'src/assets/icons/containerized/stash_star-light.svg',
+        icon: heroIcons.star,
         title: 'Smart connectivity ',
         description:
           'with WiFi, Bluetooth, and RFID access control.'
       },
       {
-        icon: 'src/assets/icons/containerized/pepicons-pencil_leaf-circle.svg',
+        icon: heroIcons.leaf,
         title: 'Energy-Efficient & Cost-Effective',
         description:
           'Delivers steady, optimized charging with lower infrastructure costs.'
       },
       {
-        icon: 'src/assets/icons/containerized/mdi-light_vector-combine.svg',
+        icon: heroIcons.vectorCombine,
         title: 'Multiple charging standards',
         description:
           '(GBT, Type 1, Type 2) for universal compatibility.'
       },
       {
-        icon: 'src/assets/icons/containerized/mdi-light_thumb-up.svg',
+        icon: heroIcons.thumbUp,
         title: 'Integrated safety features',
         description:
           'including Type B leakage protection, overvoltage, and short circuit protection.'
       },
       {
-        icon: 'src/assets/icons/Drop.svg',
+        icon: heroIcons.water,
         title: 'IP65-rated waterproof design',
         description:
           'ensuring durability in all weather conditions.'
       },
       {
-        icon: 'src/assets/icons/containerized/material-symbols-light_motion-blur-rounded.svg',
+        icon: heroIcons.comet,
         title: 'Human motion radar sensor',
         description:
           ' for automatic screen brightness adjustment.'
       },
       {
-        icon: 'src/assets/icons/containerized/icon-park-outline_tailoring.svg',
+        icon: heroIcons.tailoring,
         title: 'Customizable options',
         description:
           'including wall-mounted or pedestal installations.'
@@ -688,21 +691,21 @@ export const ACData = {
     chargerModels: [
       {
         power: "7 kW",
-        imageUrl: "src/assets/images/charger.png",
+        imageUrl: evImgs.charger,
         model: "EVE07W",
         current: "32A",
         maxPower: "7.4kW"
       },
       {
         power: "11 kW",
-        imageUrl: "src/assets/images/charger.png",
+        imageUrl: evImgs.charger,
         model: "EVE11W",
         current: "32A",
         maxPower: "11kW"
       },
       {
         power: "22 kW",
-        imageUrl: "src/assets/images/charger.png",
+        imageUrl: evImgs.charger,
         model: "EVE22W",
         current: "32A",
         maxPower: "22kW"
@@ -760,7 +763,7 @@ export const DCData = {
     title: 'DC Chargers',
     breadcrumbs: ['Home', 'EV Charging', 'DC Chargers'],
     showSubtitle: false,
-    heroImage: 'src/assets/images/DC_hero.png'
+    heroImage: evImgs.dcCharger
   },
   seamlessCharging: {
     title: ' DC Chargers: Fast, Powerful & Future-Ready',
@@ -770,41 +773,41 @@ export const DCData = {
     ]
   },
   midSection: {
-    backgroundImage: 'src/assets/images/DC_mid.png',
+    backgroundImage: evImgs.dcAbout,
     sectionTitle: 'Why Choose AC Charging ?',
     features: [
       {
-        icon: 'src/assets/icons/more/lets-icons_lightning-light.svg',
+        icon: heroIcons.power,
         title: 'Smart connectivity ',
         description:
           'with WiFi, Bluetooth, and RFID access control.'
       },
       {
-        icon: 'src/assets/icons/engineering-works/fluent_hourglass-20-regular.svg',
+        icon: heroIcons.time,
         title: 'Energy-Efficient & Cost-Effective',
         description:
           'Delivers steady, optimized charging with lower infrastructure costs.'
       },
       {
-        icon: 'src/assets/icons/containerized/mdi-light_vector-combine.svg',
+        icon: heroIcons.vectorCombine,
         title: 'Multiple charging standards',
         description:
           '(GBT, Type 1, Type 2) for universal compatibility.'
       },
       {
-        icon: 'src/assets/icons/containerized/mdi-light_thumb-up.svg',
+        icon: heroIcons.thumbUp,
         title: 'Integrated safety features',
         description:
           'including Type B leakage protection, overvoltage, and short circuit protection.'
       },
       {
-        icon: 'src/assets/icons/containerized/stash_star-light.svg',
+        icon: heroIcons.star,
         title: 'IP65-rated waterproof design',
         description:
           'ensuring durability in all weather conditions.'
       },
       {
-        icon: 'src/assets/icons/iconoir_sun-light.svg',
+        icon: heroIcons.sun,
         title: 'Human motion radar sensor',
         description:
           ' for automatic screen brightness adjustment.'
@@ -822,21 +825,21 @@ export const DCData = {
     chargerModels: [
       {
         power: "7 kW",
-        imageUrl: "src/assets/images/charger.png",
+        imageUrl: evImgs.charger,
         model: "EVE07W",
         current: "32A",
         maxPower: "7.4kW"
       },
       {
         power: "11 kW",
-        imageUrl: "src/assets/images/charger.png",
+        imageUrl: evImgs.charger,
         model: "EVE11W",
         current: "32A",
         maxPower: "11kW"
       },
       {
         power: "22 kW",
-        imageUrl: "src/assets/images/charger.png",
+        imageUrl: evImgs.charger,
         model: "EVE22W",
         current: "32A",
         maxPower: "22kW"
@@ -888,3 +891,5 @@ export const DCData = {
     pdfUrl2: "",
   },
 }
+// SmartWaste Data
+export const smartWasteData = smartwasteData;

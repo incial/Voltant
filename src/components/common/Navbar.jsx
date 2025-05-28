@@ -2,8 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from 'framer-motion';
-import CloudinaryImage from './CloudinaryImage';
-import { getOptimizedAssetProps } from '../../utils/cloudinaryHelper';
+import { whiteLogo } from '../../utils/localAssets';
 import { useContactForm } from '../../context/ContactFormContext';
 
 const Navbar = () => {
@@ -114,11 +113,9 @@ const Navbar = () => {
       }}
     >
       <div className="relative max-w-screen-2xl mx-auto flex justify-between items-center py-4 px-4 md:px-6 lg:px-8 md:mt-0 mt-6 ml-4 md:ml-0">
-        {/* Logo */}
-        <div className="flex items-center z-10">
-          <Link to="/" className="flex items-center">
-            <CloudinaryImage
-              {...getOptimizedAssetProps('src/assets/images/white_logo.png')}
+        {/* Logo */}        <div className="flex items-center z-10">          <Link to="/" className="flex items-center">
+            <img
+              src={whiteLogo}
               alt="Voltant Energy"
               className="h-8 md:h-10"
             />
@@ -224,11 +221,9 @@ const Navbar = () => {
               msBackdropFilter: 'blur(4px)'
             }}
           >
-            <div className="p-8">
-              <div className="absolute top-4 left-4 p-6 py-8">
-                <Link to="/" className="flex items-center">
-                  <CloudinaryImage
-                    {...getOptimizedAssetProps('src/assets/images/white_logo.png')}
+            <div className="p-8">              <div className="absolute top-4 left-4 p-6 py-8">                <Link to="/" className="flex items-center">
+                  <img
+                    src={whiteLogo}
                     alt="Voltant Energy"
                     className="h-8"
                   />

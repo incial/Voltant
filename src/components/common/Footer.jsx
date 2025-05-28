@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   FaYoutube,
   FaInstagram,
@@ -7,42 +7,39 @@ import {
   FaWhatsapp
 } from 'react-icons/fa'
 import { FaXTwitter } from 'react-icons/fa6'
-import CloudinaryImage from './CloudinaryImage'
-import { getOptimizedAssetProps } from '../../utils/cloudinaryHelper'
+import { footerImage, whiteLogo } from '../../utils/localAssets'
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()
-
+  const [imageLoaded, setImageLoaded] = useState({})
   return (
     <footer className="bg-[#00251a] text-white relative py-10 font-['Cairo']">
       {/* Footer background image with overlay */}
       <div className='absolute inset-0 z-0 overflow-hidden'>
-        <CloudinaryImage
-          {...getOptimizedAssetProps(
-            'src/assets/images/footer_image.png',
-            'general',
-            'image'
-          )}
+        {!imageLoaded.background && (
+          <div className='absolute inset-0 bg-gray-800 z-5 flex items-center justify-center'>
+            <div className="w-8 h-8 border-4 border-green-400 border-t-transparent rounded-full animate-spin" />
+          </div>
+        )}
+        <img
+          src={footerImage}
           alt='Footer background'
           className='w-full h-full object-cover'
+          onLoad={() => setImageLoaded(prev => ({ ...prev, background: true }))}
+          style={{ opacity: imageLoaded.background ? 1 : 0, transition: 'opacity 1s' }}
         />
         <div className='absolute inset-0 bg-black/30 backdrop-blur-[2px]'></div>
-      </div>
-
-      {/* Mobile Layout (Default) */}
-      <div className="container mx-auto px-4 sm:px-6 relative z-20 flex flex-col items-center md:hidden font-['Cairo']">
-        {/* Logo */}
-        <div className='mb-8 sm:mb-10'>
-          <CloudinaryImage
-            {...getOptimizedAssetProps(
-              'src/assets/images/white_logo.png',
-              'logo',
-              'image'
-            )}
-            alt='Voltant Energy Logo'
-            className='h-9 sm:h-10'
-          />
-        </div>
+      </div>        {/* Mobile Layout (Default) */}
+        <div className="container mx-auto px-4 sm:px-6 relative z-20 flex flex-col items-center md:hidden font-['Cairo']">
+          {/* Logo */}
+          <div className='mb-8 sm:mb-10'>
+            <img
+              src={whiteLogo}
+              alt='Voltant Energy Logo'
+              className='h-9 sm:h-10'
+              loading="eager"
+            />
+          </div>
 
         {/* Social Media Icons */}
         <div className='flex justify-center space-x-6 sm:space-x-8 mb-8 sm:mb-10'>
@@ -112,18 +109,14 @@ const Footer = () => {
 
       {/* Desktop Layout (md and up) */}
       <div className="hidden md:block container mx-auto px-32 relative z-20 py-6 font-['Cairo']">
-        <div className='flex flex-row justify-between items-center'>
-          {/* Left side: Logo and Copyright */}
+        <div className='flex flex-row justify-between items-center'>          {/* Left side: Logo and Copyright */}
           <div className='flex flex-col gap-8'>
             <div>
-              <CloudinaryImage
-                {...getOptimizedAssetProps(
-                  'src/assets/images/white_logo.png',
-                  'logo',
-                  'image'
-                )}
+              <img
+                src={whiteLogo}
                 alt='Voltant Energy Logo'
                 className='h-11 md:h-12'
+                loading="eager"
               />
             </div>
             <div className='text-sm'>
@@ -198,11 +191,10 @@ const Footer = () => {
               aria-label='WhatsApp'
             >
               <FaWhatsapp size={22} />
-            </a>
-          </div>
+            </a>          </div>
         </div>
       </div>
-    </footer>
+      </footer>
   )
 }
 

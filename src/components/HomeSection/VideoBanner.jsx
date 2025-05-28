@@ -1,19 +1,28 @@
-import React from 'react'
-import CloudinaryVideo from '../common/CloudinaryVideo'
-import { getOptimizedAssetProps } from '../../utils/cloudinaryHelper'
+import React, { useState } from 'react'
+import { vids } from '../../utils/localAssets'
 
 const VideoBanner = () => {
+  const [videoLoaded, setVideoLoaded] = useState(false)
+
   return (
     <div className='relative w-full overflow-hidden'>
       {/* Video Background */}
       <div className='w-full h-[600px] md:h-[600px] relative'>
-        <CloudinaryVideo
-          {...getOptimizedAssetProps(
-            'public/Videos/Video_Banner.mp4',
-            'banner',
-            'video'
-          )}
+        {/* Loading overlay */}
+        {!videoLoaded && (
+          <div className='absolute inset-0 bg-gray-800 z-10 flex items-center justify-center'>
+            <div className="w-12 h-12 border-4 border-green-400 border-t-transparent rounded-full animate-spin" />
+          </div>
+        )}
+        <video
+          src={vids.videoBanner}
           className='absolute inset-0 w-full h-full object-cover object-bottom'
+          autoPlay
+          loop
+          muted
+          playsInline
+          onLoadedData={() => setVideoLoaded(true)}
+          style={{ opacity: videoLoaded ? 1 : 0, transition: 'opacity 1s' }}
         />
 
         {/* Overlay for better text readability */}
