@@ -22,7 +22,7 @@ const images = [
       'From smart modular containerized plants to large-scale anerobic digestion solutions, we transform organic waste into sustainable energy.',
     button: 'Learn More',
     vid: vids.wasteToEnergy,
-    icon: heroIcons.circle,
+    icon: heroIcons.waterPure,
     link: '/waste-to-energy'
   }
 ]

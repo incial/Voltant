@@ -1,8 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
-import client1 from '../../assets/images/Home/clients/client_1.png'
-import client2 from '../../assets/images/Home/clients/client_2.png'
 import { motion } from 'framer-motion'
 import gsap from 'gsap'
+import { clientImgs } from '../../utils/localAssets'
 
 const ClientsSection = () => {
   const scrollerRef = useRef(null)
@@ -10,7 +9,7 @@ const ClientsSection = () => {
   const [hovering, setHovering] = useState(false)
   
   // Create an array of clients (duplicate for seamless looping)
-  const clients = [client1, client2, client1, client2, client1, client2]
+  const clients = [clientImgs.client1, clientImgs.client2, clientImgs.client1, clientImgs.client2, clientImgs.client1, clientImgs.client2]
   const duplicatedClients = [...clients, ...clients, ...clients] // Triple the array for smooth looping
 
   // Set up GSAP animation
