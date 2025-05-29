@@ -1,4 +1,3 @@
-import e from "cors"
 import { evImgs, heroIcons, wasteImgs } from "./localAssets"
 
 // CPO Data

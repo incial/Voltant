@@ -29,96 +29,96 @@ export const vids = {
 
 // Logo and Brand Assets
 export const logos = {
-  main: '/src/assets/images/Home/Logo.png',
-  white: '/src/assets/images/Home/Logo_white.png',
-  icon: '/src/assets/images/Home/Logo_icon.svg'
+  main: '/assets/images/Home/Logo.png',
+  white: '/assets/images/Home/Logo_white.png',
+  icon: '/assets/images/Home/Logo_icon.svg'
 };
 
 // Hero Section Icons
 export const heroIcons = {
-  battery: '/src/assets/icons/battery.svg',
-  circle: '/src/assets/icons/circle.svg', // Used in SplitImages
-  comet: '/src/assets/icons/comet.svg',
-  crop: '/src/assets/icons/crop.svg',
-  folder: '/src/assets/icons/folder.svg',
-  leaf: '/src/assets/icons/leaf.svg',
-  like: '/src/assets/icons/like.svg',
-  multi: '/src/assets/icons/multi.svg',
-  power: '/src/assets/icons/Power.svg',
-  scaleMoney: '/src/assets/icons/Scale_money.svg',
-  scale: '/src/assets/icons/Scale.svg',
-  shield: '/src/assets/icons/sheild.svg',
-  star: '/src/assets/icons/star.svg',
-  stat: '/src/assets/icons/stat.svg',
-  sun: '/src/assets/icons/sun.svg',
-  time: '/src/assets/icons/TIme.svg',
-  water: '/src/assets/icons/water.svg',
-  waterPure: '/src/assets/icons/waterpure.svg',
+  battery: '/assets/icons/battery.svg',
+  circle: '/assets/icons/circle.svg', // Used in SplitImages
+  comet: '/assets/icons/comet.svg',
+  crop: '/assets/icons/crop.svg',
+  folder: '/assets/icons/folder.svg',
+  leaf: '/assets/icons/leaf.svg',
+  like: '/assets/icons/like.svg',
+  multi: '/assets/icons/multi.svg',
+  power: '/assets/icons/Power.svg',
+  scaleMoney: '/assets/icons/Scale_money.svg',
+  scale: '/assets/icons/Scale.svg',
+  shield: '/assets/icons/sheild.svg',
+  star: '/assets/icons/star.svg',
+  stat: '/assets/icons/stat.svg',
+  sun: '/assets/icons/sun.svg',
+  time: '/assets/icons/TIme.svg',
+  water: '/assets/icons/water.svg',
+  waterPure: '/assets/icons/waterpure.svg',
   // Fallback mappings for icons used in sectionData.js
-  folderAlt: '/src/assets/icons/folder.svg', // stash_folder-alt-light.svg fallback
-  group: '/src/assets/icons/multi.svg', // Group.svg fallback  
-  leafCircle: '/src/assets/icons/leaf.svg', // pepicons-pencil_leaf-circle.svg fallback
-  thumbUp: '/src/assets/icons/like.svg', // mdi-light_thumb-up.svg fallback
-  vectorCombine: '/src/assets/icons/multi.svg', // mdi-light_vector-combine.svg fallback
-  starLight: '/src/assets/icons/star.svg', // stash_star-light.svg fallback
-  lightning: '/src/assets/icons/comet.svg', // lets-icons_lightning-light.svg fallback
-  tailoring: '/src/assets/icons/crop.svg', // icon-park-outline_tailoring.svg fallback
-  hourglass: '/src/assets/icons/time.svg', // fluent_hourglass-20-regular.svg fallback
-  shieldSafety: '/src/assets/icons/sheild.svg', // si_shield-health-safety-line.svg fallback
-  motionBlur: '/src/assets/icons/comet.svg', // material-symbols-light_motion-blur-rounded.svg fallback
-  scaleBroken: '/src/assets/icons/scale.svg' // solar_scale-broken.svg fallback
+  folderAlt: '/assets/icons/folder.svg', // stash_folder-alt-light.svg fallback
+  group: '/assets/icons/multi.svg', // Group.svg fallback  
+  leafCircle: '/assets/icons/leaf.svg', // pepicons-pencil_leaf-circle.svg fallback
+  thumbUp: '/assets/icons/like.svg', // mdi-light_thumb-up.svg fallback
+  vectorCombine: '/assets/icons/multi.svg', // mdi-light_vector-combine.svg fallback
+  starLight: '/assets/icons/star.svg', // stash_star-light.svg fallback
+  lightning: '/assets/icons/comet.svg', // lets-icons_lightning-light.svg fallback
+  tailoring: '/assets/icons/crop.svg', // icon-park-outline_tailoring.svg fallback
+  hourglass: '/assets/icons/time.svg', // fluent_hourglass-20-regular.svg fallback
+  shieldSafety: '/assets/icons/sheild.svg', // si_shield-health-safety-line.svg fallback
+  motionBlur: '/assets/icons/comet.svg', // material-symbols-light_motion-blur-rounded.svg fallback
+  scaleBroken: '/assets/icons/scale.svg' // solar_scale-broken.svg fallback
 };
 
 // Home Section Images
 export const homeImgs = {
-  aboutUs: '/src/assets/images/Home/About_us.jpg',
-  aboutUsSection: '/src/assets/images/Home/About_us.jpg', // For WhoAreWe background
-  footerImage: '/src/assets/images/Home/Footer.png', // For footer_image.png reference
-  footerPng: '/src/assets/images/Home/Footer.png',
-  logoWhite: '/src/assets/images/Home/Logo_white.png',
-  logo: '/src/assets/images/Home/Logo.png',
-  fallbackBg: '/src/assets/images/Home/About_us.jpg' // Fallback for fallbackBg.png
+  aboutUs: '/assets/images/Home/About_us.jpg',
+  aboutUsSection: '/assets/images/Home/About_us.jpg', // For WhoAreWe background
+  footerImage: '/assets/images/Home/Footer.png', // For footer_image.png reference
+  footerPng: '/assets/images/Home/Footer.png',
+  logoWhite: '/assets/images/Home/Logo_white.png',
+  logo: '/assets/images/Home/Logo.png',
+  fallbackBg: '/assets/images/Home/About_us.jpg' // Fallback for fallbackBg.png
 };
 
 // Client Images
 export const clientImgs = {
-  client1: '/src/assets/images/Home/clients/client_1.png',
-  client2: '/src/assets/images/Home/clients/client_2.png',
-  client3: '/src/assets/images/Home/clients/client_3.png',
-  client4: '/src/assets/images/Home/clients/client_4.png',
-  client5: '/src/assets/images/Home/clients/client_5.png',
-  client6: '/src/assets/images/Home/clients/client_6.png',
-  client7: '/src/assets/images/Home/clients/client_7.png',
-  client8: '/src/assets/images/Home/clients/client_8.png',
-  client9: '/src/assets/images/Home/clients/client_9.png',
-  client10: '/src/assets/images/Home/clients/client_10.png'
+  client1: '/assets/images/Home/clients/client_1.png',
+  client2: '/assets/images/Home/clients/client_2.png',
+  client3: '/assets/images/Home/clients/client_3.png',
+  client4: '/assets/images/Home/clients/client_4.png',
+  client5: '/assets/images/Home/clients/client_5.png',
+  client6: '/assets/images/Home/clients/client_6.png',
+  client7: '/assets/images/Home/clients/client_7.png',
+  client8: '/assets/images/Home/clients/client_8.png',
+  client9: '/assets/images/Home/clients/client_9.png',
+  client10: '/assets/images/Home/clients/client_10.png'
 };
 
 // EV Charging Images
 export const evImgs = {
-  acAbout: '/src/assets/images/EV_charging/AC_about.png',
-  acCharger: '/src/assets/images/EV_charging/Ac_charger.jpg',
-  cpoAbout: '/src/assets/images/EV_charging/CPO_about.jpg',
-  cpo: '/src/assets/images/EV_charging/Cpo.jpg',
-  dcAbout: '/src/assets/images/EV_charging/DC_about.jpg',
-  dcCharger: '/src/assets/images/EV_charging/Dc_charger.jpg',
-  engineeringWorks: '/src/assets/images/EV_charging/Engineering_works.jpg',
-  ewAbout: '/src/assets/images/EV_charging/EW_about.jpg',
-  moreAbout: '/src/assets/images/EV_charging/More_about.jpg',
-  charger: '/src/assets/images/EV_charging/charger.png',
-  more: '/src/assets/images/EV_charging/More.jpg'
+  acAbout: '/assets/images/EV_charging/AC_about.png',
+  acCharger: '/assets/images/EV_charging/Ac_charger.jpg',
+  cpoAbout: '/assets/images/EV_charging/CPO_about.jpg',
+  cpo: '/assets/images/EV_charging/Cpo.jpg',
+  dcAbout: '/assets/images/EV_charging/DC_about.jpg',
+  dcCharger: '/assets/images/EV_charging/Dc_charger.jpg',
+  engineeringWorks: '/assets/images/EV_charging/Engineering_works.jpg',
+  ewAbout: '/assets/images/EV_charging/EW_about.jpg',
+  moreAbout: '/assets/images/EV_charging/More_about.jpg',
+  charger: '/assets/images/EV_charging/charger.png',
+  more: '/assets/images/EV_charging/More.jpg'
 };
 
 // Waste to Energy Images
 export const wasteImgs = {
-  containerizedPlant: '/src/assets/images/WateTOEnergy/Containerized_Plant.jpg',
-  cpAbout: '/src/assets/images/WateTOEnergy/CP_about.jpg',
-  household: '/src/assets/images/WateTOEnergy/Household.png',
-  hsAbout: '/src/assets/images/WateTOEnergy/HS_about.png',
-  largeScalePlant: '/src/assets/images/WateTOEnergy/Large_Scale_plant.jpg',
-  lsAbout: '/src/assets/images/WateTOEnergy/LS_about.jpg',
-  smartWaste: '/src/assets/images/WateTOEnergy/SmartWaste.png',
-  swAbout: '/src/assets/images/WateTOEnergy/SW_about.png'
+  containerizedPlant: '/assets/images/WateTOEnergy/Containerized_Plant.jpg',
+  cpAbout: '/assets/images/WateTOEnergy/CP_about.jpg',
+  household: '/assets/images/WateTOEnergy/Household.png',
+  hsAbout: '/assets/images/WateTOEnergy/HS_about.png',
+  largeScalePlant: '/assets/images/WateTOEnergy/Large_Scale_plant.jpg',
+  lsAbout: '/assets/images/WateTOEnergy/LS_about.jpg',
+  smartWaste: '/assets/images/WateTOEnergy/SmartWaste.png',
+  swAbout: '/assets/images/WateTOEnergy/SW_about.png'
 };
 
 // Utility function to get video source with error handling
