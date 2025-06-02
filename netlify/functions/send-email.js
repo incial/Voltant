@@ -1,9 +1,4 @@
 import nodemailer from 'nodemailer'
-// Import dotenv to access environment variables
-import dotenv from 'dotenv'
-
-// Initialize dotenv
-dotenv.config()
 
 // Netlify serverless function
 export const handler = async function (event) {
@@ -32,12 +27,50 @@ export const handler = async function (event) {
   }
 
   try {
-    // Parse the request body
-    const { name, email, message } = JSON.parse(event.body)
+    // Debug environment variables (don't log sensitive data in production)
+    console.log('Environment check:', {
+      hasEmailUser: !!process.env.EMAIL_USER,
+      hasEmailPassword: !!process.env.EMAIL_PASSWORD,
+      hasEmailService: !!process.env.EMAIL_SERVICE,
+      hasRecipientEmail: !!process.env.RECIPIENT_EMAIL
+    })
 
-    console.log(
-      `📧 Attempting to send email with contact from: ${email} (${name})`
-    )
+    // Validate environment variables first
+    const requiredEnvVars = ['EMAIL_USER', 'EMAIL_PASSWORD']
+    const missingEnvVars = requiredEnvVars.filter(varName => !process.env[varName])
+    
+    if (missingEnvVars.length > 0) {
+      console.error('❌ Missing required environment variables:', missingEnvVars)
+      return {
+        statusCode: 500,
+        headers,
+        body: JSON.stringify({
+          success: false,
+          message: 'Email service configuration error',
+          details: `Missing environment variables: ${missingEnvVars.join(', ')}`
+        })
+      }
+    }
+
+    // Parse the request body
+    let requestData
+    try {
+      requestData = JSON.parse(event.body)
+    } catch (parseError) {
+      console.error('❌ Error parsing request body:', parseError)
+      return {
+        statusCode: 400,
+        headers,
+        body: JSON.stringify({
+          success: false,
+          message: 'Invalid request body'
+        })
+      }
+    }
+
+    const { name, email, message } = requestData
+
+    console.log(`📧 Processing contact form submission from: ${email} (${name})`)
 
     // Validate required fields
     if (!name || !email || !message) {
@@ -66,21 +99,37 @@ export const handler = async function (event) {
       }
     }
 
-    // Create mail transporter with improved configuration
-    const transporter = nodemailer.createTransport({
-      service: process.env.EMAIL_SERVICE || 'gmail',
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASSWORD
-      },
-      // Improved security and deliverability settings
-      secure: true, // Use TLS
-      port: 465, // Secure SMTP port
-      tls: {
-        rejectUnauthorized: true
+    // Create mail transporter with error handling
+    let transporter
+    try {
+      transporter = nodemailer.createTransporter({
+        service: process.env.EMAIL_SERVICE || 'gmail',
+        auth: {
+          user: process.env.EMAIL_USER,
+          pass: process.env.EMAIL_PASSWORD
+        },
+        secure: true,
+        port: 465,
+        tls: {
+          rejectUnauthorized: false // More lenient for deployment
+        }
+      })
+
+      // Verify transporter configuration
+      await transporter.verify()
+      console.log('✅ SMTP server connection verified')
+    } catch (transporterError) {
+      console.error('❌ SMTP configuration error:', transporterError)
+      return {
+        statusCode: 500,
+        headers,
+        body: JSON.stringify({
+          success: false,
+          message: 'Email service connection failed',
+          details: transporterError.message
+        })
       }
-      // DKIM would normally be configured here if you have the keys
-    })
+    }
 
     // Clean up and prepare the inputs for email
     const sanitizedName = name.trim()
@@ -90,36 +139,30 @@ export const handler = async function (event) {
     // Get recipient email from environment variables
     const recipientEmail = process.env.RECIPIENT_EMAIL || process.env.EMAIL_USER
 
-    // Construct proper message ID with your domain
+    // Construct proper message ID
     const messageId = `${Date.now()}.${Math.random()
       .toString(36)
       .substring(2)}@voltant.energy`
 
-    // Email options with improved headers and formatting
+    // Email options
     const mailOptions = {
-      // Use a proper from address format
       from: {
         name: 'Voltant Energy Website',
         address: process.env.EMAIL_USER
       },
       to: recipientEmail,
-      // Set reply-to as the client's email
       replyTo: {
         name: sanitizedName,
         address: sanitizedEmail
       },
-      // Unique Message-ID to avoid duplicate detection
       messageId: messageId,
-      // Improved subject line
       subject: `Website Contact: ${sanitizedName} - ${new Date().toLocaleDateString()}`,
-      // Important headers for deliverability
       priority: 'normal',
       headers: {
         'X-Mailer': 'Voltant Energy Contact Form',
         'X-Contact-Form': 'true',
         Precedence: 'bulk'
       },
-      // Include both text and HTML versions
       text: `
 New Contact Submission from Voltant Energy Website
 
@@ -141,7 +184,6 @@ This message was sent through the Voltant Energy website contact form.
           <meta charset="UTF-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
           <title>Contact Form Submission</title>
-          <!-- No external CSS references to improve deliverability -->
           <style>
             @media only screen and (max-width: 620px) {
               table.body {
@@ -158,7 +200,7 @@ This message was sent through the Voltant Energy website contact form.
           <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-collapse: collapse;">
             <tr>
               <td style="background-color: #00251a; padding: 20px; text-align: center;">
-                <img src="https://github.com/incial/Voltant/blob/master/src/assets/images/logo_white.png" alt="Voltant Energy Logo" width="180" height="auto" style="display: block; margin: 0 auto;">
+                <h2 style="color: white; margin: 0;">Voltant Energy</h2>
               </td>
             </tr>
             <tr>
@@ -223,8 +265,14 @@ This message was sent through the Voltant Energy website contact form.
       `
     }
 
-    // Send email
-    const info = await transporter.sendMail(mailOptions)
+    // Send email with timeout
+    const emailTimeout = new Promise((_, reject) =>
+      setTimeout(() => reject(new Error('Email sending timeout')), 30000)
+    )
+
+    const emailSend = transporter.sendMail(mailOptions)
+    
+    const info = await Promise.race([emailSend, emailTimeout])
 
     // Log successful sending with message ID for tracking
     console.log('✅ Email sent successfully!')
@@ -242,16 +290,18 @@ This message was sent through the Voltant Energy website contact form.
       })
     }
   } catch (error) {
-    console.error('❌ Error sending email:', error)
+    console.error('❌ Error in email function:', error)
+    console.error('Error stack:', error.stack)
 
-    // Return error response
+    // Return detailed error response for debugging
     return {
       statusCode: 500,
       headers,
       body: JSON.stringify({
         success: false,
         message: 'Failed to send email',
-        error: error.message
+        error: error.message,
+        timestamp: new Date().toISOString()
       })
     }
   }
