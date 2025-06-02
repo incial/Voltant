@@ -2,6 +2,11 @@ import nodemailer from 'nodemailer'
 
 // Netlify serverless function
 export const handler = async function (event) {
+  // Debug logging
+  console.log('🚀 Function called with method:', event.httpMethod);
+  console.log('📋 Headers:', JSON.stringify(event.headers, null, 2));
+  console.log('🔍 Body:', event.body);
+  
   // Set CORS headers
   const headers = {
     'Access-Control-Allow-Origin': '*',
@@ -97,12 +102,10 @@ export const handler = async function (event) {
           message: 'Please provide a valid email address'
         })
       }
-    }
-
-    // Create mail transporter with error handling
+    }    // Create mail transporter with error handling
     let transporter
     try {
-      transporter = nodemailer.createTransporter({
+      transporter = nodemailer.createTransport({
         service: process.env.EMAIL_SERVICE || 'gmail',
         auth: {
           user: process.env.EMAIL_USER,
