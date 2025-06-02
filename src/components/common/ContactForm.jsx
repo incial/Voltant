@@ -90,8 +90,7 @@ const ContactForm = ({ onClose }) => {
         await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API delay
         setSubmitSuccess(true);
         reset();
-      } else {
-        // Send to our Netlify Function
+      } else {        // Send to our Netlify Function
         const response = await fetch(FUNCTION_URL, {
           method: 'POST',
           headers: {
@@ -99,8 +98,16 @@ const ContactForm = ({ onClose }) => {
           },
           body: JSON.stringify(data),
         });
-        
-        const result = await response.json();
+          let result;
+        try {
+          result = await response.json();
+        } catch (parseError) {
+          // Handle malformed JSON responses
+          const responseText = await response.text();
+          console.error('Invalid JSON response:', responseText);
+          console.error('Parse error:', parseError);
+          throw new Error('Server returned an invalid response. Please try again later.');
+        }
         
         if (response.ok) {
           setSubmitSuccess(true);
@@ -141,7 +148,6 @@ const ContactForm = ({ onClose }) => {
       }
     }
   };
-
   const buttonVariants = {
     hidden: { scale: 0.8, opacity: 0 },
     visible: {
@@ -154,8 +160,7 @@ const ContactForm = ({ onClose }) => {
     },
     hover: {
       scale: 1.05,
-      backgroundColor: "transparent",
-      background: "transparent",
+      backgroundColor: "rgba(74, 183, 87, 0)",
       color: "#4AB757",
       transition: {
         duration: 0.3
