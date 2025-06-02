@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { FaTimesCircle } from 'react-icons/fa';
+import emailjs from '@emailjs/browser';
 
 // Form validation schema
 const formSchema = yup.object().shape({
@@ -22,8 +23,10 @@ const formSchema = yup.object().shape({
     .min(10, "Message must be at least 10 characters")
 });
 
-// Update this to use Netlify Functions
-const FUNCTION_URL = '/.netlify/functions/send-email';
+// EmailJS configuration
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'your_service_id';
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'your_template_id';
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'your_public_key';
 
 const ContactForm = ({ onClose }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -77,8 +80,7 @@ const ContactForm = ({ onClose }) => {
         textarea.scrollTop = textarea.scrollHeight;
       }, 10);
     }
-  };
-  const onSubmit = async (data) => {
+  };  const onSubmit = async (data) => {
     setIsSubmitting(true);
     setSubmitError(null);
 
@@ -90,44 +92,50 @@ const ContactForm = ({ onClose }) => {
         setSubmitSuccess(true);
         reset();
       } else {        
-        // Debug logging
-        console.log('Sending request to:', FUNCTION_URL);
-        console.log('Request data:', data);
+        // Initialize EmailJS (only needed once, can be done in useEffect)
+        emailjs.init(EMAILJS_PUBLIC_KEY);
         
-        // Send to our Netlify Function
-        const response = await fetch(FUNCTION_URL, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data),
-        });
+        // Prepare template parameters for EmailJS
+        const templateParams = {
+          from_name: data.name,
+          from_email: data.email,
+          message: data.message,
+          to_name: 'Voltant Energy', // You can customize this
+          reply_to: data.email,
+        };
         
-        console.log('Response status:', response.status);
-        console.log('Response headers:', Object.fromEntries(response.headers.entries()));
+        console.log('Sending email via EmailJS with params:', templateParams);
         
-        let result;
-        try {
-          result = await response.json();
-          console.log('Response result:', result);
-        } catch (parseError) {
-          // Handle malformed JSON responses
-          const responseText = await response.text();
-          console.error('Invalid JSON response:', responseText);
-          console.error('Parse error:', parseError);
-          throw new Error('Server returned an invalid response. Please try again later.');
-        }
+        // Send email using EmailJS
+        const result = await emailjs.send(
+          EMAILJS_SERVICE_ID,
+          EMAILJS_TEMPLATE_ID,
+          templateParams
+        );
         
-        if (response.ok) {
+        console.log('EmailJS result:', result);
+        
+        if (result.status === 200) {
           setSubmitSuccess(true);
           reset();
         } else {
-          throw new Error(result.message || 'Failed to send email');
+          throw new Error('Failed to send email via EmailJS');
         }
       }
     } catch (error) {
       console.error("Error submitting form:", error);
-      setSubmitError('Failed to send your message. Please try again later.');
+      
+      // More specific error messages based on EmailJS errors
+      let errorMessage = 'Failed to send your message. Please try again later.';
+      
+      if (error.text) {
+        // EmailJS specific error
+        errorMessage = `Email service error: ${error.text}`;
+      } else if (error.message) {
+        errorMessage = error.message;
+      }
+      
+      setSubmitError(errorMessage);
     } finally {
       setIsSubmitting(false);
     }

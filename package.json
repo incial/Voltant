@@ -2,12 +2,12 @@
   "name": "abin-s-branch",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
-  "scripts": {
+  "type": "module",  "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test:emailjs": "node scripts/test-emailjs.js"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
