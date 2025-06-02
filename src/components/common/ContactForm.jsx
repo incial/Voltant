@@ -78,7 +78,6 @@ const ContactForm = ({ onClose }) => {
       }, 10);
     }
   };
-
   const onSubmit = async (data) => {
     setIsSubmitting(true);
     setSubmitError(null);
@@ -90,7 +89,12 @@ const ContactForm = ({ onClose }) => {
         await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API delay
         setSubmitSuccess(true);
         reset();
-      } else {        // Send to our Netlify Function
+      } else {        
+        // Debug logging
+        console.log('Sending request to:', FUNCTION_URL);
+        console.log('Request data:', data);
+        
+        // Send to our Netlify Function
         const response = await fetch(FUNCTION_URL, {
           method: 'POST',
           headers: {
@@ -98,9 +102,14 @@ const ContactForm = ({ onClose }) => {
           },
           body: JSON.stringify(data),
         });
-          let result;
+        
+        console.log('Response status:', response.status);
+        console.log('Response headers:', Object.fromEntries(response.headers.entries()));
+        
+        let result;
         try {
           result = await response.json();
+          console.log('Response result:', result);
         } catch (parseError) {
           // Handle malformed JSON responses
           const responseText = await response.text();
