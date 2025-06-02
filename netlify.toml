@@ -12,5 +12,11 @@ status = 200
 directory = "netlify/functions"
 node_bundler = "esbuild"
 
+# Disable Cloudinary plugin
+[[plugins]]
+package = "netlify-plugin-cloudinary"
+[plugins.inputs]
+enabled = false
+
 [build.environment]
   NODE_VERSION = "18"
