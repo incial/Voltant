@@ -1,52 +1,52 @@
-import React from 'react';
+import React from "react";
 // eslint-disable-next-line no-unused-vars
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 };
 
 const fadeInRight = {
   hidden: { opacity: 0, x: -50 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.7 } }
+  visible: { opacity: 1, x: 0, transition: { duration: 0.7 } },
 };
 
 const fadeInLeft = {
   hidden: { opacity: 0, x: 50 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.7 } }
+  visible: { opacity: 1, x: 0, transition: { duration: 0.7 } },
 };
 
 const sectionFadeIn = {
   hidden: { opacity: 0 },
-  visible: { 
+  visible: {
     opacity: 1,
-    transition: { 
+    transition: {
       duration: 0.8,
-      staggerChildren: 0.25
-    }
-  }
+      staggerChildren: 0.25,
+    },
+  },
 };
 
-const SeamlessChargingSection = ({ 
+const SeamlessChargingSection = ({
   title = "Seamless Charging, Smarter Operations",
-  paragraphs = []
+  paragraphs = [],
 }) => {
   return (
-    <motion.section 
-      className='w-full py-20 md:py-28 px-6'
+    <motion.section
+      className="w-full py-20 md:py-28 px-6"
       initial="hidden"
       whileInView="visible"
-      viewport={{ amount: 0.2 }}
+      viewport={{ amount: 0.5 }}
       variants={sectionFadeIn}
     >
-      <div className='max-w-4xl mx-auto'>
+      <div className="max-w-4xl mx-auto">
         <motion.h2
           initial="hidden"
           whileInView="visible"
-          viewport={{ amount: 0.2 }}
+          viewport={{ amount: 0.5 }}
           variants={fadeIn}
-          className='text-4xl text-gray-500 font-black text-center mb-24'
+          className="text-4xl text-gray-500 font-black text-center mb-24"
         >
           {title}
         </motion.h2>
@@ -56,9 +56,9 @@ const SeamlessChargingSection = ({
             key={index}
             initial="hidden"
             whileInView="visible"
-            viewport={{ amount: 0.2 }}
+            viewport={{ amount: 0.5 }}
             variants={index % 2 === 0 ? fadeInRight : fadeInLeft}
-            className='text-gray-700 mb-6 text-center text-xl font-normal'
+            className="text-gray-700 mb-6 text-center text-xl font-normal"
           >
             {paragraph}
           </motion.p>
