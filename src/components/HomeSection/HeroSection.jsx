@@ -112,7 +112,7 @@ const HeroSection = () => {
             type: 'spring',
             stiffness: 260,
             damping: 20,
-            duration: 0.8
+            duration: 0.4
           }}
           className="absolute right-8 top-1/2 transform -translate-y-1/2 flex flex-col gap-6 z-20"
         >
