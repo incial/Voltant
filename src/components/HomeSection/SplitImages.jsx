@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react'
-// eslint-disable-next-line no-unused-vars
+import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { vids, heroIcons } from '../../utils/localAssets'
+import { heroIcons } from '../../utils/localAssets'
 import { Link } from 'react-router-dom'
 
 const images = [
@@ -11,7 +10,7 @@ const images = [
     description:
       'Powering the future of mobility with smart, efficient, and scalable EV charging solutions—designed for homes, businesses, and public spaces.',
     button: 'Learn More',
-    vid: vids.evCharging,
+    img: '/assets/images/Home/split/split2.png',
     icon: heroIcons.battery,
     link: '/ev-charging'
   },
@@ -21,7 +20,7 @@ const images = [
     description:
       'From smart modular containerized plants to large-scale anerobic digestion solutions, we transform organic waste into sustainable energy.',
     button: 'Learn More',
-    vid: vids.wasteToEnergy,
+    img: '/assets/images/Home/split/split1.png',
     icon: heroIcons.waterPure,
     link: '/waste-to-energy'
   }
@@ -31,63 +30,31 @@ const SplitHoverImages = () => {
   const [activeId, setActiveId] = useState(images[0].id)
   const [playedId, setPlayedId] = useState(null)
   const [isMobile, setIsMobile] = useState(false)
-  const [videoLoaded, setVideoLoaded] = useState({})
   const [mobileInitialized, setMobileInitialized] = useState(false)
-  const videoRefs = useRef({})
 
   // Check if device is mobile on component mount and when window resizes
   useEffect(() => {
     const checkIsMobile = () => {
       setIsMobile(window.innerWidth < 768)
     }
-
-    // Initial check
     checkIsMobile()
-
-    // Add resize listener
     window.addEventListener('resize', checkIsMobile)
-
-    // Clean up
     return () => window.removeEventListener('resize', checkIsMobile)
   }, [])
 
   // Set all sections to show content on initial mobile load
   useEffect(() => {
     if (isMobile && !mobileInitialized) {
-      // Set all sections as played when on mobile to show content initially
-      const allPlayed = {}
-      images.forEach(item => {
-        allPlayed[item.id] = true
-      })
       setPlayedId(images[0].id)
       setMobileInitialized(true)
     }
   }, [isMobile, mobileInitialized])
-
-  // Video loading state logic
-  const handleVideoLoadStart = id => {
-    setVideoLoaded(prev => ({ ...prev, [id]: false }))
-  }
-  
-  const handleVideoLoadedData = id => {
-    setVideoLoaded(prev => ({ ...prev, [id]: true }))
-  }
-  
-  const handleVideoError = id => {
-    // Try to reload video if error
-    const ref = videoRefs.current[id]
-    if (ref) {
-      ref.load()
-      ref.play?.().catch(() => {})
-    }
-  }
 
   return (
     <div className='flex md:flex-row flex-col h-auto md:h-[100vh] w-full overflow-hidden'>
       {images.map(item => {
         const isActive = activeId === item.id
         const isPlayed = playedId === item.id || (isMobile && mobileInitialized)
-        const hasLoaded = videoLoaded[item.id]
 
         return (
           <motion.div
@@ -110,42 +77,26 @@ const SplitHoverImages = () => {
               className='absolute top-6 md:top-36 right-6 md:right-28 w-8 h-8 md:w-20 md:h-20 z-20 opacity-100'
               loading='lazy'
             />
-            
-            {/* Video with Loading State */}
-            <motion.div
-              className='w-full h-full overflow-hidden'
-              initial={{ scale: 1 }}
-              animate={{ scale: !isMobile && isActive ? 1.02 : 1 }}
-              transition={{ duration: 0.8, ease: [0.65, 0, 0.35, 1] }}
-            >
-              <AnimatePresence>
-                {!hasLoaded && (
-                  <motion.div
-                    className='absolute inset-0 bg-black/40 z-5 flex items-center justify-center'
-                    initial={{ opacity: 1 }}
+
+            {/* Image Background with Smooth Crossfade */}
+            <div className='w-full h-full overflow-hidden absolute inset-0'>
+              <AnimatePresence mode="wait">
+                {isActive && (
+                  <motion.img
+                    key={item.img}
+                    src={item.img}
+                    alt={item.title}
+                    className='w-full h-full object-cover absolute inset-0'
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    <div className='w-12 h-12 border-4 border-green-400 border-t-transparent rounded-full animate-spin' />
-                  </motion.div>
+                    transition={{ duration: 0.2 }}
+                    draggable={false}
+                  />
                 )}
               </AnimatePresence>
-              
-              <video
-                ref={el => (videoRefs.current[item.id] = el)}
-                src={item.vid}
-                className='w-full h-full object-cover'
-                autoPlay={isActive || isMobile}
-                loop={true}
-                muted={true}
-                playsInline={true}
-                onLoadStart={() => handleVideoLoadStart(item.id)}
-                onLoadedData={() => handleVideoLoadedData(item.id)}
-                onError={() => handleVideoError(item.id)}
-                style={{ transition: 'opacity 1s', opacity: hasLoaded ? 1 : 0 }}
-              />
-            </motion.div>
-            
+            </div>
+
             {/* Overlay */}
             <motion.div
               className='absolute inset-0 bg-black/30 p-6 md:p-36 text-white flex flex-col justify-center'
