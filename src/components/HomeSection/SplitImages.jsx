@@ -78,24 +78,21 @@ const SplitHoverImages = () => {
               loading='lazy'
             />
 
-            {/* Image Background with Smooth Crossfade */}
-            <div className='w-full h-full overflow-hidden absolute inset-0'>
-              <AnimatePresence mode="wait">
-                {isActive && (
-                  <motion.img
-                    key={item.img}
-                    src={item.img}
-                    alt={item.title}
-                    className='w-full h-full object-cover absolute inset-0'
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                    draggable={false}
-                  />
-                )}
-              </AnimatePresence>
-            </div>
+            {/* Image Background */}
+            <motion.div
+              className='w-full h-full overflow-hidden'
+              initial={{ scale: 1 }}
+              animate={{ scale: !isMobile && isActive ? 1.02 : 1 }}
+              transition={{ duration: 0.5, ease: [0.65, 0, 0.35, 1] }}
+            >
+              <img
+                src={item.img}
+                alt={item.title}
+                className='w-full h-full object-cover transition-opacity duration-1000'
+                draggable={false}
+                style={{ opacity: 1 }}
+              />
+            </motion.div>
 
             {/* Overlay */}
             <motion.div
