@@ -83,7 +83,7 @@ const SplitHoverImages = () => {
               className='w-full h-full overflow-hidden'
               initial={{ scale: 1 }}
               animate={{ scale: !isMobile && isActive ? 1.02 : 1 }}
-              transition={{ duration: 0.5, ease: [0.65, 0, 0.35, 1] }}
+              transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
             >
               <img
                 src={item.img}
