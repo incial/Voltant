@@ -55,6 +55,7 @@ The platform delivers a cohesive brand experience while providing in-depth infor
 - **Environment Variables**: dotenv
 - **UI Components**: React Icons
 - **HTTP Client**: Axios
+- **Email Service**: EmailJS for contact form submissions
 
 ## 🚀 Getting Started
 
@@ -78,11 +79,22 @@ The platform delivers a cohesive brand experience while providing in-depth infor
 
 3. Create environment variables
    Create a `.env` file in the root directory:
-   ```
+   ```env
+   # Cloudinary Configuration
    VITE_CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
    VITE_CLOUDINARY_API_KEY=your_cloudinary_api_key
    VITE_CLOUDINARY_API_SECRET=your_cloudinary_api_secret
+   
+   # EmailJS Configuration (for contact form)
+   VITE_EMAILJS_SERVICE_ID=your_service_id_here
+   VITE_EMAILJS_TEMPLATE_ID=your_template_id_here
+   VITE_EMAILJS_PUBLIC_KEY=your_public_key_here
+   
+   # Development settings
+   VITE_USE_MOCK=false
    ```
+
+   📧 **EmailJS Setup**: See [EMAILJS_SETUP.md](./EMAILJS_SETUP.md) for detailed EmailJS configuration instructions.
 
 4. Start development server
    ```bash
@@ -218,6 +230,41 @@ node scripts/upload-to-cloudinary.js "src/assets/images/logo.png"
 ```
 
 For detailed implementation guides, refer to `docs/cloudinary-documentation.md`.
+
+## 📧 Contact Form & EmailJS Integration
+
+The project includes a sophisticated contact form powered by EmailJS for seamless email delivery without backend infrastructure.
+
+### Features
+- **Form Validation**: React Hook Form with Yup schema validation
+- **Email Delivery**: EmailJS integration for direct client-side email sending
+- **Development Mode**: Mock email functionality for development testing
+- **Error Handling**: Comprehensive error messages and user feedback
+- **Responsive Design**: Optimized for all device sizes
+- **Animations**: Smooth Framer Motion animations for enhanced UX
+
+### EmailJS Setup
+1. **Create EmailJS Account**: Sign up at [emailjs.com](https://www.emailjs.com/)
+2. **Configure Service**: Set up your email service (Gmail, Outlook, etc.)
+3. **Create Template**: Design your email template with required variables
+4. **Environment Variables**: Configure credentials in `.env` file
+5. **Testing**: Use the provided test script in `scripts/test-emailjs.js`
+
+For complete setup instructions, see [EMAILJS_SETUP.md](./EMAILJS_SETUP.md).
+
+### Usage Example
+```jsx
+// Contact form automatically handles EmailJS integration
+<ContactForm onClose={() => setShowForm(false)} />
+```
+
+### Template Variables
+The contact form sends these variables to your EmailJS template:
+- `from_name`: User's name
+- `from_email`: User's email  
+- `message`: User's message
+- `to_name`: "Voltant Energy"
+- `reply_to`: User's email for easy replies
 
 ## 🚢 Netlify Deployment & Functions
 

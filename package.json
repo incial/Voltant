@@ -2,12 +2,12 @@
   "name": "abin-s-branch",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
-  "scripts": {
+  "type": "module",  "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test:emailjs": "node scripts/test-emailjs.js"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
@@ -17,7 +17,8 @@
     "axios": "^1.8.4",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
-    "express": "^5.1.0",    "framer-motion": "^12.7.2",
+    "express": "^5.1.0",
+    "framer-motion": "^12.7.2",
     "gsap": "^3.12.7",
     "nodemailer": "^6.10.1",
     "postcss": "^8.5.3",
