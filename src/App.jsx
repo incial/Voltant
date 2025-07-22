@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Home from './pages/Home'
 // Import NotFound page eagerly for better error handling
 import NotFound from './pages/NotFound'
-
+import WhoAreWe from './pages/WhoAreWe'
 // Lazy load all other pages
 const EvCharging = lazy(() => import('./pages/EvCharging'))
 const AC = lazy(() => import('./pages/AC'))
@@ -110,6 +110,7 @@ function App() {
                 <Route path="/waste-to-energy/large-scale" element={<LargeScale />} />
                 <Route path="/waste-to-energy/containerized-plant" element={<Containerized />} />
                 <Route path="/waste-to-energy/smart-waste" element={<SmartWaste />} />
+                <Route path="/whoarewe" element={<WhoAreWe />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </Suspense>
