@@ -4,11 +4,9 @@ import { useLocation } from 'react-router-dom'
 // Only import components needed for the initial viewport eagerly
 import HeroSection from '../components/HomeSection/HeroSection'
 import SplitHoverImages from '../components/HomeSection/SplitImages'
+import RecentWorks from '../components/HomeSection/RecentWorks'
 
 // Lazy load components that appear below the fold
-const ImpactMetrics = lazy(() => import('../components/HomeSection/ImpactMetrics'))
-const ClientsSection = lazy(() => import('../components/HomeSection/ClientsSection'))
-const WhoAreWe = lazy(() => import('../components/HomeSection/WhoAreWe'))
 const ConnectWithUs = lazy(() => import('../components/HomeSection/ConncetWithUs'))
 const VideoBanner = lazy(() => import('../components/HomeSection/VideoBanner'))
 
@@ -67,25 +65,13 @@ const Home = () => {
       {/* Content sections */}
       <SplitHoverImages />
 
-      {/* WhoAreWe section - Wrapped in Suspense for lazy loading */}
-      <Suspense fallback={<SectionLoader />}>
-        <div id="who-are-we" className='w-full flex justify-center h-auto md:h-[120vh] md:items-center'>
-          <WhoAreWe /> 
-        </div>
-      </Suspense>
 
-      {/* ClientsSection - Wrapped in Suspense for lazy loading */}
-      <Suspense fallback={<SectionLoader />}>
-        <div className='w-full'>
-          <ClientsSection />
-        </div>
-      </Suspense>
 
       <div className='w-full'>
         {/* ImpactMetrics section - Wrapped in Suspense for lazy loading */}
         <Suspense fallback={<SectionLoader />}>
           <div className='w-full'>
-            <ImpactMetrics />
+          <RecentWorks />
           </div>
         </Suspense>
 

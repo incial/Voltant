@@ -9,7 +9,7 @@ import { FaXTwitter } from 'react-icons/fa6'
 import { Link } from 'react-router-dom'
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion'
-import { homeImgs, logos } from '../../utils/localAssets'
+import { homeImgs, logos } from '../utils/localAssets'
 
 const WhoAreWe = () => {
   return (
@@ -39,7 +39,7 @@ const WhoAreWe = () => {
           </div>
 
           {/* Text content */}
-          <div className='relative z-10 px-6 px-12 py-10'>
+          <div className='relative z-10 px-12 py-10'>
             <div className='text-white items-start'>
               <motion.h2
                 className='text-2xl sm:text-3xl font-bold mb-8 sm:mb-12'
