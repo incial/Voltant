@@ -140,9 +140,9 @@ const Navbar = () => {
             isActive={isLinkActive('/waste-to-energy')}
           />
           <NavLink
-            to="/#who-are-we"
+            to="/whoarewe"
             label="Who We Are"
-            isActive={isLinkActive('/', 'who-are-we')}
+            isActive={isLinkActive('/whoarewe')}
           />
         </div>
 
@@ -279,10 +279,10 @@ const Navbar = () => {
                     Waste To Energy
                   </span>
                 </Link>
-                <Link to="/#who-are-we" onClick={toggleMobileMenu}>
+                <Link to="/whoarewe" onClick={toggleMobileMenu}>
                   <span
                     className={
-                      isLinkActive('/', 'who-are-we') ? 'text-green-400' : ''
+                      isLinkActive('/whoarewe') ? 'text-green-400' : ''
                     }
                   >
                     Who We Are
