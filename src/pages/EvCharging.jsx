@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import { evImgs, vids } from '../utils/localAssets'
 
 const EvCharging = () => {
-  const [videoLoaded, setVideoLoaded] = useState(false)
+  const [imageLoaded, setImageLoaded] = useState(false)
 
   // Services data array
   const services = [
@@ -42,25 +42,20 @@ const EvCharging = () => {
       <div className="md:hidden min-h-screen flex flex-col font-['Cairo'] bg-white">
         {/* Hero Section */}
         <div className='relative h-[550px]'>
-          {/* Video Background */}
+          {/* Image Background */}
           <div className='absolute inset-0 overflow-hidden'>
-            {!videoLoaded && (
-              <div className='absolute inset-0 bg-gray-800 z-10 flex items-center justify-center'>
-                <div className="w-12 h-12 border-4 border-green-400 border-t-transparent rounded-full animate-spin" />
+            {!imageLoaded && (
+              <div className='absolute inset-0 bg-gray-800 z-5 flex items-center justify-center'>
+                <div className="w-6 h-6 border-4 border-green-400 border-t-transparent rounded-full animate-spin" />
               </div>
             )}
-            <video
-              src={vids.evCharging}
-              className='w-full h-full object-cover'
-              autoPlay={true}
-              loop={true}
-              muted={true}
-              controls={false}
-              playsInline={true}
-              onLoadedData={() => setVideoLoaded(true)}
-              style={{ opacity: videoLoaded ? 1 : 0, transition: 'opacity 1s' }}
+            <img
+              src="/assets/images/EV_charging/Ev_main.jpg"
+              alt="EV Charging"
+              className="w-full h-full object-cover"
+              onLoad={() => setImageLoaded(true)}
+              style={{ objectPosition: '70% 80%' }}
             />
-
             <div className='absolute inset-0 bg-black opacity-40'></div>
           </div>
           {/* Hero Content - Positioned at absolute bottom left */}
@@ -97,22 +92,19 @@ const EvCharging = () => {
         <section className='relative w-full h-screen'>
           {/* Video Background */}
           <div className='absolute inset-0 w-full h-full overflow-hidden'>
-            {!videoLoaded && (
-              <div className='absolute inset-0 bg-gray-800 z-10 flex items-center justify-center'>
-                <div className="w-12 h-12 border-4 border-green-400 border-t-transparent rounded-full animate-spin" />
+            {!imageLoaded && (
+              <div className='absolute inset-0 bg-gray-800 z-5 flex items-center justify-center'>
+                <div className="w-6 h-6 border-4 border-green-400 border-t-transparent rounded-full animate-spin" />
               </div>
             )}
-            <video
-              src={vids.evCharging}
+            <img
+              src="/assets/images/EV_charging/Ev_main.jpg"
+              alt="EV Charging"
               className='w-full h-full object-cover'
-              autoPlay={true}
-              loop={true}
-              muted={true}
-              controls={false}
-              onLoadedData={() => setVideoLoaded(true)}
-              style={{ opacity: videoLoaded ? 1 : 0, transition: 'opacity 1s' }}
+              onLoad={() => setImageLoaded(true)}
+              style={{ objectPosition: '70% 80%' }}
             />
-            <div className='absolute inset-0 bg-black opacity-60'></div>
+            <div className='absolute inset-0 bg-black opacity-20'></div>
           </div>
           {/* Hero Content - Positioned at bottom left */}
           <motion.div
