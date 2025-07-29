@@ -123,7 +123,7 @@ const Navbar = () => {
         </div>
 
         {/* Desktop Navigation Links */}
-        <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 items-center justify-center space-x-6 lg:space-x-8 text-lg lg:text-xl">
+        <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 items-center justify-center space-x-2 sm:space-x-4 lg:space-x-6 text-xs sm:text-md md:text-lg lg:text-xl font-normal whitespace-nowrap">
           <NavLink
             to="/"
             label="Home"
