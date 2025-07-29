@@ -8,7 +8,7 @@ import { motion } from 'framer-motion'
 import { vids, wasteImgs } from '../utils/localAssets'
 
 const WasteToEnergy = () => {
-  const [videoLoaded, setVideoLoaded] = useState(false)
+  const [imageLoaded, setImageLoaded] = useState(false)
 
   // Services data array
   const services = [
@@ -63,21 +63,17 @@ const WasteToEnergy = () => {
         <div className='relative h-[550px]'>
           {/* Video Background */}
           <div className='absolute inset-0 overflow-hidden'>
-            {!videoLoaded && (
-              <div className='absolute inset-0 bg-gray-800 z-10 flex items-center justify-center'>
-                <div className="w-12 h-12 border-4 border-green-400 border-t-transparent rounded-full animate-spin" />
+            {!imageLoaded && (
+              <div className='absolute inset-0 bg-gray-800 z-5 flex items-center justify-center'>
+                <div className="w-6 h-6 border-4 border-green-400 border-t-transparent rounded-full animate-spin" />
               </div>
             )}
-            <video
-              src={vids.wasteToEnergy}
-              className='w-full h-full object-cover'
-              autoPlay={true}
-              loop={true}
-              muted={true}
-              controls={false}
-              playsInline={true}
-              onLoadedData={() => setVideoLoaded(true)}
-              style={{ opacity: videoLoaded ? 1 : 0, transition: 'opacity 1s' }}
+            <img
+              src="/assets/images/WateTOEnergy/main.jpg"
+              alt="Waste to Energy"
+              className="w-full h-full object-cover"
+              onLoad={() => setImageLoaded(true)}
+              style={{ objectPosition: '70% 80%' }}
             />
             <div className='absolute inset-0 bg-black opacity-40'></div>
           </div>
@@ -100,7 +96,7 @@ const WasteToEnergy = () => {
         <div className='bg-white p-4 sm:p-8 py-12 sm:py-16'>
           <div className='grid grid-cols-2 gap-4 sm:gap-6'>
             {services.map((service, index) => (
-                <ServiceCard
+              <ServiceCard
                 key={index}
                 title={service.title}
                 image={service.image}
@@ -116,21 +112,17 @@ const WasteToEnergy = () => {
         <section className='relative w-full h-screen'>
           {/* Video Background */}
           <div className='absolute inset-0 w-full h-full overflow-hidden'>
-            {!videoLoaded && (
-              <div className='absolute inset-0 bg-gray-800 z-10 flex items-center justify-center'>
-                <div className="w-12 h-12 border-4 border-green-400 border-t-transparent rounded-full animate-spin" />
+            {!imageLoaded && (
+              <div className='absolute inset-0 bg-gray-800 z-5 flex items-center justify-center'>
+                <div className="w-6 h-6 border-4 border-green-400 border-t-transparent rounded-full animate-spin" />
               </div>
             )}
-            <video
-              src={vids.wasteToEnergy}
-              className='w-full h-full object-cover'
-              autoPlay={true}
-              loop={true}
-              muted={true}
-              controls={false}
-              playsInline={true}
-              onLoadedData={() => setVideoLoaded(true)}
-              style={{ opacity: videoLoaded ? 1 : 0, transition: 'opacity 1s' }}
+            <img
+              src="/assets/images/WateTOEnergy/main.jpg"
+              alt="Waste to Energy"
+              className="w-full h-full object-cover"
+              onLoad={() => setImageLoaded(true)}
+              style={{ objectPosition: '50% 45%' }}
             />
             <div className='absolute inset-0 bg-black opacity-40'></div>
           </div>
