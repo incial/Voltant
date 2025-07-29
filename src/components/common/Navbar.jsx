@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+// eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from 'framer-motion';
 import { whiteLogo } from '../../utils/localAssets';
 import { useContactForm } from '../../context/ContactFormContext';
@@ -7,9 +8,11 @@ import { useContactForm } from '../../context/ContactFormContext';
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
   const location = useLocation();
   const { toggleContactForm, isContactFormOpen } = useContactForm();
 
+  // Handle scroll effect for navbar background - optimized with useCallback
   const handleScroll = useCallback(() => {
     const shouldBeScrolled = window.scrollY > 50;
     if (scrolled !== shouldBeScrolled) {
@@ -17,80 +20,90 @@ const Navbar = () => {
     }
   }, [scrolled]);
 
-  // // Improved section tracking with debounce to prevent unnecessary re-renders
-  // useEffect(() => {
-  //   // Handle initial active section based on the path
-  //   if (location.pathname !== '/') {
-  //     const section = location.pathname.slice(1) || 'home';
-  //     setActiveSection(section);
-  //     return;
-  //   }
-
-  //   // Enhanced observer for "Who We Are" section
-  //   const whoAreWeSection = document.getElementById('whoarewe');
-  //   if (!whoAreWeSection) return;
-
-  //   let timeout;
-  //   const observer = new IntersectionObserver(
-  //     (entries) => {
-  //       // Clear any existing timeouts to prevent multiple updates
-  //       if (timeout) clearTimeout(timeout);
-
-  //       entries.forEach((entry) => {
-  //         // Add a small delay to smooth out rapid changes
-  //         timeout = setTimeout(() => {
-  //           if (entry.isIntersecting) {
-  //             setActiveSection('who-are-we');
-  //           } else {
-  //             if (location.pathname === '/') {
-  //               setActiveSection('home');
-  //             }
-  //           }
-  //         }, 50);
-  //       });
-  //     },
-  //     { threshold: 0.3, rootMargin: '-10% 0px -10% 0px' }
-  //   );
-
-  //   observer.observe(whoAreWeSection);
-  //   return () => {
-  //     observer.disconnect();
-  //     if (timeout) clearTimeout(timeout);
-  //   };
-  // }, [location.pathname]);
-
-  // Close mobile menu when route changes
-
-
   useEffect(() => {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, [handleScroll]);
 
+  // Improved section tracking with debounce to prevent unnecessary re-renders
+  useEffect(() => {
+    // Handle initial active section based on the path
+    if (location.pathname !== '/') {
+      const section = location.pathname.slice(1) || 'home';
+      setActiveSection(section);
+      return;
+    }
+
+    // Enhanced observer for "Who We Are" section
+    const whoAreWeSection = document.getElementById('who-are-we');
+    if (!whoAreWeSection) return;
+
+    let timeout;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // Clear any existing timeouts to prevent multiple updates
+        if (timeout) clearTimeout(timeout);
+        
+        entries.forEach((entry) => {
+          // Add a small delay to smooth out rapid changes
+          timeout = setTimeout(() => {
+            if (entry.isIntersecting) {
+              setActiveSection('who-are-we');
+            } else {
+              if (location.pathname === '/') {
+                setActiveSection('home');
+              }
+            }
+          }, 50);
+        });
+      },
+      { threshold: 0.3, rootMargin: '-10% 0px -10% 0px' }
+    );
+
+    observer.observe(whoAreWeSection);
+    return () => {
+      observer.disconnect();
+      if (timeout) clearTimeout(timeout);
+    };
+  }, [location.pathname]);
+
+  // Close mobile menu when route changes
   useEffect(() => {
     setIsMobileMenuOpen(false);
   }, [location.pathname]);
 
+  // Toggle mobile menu
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
-    document.body.style.overflow = !isMobileMenuOpen ? 'hidden' : 'auto';
+    if (!isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
   };
 
+  // Clean up body styles on unmount
   useEffect(() => {
     return () => {
       document.body.style.overflow = 'auto';
     };
   }, []);
 
-  const isLinkActive = useCallback(
-    (path) => location.pathname === path,
-    [location.pathname]
-  );
+  // Helper function to determine if a link should be active
+  const isLinkActive = useCallback((path, section = null) => {
+    if (path === '/' && section === 'who-are-we') {
+      return location.pathname === '/' && activeSection === 'who-are-we';
+    } else if (path === '/' && !section) {
+      return location.pathname === '/' && activeSection === 'home';
+    }
+    return location.pathname === path;
+  }, [location.pathname, activeSection]);
 
   return (
     <nav
-      className={`fixed px-0 md:px-20 top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'backdrop-blur-md bg-black/30' : 'bg-transparent'
-        } font-['Cairo']`}
+      className={`fixed px-0 md:px-20 top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled ? 'backdrop-blur-md bg-black/30' : 'bg-transparent'
+      } font-['Cairo']`}
       id="navbar"
       style={{
         WebkitBackdropFilter: scrolled ? 'blur(8px)' : 'none',
@@ -100,19 +113,37 @@ const Navbar = () => {
       }}
     >
       <div className="relative max-w-screen-2xl mx-auto flex justify-between items-center py-4 px-4 md:px-6 lg:px-8 md:mt-0 mt-6 ml-4 md:ml-0">
-        {/* Logo */}
-        <div className="flex items-center z-10">
-          <Link to="/" className="flex items-center">
-            <img src={whiteLogo} alt="Voltant Energy" className="h-8 md:h-10" />
+        {/* Logo */}        <div className="flex items-center z-10">          <Link to="/" className="flex items-center">
+            <img
+              src={whiteLogo}
+              alt="Voltant Energy"
+              className="h-8 md:h-10"
+            />
           </Link>
         </div>
 
         {/* Desktop Navigation Links */}
         <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 items-center justify-center space-x-6 lg:space-x-8 text-lg lg:text-xl">
-          <NavLink to="/" label="Home" isActive={isLinkActive('/')} />
-          <NavLink to="/ev-charging" label="EV Charging" isActive={isLinkActive('/ev-charging')} />
-          <NavLink to="/waste-to-energy" label="Waste To Energy" isActive={isLinkActive('/waste-to-energy')} />
-          <NavLink to="/whoarewe" label="Who We Are" isActive={isLinkActive('/whoarewe')} />
+          <NavLink
+            to="/"
+            label="Home"
+            isActive={isLinkActive('/')}
+          />
+          <NavLink
+            to="/ev-charging"
+            label="EV Charging"
+            isActive={isLinkActive('/ev-charging')}
+          />
+          <NavLink
+            to="/waste-to-energy"
+            label="Waste To Energy"
+            isActive={isLinkActive('/waste-to-energy')}
+          />
+          <NavLink
+            to="/whoarewe"
+            label="Who We Are"
+            isActive={isLinkActive('/whoarewe')}
+          />
         </div>
 
         {/* Call To Action Button (Desktop) */}
@@ -121,10 +152,7 @@ const Navbar = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={toggleContactForm}
-            className={`${isContactFormOpen
-              ? 'bg-white bg-opacity-10 text-green-400 border-green-400'
-              : 'bg-transparent text-white border-white hover:bg-white hover:text-green-400'
-              } py-2 px-6 rounded-full font-medium border-2 cursor-pointer transition-colors`}
+            className={`${isContactFormOpen ? 'bg-white bg-opacity-10 text-green-400 border-green-400' : 'bg-transparent text-white border-white hover:bg-white hover:bg-opacity-10'} py-2 px-6 rounded-full font-medium border-2 cursor-pointer transition-colors`}
           >
             Get in Touch
           </motion.button>
@@ -182,20 +210,23 @@ const Navbar = () => {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '100%' }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className={`md:hidden fixed top-0 left-0 w-full h-screen ${scrolled ? 'bg-black/90' : 'bg-black/50'
-              } flex flex-col items-center justify-start z-[60] p-12 py-12`}
-            style={{
+            className={`md:hidden fixed top-0 left-0 w-full h-screen ${
+              scrolled ? 'bg-black/90' : 'bg-black/50'
+            } flex flex-col items-center justify-start z-[60] p-12 py-12`}
+            style={{ 
               paddingTop: 'calc(100px + env(safe-area-inset-top))',
               WebkitBackdropFilter: 'blur(4px)',
               backdropFilter: 'blur(4px)',
               MozBackdropFilter: 'blur(4px)',
-              msBackdropFilter: 'blur(4px)',
+              msBackdropFilter: 'blur(4px)'
             }}
           >
-            <div className="p-8">
-              <div className="absolute top-4 left-4 p-6 py-8">
-                <Link to="/" className="flex items-center">
-                  <img src={whiteLogo} alt="Voltant Energy" className="h-8" />
+            <div className="p-8">              <div className="absolute top-4 left-4 p-6 py-8">                <Link to="/" className="flex items-center">
+                  <img
+                    src={whiteLogo}
+                    alt="Voltant Energy"
+                    className="h-8"
+                  />
                 </Link>
               </div>
               <div className="absolute top-4 right-4 py-7 px-4">
@@ -222,16 +253,40 @@ const Navbar = () => {
               </div>
               <div className="flex flex-col items-center space-y-6 text-white text-lg mt-16">
                 <Link to="/" onClick={toggleMobileMenu}>
-                  <span className={isLinkActive('/') ? 'text-green-400' : ''}>Home</span>
+                  <span
+                    className={
+                      isLinkActive('/') ? 'text-green-400' : ''
+                    }
+                  >
+                    Home
+                  </span>
                 </Link>
                 <Link to="/ev-charging" onClick={toggleMobileMenu}>
-                  <span className={isLinkActive('/ev-charging') ? 'text-green-400' : ''}>EV Charging</span>
+                  <span
+                    className={
+                      isLinkActive('/ev-charging') ? 'text-green-400' : ''
+                    }
+                  >
+                    EV Charging
+                  </span>
                 </Link>
                 <Link to="/waste-to-energy" onClick={toggleMobileMenu}>
-                  <span className={isLinkActive('/waste-to-energy') ? 'text-green-400' : ''}>Waste To Energy</span>
+                  <span
+                    className={
+                      isLinkActive('/waste-to-energy') ? 'text-green-400' : ''
+                    }
+                  >
+                    Waste To Energy
+                  </span>
                 </Link>
                 <Link to="/whoarewe" onClick={toggleMobileMenu}>
-                  <span className={isLinkActive('/whoarewe') ? 'text-green-400' : ''}>Who We Are</span>
+                  <span
+                    className={
+                      isLinkActive('/whoarewe') ? 'text-green-400' : ''
+                    }
+                  >
+                    Who We Are
+                  </span>
                 </Link>
                 <motion.button
                   onClick={() => {
@@ -240,10 +295,7 @@ const Navbar = () => {
                   }}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className={`${isContactFormOpen
-                    ? 'bg-white/10 text-green-400 border-green-400'
-                    : 'bg-transparent text-white border-white hover:bg-white hover:text-green-400'
-                    } py-2 px-6 rounded-full font-medium border-2 cursor-pointer mt-4 transition-colors`}
+                  className={`${isContactFormOpen ? 'bg-white/10 text-green-400 border-green-400' : 'bg-transparent text-white border-white'} py-2 px-6 rounded-full font-medium border-2 cursor-pointer mt-4`}
                 >
                   Get In Touch
                 </motion.button>
@@ -256,26 +308,28 @@ const Navbar = () => {
   );
 };
 
+// Navigation Link component for desktop - optimized with memo for performance
 const NavLink = React.memo(({ to, label, isActive }) => (
   <Link
     to={to}
-    className={`${isActive ? 'text-green-400' : 'text-white'
-      } hover:text-blue-100 font-medium relative group transition-colors px-2`}
+    className={`${
+      isActive ? 'text-green-400' : 'text-white'
+    } hover:text-blue-100 font-medium relative group transition-colors px-2`}
   >
     {label}
     <motion.span
-      className="absolute -bottom-1 left-0 h-0.5 bg-current transition-colors"
+      className={`absolute -bottom-1 left-0 h-0.5 bg-current transition-colors`}
       initial={false}
       animate={{
         width: isActive ? '100%' : '0%',
         backgroundColor: isActive ? '#4AB757' : '#FFFFFF',
-        opacity: isActive ? 1 : 0,
+        opacity: isActive ? 1 : 0
       }}
-      transition={{ duration: 0.3, ease: 'easeInOut' }}
-      style={{
+      transition={{ duration: 0.3, ease: "easeInOut" }}
+      style={{ 
         transformOrigin: 'center',
         WebkitTransformOrigin: 'center',
-        MozTransformOrigin: 'center',
+        MozTransformOrigin: 'center'
       }}
     />
   </Link>
