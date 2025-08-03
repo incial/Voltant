@@ -35,11 +35,11 @@ const WhoAreWe = () => {
           Who We Are.
         </motion.h2>
       </div>
-      <div className='hidden md:flex relative z-10 items-center justify-between'>
+      <div className='relative z-10 flex flex-col md:flex-row items-center justify-between'>
         {/* Left side - Logo section with white background */}
-        <div className='w-[30%] h-full flex flex-col justify-center items-center z-20'>
+        <div className='w-full md:w-[30%] h-full flex flex-col justify-center items-center z-20 mb-8 md:mb-0'>
           <motion.div
-            className='flex flex-col items-center'
+            className='flex flex-col items-center pt-6'
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -52,12 +52,12 @@ const WhoAreWe = () => {
             />
           </motion.div>
         </div>
-        <div className='relative w-[70%] h-auto py-12 flex items-center'>
+        <div className='relative w-full md:w-[70%] h-auto py-12 flex flex-col md:flex-row items-center'>
           {/* Content container with text and social icons */}
-          <div className='flex flex-row w-full h-full items-center justify-between'>
+          <div className='flex flex-col md:flex-row w-full h-full items-center justify-between'>
             {/* Text content */}
-            <div className='z-10 w-[75%] py-16 pl-12 md:pl-16 lg:pl-28 xl:pl-32 pr-8 flex flex-col justify-center'>
-              <div className='text-black max-w-3xl'>
+            <div className='z-10 w-full md:w-[75%] py-8 md:py-16 px-4 md:pl-16 lg:pl-28 xl:pl-32 md:pr-8 flex flex-col justify-center'>
+              <div className='text-black max-w-3xl mx-auto'>
                 <motion.div
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
@@ -100,7 +100,7 @@ const WhoAreWe = () => {
                   transition={{ duration: 0.6, delay: 0.4 }}
                 >
                   <Link to='/contact'>
-                    <button className='mt-4 border-2 border-black text-black px-8 py-3 rounded-full hover:bg-black hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white/50'>
+                    <button className='mt-4 border-2 border-black text-black px-8 py-3 rounded-full hover:bg-black hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 w-full md:w-auto'>
                       Get in Touch
                     </button>
                   </Link>
@@ -108,9 +108,9 @@ const WhoAreWe = () => {
               </div>
             </div>
             {/* Social media icons - Positioned on far right with better accessibility */}
-            <div className='z-10 h-full w-[25%] flex flex-col justify-center items-center'>
+            <div className='z-10 h-full w-full md:w-[25%] flex flex-row md:flex-col justify-center items-center mt-8 md:mt-0'>
               <motion.div
-                className='flex flex-col space-y-10'
+                className='flex flex-row md:flex-col space-x-6 md:space-x-0 md:space-y-10'
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
@@ -181,7 +181,7 @@ const WhoAreWe = () => {
         </div>
       </div>
       <div>
-        <RecentWorks/>
+        <RecentWorks />
       </div>
     </div>
   )

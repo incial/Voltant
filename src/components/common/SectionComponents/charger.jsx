@@ -32,7 +32,7 @@ export const ChargerComponent = ({
   const handleDownload = (url, fileName) => {
     if (!url) return
 
-    // Create a link element
+    // Create a link elements
     const link = document.createElement('a')
     link.href = url
     link.download =
