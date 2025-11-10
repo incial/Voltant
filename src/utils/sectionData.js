@@ -9,87 +9,66 @@ export const cpoData = {
     heroImage: evImgs.cpo
   },
   seamlessCharging: {
-    title: 'Seamless Charging, Smarter Operations',
+    title: 'Voltant Energy – Your Trusted Charge Point Operator (CPO) Partner',
     paragraphs: [
-      'As a Charge Point Operator (CPO), we manage the deployment, operation, and maintenance of EV charging stations, ensuring a seamless and efficient charging experience. Our smart infrastructure enables real-time monitoring, remote diagnostics, and optimized energy distribution for cost-effective and reliable EV charging solutions.',
-      'With secure payment integrations, dynamic load balancing, and scalable cloud-based systems, we provide businesses, fleet operators, and public charging networks with a future-ready EV infrastructure that meets industry standards and regulatory requirements.'
+      'As the UAE embraces electric mobility, Voltant Energy provides property owners with a turnkey CPO partnership solution that combines sustainability, revenue generation, and seamless EV infrastructure management.'
     ]
   },
   midSection: {
     backgroundImage: evImgs.cpoAbout,
-    sectionTitle: 'Why Choose Us?',
+    sectionTitle: 'Why Partner with Us?',
     features: [
       {
         icon: heroIcons.folder,
-        title: 'End-to-End Charging Network Management',
+        title: 'Zero Upfront Investment',
         description:
-          'We oversee the installation, operation, and maintenance of charging stations, ensuring seamless functionality.'
+          'We provide state-of-the-art EV chargers at no cost to the property owner. You earn a steady revenue share from every charging session without investing in equipment.'
       },
       {
         icon: heroIcons.stat,
-        title: 'Real-Time Monitoring & Remote Diagnostics',
+        title: 'Revenue-Generating Opportunity',
         description:
-          'Our smart platform enables live tracking, fault detection, and remote troubleshooting for minimal downtime.'
+          'Monetize your parking infrastructure by offering charging services to tenants, guests, and clients.Flexible revenue models to suit residential, commercial, and mixed-use properties.'
       },
       {
         icon: heroIcons.leaf,
-        title: 'Dynamic Load Balancing & Energy Optimization',
+        title: 'Sustainability & Net Zero Goals',
         description:
-          'We optimize power distribution across multiple chargers, reducing energy costs while maximizing efficiency.'
+          'Installing EV chargers demonstrates your commitment to green initiatives and sustainability.Supports the UAE’s Net Zero and carbon reduction missions while enhancing your property’s environmental credentials'
       },
       {
         icon: heroIcons.thumbUp,
-        title: 'User Access & Payment Solutions',
+        title: 'Reliable, High-Quality Charging Solutions',
         description:
-          'Integrated RFID, mobile app, and contactless payment systems provide a hassle-free charging experience.'
+          'Our chargers are robust, weather-resistant, and fast-charging capable, ensuring maximum uptime.Compatible with all major EV models, delivering seamless and safe charging experiences'
       },
       {
         icon: heroIcons.vectorCombine,
-        title: 'Scalable & Future-Ready Infrastructure',
+        title: 'Smart Monitoring & Control',
         description:
-          'Our modular, cloud-based systems support network expansion and easy upgrades for long-term scalability.'
+          'Real-time Charge Point Management System (CPMS) allows monitoring, usage tracking, and efficient energy management.	Provides insights into usage patterns, helping optimize charging availability and revenue.'
       },
       {
         icon: heroIcons.star,
-        title: 'Compliance & Data Security',
+        title: 'End-to-End Support & Maintenance',
         description:
-          'We ensure all transactions, user data, and system operations meet the highest security and regulatory standards.'
+          'We handle installation, operations, and maintenance, giving you a hassle-free experience.Our dedicated support team ensures quick response times, technical troubleshooting, and system updates'
       }
     ]
   },
+  howItWorks: {
+    sectionTitle: 'How It Works',
+    steps: [
+      'Voltant Energy installs chargers at your property at no cost.',
+      'We manage all operations, billing, and maintenance.',
+      'You receive revenue from charging sessions while supporting sustainable mobility.'
+    ]
+  },
   profiles: {
-    sectionTitle: 'Profiles',
-    leftProfiles: [
-      {
-        title: 'Seamless Network Management',
-        description:
-          'As a Charge-Point Operator, we oversee the end-to-end operation of EV charging stations, ensuring a stable, efficient, and user-friendly experience. Our role extends beyond installation, focusing on real-time monitoring, remote diagnostics, and optimized energy distribution.'
-      },
-      {
-        title: 'Smart Charge Point Management System (CPMS)',
-        description:
-          'Our advanced CPMS enables live tracking, automated load balancing, and remote control of charging stations. With predictive maintenance and real-time analytics, we ensure maximum uptime and operational efficiency.'
-      },
-      {
-        title: 'Integrated Billing & Payment Solutions',
-        description:
-          'We provide a seamless payment experience with multiple transaction options, including RFID, mobile apps, and contactless payments. Our billing system ensures transparent pricing and easy invoicing for both private and public charging networks.'
-      }
-    ],
-    rightProfiles: [
-      {
-        title: 'Scalable & Future-Ready Infrastructure',
-        description:
-          'Designed for expansion, our CPO solutions support businesses, fleet operators, and municipalities in growing their EV charging network. With flexible deployment models and advanced energy management, we future-proof charging infrastructure for evolving needs.'
-      },
-      {
-        title: '24/7 Support & Maintenance',
-        description:
-          'Our dedicated support team offers round-the-clock assistance, troubleshooting, and remote fixes to ensure uninterrupted charging services. With proactive monitoring and quick issue resolution, we keep every charging point running at peak performance.'
-      }
-    ],
+    sectionTitle: 'Partner with Voltant Energy Today',
+    paragraph: 'Transform your parking spaces into profit-generating, sustainable assets. With reliable chargers, end-to-end support, and a focus on net-zero impact, Voltant Energy is your ideal CPO partner for the future of mobility.',
     buttonText: 'Download Charging Profile',
-    showButton: true
+    showButton: false
   }
 }
 
@@ -244,7 +223,7 @@ export const householdData = {
       }
     ],
     buttonText: 'Download Household System Specs',
-    showButton: true
+    showButton: false
   }
 }
 
@@ -338,7 +317,7 @@ export const engineeringWorksData = {
       }
     ],
     buttonText: 'Download Charging Profile',
-    showButton: true
+    showButton: false
   }
 }
 
@@ -430,7 +409,7 @@ export const largeScaleData = {
       }
     ],
     buttonText: 'Download Charging Profile',
-    showButton: true
+    showButton: false
   }
 }
 
@@ -528,7 +507,7 @@ export const containerizedData = {
       }
     ],
     buttonText: 'Download Charging Profile',
-    showButton: true
+    showButton: false
   }
 }
 // SmartWaste Data
@@ -613,7 +592,7 @@ export const smartwasteData = {
       }
     ],
     buttonText: 'Download Charging Profile',
-    showButton: true
+    showButton: false
   }
 }
 // AC Data

@@ -64,11 +64,19 @@ const EvCharging = () => {
               EV Charging <br /> Infrastructure
             </h1>
 
-            <p className="text-md text-white font-light font-['Cairo'] w-full max-w-[300px]">
+            <p className="text-md text-white font-light font-['Cairo'] w-full max-w-[300px] mb-6">
               Powering the future of mobility with smart, efficient and scalable
               EV charging solutions designed for homes, businesses, and public
               spaces.
             </p>
+
+            <a 
+              href="/pdfs/Voltant Energy – Leading Sustainable EV Infrastructure in the Middle East Voltant Energy delivers reliable, scalable EV charging solutions across residential, commercial, and public sectors—ensuri-5.pdf"
+              download="Voltant-Energy-EV-Charging-Solutions.pdf"
+              className="inline-block text-sm font-normal text-center leading-none px-5 py-3 rounded-[31px] border-white border-solid border-2 text-white hover:bg-white hover:text-gray-800 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-white"
+            >
+              Download Brochure
+            </a>
           </div>
         </div>
 
@@ -117,11 +125,18 @@ const EvCharging = () => {
             <h1 className="font-['Cairo'] text-[3rem] leading-tight font-semibold m-0">
               EV Charging <br /> Infrastructure
             </h1>
-            <p className="text-2xl text-white font-extralight font-['Cairo'] mt-10 md:mt-14 w-full max-w-[500px]">
+            <p className="text-2xl text-white font-extralight font-['Cairo'] mt-10 md:mt-14 w-full max-w-[500px] mb-8">
               Powering the future of mobility with smart, efficient and scalable
               EV charging infrastructure solutions for homes, businesses, and
               public spaces.
             </p>
+            <a 
+              href="/pdfs/Voltant Energy – Leading Sustainable EV Infrastructure in the Middle East Voltant Energy delivers reliable, scalable EV charging solutions across residential, commercial, and public sectors—ensuri-5.pdf"
+              download="Voltant-Energy-EV-Charging-Solutions.pdf"
+              className="inline-block text-base md:text-lg font-normal text-center leading-none px-6 md:px-9 py-4 rounded-[31px] border-white border-solid border-2 text-white hover:bg-white hover:text-gray-800 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-white"
+            >
+              Download Brochure
+            </a>
           </motion.div>
         </section>
 

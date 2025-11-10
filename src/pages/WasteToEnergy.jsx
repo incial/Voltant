@@ -84,11 +84,19 @@ const WasteToEnergy = () => {
               Waste to Energy <br /> Solutions
             </h1>
 
-            <p className="text-md text-white font-light font-['Cairo'] w-full max-w-[300px]">
+            <p className="text-md text-white font-light font-['Cairo'] w-full max-w-[300px] mb-6">
               From smart, modular containerized plants to large-scale anaerobic
               digestion solutions, we transform organic waste into sustainable
               energy
             </p>
+
+            <a 
+              href="/pdfs/FoodOrganic waste to Energy Solutions A CIRCULAR ECONOMY SOLUTION FOR A CARBON NEUTRAL FUTURE-4.pdf"
+              download="Waste-to-Energy-Solutions.pdf"
+              className="inline-block text-sm font-normal text-center leading-none px-5 py-3 rounded-[31px] border-white border-solid border-2 text-white hover:bg-white hover:text-gray-800 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-white"
+            >
+              Download Brochure
+            </a>
           </div>
         </div>
 
@@ -140,11 +148,18 @@ const WasteToEnergy = () => {
             >
               Waste to Energy <br /> Solutions
             </h1>
-            <p className="text-2xl text-white font-extralight font-['Cairo'] mt-10 md:mt-14 w-full max-w-[500px]">
+            <p className="text-2xl text-white font-extralight font-['Cairo'] mt-10 md:mt-14 w-full max-w-[500px] mb-8">
               From smart, modular containerized plants to large-scale anaerobic
               digestion solutions, we transform organic waste into sustainable
               energy
             </p>
+            <a 
+              href="/pdfs/FoodOrganic waste to Energy Solutions A CIRCULAR ECONOMY SOLUTION FOR A CARBON NEUTRAL FUTURE-4.pdf"
+              download="Waste-to-Energy-Solutions.pdf"
+              className="inline-block text-base md:text-lg font-normal text-center leading-none px-6 md:px-9 py-4 rounded-[31px] border-white border-solid border-2 text-white hover:bg-white hover:text-gray-800 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-white"
+            >
+              Download Brochure
+            </a>
           </motion.div>
         </section>
 
