@@ -4,6 +4,7 @@ import ChatButton from '../components/common/ChatButton';
 import HeroSection from '../components/common/SectionComponents/HeroSection';
 import SeamlessChargingSection from '../components/common/SectionComponents/SeamlessChargingSection';
 import MidSection from '../components/common/SectionComponents/MidSection';
+import HowItWorksSection from '../components/common/SectionComponents/HowItWorksSection';
 import ProfilesSection from '../components/common/SectionComponents/ProfilesSection';
 
 import { cpoData } from '../utils/sectionData';
@@ -32,10 +33,13 @@ const Cpo = () => (
           features={cpoData.midSection.features}
         />
       </section>
+      <HowItWorksSection 
+        sectionTitle={cpoData.howItWorks.sectionTitle}
+        steps={cpoData.howItWorks.steps}
+      />
       <ProfilesSection 
         sectionTitle={cpoData.profiles.sectionTitle}
-        leftProfiles={cpoData.profiles.leftProfiles}
-        rightProfiles={cpoData.profiles.rightProfiles}
+        paragraph={cpoData.profiles.paragraph}
         buttonText={cpoData.profiles.buttonText}
         showButton={cpoData.profiles.showButton}
       />

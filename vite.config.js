@@ -10,6 +10,10 @@ export default defineConfig({
     tailwindcss()
     // Removed splitVendorChunkPlugin as it doesn't work with manual chunks
   ],
+  server: {
+    port: 3000,
+    open: true, // Open browser on server start
+  },
   build: {
     rollupOptions: {
       output: {

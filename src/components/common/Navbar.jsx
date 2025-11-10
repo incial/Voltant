@@ -141,7 +141,7 @@ const Navbar = () => {
           />
           <NavLink
             to="/whoarewe"
-            label="Who We Are"
+            label="Explore"
             isActive={isLinkActive('/whoarewe')}
           />
         </div>
@@ -285,7 +285,7 @@ const Navbar = () => {
                       isLinkActive('/whoarewe') ? 'text-green-400' : ''
                     }
                   >
-                    Who We Are
+                    Explore
                   </span>
                 </Link>
                 <motion.button
