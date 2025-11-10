@@ -223,7 +223,7 @@ export const householdData = {
       }
     ],
     buttonText: 'Download Household System Specs',
-    showButton: true
+    showButton: false
   }
 }
 
