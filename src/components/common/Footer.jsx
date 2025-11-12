@@ -30,7 +30,7 @@ const Footer = () => {
         />
         <div className='absolute inset-0 bg-black/30 backdrop-blur-[2px]'></div>
       </div>        {/* Mobile Layout (Default) */}
-        <div className="container mx-auto px-4 sm:px-6 relative z-20 flex flex-col items-center md:hidden font-['Cairo']">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 flex flex-col items-center md:hidden font-['Cairo']">
           {/* Logo */}
           <div className='mb-8 sm:mb-10'>
             <img
@@ -108,7 +108,7 @@ const Footer = () => {
       </div>
 
       {/* Desktop Layout (md and up) */}
-      <div className="hidden md:block container mx-auto px-32 relative z-20 py-6 font-['Cairo']">
+      <div className="hidden md:block max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 py-6 font-['Cairo']">
         <div className='flex flex-row justify-between items-center'>          {/* Left side: Logo and Copyright */}
           <div className='flex flex-col gap-8'>
             <div>

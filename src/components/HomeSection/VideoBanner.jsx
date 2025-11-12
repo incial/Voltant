@@ -30,8 +30,8 @@ const VideoBanner = () => {
 
         {/* Content Container */}
         <div className='absolute inset-0 flex items-center justify-center'>
-          <div className='container mx-auto px-6 md:px-12 text-center'>
-            <div className='max-w-3xl mx-auto text-white space-y-6'>
+          <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center'>
+            <div className='max-w-4xl mx-auto text-white space-y-6'>
               {/* First Paragraph */}
               <p className='text-lg md:text-2xl leading-tight font-extralight'>
                 By transforming waste into clean energy and reducing fossil fuel

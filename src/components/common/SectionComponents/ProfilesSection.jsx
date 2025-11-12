@@ -80,13 +80,13 @@ const ProfilesSection = ({
 
   return (
     <motion.section 
-      className="flex flex-col items-center w-full py-12 md:py-16 lg:mt-[100px] lg:mb-[100px] px-4 sm:px-6"
+      className="flex flex-col items-center w-full py-12 md:py-16 lg:mt-[100px] lg:mb-[100px] px-4 sm:px-6 lg:px-8"
       initial="hidden"
       whileInView="visible"
       viewport={{ amount: 0.1, once: true }}
       variants={fadeIn}
     >
-      <div className="max-w-[1098px] w-full flex flex-col">
+      <div className="max-w-7xl w-full mx-auto flex flex-col">
         <motion.h2 
           className="text-[#7F7F7F] text-3xl md:text-4xl mb-8 md:mb-12 font-bold leading-tight px-4 sm:px-6 md:px-0"
           variants={fadeIn}

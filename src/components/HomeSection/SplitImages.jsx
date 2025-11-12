@@ -18,7 +18,7 @@ const images = [
     id: 'pollution',
     title: 'Waste to Energy Solutions',
     description:
-      'From smart modular containerized plants to large-scale anerobic digestion solutions, we transform organic waste into sustainable energy.',
+      'From smart modular containerized plants to large-scale anaerobic digestion solutions, we transform organic waste into sustainable energy.',
     button: 'Learn More',
     img: '/assets/images/Home/split/split1.png',
     icon: heroIcons.waterPure,

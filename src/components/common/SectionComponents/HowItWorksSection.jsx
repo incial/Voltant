@@ -44,13 +44,13 @@ const HowItWorksSection = ({
 }) => {
   return (
     <motion.section 
-      className="flex flex-col items-center w-full py-8 md:py-12 px-4 sm:px-6"
+      className="flex flex-col items-center w-full py-8 md:py-12 px-4 sm:px-6 lg:px-8"
       initial="hidden"
       whileInView="visible"
       viewport={{ amount: 0.1, once: true }}
       variants={fadeIn}
     >
-      <div className="max-w-[1098px] w-full flex flex-col">
+      <div className="max-w-7xl w-full mx-auto flex flex-col">
         <motion.h2 
           className="text-[#7F7F7F] text-3xl md:text-4xl mb-6 md:mb-8 lg:mb-10 font-bold leading-tight text-center"
           variants={fadeIn}
