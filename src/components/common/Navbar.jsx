@@ -112,7 +112,7 @@ const Navbar = () => {
         msBackdropFilter: scrolled ? 'blur(8px)' : 'none',
       }}
     >
-      <div className="relative max-w-screen-2xl mx-auto flex justify-between items-center py-4 px-4 md:px-6 lg:px-8 md:mt-0 mt-6 ml-4 md:ml-0">
+      <div className="relative max-w-7xl mx-auto flex justify-between items-center py-4 px-4 sm:px-6 lg:px-8">
         {/* Logo */}        <div className="flex items-center z-10">          <Link to="/" className="flex items-center">
             <img
               src={whiteLogo}
@@ -152,7 +152,7 @@ const Navbar = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={toggleContactForm}
-            className={`${isContactFormOpen ? 'bg-white bg-opacity-10 text-green-400 border-green-400' : 'bg-transparent text-white border-white hover:bg-white hover:bg-opacity-10'} py-2 px-6 rounded-full font-medium border-2 cursor-pointer transition-colors`}
+            className={`${isContactFormOpen ? 'bg-white bg-opacity-10 text-green-400 border-green-400' : 'bg-transparent text-white border-white hover:bg-white hover:text-black hover:bg-opacity-10'} py-2 px-6 rounded-full font-medium border-2 cursor-pointer transition-colors`}
           >
             Get in Touch
           </motion.button>

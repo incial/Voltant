@@ -25,6 +25,7 @@ const SmartWaste = lazy(() => import('./pages/SmartWaste'))
 import Navbar from './components/common/Navbar'
 import Footer from './components/common/Footer'
 import ContactForm from './components/common/ContactForm'
+import ChatButton from './components/common/ChatButton'
 
 // Context
 import { ContactFormProvider, useContactForm } from './context/ContactFormContext'
@@ -118,6 +119,8 @@ function App() {
           <Footer />
           {/* Contact Form Modal rendered at the root level */}
           <ContactFormModal />
+          {/* Chat Button available on all pages */}
+          <ChatButton />
         </div>
       </Router>
     </ContactFormProvider>
