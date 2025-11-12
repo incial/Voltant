@@ -29,7 +29,7 @@ const ChatButton = ({ phoneNumber = '+971506419857' }) => {
       
       target="_blank" 
       rel="noopener noreferrer"
-      className="fixed right-0 top-1/2 -translate-y-1/2 z-50 flex items-center backdrop-blur-sm bg-white/20 text-gray-400 rounded-full rounded-r-none py-3 pl-4 md:pl-4 pr-5 shadow-lg border-2 border-[#7F7F7F] border-r-0"
+      className="fixed right-0 top-1/2 -translate-y-1/2 z-50 flex items-center backdrop-blur-sm bg-[#25D366]/90 hover:bg-[#25D366] text-white rounded-full rounded-r-none py-3 pl-4 md:pl-4 pr-5 shadow-lg border-2 border-[#25D366] border-r-0"
       // Simplified animation logic
       initial={{ x: isMobile ? 0 : "15%" }}
       animate={{ x: isMobile ? 0 : "15%" }}
@@ -37,7 +37,7 @@ const ChatButton = ({ phoneNumber = '+971506419857' }) => {
       transition={{ duration: 0.3, ease: "easeOut" }}
     >
       <span className="mr-4 font-medium hidden md:inline">Chat</span>
-      <FaWhatsapp className="text-2xl text-gray-400" />
+      <FaWhatsapp className="text-2xl text-white" />
     </motion.a>
   );
 };

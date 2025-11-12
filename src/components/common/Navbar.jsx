@@ -152,7 +152,7 @@ const Navbar = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={toggleContactForm}
-            className={`${isContactFormOpen ? 'bg-white bg-opacity-10 text-green-400 border-green-400' : 'bg-transparent text-white border-white hover:bg-white hover:bg-opacity-10'} py-2 px-6 rounded-full font-medium border-2 cursor-pointer transition-colors`}
+            className={`${isContactFormOpen ? 'bg-white bg-opacity-10 text-green-400 border-green-400' : 'bg-transparent text-white border-white hover:bg-white hover:text-black hover:bg-opacity-10'} py-2 px-6 rounded-full font-medium border-2 cursor-pointer transition-colors`}
           >
             Get in Touch
           </motion.button>

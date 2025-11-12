@@ -3,67 +3,43 @@ import { FaWhatsapp } from "react-icons/fa";
 
 const ConnectWithUs = () => {
   return (
-    <div className="py-8 bg-background">
-      <div className="max-w-2xl mx-auto px-4">
-        <h2 
-          className="text-center text-[#7F7F7F] font-bold mb-12 text-2xl md:text-[40px] leading-snug"
-          style={{
-            fontWeight: 700,
-            lineHeight: '100%'
-          }}
-        >
+    <div className="py-16 bg-white">
+      <div className="max-w-4xl mx-auto px-4">
+        <h2 className="text-center text-[#7F7F7F] font-bold mb-16 text-3xl md:text-[40px]">
           Connect With Us
         </h2>
         
-        <div className="flex flex-col md:flex-row md:justify-center md:gap-50 space-y-6 md:space-y-0">
-          <div className="text-center md:text-left">
-            <p 
-              className="text-[#7F7F7F] font-bold mb-1 text-lg md:text-xl"
-              style={{
-                fontWeight: 600,
-                lineHeight: '135%'
-              }}
-            >
-              Email:
-            </p>
-            <p 
-              className="text-[#7F7F7F] font-light text-lg md:text-xl"
-              style={{
-                fontWeight: 600,
-                lineHeight: '135%'
-              }}
-            >
-              example@gmail.com
-            </p>
-          </div>
+        <div className="text-center space-y-6">
+          <a 
+            href="mailto:contact@voltant.energy"
+            className="text-blue-600 hover:text-blue-700 text-xl md:text-2xl font-medium block transition-colors"
+          >
+            contact@voltant.energy
+          </a>
           
-          <div className="text-center md:text-left">
-            <p 
-              className="text-[#7F7F7F] font-bold mb-1 text-lg md:text-xl"
-              style={{
-                fontWeight: 600,
-                lineHeight: '135%'
-              }}
+          <p className="text-[#7F7F7F] text-xl md:text-2xl font-medium">
+            +971 50 671 9857
+          </p>
+          
+          <p className="text-[#000000] text-base md:text-lg font-semibold leading-relaxed pt-4">
+            Business Center 1, The Meydan Hotel,<br />
+            Nad Al Sheba, Dubai, Dubai, 9305,<br />
+            Dubai
+          </p>
+          
+          <div className="pt-6">
+            <a 
+              href="https://wa.me/971506419857" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-block"
             >
-              Phone:
-            </p>
-            <p 
-              className="text-[#7F7F7F] font-light text-lg md:text-xl"
-              style={{
-                fontWeight: 600,
-                lineHeight: '135%'
-              }}
-            >
-              +97 1 567 555 20
-            </p>
+              <FaWhatsapp 
+                size={40} 
+                className="text-[#25D366] hover:text-[#128C7E] cursor-pointer transition-colors"
+              />
+            </a>
           </div>
-        </div>
-        
-        <div className="flex justify-center mt-8">
-          <FaWhatsapp 
-            size={32} 
-            className="text-green-500 hover:text-green-600 cursor-pointer transition-colors"
-          />
         </div>
       </div>
     </div>
