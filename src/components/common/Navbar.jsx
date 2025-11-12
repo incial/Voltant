@@ -112,7 +112,7 @@ const Navbar = () => {
         msBackdropFilter: scrolled ? 'blur(8px)' : 'none',
       }}
     >
-      <div className="relative max-w-screen-2xl mx-auto flex justify-between items-center py-4 px-4 md:px-6 lg:px-8 md:mt-0 mt-6 ml-4 md:ml-0">
+      <div className="relative max-w-7xl mx-auto flex justify-between items-center py-4 px-4 sm:px-6 lg:px-8">
         {/* Logo */}        <div className="flex items-center z-10">          <Link to="/" className="flex items-center">
             <img
               src={whiteLogo}

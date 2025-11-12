@@ -91,10 +91,10 @@ const RecentWorks = () => {
   }, [cards.length]);
 
   return (
-    <section className='w-full bg-white py-20 px-4'>
-      <div className='max-w-6xl mx-auto'>
+    <section className='w-full bg-white py-20'>
+      <div className='w-full'>
         {/* Title */}
-        <div className='text-center mb-12 md:mb-20'>
+        <div className='text-center mb-12 md:mb-20 px-4 sm:px-6 lg:px-8'>
           <h2 className='font-bold text-[#7f7f7f] text-[36px] md:text-[40px] mb-2 font-[Cairo]'>
             Showcase of Excellence
           </h2>
@@ -104,10 +104,10 @@ const RecentWorks = () => {
         </div>
 
         {/* Cards Row with Buttons and Responsive Scroll */}
-        <div className='relative flex items-center justify-center'>
+        <div className='relative w-full overflow-visible py-8'>
           {/* Left Button - hide on mobile */}
           <button
-            className='hidden sm:flex absolute left-0 -translate-x-1/2 top-1/2 -translate-y-1/2 z-20 p-2 hover:scale-110 transition-transform shadow-lg bg-white/80 backdrop-blur rounded-full border-2 border-white'
+            className='hidden sm:flex absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 z-20 p-2 hover:scale-110 transition-transform shadow-lg bg-white/80 backdrop-blur rounded-full border-2 border-white'
             onClick={handleLeft}
             aria-label='Previous'
             style={{
@@ -125,17 +125,14 @@ const RecentWorks = () => {
           {/* Cards - scrollable, responsive, rounded, with spacing */}
           <div
             ref={rowRef}
-            className='flex gap-4 sm:gap-6 w-full max-w-5xl overflow-x-auto px-6 hide-scrollbar'
-            style={{ background: 'none', boxShadow: 'none', scrollSnapType: 'none' }}
+            className='flex gap-4 sm:gap-6 w-full overflow-x-auto hide-scrollbar px-4 sm:px-6 lg:px-8'
+            style={{ background: 'none', boxShadow: 'none', scrollSnapType: 'none', overflowY: 'visible' }}
           >
             {infiniteCards.map((card, idx) => (
               <div
                 key={card.img + idx}
                 data-card
-                className={`h-56 sm:h-60 w-64 sm:w-80 bg-cover bg-center shrink-0 rounded-2xl shadow-md transition-all duration-500 cursor-pointer ${
-                  hoveredCard === idx ? 'scale-110 z-30 shadow-2xl' : 'scale-100'
-                }`}
-                style={{ backgroundImage: `url(${card.img})` }}
+                className='h-56 sm:h-60 w-64 sm:w-80 shrink-0 rounded-2xl shadow-md overflow-hidden cursor-pointer transition-shadow duration-500'
                 title={card.alt}
                 onMouseEnter={() => {
                   isPaused.current = true;
@@ -145,13 +142,20 @@ const RecentWorks = () => {
                   isPaused.current = false;
                   setHoveredCard(null);
                 }}
-              />
+              >
+                <div
+                  className={`w-full h-full bg-cover bg-center transition-transform duration-500 ${
+                    hoveredCard === idx ? 'scale-110' : 'scale-100'
+                  }`}
+                  style={{ backgroundImage: `url(${card.img})` }}
+                />
+              </div>
             ))}
           </div>
 
           {/* Right Button - hide on mobile */}
           <button
-            className='hidden sm:flex absolute right-0 translate-x-1/2 top-1/2 -translate-y-1/2 z-20 p-2 hover:scale-110 transition-transform shadow-lg bg-white/80 backdrop-blur rounded-full border-2 border-white'
+            className='hidden sm:flex absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 z-20 p-2 hover:scale-110 transition-transform shadow-lg bg-white/80 backdrop-blur rounded-full border-2 border-white'
             onClick={handleRight}
             aria-label='Next'
             style={{
@@ -168,7 +172,7 @@ const RecentWorks = () => {
         </div>
 
         {/* Decorative Arrows */}
-        <div className='relative flex justify-between px-6 mt-10 pointer-events-none'>
+        <div className='relative flex justify-between mt-10 px-4 sm:px-6 lg:px-8 pointer-events-none'>
           {/* Left Arrow */}
           <svg
             width='50'
