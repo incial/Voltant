@@ -2,17 +2,25 @@ import React, { useRef, useEffect, useState } from 'react'
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 
 const RecentWorks = () => {
-  // Card data
-  const cards = [
-    { img: '/assets/images/EV_charging/charger.webp', alt: 'EV Charger' },
-    { img: '/assets/images/WateTOEnergy/Containerized_Plant.webp', alt: 'Containerized Plant' },
-    { img: '/assets/images/EV_charging/Engineering_works.webp', alt: 'Engineering Works' },
-    { img: '/assets/images/WateTOEnergy/SmartWaste.webp', alt: 'Smart Waste' },
-    { img: '/assets/images/WateTOEnergy/SmartWaste.webp', alt: 'Smart Waste' },
-    { img: '/assets/images/WateTOEnergy/SmartWaste.webp', alt: 'Smart Waste' },
-    { img: '/assets/images/WateTOEnergy/Containerized_Plant.webp', alt: 'Containerized Plant' },
-    { img: '/assets/images/WateTOEnergy/Containerized_Plant.webp', alt: 'Containerized Plant' }
+  // Card data - showcase images
+  const showcaseImages = [
+    'Image 13.png',
+    'Image 14.png',
+    'Image 15.png',
+    'Image 16.png',
+    'Image 17.png',
+    'Image 18.png',
+    'Image 19.png',
+    'Image 20.png',
+    'Image 21.png',
+    'Image 22.png',
+    'Image 23.png'
   ];
+
+  const cards = showcaseImages.map((img, index) => ({
+    img: `/assets/images/showcaseimages/${encodeURIComponent(img)}`,
+    alt: `Showcase ${index + 13}`
+  }));
 
   // For infinite scroll, clone cards at both ends
   const infiniteCards = [

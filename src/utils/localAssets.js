@@ -98,10 +98,12 @@ export const clientImgs = {
 export const evImgs = {
   acAbout: '/assets/images/EV_charging/AC_about.webp',
   acCharger: '/assets/images/EV_charging/Ac_charger.webp',
+  acChargerImage: '/assets/images/EV_charging/AC_charger_image.png',
   cpoAbout: '/assets/images/EV_charging/CPO_about.webp',
   cpo: '/assets/images/EV_charging/Cpo.webp',
   dcAbout: '/assets/images/EV_charging/DC_about.webp',
   dcCharger: '/assets/images/EV_charging/Dc_charger.webp',
+  dcChargerImage: '/assets/images/EV_charging/DC_charger_image.png',
   engineeringWorks: '/assets/images/EV_charging/Engineering_works.webp',
   ewAbout: '/assets/images/EV_charging/EW_about.webp',
   moreAbout: '/assets/images/EV_charging/More_about.webp',
