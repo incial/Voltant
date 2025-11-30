@@ -7,25 +7,27 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Home from './pages/Home'
 // Import NotFound page eagerly for better error handling
 import NotFound from './pages/NotFound'
-import WhoAreWe from './pages/WhoAreWe'
-// Lazy load all other pages
-const EvCharging = lazy(() => import('./pages/EvCharging'))
-const AC = lazy(() => import('./pages/AC'))
-const DC = lazy(() => import('./pages/DC'))
-const WasteToEnergy = lazy(() => import('./pages/WasteToEnergy'))
-const EngineeringWorks = lazy(() => import('./pages/EngineeringWorks'))
-const LargeScale = lazy(() => import('./pages/LargeScale'))
-const Cpo = lazy(() => import('./pages/Cpo'))
-const Household = lazy(() => import('./pages/Household'))
-const Containerized = lazy(() => import('./pages/Containerized'))
-const More = lazy(() => import('./pages/More'))
-const SmartWaste = lazy(() => import('./pages/SmartWaste'))
+import WhoAreWe from './pages/about/WhoAreWe'
+
+// Lazy load all other pages - organized by domain
+const EvCharging = lazy(() => import('./pages/ev-charging/EvCharging'))
+const AC = lazy(() => import('./pages/ev-charging/AC'))
+const DC = lazy(() => import('./pages/ev-charging/DC'))
+const Cpo = lazy(() => import('./pages/ev-charging/Cpo'))
+
+const WasteToEnergy = lazy(() => import('./pages/waste-to-energy/WasteToEnergy'))
+const Household = lazy(() => import('./pages/waste-to-energy/Household'))
+const LargeScale = lazy(() => import('./pages/waste-to-energy/LargeScale'))
+const Containerized = lazy(() => import('./pages/waste-to-energy/Containerized'))
+const SmartWaste = lazy(() => import('./pages/waste-to-energy/SmartWaste'))
+
+const EngineeringWorks = lazy(() => import('./pages/services/EngineeringWorks'))
+const More = lazy(() => import('./pages/services/More'))
 
 // Common components
-import Navbar from './components/common/Navbar'
-import Footer from './components/common/Footer'
-import ContactForm from './components/common/ContactForm'
-import ChatButton from './components/common/ChatButton'
+import { Navbar, Footer } from './components/layout'
+import { ContactForm } from './components/forms'
+import { ChatButton } from './components/features'
 
 // Context
 import { ContactFormProvider, useContactForm } from './context/ContactFormContext'

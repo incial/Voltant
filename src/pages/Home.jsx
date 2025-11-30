@@ -2,13 +2,11 @@ import React, { useEffect, lazy, Suspense } from 'react'
 import { useLocation } from 'react-router-dom'
 
 // Only import components needed for the initial viewport eagerly
-import HeroSection from '../components/HomeSection/HeroSection'
-import SplitHoverImages from '../components/HomeSection/SplitImages'
-import RecentWorks from '../components/HomeSection/RecentWorks'
+import { HomeHeroSection as HeroSection, SplitImages as SplitHoverImages, RecentWorks } from '../components/sections/home'
 
 // Lazy load components that appear below the fold
-const ConnectWithUs = lazy(() => import('../components/HomeSection/ConncetWithUs'))
-const VideoBanner = lazy(() => import('../components/HomeSection/VideoBanner'))
+const ConnectWithUs = lazy(() => import('../components/sections/home/ConnectWithUs'))
+const VideoBanner = lazy(() => import('../components/sections/home/VideoBanner'))
 
 // Simple loading component for below-the-fold sections
 const SectionLoader = () => (
