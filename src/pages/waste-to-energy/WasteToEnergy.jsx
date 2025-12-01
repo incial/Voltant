@@ -100,7 +100,7 @@ const WasteToEnergy = () => {
         </div>
 
         {/* Services Grid Section - Improved grid layout */}
-        <div className='bg-white p-4 sm:p-8 py-12 sm:py-16'>
+        <div className='p-4 sm:p-8 py-12 sm:py-16 bg-white'>
           <div className='grid grid-cols-2 gap-4 sm:gap-6'>
             {services.map((service, index) => (
               <ServiceCard
@@ -163,7 +163,7 @@ const WasteToEnergy = () => {
         </section>
 
         {/* Services Grid Section */}
-        <section className='py-16 px-8 md:px-16 lg:px-32'>
+        <section className='py-16 px-8 md:px-16 lg:px-32 bg-white'>
           <div className='mx-auto max-w-[1500px] px-4 sm:px-6'>
             <div className='grid grid-cols-2 lg:grid-cols-3 gap-6'>
               {services.map((service, index) => (
