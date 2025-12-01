@@ -20,17 +20,17 @@ export const containerizedData = {
     heroImage: WASTE_IMAGES.containerizedPlant
   },
 
-  introduction: {
+  seamlessCharging: {
     title: 'Containerized Biogas Plants: Scalable & Sustainable Energy Solutions',
     paragraphs: [
       'Our Containerized Biogas Plants offer a modular, pre-assembled solution for converting organic waste into renewable energy. Designed for flexibility and efficiency, these compact units integrate advanced anaerobic digestion technology, making them ideal for industries, municipalities, and commercial setups. With quick installation, minimal space requirements, and scalable capacity, our plants enable seamless waste-to-energy conversion while reducing carbon footprints and promoting a circular economy.'
     ]
   },
 
-  features: {
+  midSection: {
     backgroundImage: WASTE_IMAGES.cpAbout,
     sectionTitle: 'Big Impact, Sustainable Future',
-    items: [
+    features: [
       {
         icon: ICONS.like,
         title: 'Modular & Pre-Assembled',
@@ -69,9 +69,11 @@ export const containerizedData = {
     ]
   },
 
-  services: {
+  profiles: {
     sectionTitle: 'Profiles',
-    leftColumn: [
+    showButton: true,
+    buttonText: 'Get in Touch',
+    leftProfiles: [
       {
         title: 'Site Assessment & Feasibility Study',
         description: 'We begin with a comprehensive evaluation of the site, analyzing power availability, load capacity, and infrastructure readiness. This helps determine the best charger placement while ensuring compliance with local regulations and safety standards.'
@@ -85,7 +87,7 @@ export const containerizedData = {
         description: 'From civil and electrical work to network setup, our team manages the entire installation process, ensuring seamless execution. We conduct rigorous testing and commissioning to guarantee smooth operation and long-term reliability.'
       }
     ],
-    rightColumn: [
+    rightProfiles: [
       {
         title: 'Maintenance & Support',
         description: "Our job doesn't end after installation. We provide ongoing maintenance, real-time monitoring, and remote diagnostics to ensure optimal charger performance. With preventive service schedules and 24/7 technical support, we keep charging stations running efficiently."

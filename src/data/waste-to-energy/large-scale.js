@@ -20,17 +20,17 @@ export const largeScaleData = {
     heroImage: WASTE_IMAGES.largeScalePlant
   },
 
-  introduction: {
+  seamlessCharging: {
     title: 'Powering Sustainability at Scale',
     paragraphs: [
       'Our Large-Scale Biogas Plants are designed for high-volume organic waste processing, transforming waste into renewable energy on an industrial scale. These plants utilize advanced anaerobic digestion technology to maximize biogas production, reduce landfill dependency, and contribute to a circular economy. Ideal for municipalities, industries, and large commercial establishments, our solutions offer high efficiency, scalability, and long-term sustainability.'
     ]
   },
 
-  features: {
+  midSection: {
     backgroundImage: WASTE_IMAGES.lsAbout,
     sectionTitle: 'Big Impact, Sustainable Future',
-    items: [
+    features: [
       {
         icon: ICONS.like,
         title: 'High-Capacity Processing',
@@ -64,9 +64,11 @@ export const largeScaleData = {
     ]
   },
 
-  services: {
+  profiles: {
     sectionTitle: 'Profiles',
-    leftColumn: [
+    showButton: true,
+    buttonText: 'Get in Touch',
+    leftProfiles: [
       {
         title: 'Site Assessment & Feasibility Study',
         description: 'We begin with a comprehensive evaluation of the site, analyzing power availability, load capacity, and infrastructure readiness. This helps determine the best charger placement while ensuring compliance with local regulations and safety standards.'
@@ -80,7 +82,7 @@ export const largeScaleData = {
         description: 'From civil and electrical work to network setup, our team manages the entire installation process, ensuring seamless execution. We conduct rigorous testing and commissioning to guarantee smooth operation and long-term reliability.'
       }
     ],
-    rightColumn: [
+    rightProfiles: [
       {
         title: 'Maintenance & Support',
         description: "Our job doesn't end after installation. We provide ongoing maintenance, real-time monitoring, and remote diagnostics to ensure optimal charger performance. With preventive service schedules and 24/7 technical support, we keep charging stations running efficiently."

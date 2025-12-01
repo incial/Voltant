@@ -20,17 +20,17 @@ export const smartWasteData = {
     heroImage: WASTE_IMAGES.smartWaste
   },
 
-  introduction: {
+  seamlessCharging: {
     title: 'Automated Sorting, Sustainable Living',
     paragraphs: [
       'Efficient waste management starts with proper segregation. Our Smart Waste Segregation Bins use advanced sensors and AI-powered technology to automatically sort waste into recyclable, organic, and non-recyclable categories. Designed for homes, offices, and public spaces, these bins reduce landfill waste, promote recycling, and contribute to a cleaner environment.'
     ]
   },
 
-  features: {
+  midSection: {
     backgroundImage: WASTE_IMAGES.swAbout,
     sectionTitle: 'Sort Smart, Waste Less',
-    items: [
+    features: [
       {
         icon: ICONS.star,
         title: 'Automated Sorting',
@@ -59,9 +59,11 @@ export const smartWasteData = {
     ]
   },
 
-  services: {
+  profiles: {
     sectionTitle: 'Engineering Profiles',
-    leftColumn: [
+    showButton: true,
+    buttonText: 'Get in Touch',
+    leftProfiles: [
       {
         title: 'Site Assessment & Feasibility Study',
         description: 'We begin with a comprehensive evaluation of the site, analyzing power availability, load capacity, and infrastructure readiness. This helps determine the best charger placement while ensuring compliance with local regulations and safety standards.'
@@ -75,7 +77,7 @@ export const smartWasteData = {
         description: 'From civil and electrical work to network setup, our team manages the entire installation process, ensuring seamless execution. We conduct rigorous testing and commissioning to guarantee smooth operation and long-term reliability.'
       }
     ],
-    rightColumn: [
+    rightProfiles: [
       {
         title: 'Maintenance & Support',
         description: "Our job doesn't end after installation. We provide ongoing maintenance, real-time monitoring, and remote diagnostics to ensure optimal charger performance. With preventive service schedules and 24/7 technical support, we keep charging stations running efficiently."

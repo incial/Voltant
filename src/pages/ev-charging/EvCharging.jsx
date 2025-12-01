@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { ServiceCard } from '../../components/ui'
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion'
-import { evImgs, vids } from '../utils/localAssets'
+import { evImgs, vids } from '../../utils/localAssets'
 
 const EvCharging = () => {
   const [imageLoaded, setImageLoaded] = useState(false)

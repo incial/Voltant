@@ -20,7 +20,7 @@ export const householdData = {
     heroImage: WASTE_IMAGES.household
   },
 
-  introduction: {
+  seamlessCharging: {
     title: 'Sustainable Solutions for Home Waste Management',
     paragraphs: [
       'Our compact household biogas solutions convert kitchen and organic waste into clean, renewable energy right at your home. These user-friendly systems offer a sustainable way to manage household waste while producing biogas for cooking and heating.',
@@ -28,10 +28,10 @@ export const householdData = {
     ]
   },
 
-  features: {
+  midSection: {
     backgroundImage: WASTE_IMAGES.hsAbout,
     sectionTitle: 'Why Choose Us?',
-    items: [
+    features: [
       {
         icon: ICONS.crop,
         title: 'Compact & Space-Saving',
@@ -60,9 +60,11 @@ export const householdData = {
     ]
   },
 
-  services: {
+  profiles: {
     sectionTitle: 'Profiles',
-    leftColumn: [
+    showButton: true,
+    buttonText: 'Get in Touch',
+    leftProfiles: [
       {
         title: 'Compact Home Biogas Systems',
         description: 'Our household biogas systems are designed for easy integration into residential settings. These compact units efficiently convert kitchen scraps, garden waste, and other organic materials into biogas, providing a renewable energy source for cooking and heating needs.'
@@ -72,7 +74,7 @@ export const householdData = {
         description: 'With intuitive controls and minimal maintenance requirements, our household systems are accessible to all family members. Simple waste input and easy gas collection make daily operation straightforward and hassle-free.'
       }
     ],
-    rightColumn: [
+    rightProfiles: [
       {
         title: 'Sustainable Waste Solution',
         description: 'By converting household organic waste into energy, our systems significantly reduce landfill contribution while creating a valuable resource. This closed-loop approach supports sustainable living and environmental responsibility at home.'

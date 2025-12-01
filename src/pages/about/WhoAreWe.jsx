@@ -3,13 +3,11 @@ import {
   FaFacebookF,
   FaInstagram,
   FaLinkedinIn,
-  FaYoutube,
-  FaWhatsapp
+  FaYoutube
 } from 'react-icons/fa'
 import { FaXTwitter } from 'react-icons/fa6'
 import { Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
-import { homeImgs, logos } from '../../utils/localAssets'
+import { homeImgs, logos, showcaseImgs } from '../../utils/localAssets'
 import { RecentWorks } from '../../components/sections/home'
 
 const WhoAreWe = () => {
@@ -41,7 +39,7 @@ const WhoAreWe = () => {
             className='h-[55px] mb-[15px]'
           />
           <img
-            src={logos.logoIcon}
+            src={logos.icon}
             alt='Voltant Energy Icon'
             className='h-[15px]'
           />
@@ -141,12 +139,15 @@ const WhoAreWe = () => {
             </div>
           </div>
 
-          {/* Logo Arrows Section */}
-          <div className='flex gap-[30px] items-center justify-center'>
-            <div className='text-[74px] text-green-600'>↑</div>
-            <div className='text-[20px] text-[#7f7f7f]'>+</div>
-            <div className='text-[74px] text-gray-500'>↓</div>
+          {/* About Section Sub Logo */}
+          <div className='flex justify-center items-center w-full py-[50px]'>
+            <img
+              src={homeImgs.aboutSectionSubLogo}
+              alt='Voltant Energy Mission'
+              className='max-w-full h-auto'
+            />
           </div>
+
 
           {/* Section 7 - Our Logo, Our Purpose */}
           <div className='flex flex-col gap-[50px]'>
@@ -228,23 +229,26 @@ const WhoAreWe = () => {
               </p>
             </div>
           </div>
-          {/* Get in Touch Button */}
-          <div className='flex justify-center'>
-            <Link to='/contact'>
-              <button className='border-2 border-[#7f7f7f] text-[#7f7f7f] px-8 py-3 rounded-[31px] hover:bg-[#7f7f7f] hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-[#7f7f7f]/50'>
-                Get in Touch
-              </button>
-            </Link>
-          </div>
+        </div>
+      </div>
+
+      {/* Get in Touch Button and Social Media Section */}
+      <div className='w-full flex flex-col items-center gap-[100px] py-16'>
+        <div className='flex justify-center'>
+          <Link to='/contact'>
+            <button className='border-2 border-[#7f7f7f] text-[#7f7f7f] text-[20px] px-[18px] rounded-[31px] hover:bg-[#7f7f7f] hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-[#7f7f7f]/50 w-[176px] h-[62px] flex items-center justify-center'>
+              Get in Touch
+            </button>
+          </Link>
         </div>
 
-        {/* Social media icons - centered at bottom */}
-        <div className='flex flex-row justify-center items-center space-x-6 py-12'>
+        {/* Social media icons */}
+        <div className='flex flex-row justify-center items-center gap-[50px]'>
           <a
             href='https://youtube.com'
             target='_blank'
             rel='noopener noreferrer'
-            className='text-[#7f7f7f] hover:opacity-80 transition-opacity p-1'
+            className='text-[#7f7f7f] hover:opacity-80 transition-opacity'
             aria-label='YouTube'
           >
             <FaYoutube size={24} />
@@ -253,7 +257,7 @@ const WhoAreWe = () => {
             href='https://instagram.com'
             target='_blank'
             rel='noopener noreferrer'
-            className='text-[#7f7f7f] hover:opacity-80 transition-opacity p-1'
+            className='text-[#7f7f7f] hover:opacity-80 transition-opacity'
             aria-label='Instagram'
           >
             <FaInstagram size={24} />
@@ -262,7 +266,7 @@ const WhoAreWe = () => {
             href='https://facebook.com'
             target='_blank'
             rel='noopener noreferrer'
-            className='text-[#7f7f7f] hover:opacity-80 transition-opacity p-1'
+            className='text-[#7f7f7f] hover:opacity-80 transition-opacity'
             aria-label='Facebook'
           >
             <FaFacebookF size={24} />
@@ -271,7 +275,7 @@ const WhoAreWe = () => {
             href='https://linkedin.com'
             target='_blank'
             rel='noopener noreferrer'
-            className='text-[#7f7f7f] hover:opacity-80 transition-opacity p-1'
+            className='text-[#7f7f7f] hover:opacity-80 transition-opacity'
             aria-label='LinkedIn'
           >
             <FaLinkedinIn size={24} />
@@ -280,14 +284,12 @@ const WhoAreWe = () => {
             href='https://twitter.com'
             target='_blank'
             rel='noopener noreferrer'
-            className='text-[#7f7f7f] hover:opacity-80 transition-opacity p-1'
+            className='text-[#7f7f7f] hover:opacity-80 transition-opacity'
             aria-label='Twitter'
           >
             <FaXTwitter size={24} />
           </a>
         </div>
-      </div>
-      <div>
         <RecentWorks />
       </div>
     </div>
