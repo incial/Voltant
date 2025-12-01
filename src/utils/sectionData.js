@@ -669,21 +669,21 @@ export const ACData = {
     chargerModels: [
       {
         power: "7 kW",
-        imageUrl: evImgs.charger,
+        imageUrl: evImgs.acChargerImage,
         model: "EVE07W",
         current: "32A",
         maxPower: "7.4kW"
       },
       {
         power: "11 kW",
-        imageUrl: evImgs.charger,
+        imageUrl: evImgs.acChargerImage,
         model: "EVE11W",
         current: "32A",
         maxPower: "11kW"
       },
       {
         power: "22 kW",
-        imageUrl: evImgs.charger,
+        imageUrl: evImgs.acChargerImage,
         model: "EVE22W",
         current: "32A",
         maxPower: "22kW"
@@ -744,7 +744,7 @@ export const DCData = {
     heroImage: evImgs.dcCharger
   },
   seamlessCharging: {
-    title: ' DC Chargers: Fast, Powerful & Future-Ready',
+    title: 'DC Chargers: Fast, Powerful & Future-Ready',
     paragraphs: [
       'Voltant Energy\'s AMPHAWK DC Fast Chargers deliver high-speed, efficient, and reliable EV charging solutions for a wide range of applications. Designed to support CCS, CHAdeMO, and AC Type 2, these chargers cater to both current and next-generation electric vehicles.',
       'With power outputs ranging from 30kW to 510kW, AMPHAWK DC chargers are ideal for public charging stations, commercial fleets, logistics hubs, and highway corridors. They feature modular system architecture, ensuring scalability and easy maintenance while maintaining low operational costs.'
@@ -752,43 +752,43 @@ export const DCData = {
   },
   midSection: {
     backgroundImage: evImgs.dcAbout,
-    sectionTitle: 'Why Choose AC Charging ?',
+    sectionTitle: 'Why Choose DC Charging?',
     features: [
       {
         icon: heroIcons.power,
-        title: 'Smart connectivity ',
+        title: 'Ultra-Fast Charging',
         description:
-          'with WiFi, Bluetooth, and RFID access control.'
+          'High-power options from 30kW to 510kW'
       },
       {
         icon: heroIcons.time,
-        title: 'Energy-Efficient & Cost-Effective',
+        title: 'Dual charging capabilities',
         description:
-          'Delivers steady, optimized charging with lower infrastructure costs.'
+          'allowing two vehicles to charge simultaneously.'
       },
       {
         icon: heroIcons.vectorCombine,
-        title: 'Multiple charging standards',
+        title: 'Multi-standard compatibility',
         description:
-          '(GBT, Type 1, Type 2) for universal compatibility.'
+          '(CCS, CHAdeMO & AC Type 2).'
       },
       {
         icon: heroIcons.thumbUp,
-        title: 'Integrated safety features',
+        title: 'OCPP support',
         description:
-          'including Type B leakage protection, overvoltage, and short circuit protection.'
+          'for seamless integration with backend management systems.'
       },
       {
         icon: heroIcons.star,
-        title: 'IP65-rated waterproof design',
+        title: 'Designed for extreme conditions',
         description:
-          'ensuring durability in all weather conditions.'
+          'with an operational temperature range of up to 60°C.'
       },
       {
         icon: heroIcons.sun,
-        title: 'Human motion radar sensor',
+        title: 'Daylight-readable touchscreen display',
         description:
-          ' for automatic screen brightness adjustment.'
+          'for an intuitive user experience.'
       }
     ]
   },
@@ -798,66 +798,72 @@ export const DCData = {
     showButton: true
   },
   chargerData: {
-    title: "AMPHAWK",
-    subtitle: "DC Charger",
+    title: "Voltant AmpHawk",
+    subtitle: "DC Fast Chargers",
     chargerModels: [
       {
-        power: "7 kW",
-        imageUrl: evImgs.charger,
-        model: "EVE07W",
-        current: "32A",
-        maxPower: "7.4kW"
+        power: "30kW",
+        imageUrl: evImgs.dcChargerImage,
+        model: "Wall Box Charger",
+        current: "120A",
+        maxPower: "30kW"
       },
       {
-        power: "11 kW",
-        imageUrl: evImgs.charger,
-        model: "EVE11W",
-        current: "32A",
-        maxPower: "11kW"
+        power: "60kW - 180kW",
+        imageUrl: evImgs.dcChargerImage,
+        model: "DC Fast Chargers",
+        current: "Up to 250A",
+        maxPower: "60kW, 90kW, 120kW, 150kW, 180kW"
       },
       {
-        power: "22 kW",
-        imageUrl: evImgs.charger,
-        model: "EVE22W",
-        current: "32A",
-        maxPower: "22kW"
+        power: "240kW - 360kW",
+        imageUrl: evImgs.dcChargerImage,
+        model: "DC Fast Chargers",
+        current: "250A (Optional: 300A/400A)",
+        maxPower: "240kW, 300kW, 360kW"
       }
     ],
     specifications: [
       {
-        category: "Electrical Specifications",
+        category: "Power Capacity",
         items: [
-          { label: "Product Model:", values: ["EVE07W", "EVE11W", "EVE22W"] },
-          { label: "Max Current:", values: ["32A", "32A", "32A"] },
-          { label: "Max Power:", values: ["7.4kW", "11kW", "22kW"] }
+          { label: "Power Capacity:", values: ["30kW", "60kW, 90kW, 120kW, 150kW, 180kW", "240kW, 360kW"] }
         ]
       },
       {
-        category: "Function and Accessory",
+        category: "Max DC Output Current",
         items: [
-          { label: "LED Indicators:", values: ["Yes", "Yes", "Yes"] },
-          { label: "Integrated RCD:", values: ["Type B", "Type B", "Type B"] },
-          { label: "RFID / App / Touch Controls:", values: ["Yes", "Yes", "Yes"] },
-          { label: "WiFi / Bluetooth:", values: ["Yes (WiFi 2.4GHz)", "Yes (WiFi 2.4GHz)", "Yes (WiFi 2.4GHz)"] },
-          { label: "LCD Screen:", values: ["3.0-inch", "3.0-inch", "3.0-inch"] }
+          { label: "Max DC Output Current:", values: ["100A", "Up to 250A", "250A (Optional: 300A/400A)"] }
         ]
       },
       {
-        category: "Working Environment",
+        category: "Efficiency",
         items: [
-          { label: "Protection Degree:", values: ["IP65", "IP65", "IP65"] },
-          { label: "Operational Temperature:", values: ["-30°C to 55°C", "-30°C to 55°C", "-30°C to 55°C"] },
-          { label: "Cooling:", values: ["Natural Air Cooling", "Natural Air Cooling", "Natural Air Cooling"] }
+          { label: "Efficiency:", values: ["95%", "96% (Power Module), 95% (System)", "95%"] }
         ]
       },
       {
-        category: "Mechanical Parameters",
+        category: "Dimensions (W x D x H)",
         items: [
-          { label: "Charging Cable:", values: ["5m Type 2 Connector", "5m Type 2 Connector", "5m Type 2 Connector"] },
-          { label: "Control Box Dimensions:", values: ["HxWxD = 180mm * 180mm * 70mm", "HxWxD = 180mm * 180mm * 70mm", "HxWxD = 180mm * 180mm * 70mm"] },
-          { label: "Weight:", values: ["≤6kg", "≤6kg", "≤6kg"] },
-          { label: "Colour:", values: ["White / Dark Grey unit, Black cable", "White or Dark Grey unit, Black cable", "White or Dark Grey unit, Black cable"] },
-          { label: "Compliance:", values: ["IEC-61851, CE/RoHS", "IEC-61851, CE/RoHS", "IEC-61851, CE/RoHS"] }
+          { label: "Dimensions:", values: ["600mm x 600mm x 1700mm", "850mm x 770mm x 1850mm", "240kW: 850mm x 770mm x 1850mm, 360kW: 1000mm x 900mm x 2000mm"] }
+        ]
+      },
+      {
+        category: "Nominal AC Input Current",
+        items: [
+          { label: "Nominal AC Input Current:", values: ["Low", "Increases with power levels", "Higher"] }
+        ]
+      },
+      {
+        category: "Supported Connectors",
+        items: [
+          { label: "Supported Connectors:", values: ["CCS1, CCS2, CHAdeMO, GB-T", "CCS1, CCS2, CHAdeMO, AC Type 2", "CCS1, CCS2, CHAdeMO, AC Type 2"] }
+        ]
+      },
+      {
+        category: "Target Use Case",
+        items: [
+          { label: "Target Use Case:", values: ["Ideal for low-demand settings (small EV fleets)", "Medium to large-scale installations", "Ultra-fast charging for high-demand environments"] }
         ]
       }
     ],
