@@ -20,7 +20,7 @@ export const dcChargersData = {
     heroImage: EV_IMAGES.dcCharger
   },
 
-  introduction: {
+  seamlessCharging: {
     title: 'DC Chargers: Fast, Powerful & Future-Ready',
     paragraphs: [
       "Voltant Energy's AMPHAWK DC Fast Chargers deliver high-speed, efficient, and reliable EV charging solutions for a wide range of applications. Designed to support CCS, CHAdeMO, and AC Type 2, these chargers cater to both current and next-generation electric vehicles.",
@@ -28,10 +28,10 @@ export const dcChargersData = {
     ]
   },
 
-  features: {
+  midSection: {
     backgroundImage: EV_IMAGES.dcAbout,
     sectionTitle: 'Why Choose DC Charging?',
-    items: [
+    features: [
       {
         icon: ICONS.power,
         title: 'Ultra-Fast Charging',
@@ -65,10 +65,10 @@ export const dcChargersData = {
     ]
   },
 
-  products: {
+  chargerData: {
     title: 'Voltant AmpHawk',
     subtitle: 'DC Fast Chargers',
-    models: [
+    chargerModels: [
       {
         power: '30kW',
         imageUrl: EV_IMAGES.dcChargerImage,
@@ -134,7 +134,13 @@ export const dcChargersData = {
           { label: 'Target Use Case:', values: ['Ideal for low-demand settings (small EV fleets)', 'Medium to large-scale installations', 'Ultra-fast charging for high-demand environments'] }
         ]
       }
-    ]
+    ],
+    buttonText: 'Download Datasheet',
+    buttonText2: 'Download Charging Profile',
+    showButton: true,
+    showButton2: true,
+    pdfUrl: '',
+    pdfUrl2: ''
   },
 
   downloads: {

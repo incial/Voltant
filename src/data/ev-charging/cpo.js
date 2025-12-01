@@ -20,17 +20,17 @@ export const cpoData = {
     heroImage: EV_IMAGES.cpo
   },
 
-  introduction: {
+  seamlessCharging: {
     title: 'Voltant Energy – Your Trusted Charge Point Operator (CPO) Partner',
     paragraphs: [
       'As the UAE embraces electric mobility, Voltant Energy provides property owners with a turnkey CPO partnership solution that combines sustainability, revenue generation, and seamless EV infrastructure management.'
     ]
   },
 
-  features: {
+  midSection: {
     backgroundImage: EV_IMAGES.cpoAbout,
     sectionTitle: 'Why Partner with Us?',
-    items: [
+    features: [
       {
         icon: ICONS.folder,
         title: 'Zero Upfront Investment',
@@ -73,7 +73,7 @@ export const cpoData = {
     ]
   },
 
-  callToAction: {
+  profiles: {
     sectionTitle: 'Partner with Voltant Energy Today',
     paragraph: 'Transform your parking spaces into profit-generating, sustainable assets. With reliable chargers, end-to-end support, and a focus on net-zero impact, Voltant Energy is your ideal CPO partner for the future of mobility.',
     buttonText: 'Download Charging Profile',

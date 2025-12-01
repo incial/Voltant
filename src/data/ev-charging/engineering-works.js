@@ -20,7 +20,7 @@ export const engineeringWorksData = {
     heroImage: EV_IMAGES.engineeringWorks
   },
 
-  introduction: {
+  seamlessCharging: {
     title: 'Engineering Works: Precision, Efficiency & Innovation',
     paragraphs: [
       'Our Engineering Works ensure seamless EV charging infrastructure deployment, from planning to execution. We specialize in site assessment, electrical integration, grid connectivity, and custom installation solutions tailored to meet diverse operational needs.',
@@ -29,10 +29,10 @@ export const engineeringWorksData = {
     ]
   },
 
-  features: {
+  midSection: {
     backgroundImage: EV_IMAGES.ewAbout,
     sectionTitle: 'Why Choose Us?',
-    items: [
+    features: [
       {
         icon: ICONS.star,
         title: 'Expert-Led Solutions',
@@ -66,9 +66,9 @@ export const engineeringWorksData = {
     ]
   },
 
-  services: {
+  profiles: {
     sectionTitle: 'Our Services',
-    leftColumn: [
+    leftProfiles: [
       {
         title: 'Site Assessment & Feasibility Study',
         description: 'We begin with a comprehensive evaluation of the site, analyzing power availability, load capacity, and infrastructure readiness. This helps determine the best charger placement while ensuring compliance with local regulations and safety standards.'
@@ -82,7 +82,7 @@ export const engineeringWorksData = {
         description: 'From civil and electrical work to network setup, our team manages the entire installation process, ensuring seamless execution. We conduct rigorous testing and commissioning to guarantee smooth operation and long-term reliability.'
       }
     ],
-    rightColumn: [
+    rightProfiles: [
       {
         title: 'Maintenance & Support',
         description: "Our job doesn't end after installation. We provide ongoing maintenance, real-time monitoring, and remote diagnostics to ensure optimal charger performance. With preventive service schedules and 24/7 technical support, we keep charging stations running efficiently."
@@ -91,7 +91,9 @@ export const engineeringWorksData = {
         title: 'Software & Network Integration',
         description: 'Seamless connectivity is key to modern EV charging. We integrate smart Charge Point Management Systems (CPMS) with real-time data analytics, load balancing, and OCPP-compliant backend systems. This allows for efficient monitoring, remote control, and a smooth user experience.'
       }
-    ]
+    ],
+    buttonText: 'Download Charging Profile',
+    showButton: false
   },
 
   downloads: {
