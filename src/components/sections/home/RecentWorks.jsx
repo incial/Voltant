@@ -99,23 +99,23 @@ const RecentWorks = () => {
   }, [cards.length]);
 
   return (
-    <section className='w-full bg-white py-20'>
+    <section className='w-full bg-white py-12 md:py-16 lg:py-20'>
       <div className='w-full'>
         {/* Title */}
-        <div className='text-center mb-12 md:mb-20 px-4 sm:px-6 lg:px-8'>
-          <h2 className='font-bold text-[#7f7f7f] text-[36px] md:text-[40px] mb-2 font-[Cairo]'>
+        <div className='text-center mb-8 md:mb-12 lg:mb-16 px-4 sm:px-6 lg:px-8'>
+          <h2 className='font-bold text-[#7f7f7f] text-[28px] sm:text-[32px] md:text-[36px] lg:text-[40px] mb-2 font-[Cairo]'>
             Showcase of Excellence
           </h2>
-          <p className='text-[#7f7f7f] text-[18px] md:text-[20px] font-[Cairo]'>
+          <p className='text-[#7f7f7f] text-[16px] sm:text-[17px] md:text-[18px] lg:text-[20px] font-[Cairo]'>
             A glimpse into our work, from installations to innovations
           </p>
         </div>
 
         {/* Cards Row with Buttons and Responsive Scroll */}
-        <div className='relative w-full overflow-visible py-8'>
+        <div className='relative w-full overflow-visible py-6 md:py-8'>
           {/* Left Button - hide on mobile */}
           <button
-            className='hidden sm:flex absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 z-20 p-2 hover:scale-110 transition-transform shadow-lg bg-white/80 backdrop-blur rounded-full border-2 border-white'
+            className='hidden sm:flex absolute left-3 md:left-4 lg:left-8 top-1/2 -translate-y-1/2 z-20 p-1.5 md:p-2 hover:scale-110 transition-transform shadow-lg bg-white/80 backdrop-blur rounded-full border-2 border-white'
             onClick={handleLeft}
             aria-label='Previous'
             style={{
@@ -127,20 +127,20 @@ const RecentWorks = () => {
               background: 'none'
             }}
           >
-            <FaChevronLeft size={24} className='text-gray-600 md:text-white m-0 md:m-2' />
+            <FaChevronLeft className='text-gray-600 md:text-white text-xl md:text-2xl m-0 md:m-2' />
           </button>
 
           {/* Cards - scrollable, responsive, rounded, with spacing */}
           <div
             ref={rowRef}
-            className='flex gap-4 sm:gap-6 w-full overflow-x-auto hide-scrollbar px-4 sm:px-6 lg:px-8'
+            className='flex gap-3 sm:gap-4 md:gap-5 lg:gap-6 w-full overflow-x-auto hide-scrollbar px-4 sm:px-6 md:px-8 lg:px-10'
             style={{ background: 'none', boxShadow: 'none', scrollSnapType: 'none', overflowY: 'visible' }}
           >
             {infiniteCards.map((card, idx) => (
               <div
                 key={card.img + idx}
                 data-card
-                className='h-56 sm:h-60 w-64 sm:w-80 shrink-0 rounded-2xl shadow-md overflow-hidden cursor-pointer transition-shadow duration-500'
+                className='h-48 sm:h-52 md:h-56 lg:h-60 w-56 sm:w-64 md:w-72 lg:w-80 shrink-0 rounded-xl md:rounded-2xl shadow-md overflow-hidden cursor-pointer transition-shadow duration-500'
                 title={card.alt}
                 onMouseEnter={() => {
                   isPaused.current = true;
@@ -163,7 +163,7 @@ const RecentWorks = () => {
 
           {/* Right Button - hide on mobile */}
           <button
-            className='hidden sm:flex absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 z-20 p-2 hover:scale-110 transition-transform shadow-lg bg-white/80 backdrop-blur rounded-full border-2 border-white'
+            className='hidden sm:flex absolute right-3 md:right-4 lg:right-8 top-1/2 -translate-y-1/2 z-20 p-1.5 md:p-2 hover:scale-110 transition-transform shadow-lg bg-white/80 backdrop-blur rounded-full border-2 border-white'
             onClick={handleRight}
             aria-label='Next'
             style={{
@@ -175,12 +175,12 @@ const RecentWorks = () => {
               background: 'none'
             }}
           >
-            <FaChevronRight size={24} className='text-gray-600 md:text-white m-0 md:m-2' />
+            <FaChevronRight className='text-gray-600 md:text-white text-xl md:text-2xl m-0 md:m-2' />
           </button>
         </div>
 
         {/* Decorative Arrows */}
-        <div className='relative flex justify-between mt-10 px-4 sm:px-6 lg:px-8 pointer-events-none'>
+        <div className='relative flex justify-between mt-6 md:mt-8 lg:mt-10 px-4 sm:px-6 lg:px-8 pointer-events-none'>
           {/* Left Arrow */}
           <svg
             width='50'
@@ -188,7 +188,7 @@ const RecentWorks = () => {
             viewBox='0 0 52 27'
             fill='none'
             xmlns='http://www.w3.org/2000/svg'
-            className='rotate-90'
+            className='rotate-90 w-10 md:w-12 lg:w-[50px]'
           >
             <g>
               <path
@@ -212,7 +212,7 @@ const RecentWorks = () => {
             viewBox='0 0 52 27'
             fill='none'
             xmlns='http://www.w3.org/2000/svg'
-            className='-rotate-90'
+            className='-rotate-90 w-10 md:w-12 lg:w-[50px]'
           >
             <g>
               <path

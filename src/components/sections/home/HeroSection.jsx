@@ -67,7 +67,7 @@ const HeroSection = () => {
     return () => clearInterval(interval);
   }, [currentIndex]);
 
-  // Show social tray only on desktop
+  // Show social tray only on large desktop (hide on tablet)
   useEffect(() => {
     if (isMobile) return;
     const timer = setTimeout(() => setShowSocialTray(true), 2500);
@@ -103,7 +103,7 @@ const HeroSection = () => {
         }}
       />
 
-      {/* Social Media Icons - Desktop Only */}
+      {/* Social Media Icons - show only on large screens */}
       {!isMobile && showSocialTray && (
         <motion.div
           initial={{ x: 100, opacity: 0 }}
@@ -114,7 +114,7 @@ const HeroSection = () => {
             damping: 20,
             duration: 0.4
           }}
-          className="absolute right-8 top-1/2 transform -translate-y-1/2 flex flex-col gap-6 z-20"
+          className="hidden lg:flex absolute right-8 top-1/2 transform -translate-y-1/2 flex-col gap-6 z-20"
         >
           {[FaYoutube, FaInstagram, FaFacebook, FaLinkedin, FaXTwitter].map((Icon, index) => (
             <a
@@ -133,35 +133,29 @@ const HeroSection = () => {
         </motion.div>
       )}
 
-      {/* Text Content - Now using dvh units */}
+      {/* Text Content */}
       <motion.div
         key={`caption-${currentIndex}`}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
-        className={`absolute ${isMobile ? 'bottom-[20dvh] left-4 max-w-[80%]'
-          : 'bottom-20 sm:bottom-32 md:bottom-[200px] left-8 sm:left-12 md:left-[100px]'
-          } z-10 text-white text-left`}
-        style={{ maxWidth: isMobile ? '80%' : '500px' }}
+        className={`absolute z-10 text-white text-left ${isMobile ? 'bottom-[18dvh] left-4 max-w-[80%]' : 'bottom-20 left-6 sm:left-8 md:left-12 lg:left-[100px]'}`}
+        style={{ maxWidth: isMobile ? '80%' : '520px' }}
       >
-        <h3 className={`${isMobile ? 'text-xl leading-snug'
-          : 'text-3xl sm:text-4xl md:text-[2.45rem] leading-tight'
-          } font-normal m-0 font-['Cairo'] drop-shadow-lg`}>
+        <h3 className={`${isMobile ? 'text-xl leading-snug' : 'text-2xl sm:text-3xl md:text-4xl lg:text-[2.45rem] leading-tight'} font-normal m-0 font-['Cairo'] drop-shadow-lg`}>
           {heroImages[currentIndex].title}
         </h3>
       </motion.div>
 
       {/* Progress Indicators - Using dvh units */}
-      <div className={`absolute ${isMobile ? 'bottom-[10dvh]'
-        : 'bottom-6 sm:bottom-8 md:bottom-[30px]'
-        } left-0 right-0 flex justify-center gap-2 sm:gap-5 md:gap-[20px] z-10`}>
+      <div className={`absolute ${isMobile ? 'bottom-[10dvh]' : 'bottom-6 sm:bottom-8 md:bottom-6'} left-0 right-0 flex justify-center gap-2 sm:gap-5 md:gap-8 z-10`}>
         {heroImages.map((_, index) => (
           <div
             key={index}
             className={`${isMobile ? 'h-1' : 'h-1 md:h-[4px]'
               } rounded-[2px] overflow-hidden transition-all duration-300`}
             style={{
-              width: index === currentIndex ? (isMobile ? '80px' : '100px') : (isMobile ? '40px' : '50px'),
+              width: index === currentIndex ? (isMobile ? '80px' : '90px') : (isMobile ? '40px' : '48px'),
               backgroundColor: 'rgba(255,255,255,0.3)',
             }}
           >

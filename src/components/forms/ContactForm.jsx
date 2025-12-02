@@ -224,7 +224,7 @@ const ContactForm = ({ onClose }) => {
     <motion.form
       ref={formRef}
       onSubmit={handleSubmit(onSubmit)}
-      className="w-full max-w-[95%] mx-auto sm:max-w-4xl flex flex-col items-center gap-4 sm:gap-6 md:gap-10 relative bg-transparent border-2 border-white rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-12"
+      className="w-full max-w-[95%] sm:max-w-lg md:max-w-3xl lg:max-w-4xl mx-auto flex flex-col items-center gap-4 sm:gap-6 md:gap-8 lg:gap-10 relative bg-transparent border-2 border-white rounded-xl sm:rounded-2xl p-5 sm:p-6 md:p-10 lg:p-12"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
@@ -240,28 +240,28 @@ const ContactForm = ({ onClose }) => {
         <motion.button
           type="button"
           onClick={onClose}
-          className="absolute top-4 right-4 sm:top-3 sm:right-3 md:top-10 md:right-10 text-white hover:text-green-400 z-10"
+          className="absolute top-3 right-3 sm:top-4 sm:right-4 md:top-6 md:right-6 lg:top-10 lg:right-10 text-white hover:text-green-400 z-10"
           variants={closeButtonVariants}
           whileHover="hover"
           whileTap="tap"
           aria-label="Close form"
         >
-          <FaTimesCircle size={20} className="md:text-2xl" />
+          <FaTimesCircle size={18} className="sm:text-xl md:text-2xl" />
         </motion.button>
       )}
 
       <motion.div 
-        className="text-white text-xl sm:text-2xl md:text-5xl font-bold text-center w-full mt-2"
+        className="text-white text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold text-center w-full mt-2"
         variants={itemVariants}
       >
         Get In Touch
       </motion.div>
 
       <motion.div 
-        className="w-full mt-4 sm:mt-2 md:mt-0"
+        className="w-full mt-4 sm:mt-3 md:mt-2 lg:mt-0"
         variants={itemVariants}
       >
-        <div className="relative mb-6 sm:mb-4">
+        <div className="relative mb-5 sm:mb-6 md:mb-4">
           <input
             type="text"
             id="name"
@@ -287,7 +287,7 @@ const ContactForm = ({ onClose }) => {
         className="w-full"
         variants={itemVariants}
       >
-        <div className="relative mb-6 sm:mb-4">
+        <div className="relative mb-5 sm:mb-6 md:mb-4">
           <input
             type="email"
             id="email"
@@ -313,7 +313,7 @@ const ContactForm = ({ onClose }) => {
         className="w-full"
         variants={itemVariants}
       >
-        <div className="relative mb-6 sm:mb-4">
+        <div className="relative mb-5 sm:mb-6 md:mb-4">
           <textarea
             id="message"
             rows="3"
@@ -326,7 +326,7 @@ const ContactForm = ({ onClose }) => {
               textarea.scrollTop = textarea.scrollHeight;
             }}
             {...register("message")}
-            className="peer w-full bg-transparent border-b-2 border-white pb-2 outline-none placeholder-transparent focus:border-[rgba(74,183,87,1)] transition-all text-white text-base min-h-[100px] sm:min-h-[80px]"
+            className="peer w-full bg-transparent border-b-2 border-white pb-2 outline-none placeholder-transparent focus:border-[rgba(74,183,87,1)] transition-all text-white text-base min-h-[90px] sm:min-h-[100px] md:min-h-[80px]"
             placeholder="Message"
             style={{ 
               verticalAlign: 'bottom',
@@ -366,7 +366,7 @@ const ContactForm = ({ onClose }) => {
       <motion.button
         type="submit"
         disabled={isSubmitting}
-        className="bg-gradient-to-b from-[rgba(0,0,0,0.43)] to-[rgba(0,0,0,0.43)] bg-[#4AB757] text-white w-full sm:w-44 font-normal whitespace-nowrap text-center mt-4 px-6 py-2 sm:py-3 rounded-3xl sm:rounded-4xl border-[#4AB757] border-solid border-2 transition-colors duration-300 disabled:opacity-70 active:scale-95"
+        className="bg-gradient-to-b from-[rgba(0,0,0,0.43)] to-[rgba(0,0,0,0.43)] bg-[#4AB757] text-white w-full sm:w-48 md:w-44 font-normal whitespace-nowrap text-center mt-3 sm:mt-4 px-6 py-2 sm:py-2.5 md:py-3 rounded-3xl sm:rounded-4xl border-[#4AB757] border-solid border-2 transition-colors duration-300 disabled:opacity-70 active:scale-95"
         variants={buttonVariants}
         whileHover="hover"
         whileTap="tap"
