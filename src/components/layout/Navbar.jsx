@@ -101,7 +101,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed px-0 md:px-20 top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled ? 'backdrop-blur-md bg-black/30' : 'bg-transparent'
       } font-['Cairo']`}
       id="navbar"
@@ -212,7 +212,7 @@ const Navbar = () => {
             transition={{ duration: 0.3, ease: 'easeInOut' }}
             className={`md:hidden fixed top-0 left-0 w-full h-screen ${
               scrolled ? 'bg-black/90' : 'bg-black/50'
-            } flex flex-col items-center justify-start z-[60] p-12 py-12`}
+            } flex flex-col items-center justify-start z-[60]`}
             style={{ 
               paddingTop: 'calc(100px + env(safe-area-inset-top))',
               WebkitBackdropFilter: 'blur(4px)',
@@ -221,7 +221,7 @@ const Navbar = () => {
               msBackdropFilter: 'blur(4px)'
             }}
           >
-            <div className="p-8">              <div className="absolute top-4 left-4 p-6 py-8">                <Link to="/" className="flex items-center">
+            <div className="w-full max-w-7xl mx-auto px-4 sm:px-6">              <div className="absolute top-4 left-4 sm:left-6 p-6 py-8">                <Link to="/" className="flex items-center">
                   <img
                     src={whiteLogo}
                     alt="Voltant Energy"
@@ -229,7 +229,7 @@ const Navbar = () => {
                   />
                 </Link>
               </div>
-              <div className="absolute top-4 right-4 py-7 px-4">
+              <div className="absolute top-4 right-4 sm:right-6 py-7 px-4">
                 <button
                   onClick={toggleMobileMenu}
                   className="w-10 h-10 flex items-center justify-center"

@@ -99,10 +99,10 @@ const RecentWorks = () => {
   }, [cards.length]);
 
   return (
-    <section className='w-full bg-white py-12 md:py-16 lg:py-20'>
+    <section className='w-full bg-white py-10 md:py-12 lg:py-16 xl:py-20'>
       <div className='w-full'>
         {/* Title */}
-        <div className='text-center mb-8 md:mb-12 lg:mb-16 px-4 sm:px-6 lg:px-8'>
+        <div className='text-center mb-6 md:mb-8 lg:mb-12 xl:mb-16 px-4 sm:px-6 lg:px-8'>
           <h2 className='font-bold text-[#7f7f7f] text-[28px] sm:text-[32px] md:text-[36px] lg:text-[40px] mb-2 font-[Cairo]'>
             Showcase of Excellence
           </h2>
@@ -140,7 +140,7 @@ const RecentWorks = () => {
               <div
                 key={card.img + idx}
                 data-card
-                className='h-48 sm:h-52 md:h-56 lg:h-60 w-56 sm:w-64 md:w-72 lg:w-80 shrink-0 rounded-xl md:rounded-2xl shadow-md overflow-hidden cursor-pointer transition-shadow duration-500'
+                className='h-40 sm:h-44 md:h-48 lg:h-52 xl:h-56 w-48 sm:w-56 md:w-60 lg:w-64 xl:w-72 shrink-0 rounded-xl md:rounded-2xl shadow-md overflow-hidden cursor-pointer transition-shadow duration-500'
                 title={card.alt}
                 onMouseEnter={() => {
                   isPaused.current = true;

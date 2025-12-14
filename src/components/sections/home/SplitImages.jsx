@@ -74,7 +74,7 @@ const SplitHoverImages = () => {
             <img
               src={item.icon}
               alt={`${item.id} icon`}
-              className='absolute top-4 sm:top-5 md:top-20 lg:top-28 xl:top-36 right-4 sm:right-5 md:right-16 lg:right-22 xl:right-28 w-7 h-7 sm:w-8 sm:h-8 md:w-12 md:h-12 lg:w-16 lg:h-16 xl:w-20 xl:h-20 z-20 opacity-100'
+              className='absolute top-4 sm:top-5 md:top-8 lg:top-12 xl:top-16 right-4 sm:right-5 md:right-8 lg:right-12 xl:right-16 w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-14 lg:h-14 xl:w-16 xl:h-16 z-20 opacity-100'
               loading='lazy'
             />
 
@@ -96,7 +96,7 @@ const SplitHoverImages = () => {
 
             {/* Overlay */}
             <motion.div
-              className='absolute inset-0 bg-black/30 p-5 sm:p-6 md:p-16 lg:p-24 xl:p-36 text-white flex flex-col justify-center'
+              className='absolute inset-0 bg-black/30 p-5 sm:p-6 md:p-8 lg:p-12 xl:p-16 2xl:p-20 text-white flex flex-col justify-center'
               initial={{ opacity: 0 }}
               animate={{ opacity: isActive || isPlayed ? 1 : 0 }}
               transition={{ duration: 0.5, ease: 'easeInOut' }}
@@ -111,9 +111,9 @@ const SplitHoverImages = () => {
                   transition={{ duration: 1, delay: 0.1, ease: 'easeOut' }}
                 />
 
-                <div className='ml-8 sm:ml-10 md:ml-12 lg:ml-14 xl:ml-16'>
+                <div className='ml-8 sm:ml-10 md:ml-10 lg:ml-12 xl:ml-14'>
                   <motion.h2
-                    className='md:mt-0 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold mb-3 md:mb-4'
+                    className='md:mt-0 text-xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold mb-3 md:mb-4'
                     initial={{ y: 40, opacity: 0 }}
                     animate={{
                       y: isActive || isPlayed ? 0 : 40,

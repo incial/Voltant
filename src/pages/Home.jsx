@@ -75,7 +75,7 @@ const Home = () => {
 
         {/* VideoBanner - Wrapped in Suspense for lazy loading */}
         <Suspense fallback={<SectionLoader />}>
-          <div className='w-full flex justify-center py-4 md:py-10'>
+          <div className='w-full flex justify-center md:py-10'>
             <VideoBanner />
           </div>
         </Suspense>
