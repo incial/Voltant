@@ -74,6 +74,8 @@ export const homeImgs = {
   aboutUs: '/assets/images/Home/About_us.webp',
   aboutUsSection: '/assets/images/Home/About_us.webp', // For WhoAreWe background
   aboutSectionSubLogo: '/assets/images/Home/About_section_sub_logo.png',
+  connectWithUsBg: '/assets/images/Home/ConnecwithusBg.png',
+  DescriptionBg: '/assets/images/Home/Descpition.png',
   footerImage: '/assets/images/Home/Footer.webp', // For footer_image.png reference
   footerPng: '/assets/images/Home/Footer.webp',
   logoWhite: '/assets/images/Home/Logo_white.webp',

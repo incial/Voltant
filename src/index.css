@@ -175,28 +175,10 @@
 }
 
 /* ============================================
-   UTILITY CLASSES
+   UTILITY CLASSES (Essential Only)
    ============================================ */
 @layer utilities {
-  /* Flexbox utilities */
-  .flex-center {
-    @apply flex items-center justify-center;
-  }
-
-  .flex-between {
-    @apply flex items-center justify-between;
-  }
-
-  .col-center {
-    @apply flex flex-col items-center justify-center;
-  }
-
-  /* Positioning utilities */
-  .abs-center {
-    @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
-  }
-
-  /* Typography utilities */
+  /* Text Gradient utilities - Cannot be replaced by Tailwind */
   .text-gradient {
     background: var(--gradient-multi);
     background-clip: text;
@@ -347,16 +329,11 @@
   .hide-scrollbar::-webkit-scrollbar {
     display: none;
   }
-
-  /* Backdrop utilities */
-  .backdrop-blur-custom {
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-  }
 }
 
 /* ============================================
-   COMPONENT STYLES
+   COMPONENT STYLES (Removed - Use Tailwind)
+   Note: All component-specific styles moved to components
    ============================================ */
 @layer components {
   /* Header / Navbar */
