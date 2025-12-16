@@ -38,11 +38,6 @@ const WhoAreWe = () => {
             alt='Voltant Energy Logo'
             className='h-[55px] mb-[15px]'
           />
-          <img
-            src={logos.icon}
-            alt='Voltant Energy Icon'
-            className='h-[15px]'
-          />
         </div>
       </div>
 
@@ -234,13 +229,29 @@ const WhoAreWe = () => {
 
       {/* Get in Touch Button and Social Media Section */}
       <div className='w-full flex flex-col items-center gap-[100px] py-16'>
-        <div className='flex justify-center'>
-          <Link to='/contact'>
-            <button className='border-2 border-[#7f7f7f] text-[#7f7f7f] text-[20px] px-[18px] rounded-[31px] hover:bg-[#7f7f7f] hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-[#7f7f7f]/50 w-[176px] h-[62px] flex items-center justify-center'>
-              Get in Touch
-            </button>
-          </Link>
-        </div>
+        {/* Get in Touch Button */}
+        {/* Get in Touch Button */}
+<div className="w-full flex justify-center py-16">
+  <Link to="/contact">
+    <div
+      className="
+        flex items-center justify-center
+        w-[176px] h-[62px]
+        rounded-full
+        border border-[#9A9A9A]
+        text-[#9A9A9A] text-[16px] font-normal
+        bg-transparent
+        cursor-pointer
+        hover:bg-[#7f7f7f] hover:text-white hover:border-[#7f7f7f]
+        transition-all duration-300 ease-out
+      "
+    >
+      Get in Touch
+    </div>
+  </Link>
+</div>
+
+
 
         {/* Social media icons */}
         <div className='flex flex-row justify-center items-center gap-[50px]'>

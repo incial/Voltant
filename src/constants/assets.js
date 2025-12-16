@@ -101,7 +101,7 @@ export const EV_IMAGES = {
   // Hero images
   acCharger: `${ASSET_PATHS.images}/EV_charging/Ac_charger.webp`,
   dcCharger: `${ASSET_PATHS.images}/EV_charging/Dc_charger.webp`,
-  cpo: `${ASSET_PATHS.images}/EV_charging/Cpo.webp`,
+  cpo: `${ASSET_PATHS.images}/EV_charging/Cpo1.jpg`,
   engineeringWorks: `${ASSET_PATHS.images}/EV_charging/Engineering_works.webp`,
   more: `${ASSET_PATHS.images}/EV_charging/More.webp`,
   charger: `${ASSET_PATHS.images}/EV_charging/charger.webp`,
@@ -109,7 +109,7 @@ export const EV_IMAGES = {
   // About/Detail images
   acAbout: `${ASSET_PATHS.images}/EV_charging/AC_about.webp`,
   dcAbout: `${ASSET_PATHS.images}/EV_charging/DC_about.webp`,
-  cpoAbout: `${ASSET_PATHS.images}/EV_charging/CPO_about.webp`,
+  cpoAbout: `${ASSET_PATHS.images}/EV_charging/cpo_abou.png`,
   ewAbout: `${ASSET_PATHS.images}/EV_charging/EW_about.webp`,
   moreAbout: `${ASSET_PATHS.images}/EV_charging/More_about.webp`,
   
@@ -123,7 +123,7 @@ export const EV_IMAGES = {
  */
 export const WASTE_IMAGES = {
   // Hero images
-  household: `${ASSET_PATHS.images}/WateTOEnergy/Household.webp`,
+  household: `${ASSET_PATHS.images}/Biogas.jpg`,
   largeScalePlant: `${ASSET_PATHS.images}/WateTOEnergy/Large_Scale_plant.webp`,
   containerizedPlant: `${ASSET_PATHS.images}/WateTOEnergy/Containerized_Plant.webp`,
   smartWaste: `${ASSET_PATHS.images}/WateTOEnergy/SmartWaste.webp`,

@@ -23,11 +23,6 @@ const WasteToEnergy = () => {
       path: '/waste-to-energy/containerized-plant'
     },
     {
-      title: <>Household</>,
-      image: wasteImgs.household,
-      path: '/waste-to-energy/household'
-    },
-    {
       title: (
         <>
           Large Scale
@@ -37,6 +32,11 @@ const WasteToEnergy = () => {
       ),
       image: wasteImgs.largeScalePlant,
       path: '/waste-to-energy/large-scale'
+    },
+    {
+      title: <>Household</>,
+      image: wasteImgs.household,
+      path: '/waste-to-energy/household'
     },
     {
       title: (

@@ -50,7 +50,7 @@ const EvCharging = () => {
               </div>
             )}
             <img
-              src="/assets/images/EV_charging/Ev_main.jpg"
+              src="/assets/images/EV_charging/EV_charging.webp"
               alt="EV Charging"
               className="w-full h-full object-cover"
               onLoad={() => setImageLoaded(true)}
@@ -106,7 +106,7 @@ const EvCharging = () => {
               </div>
             )}
             <img
-              src="/assets/images/EV_charging/Ev_main.jpg"
+              src="/assets/images/EV_charging/Ev_charging.jpg"
               alt="EV Charging"
               className='w-full h-full object-cover'
               onLoad={() => setImageLoaded(true)}

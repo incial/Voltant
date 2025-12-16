@@ -23,7 +23,7 @@ export const vids = {
   // Fallback for missing video files
   evCharging: '/Videos/SubHeroVid1.mp4', // Fallback for EV_charging _video.mp4
   wasteToEnergy: '/Videos/SubHeroVid2.mp4', // Fallback for Waste_To_Energy.mp4
-  videoBanner: '/Videos/Goatfooter.mp4', // Fallback for Video_Banner.mp4
+  videoBanner: '/assets/images/Home/About_Banner.jpg', // Fallback for Video_Banner.mp4
   connectWithUs: '/Videos/Subfooter.mp4' // Fallback for Connectwithus.mp4
 };
 
