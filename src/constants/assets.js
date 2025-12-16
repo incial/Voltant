@@ -126,13 +126,13 @@ export const WASTE_IMAGES = {
   household: `${ASSET_PATHS.images}/Biogas.jpg`,
   largeScalePlant: `${ASSET_PATHS.images}/WateTOEnergy/Large_Scale_plant.webp`,
   containerizedPlant: `${ASSET_PATHS.images}/WateTOEnergy/Containerized_Plant.webp`,
-  smartWaste: `${ASSET_PATHS.images}/WateTOEnergy/SmartWaste.webp`,
+  smartWaste: `${ASSET_PATHS.images}/WateTOEnergy/Smart_Waste.png`,
   
   // About/Detail images
-  hsAbout: `${ASSET_PATHS.images}/WateTOEnergy/HS_about.webp`,
+  hsAbout: `${ASSET_PATHS.images}/WateTOEnergy/biogas.jpg`,
   lsAbout: `${ASSET_PATHS.images}/WateTOEnergy/LS_about.webp`,
   cpAbout: `${ASSET_PATHS.images}/WateTOEnergy/CP_about.webp`,
-  swAbout: `${ASSET_PATHS.images}/WateTOEnergy/SW_about.webp`
+  swAbout: `${ASSET_PATHS.images}/WateTOEnergy/sw_about.webp`
 };
 
 /**
