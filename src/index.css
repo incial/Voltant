@@ -175,28 +175,10 @@
 }
 
 /* ============================================
-   UTILITY CLASSES
+   UTILITY CLASSES (Essential Only)
    ============================================ */
 @layer utilities {
-  /* Flexbox utilities */
-  .flex-center {
-    @apply flex items-center justify-center;
-  }
-
-  .flex-between {
-    @apply flex items-center justify-between;
-  }
-
-  .col-center {
-    @apply flex flex-col items-center justify-center;
-  }
-
-  /* Positioning utilities */
-  .abs-center {
-    @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
-  }
-
-  /* Typography utilities */
+  /* Text Gradient utilities - Cannot be replaced by Tailwind */
   .text-gradient {
     background: var(--gradient-multi);
     background-clip: text;
@@ -211,75 +193,7 @@
     -webkit-text-fill-color: transparent;
   }
 
-  /* Heading utilities */
-  .h1-bold {
-    @apply font-bold text-4xl lg:text-6xl text-white;
-  }
-  
-  .h2-bold {
-    @apply font-bold text-3xl lg:text-5xl text-white;
-  }
-  
-  .h3-semibold {
-    @apply font-semibold text-xl lg:text-3xl text-white;
-  }
-  
-  .h4-semibold {
-    @apply font-semibold text-lg lg:text-2xl text-white;
-  }
-
-  /* Body text utilities */
-  .body-large {
-    @apply text-lg text-dark-100;
-  }
-  
-  .body-base {
-    @apply text-base text-dark-100;
-  }
-  
-  .body-small {
-    @apply text-sm text-dark-100;
-  }
-
-  /* Container utilities */
-  .container-full {
-    @apply container mx-auto px-4 md:px-8 lg:px-20 2xl:px-0;
-  }
-  
-  .section-padding {
-    @apply py-16 md:py-24 lg:py-32;
-  }
-
-  /* Button utilities */
-  .btn-primary {
-    @apply bg-primary text-white py-3 px-8 rounded-full font-semibold 
-           hover:bg-primary-dark transition-all duration-300 
-           cursor-pointer active:scale-95;
-  }
-  
-  .btn-secondary {
-    @apply bg-transparent text-white border-2 border-white py-3 px-8 
-           rounded-full font-semibold hover:bg-white hover:text-black 
-           transition-all duration-300 cursor-pointer active:scale-95;
-  }
-  
-  .btn-outline {
-    @apply bg-transparent text-primary border-2 border-primary py-3 px-8 
-           rounded-full font-semibold hover:bg-primary hover:text-white 
-           transition-all duration-300 cursor-pointer active:scale-95;
-  }
-
-  /* Card utilities */
-  .card {
-    @apply bg-dark-300 rounded-2xl p-6 transition-all duration-300 
-           hover:shadow-xl hover:-translate-y-1;
-  }
-  
-  .card-bordered {
-    @apply card border border-dark-100;
-  }
-
-  /* Scrollbar utilities */
+  /* Scrollbar utilities - Browser-specific */
   .hide-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -288,204 +202,12 @@
   .hide-scrollbar::-webkit-scrollbar {
     display: none;
   }
-
-  /* Backdrop utilities */
-  .backdrop-blur-custom {
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-  }
 }
 
 /* ============================================
-   COMPONENT STYLES
+   COMPONENT STYLES (Removed - Use Tailwind)
+   Note: All component-specific styles moved to components
    ============================================ */
-@layer components {
-  /* Header / Navbar */
-  header {
-    @apply w-screen fixed top-0 left-0 z-50 flex-center min-h-[7vh];
-    transition: background-color var(--transition-base), 
-                backdrop-filter var(--transition-base);
-
-    nav {
-      @apply container mx-auto flex-between px-5 2xl:px-0;
-
-      img {
-        @apply cursor-pointer hover:-translate-y-0.5 
-               transition-all duration-300 ease-in-out;
-      }
-
-      ul {
-        @apply flex-center gap-8;
-
-        a {
-          @apply hidden md:block text-white opacity-80 font-medium text-sm 
-                 cursor-pointer hover:opacity-100 transition-all duration-300;
-        }
-      }
-    }
-  }
-
-  /* Hero Section */
-  #hero-section {
-    @apply relative w-full h-screen overflow-hidden bg-black;
-
-    .hero-content {
-      @apply absolute bottom-20 left-8 md:left-20 z-10 text-white;
-      
-      h1 {
-        @apply text-3xl md:text-5xl font-semibold mb-4;
-      }
-    }
-
-    .hero-overlay {
-      @apply absolute inset-0 pointer-events-none;
-      mix-blend-mode: multiply;
-    }
-  }
-
-  /* Section containers */
-  section {
-    @apply w-full relative;
-
-    &.section-dark {
-      @apply bg-black;
-    }
-
-    &.section-light {
-      @apply bg-white;
-    }
-  }
-
-  /* Cards */
-  .service-card {
-    @apply bg-dark-300 rounded-3xl p-8 transition-all duration-300 
-           hover:bg-dark-200 hover:-translate-y-2 hover:shadow-2xl;
-
-    h3 {
-      @apply text-white font-semibold text-2xl mb-4;
-    }
-
-    p {
-      @apply text-dark-100 text-base leading-relaxed;
-    }
-  }
-
-  /* Profiles Section */
-  .profile-item {
-    @apply bg-white rounded-2xl p-6 shadow-md 
-           transition-all duration-300 hover:shadow-xl;
-
-    h4 {
-      @apply text-dark-200 font-semibold text-xl mb-3;
-    }
-
-    p {
-      @apply text-dark-100 text-sm leading-relaxed;
-    }
-  }
-
-  /* Mid Section with background */
-  .mid-section {
-    @apply relative w-full py-20 bg-cover bg-center bg-no-repeat;
-
-    &::before {
-      content: '';
-      @apply absolute inset-0 bg-black/40;
-    }
-
-    .content {
-      @apply relative z-10;
-    }
-  }
-
-  /* Features Grid */
-  .features-grid {
-    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8;
-  }
-
-  /* Footer */
-  footer {
-    @apply w-full bg-black border-t border-dark-200;
-
-    .footer-container {
-      @apply container mx-auto px-5 py-12 2xl:px-0;
-    }
-
-    .footer-links {
-      @apply flex flex-col lg:flex-row items-start justify-between gap-8;
-
-      ul {
-        @apply flex flex-col gap-4;
-
-        li {
-          @apply text-dark-100 cursor-pointer 
-                 hover:text-primary transition-colors duration-300;
-        }
-      }
-    }
-
-    .footer-bottom {
-      @apply border-t border-dark-200 mt-8 pt-8 
-             flex-between flex-col lg:flex-row gap-4;
-
-      p {
-        @apply text-sm text-dark-100;
-
-        span {
-          @apply text-primary;
-        }
-      }
-    }
-  }
-
-  /* Breadcrumbs */
-  .breadcrumbs {
-    @apply flex items-center gap-2 text-sm text-dark-100;
-
-    span {
-      @apply hover:text-primary transition-colors cursor-pointer;
-    }
-
-    .separator {
-      @apply text-dark-100;
-    }
-
-    .active {
-      @apply text-primary font-semibold;
-    }
-  }
-
-  /* Modal / Form */
-  .modal-overlay {
-    @apply fixed inset-0 z-[100] flex-center 
-           bg-black/50 backdrop-blur-sm;
-  }
-
-  .modal-content {
-    @apply bg-white rounded-3xl p-8 max-w-lg w-full mx-4 
-           shadow-2xl relative;
-  }
-
-  /* Loading Spinner */
-  .spinner {
-    @apply animate-spin rounded-full border-4 border-dark-100 
-           border-t-primary w-12 h-12;
-  }
-
-  /* Badge */
-  .badge {
-    @apply inline-flex items-center px-3 py-1 rounded-full 
-           text-xs font-semibold;
-
-    &.badge-primary {
-      @apply bg-primary/20 text-primary;
-    }
-
-    &.badge-secondary {
-      @apply bg-dark-200 text-white;
-    }
-  }
-}
 
 /* ============================================
    ANIMATIONS
@@ -573,12 +295,12 @@
    ============================================ */
 @media (max-width: 768px) {
   .hide-mobile {
-    @apply hidden;
+    display: none;
   }
 }
 
 @media (min-width: 769px) {
   .hide-desktop {
-    @apply hidden;
+    display: none;
   }
 }
