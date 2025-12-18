@@ -58,7 +58,7 @@ export const smartWasteData = {
       }
     ]
   },
-
+  img: WASTE_IMAGES.swEnd,
   profiles: {
     sectionTitle: 'Engineering Profiles',
     showButton: true,

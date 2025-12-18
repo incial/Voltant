@@ -133,11 +133,11 @@ export const evImgs = {
 export const wasteImgs = {
   containerizedPlant: '/assets/images/WateTOEnergy/Containerized_Plant.webp',
   cpAbout: '/assets/images/WateTOEnergy/CP_about.webp',
-  household: '/assets/images/WateTOEnergy/Household.webp',
+  household: '/assets/images/WateTOEnergy/biogas.jpg',
   hsAbout: '/assets/images/WateTOEnergy/HS_about.webp',
   largeScalePlant: '/assets/images/WateTOEnergy/Large_Scale_plant.webp',
   lsAbout: '/assets/images/WateTOEnergy/LS_about.webp',
-  smartWaste: '/assets/images/WateTOEnergy/SmartWaste.webp',
+  smartWaste: '/assets/images/WateTOEnergy/bins.png',
   swAbout: '/assets/images/WateTOEnergy/SW_about.webp'
 };
 

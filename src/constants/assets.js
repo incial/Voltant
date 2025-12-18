@@ -123,16 +123,16 @@ export const EV_IMAGES = {
  */
 export const WASTE_IMAGES = {
   // Hero images
-  household: `${ASSET_PATHS.images}/WateTOEnergy/Household.webp`,
+  household: `${ASSET_PATHS.images}/WateTOEnergy/biogas.jpg`,
   largeScalePlant: `${ASSET_PATHS.images}/WateTOEnergy/Large_Scale_plant.webp`,
-  containerizedPlant: `${ASSET_PATHS.images}/WateTOEnergy/Containerized_Plant.webp`,
-  smartWaste: `${ASSET_PATHS.images}/WateTOEnergy/SmartWaste.webp`,
+  containerizedPlant: `${ASSET_PATHS.images}/WateTOEnergy/container.png`,
+  smartWaste: `${ASSET_PATHS.images}/WateTOEnergy/bins.png`,
 
   // About/Detail images
-  hsAbout: `${ASSET_PATHS.images}/WateTOEnergy/HS_about.webp`,
+  hsAbout: `${ASSET_PATHS.images}/WateTOEnergy/biogas.jpg`,
   lsAbout: `${ASSET_PATHS.images}/WateTOEnergy/LS_about.webp`,
   cpAbout: `${ASSET_PATHS.images}/WateTOEnergy/CP_about.webp`,
-  swAbout: `${ASSET_PATHS.images}/WateTOEnergy/SW_about.webp`
+  swAbout: `${ASSET_PATHS.images}/WateTOEnergy/smart_about.png`
 };
 
 /**
