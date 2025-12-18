@@ -77,6 +77,6 @@ export const cpoData = {
     sectionTitle: 'Partner with Voltant Energy Today',
     paragraph: 'Transform your parking spaces into profit-generating, sustainable assets. With reliable chargers, end-to-end support, and a focus on net-zero impact, Voltant Energy is your ideal CPO partner for the future of mobility.',
     buttonText: 'Download Charging Profile',
-    showButton: false
+    showButton: true
   }
 };

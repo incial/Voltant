@@ -24,9 +24,9 @@ const blurSectionVariants = {
   visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: 'easeOut' } }
 }
 
-function Feature ({ icon, title, description }) {
+function Feature({ icon, title, description }) {
   const [iconLoaded, setIconLoaded] = useState(false)
-  
+
   // Get the icon path from local assets
   const iconPath = heroIcons[icon] || icon
 
@@ -82,12 +82,12 @@ const MidSection = ({
   features = []
 }) => {
   const [imageLoaded, setImageLoaded] = useState(false)
-  
+
   // Get background image path from local assets or fallback to provided path
   const backgroundPath = homeImgs[backgroundImage] || backgroundImage
 
   return (
-    <section className='relative h-auto min-h-screen md:h-[120vh] lg:h-[140vh] w-full overflow-hidden'>
+    <section className='relative h-auto min-h-screen md:min-h-[120vh] lg:min-h-[140vh] w-full overflow-hidden'>
       {!imageLoaded && (
         <div className='absolute inset-0 bg-gray-800 z-5 flex items-center justify-center'>
           <div className="w-12 h-12 border-4 border-green-400 border-t-transparent rounded-full animate-spin" />
@@ -100,37 +100,37 @@ const MidSection = ({
         onLoad={() => setImageLoaded(true)}
         style={{ opacity: imageLoaded ? 1 : 0, transition: 'opacity 1s' }}
       />
-        <div className='absolute inset-0 bg-black/50 md:bg-black/40 z-10'></div>
+      <div className='absolute inset-0 bg-black/50 md:bg-black/40 z-10'></div>
+      <motion.div
+        className='relative md:absolute top-0 left-0 backdrop-blur-sm w-full md:w-1/2 min-h-screen md:h-full flex justify-center items-center z-20 px-5 py-16 md:py-12 md:px-12 lg:px-24 bg-transparent'
+        initial='hidden'
+        whileInView='visible'
+        viewport={{ amount: 0.1 }}
+        variants={blurSectionVariants}
+      >
         <motion.div
-          className='relative md:absolute top-0 left-0 backdrop-blur-sm w-full md:w-1/2 min-h-screen md:h-full flex justify-center items-center z-20 px-5 py-16 md:py-12 md:px-12 lg:px-24 bg-transparent'
-          initial='hidden'
-          whileInView='visible'
-          viewport={{ amount: 0.1 }}
-          variants={blurSectionVariants}
+          className='flex flex-col items-stretch w-full max-w-md mx-auto md:max-w-none md:mx-0'
+          variants={containerVariants}
         >
-          <motion.div
-            className='flex flex-col items-stretch w-full max-w-md mx-auto md:max-w-none md:mx-0'
-            variants={containerVariants}
+          <motion.h2
+            className='text-[28px] sm:text-[32px] md:text-[36px] lg:text-[40px] text-white ml-0 font-bold text-center md:text-left mb-8 md:mb-4 lg:mb-0'
+            variants={itemVariants}
           >
-            <motion.h2
-              className='text-[28px] sm:text-[32px] md:text-[36px] lg:text-[40px] text-white ml-0 font-bold text-center md:text-left mb-8 md:mb-4 lg:mb-0'
-              variants={itemVariants}
-            >
-              {sectionTitle}
-            </motion.h2>
+            {sectionTitle}
+          </motion.h2>
 
-            <div className='space-y-8 space-x-4 md:space-x-0 md:space-y-0'>
-              {features.map((feature, index) => (
-                <Feature
-                  key={index}
-                  icon={feature.icon}
-                  title={feature.title}
-                  description={feature.description}
-                />
-              ))}
-            </div>          </motion.div>
-        </motion.div>
-      </section>
+          <div className='space-y-8 space-x-4 md:space-x-0 md:space-y-0'>
+            {features.map((feature, index) => (
+              <Feature
+                key={index}
+                icon={feature.icon}
+                title={feature.title}
+                description={feature.description}
+              />
+            ))}
+          </div>          </motion.div>
+      </motion.div>
+    </section>
   )
 }
 

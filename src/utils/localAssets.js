@@ -6,7 +6,7 @@
 // Hero Section Videos
 export const heroVids = {
   vid1: '/Videos/HeroVid1.mp4',
-  vid2: '/Videos/HeroVid2.mp4', 
+  vid2: '/Videos/HeroVid2.mp4',
   vid3: '/Videos/HeroVid3.mp4',
   // Fallback mappings for missing hero videos
   heroSection1: '/Videos/HeroVid1.mp4', // Fallback for Hero-Section-1.mp4
@@ -118,7 +118,7 @@ export const evImgs = {
   acCharger: '/assets/images/EV_charging/Ac_charger.webp',
   acChargerImage: '/assets/images/EV_charging/AC_charger_image.png',
   cpoAbout: '/assets/images/EV_charging/CPO_about.webp',
-  cpo: '/assets/images/EV_charging/Cpo.webp',
+  cpo: '/assets/images/EV_charging/cpo1.jpg',
   dcAbout: '/assets/images/EV_charging/DC_about.webp',
   dcCharger: '/assets/images/EV_charging/Dc_charger.webp',
   dcChargerImage: '/assets/images/EV_charging/DC_charger_image.png',
@@ -145,32 +145,32 @@ export const wasteImgs = {
 export const getVideoSrc = (videoKey, category = 'heroVids') => {
   const videoMaps = { heroVids, vids };
   const videoMap = videoMaps[category];
-  
+
   if (!videoMap || !videoMap[videoKey]) {
     console.warn(`Video not found: ${category}.${videoKey}`);
     return '';
   }
-  
+
   return videoMap[videoKey];
 };
 
 // Utility function to get image source with error handling
 export const getImageSrc = (imageKey, category = 'homeImgs') => {
-  const imageMaps = { 
-    logos, 
-    homeImgs, 
-    clientImgs, 
-    evImgs, 
+  const imageMaps = {
+    logos,
+    homeImgs,
+    clientImgs,
+    evImgs,
     wasteImgs,
     showcaseImgs
   };
   const imageMap = imageMaps[category];
-  
+
   if (!imageMap || !imageMap[imageKey]) {
     console.warn(`Image not found: ${category}.${imageKey}`);
     return '';
   }
-  
+
   return imageMap[imageKey];
 };
 
@@ -180,14 +180,14 @@ export const getIconSrc = (iconKey) => {
     console.warn(`Icon not found: ${iconKey}`);
     return '';
   }
-  
+
   return heroIcons[iconKey];
 };
 
 // Helper function to preload videos for better performance
 export const preloadVideo = (videoSrc) => {
   if (!videoSrc) return;
-  
+
   const video = document.createElement('video');
   video.preload = 'metadata';
   video.src = videoSrc;
