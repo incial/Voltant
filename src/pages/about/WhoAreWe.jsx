@@ -38,11 +38,7 @@ const WhoAreWe = () => {
             alt='Voltant Energy Logo'
             className='h-[40px] sm:h-[48px] md:h-[55px] mb-[15px]'
           />
-          <img
-            src={logos.icon}
-            alt='Voltant Energy Icon'
-            className='h-[12px] sm:h-[13px] md:h-[15px]'
-          />
+         
         </div>
       </div>
 
