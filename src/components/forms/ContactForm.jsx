@@ -80,7 +80,9 @@ const ContactForm = ({ onClose }) => {
         textarea.scrollTop = textarea.scrollHeight;
       }, 10);
     }
-  };  const onSubmit = async (data) => {
+  };
+
+  const onSubmit = async (data) => {
     setIsSubmitting(true);
     setSubmitError(null);
 
@@ -165,6 +167,7 @@ const ContactForm = ({ onClose }) => {
       }
     }
   };
+
   const buttonVariants = {
     hidden: { scale: 0.8, opacity: 0 },
     visible: {
@@ -177,8 +180,6 @@ const ContactForm = ({ onClose }) => {
     },
     hover: {
       scale: 1.05,
-      backgroundColor: "rgba(74, 183, 87, 0)",
-      color: "#4AB757",
       transition: {
         duration: 0.3
       }
@@ -224,15 +225,16 @@ const ContactForm = ({ onClose }) => {
     <motion.form
       ref={formRef}
       onSubmit={handleSubmit(onSubmit)}
-      className="w-full max-w-[95%] sm:max-w-lg md:max-w-3xl lg:max-w-4xl mx-auto flex flex-col items-center gap-4 sm:gap-6 md:gap-8 lg:gap-10 relative bg-transparent border-2 border-white rounded-xl sm:rounded-2xl p-5 sm:p-6 md:p-10 lg:p-12"
+      className="w-full max-w-[90%] sm:max-w-xl md:max-w-2xl lg:max-w-3xl mx-auto flex flex-col items-center gap-6 sm:gap-8 relative border border-[rgba(255,255,255,0.3)] rounded-2xl p-8 sm:p-10 md:p-12"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
       style={{ 
-        WebkitBackdropFilter: 'blur(15px)',
-        backdropFilter: 'blur(15px)',
-        MozBackdropFilter: 'blur(15px)',
-        msBackdropFilter: 'blur(15px)'
+        backgroundColor: 'rgba(255, 255, 255, 0.08)',
+        WebkitBackdropFilter: 'blur(25px) saturate(150%)',
+        backdropFilter: 'blur(25px) saturate(150%)',
+        MozBackdropFilter: 'blur(25px) saturate(150%)',
+        msBackdropFilter: 'blur(25px) saturate(150%)'
       }}
     >
       {/* Close button */}
@@ -240,42 +242,42 @@ const ContactForm = ({ onClose }) => {
         <motion.button
           type="button"
           onClick={onClose}
-          className="absolute top-3 right-3 sm:top-4 sm:right-4 md:top-6 md:right-6 lg:top-10 lg:right-10 text-white hover:text-green-400 z-10"
+          className="absolute top-4 right-4 sm:top-5 sm:right-5 text-white hover:text-gray-300 z-10"
           variants={closeButtonVariants}
           whileHover="hover"
           whileTap="tap"
           aria-label="Close form"
         >
-          <FaTimesCircle size={18} className="sm:text-xl md:text-2xl" />
+          <FaTimesCircle size={20} className="sm:text-2xl" />
         </motion.button>
       )}
 
       <motion.div 
-        className="text-white text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold text-center w-full mt-2"
+        className="text-white text-2xl sm:text-3xl md:text-4xl font-bold text-center w-full"
         variants={itemVariants}
       >
         Get In Touch
       </motion.div>
 
       <motion.div 
-        className="w-full mt-4 sm:mt-3 md:mt-2 lg:mt-0"
+        className="w-full"
         variants={itemVariants}
       >
-        <div className="relative mb-5 sm:mb-6 md:mb-4">
+        <div className="relative mb-6">
           <input
             type="text"
             id="name"
             {...register("name")}
-            className="peer w-full bg-transparent border-b-2 border-white pb-2 outline-none placeholder-transparent focus:border-[rgba(74,183,87,1)] transition-all text-white text-base"
+            className="peer w-full bg-transparent border-b border-white pb-2 outline-none placeholder-transparent focus:border-white transition-all text-white text-sm"
             placeholder="Name"
             style={{
-              fontSize: '16px', // Prevents auto-zoom on iOS
+              fontSize: '16px',
               touchAction: 'manipulation'
             }}
           />
           <label 
             htmlFor="name" 
-            className="absolute left-0 -top-5 text-white text-opacity-80 text-xs sm:text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-white peer-placeholder-shown:top-0 peer-focus:-top-5 peer-focus:text-xs sm:peer-focus:text-sm peer-focus:text-[rgba(74,183,87,1)]"
+            className="absolute left-0 -top-5 text-white text-xs transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:text-white peer-placeholder-shown:top-0 peer-focus:-top-5 peer-focus:text-xs peer-focus:text-white"
           >
             Name
           </label>
@@ -287,21 +289,21 @@ const ContactForm = ({ onClose }) => {
         className="w-full"
         variants={itemVariants}
       >
-        <div className="relative mb-5 sm:mb-6 md:mb-4">
+        <div className="relative mb-6">
           <input
             type="email"
             id="email"
             {...register("email")}
-            className="peer w-full bg-transparent border-b-2 border-white pb-2 outline-none placeholder-transparent focus:border-[rgba(74,183,87,1)] transition-all text-white text-base"
+            className="peer w-full bg-transparent border-b border-white pb-2 outline-none placeholder-transparent focus:border-white transition-all text-white text-sm"
             placeholder="Email"
             style={{
-              fontSize: '16px', // Prevents auto-zoom on iOS
+              fontSize: '16px',
               touchAction: 'manipulation'
             }}
           />
           <label 
             htmlFor="email" 
-            className="absolute left-0 -top-5 text-white text-opacity-80 text-xs sm:text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-white peer-placeholder-shown:top-0 peer-focus:-top-5 peer-focus:text-xs sm:peer-focus:text-sm peer-focus:text-[rgba(74,183,87,1)]"
+            className="absolute left-0 -top-5 text-white text-xs transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:text-white peer-placeholder-shown:top-0 peer-focus:-top-5 peer-focus:text-xs peer-focus:text-white"
           >
             Email
           </label>
@@ -313,7 +315,7 @@ const ContactForm = ({ onClose }) => {
         className="w-full"
         variants={itemVariants}
       >
-        <div className="relative mb-5 sm:mb-6 md:mb-4">
+        <div className="relative mb-6">
           <textarea
             id="message"
             rows="3"
@@ -321,19 +323,18 @@ const ContactForm = ({ onClose }) => {
             onFocus={handleMessageFocus}
             onClick={handleMessageFocus}
             onKeyUp={(e) => {
-              // Always keep cursor at bottom after each keystroke
               const textarea = e.target;
               textarea.scrollTop = textarea.scrollHeight;
             }}
             {...register("message")}
-            className="peer w-full bg-transparent border-b-2 border-white pb-2 outline-none placeholder-transparent focus:border-[rgba(74,183,87,1)] transition-all text-white text-base min-h-[90px] sm:min-h-[100px] md:min-h-[80px]"
+            className="peer w-full bg-transparent border-b border-white pb-2 outline-none placeholder-transparent focus:border-white transition-all text-white text-sm min-h-[80px]"
             placeholder="Message"
             style={{ 
               verticalAlign: 'bottom',
               resize: 'none',
               lineHeight: '1.5',
               paddingBottom: '1rem',
-              fontSize: '16px', // Prevents auto-zoom on iOS
+              fontSize: '16px',
               touchAction: 'manipulation',
               position: 'relative',
               display: 'block'
@@ -341,14 +342,11 @@ const ContactForm = ({ onClose }) => {
           ></textarea>
           <label 
             htmlFor="message" 
-            className="absolute left-0 -top-5 text-white text-opacity-80 text-xs sm:text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-white peer-placeholder-shown:top-0 peer-focus:-top-5 peer-focus:text-xs sm:peer-focus:text-sm peer-focus:text-[rgba(74,183,87,1)]"
+            className="absolute left-0 -top-5 text-white text-xs transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:text-white peer-placeholder-shown:top-0 peer-focus:-top-5 peer-focus:text-xs peer-focus:text-white"
           >
             Message
           </label>
           {errors.message && <p className="text-red-400 text-xs mt-1">{errors.message.message}</p>}
-          
-          {/* Line indicator for text input */}
-          <div className="h-[1px] w-full mt-0"></div>
         </div>
       </motion.div>
 
@@ -366,7 +364,7 @@ const ContactForm = ({ onClose }) => {
       <motion.button
         type="submit"
         disabled={isSubmitting}
-        className="bg-gradient-to-b from-[rgba(0,0,0,0.43)] to-[rgba(0,0,0,0.43)] bg-[#4AB757] text-white w-full sm:w-48 md:w-44 font-normal whitespace-nowrap text-center mt-3 sm:mt-4 px-6 py-2 sm:py-2.5 md:py-3 rounded-3xl sm:rounded-4xl border-[#4AB757] border-solid border-2 transition-colors duration-300 disabled:opacity-70 active:scale-95"
+        className="bg-[#4AB757] text-white w-40 sm:w-44 font-normal whitespace-nowrap text-center mt-4 px-8 py-2.5 rounded-full border-2 border-[#4AB757] hover:bg-[#3da048] transition-colors duration-300 disabled:opacity-70 active:scale-95 text-sm sm:text-base"
         variants={buttonVariants}
         whileHover="hover"
         whileTap="tap"
@@ -380,7 +378,7 @@ const ContactForm = ({ onClose }) => {
 
       {submitSuccess && (
         <motion.div 
-          className="text-center text-green-400 mt-3 text-sm sm:text-base w-full"
+          className="text-center text-green-400 mt-3 text-sm w-full"
           variants={successVariants}
           initial="hidden"
           animate="visible"
