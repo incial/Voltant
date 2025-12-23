@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useContactForm } from '../../../context/ContactFormContext';
 
 // Animation variants
 const fadeIn = {
@@ -138,6 +139,8 @@ const ProfilesSection = ({
   layoutType,
   items = []
 }) => {
+  const { toggleContactForm } = useContactForm()
+
   if (layoutType === 'profile' && items && items.length > 0) {
     return (
       <motion.section 
@@ -175,6 +178,7 @@ const ProfilesSection = ({
               variants={buttonAnimation}
             >
               <button 
+                onClick={() => toggleContactForm()}
                 className="text-base md:text-lg font-normal text-[#7F7F7F] text-center leading-none px-8 md:px-10 py-3.5 md:py-4 rounded-full border-[#BFBFBF] border-solid border-2 hover:bg-[rgba(127,127,127,0.1)] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[rgba(127,127,127,0.3)]"
                 aria-label={buttonText}
               >
@@ -219,8 +223,7 @@ const ProfilesSection = ({
                   className="flex items-center justify-start w-full py-6 md:py-8 lg:py-[40px] lg:my-[70px]"
                   variants={buttonAnimation}
                 >
-                  <button 
-                    className="text-sm sm:text-base md:text-lg font-normal text-center leading-none px-6 md:px-8 lg:px-9 py-3 md:py-[16px] rounded-[31px] border-[#7F7F7F] border-solid border-2 hover:bg-[rgba(127,127,127,0.1)] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[rgba(127,127,127,0.3)]"
+                  <button                     onClick={() => toggleContactForm()}                    className="text-sm sm:text-base md:text-lg font-normal text-center leading-none px-6 md:px-8 lg:px-9 py-3 md:py-[16px] rounded-[31px] border-[#7F7F7F] border-solid border-2 hover:bg-[rgba(127,127,127,0.1)] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[rgba(127,127,127,0.3)]"
                     aria-label={buttonText}
                   >
                     {buttonText}
@@ -250,6 +253,7 @@ const ProfilesSection = ({
                     variants={buttonAnimation}
                   >
                     <button 
+                      onClick={() => toggleContactForm()}
                       className="text-sm sm:text-base font-normal text-[#7F7F7F] text-center leading-none px-8 md:px-10 py-3 md:py-3.5 rounded-full border-[#BFBFBF] border-solid border-2 hover:bg-[rgba(127,127,127,0.1)] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[rgba(127,127,127,0.3)]"
                       aria-label={buttonText}
                     >
