@@ -56,18 +56,9 @@ export const moreData = {
   },
 
   profiles: {
-<<<<<<< HEAD
-    sectionTitle: 'Technical Services',
-<<<<<<< HEAD
-    layout: 'single',
-    leftProfiles: [
-=======
-=======
     sectionTitle: 'Profile',
     layoutType: 'profile',
->>>>>>> 7835af297b983ddf4449509f062367472ddf3fbc
     items: [
->>>>>>> 6673329e902498f3bc4427bc1104cdd7a3831868
       {
         title: 'EV Charging Accessories – Technical Overview',
         items: [

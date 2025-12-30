@@ -1,16 +1,8 @@
-<<<<<<< HEAD
 import React from 'react'
-// eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion'
+import { useContactForm } from '../../../context/ContactFormContext'
 
 // ---------------- Animations ----------------
-=======
-import React from 'react';
-import { motion } from 'framer-motion';
-import { useContactForm } from '../../../context/ContactFormContext';
-
-// Animation variants
->>>>>>> 7835af297b983ddf4449509f062367472ddf3fbc
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
   visible: {
@@ -19,11 +11,7 @@ const fadeIn = {
     transition: {
       duration: 0.6,
       ease: [0.25, 0.1, 0.25, 1]
-<<<<<<< HEAD
     }
-=======
-    } 
->>>>>>> 7835af297b983ddf4449509f062367472ddf3fbc
   }
 }
 
@@ -64,11 +52,7 @@ const buttonAnimation = {
   }
 }
 
-<<<<<<< HEAD
-// ---------------- Profile Item ----------------
-=======
 // ProfileItem component that handles line breaks
->>>>>>> 7835af297b983ddf4449509f062367472ddf3fbc
 const ProfileItem = ({ title, description }) => {
   // Split description by double newlines to create separate paragraphs
   const paragraphs = description.split('\n\n').filter(p => p.trim());
@@ -77,8 +61,8 @@ const ProfileItem = ({ title, description }) => {
   const hasBullets = description.includes('•');
   
   if (hasBullets) {
-    // Split by double newline for bullet lists to preserve spacing
-    const items = description.split('\n\n').filter(l => l.trim());
+    // Split bullet lists on one or more newlines so each bullet appears on its own line
+    const items = description.split(/\n+/).map(l => l.trim()).filter(Boolean);
     
     return (
       <motion.div 
@@ -103,24 +87,10 @@ const ProfileItem = ({ title, description }) => {
   }
   
   return (
-<<<<<<< HEAD
-    <motion.div className="mb-12" variants={itemFadeIn}>
-      <h3 className="text-lg md:text-xl font-medium text-[#6F6F6F] mb-3">
-        {title}
-      </h3>
-      <p className="text-base sm:text-lg md:text-[20px] text-[#9A9A9A] leading-relaxed">
-=======
     <motion.div 
       className="mb-8 md:mb-12 lg:mb-16 xl:mb-20"
       variants={itemFadeIn}
     >
-<<<<<<< HEAD
-      <h3 className="text-lg md:text-xl lg:text-2xl font-medium mb-2 md:mb-3">{title}</h3>
-      <p className="text-sm sm:text-base md:text-lg lg:text-[20px] leading-relaxed md:leading-normal">
->>>>>>> 6673329e902498f3bc4427bc1104cdd7a3831868
-        {description}
-      </p>
-=======
       {title && (
         <h3 className="!text-[#7F7F7F] text-lg md:text-xl lg:text-2xl font-medium mb-2 md:mb-3">
           {title}
@@ -136,7 +106,7 @@ const ProfileItem = ({ title, description }) => {
       </div>
     </motion.div>
   );
-};
+}
 
 // ProfileLayoutItem for single-column profile layout
 const ProfileLayoutItem = ({ title, items }) => {
@@ -155,7 +125,6 @@ const ProfileLayoutItem = ({ title, items }) => {
           </p>
         ))}
       </div>
->>>>>>> 7835af297b983ddf4449509f062367472ddf3fbc
     </motion.div>
   )
 }
@@ -165,28 +134,49 @@ const ProfilesSection = ({
   sectionTitle = '',
   leftProfiles = [],
   rightProfiles = [],
-<<<<<<< HEAD
-  paragraph = '',
-  layout = 'columns', // ✅ columns | single
-  buttonText = 'Download Profile',
-  showButton = true
-}) => {
-  const useParagraphLayout =
-    paragraph && !leftProfiles.length && !rightProfiles.length
-
-  const useSingleColumnLayout = layout === 'single'
-=======
   paragraph = "",
   buttonText = "Download Profile",
   showButton = true,
   layoutType,
-  items = []
+  items = [],
+  downloads = {}
 }) => {
   const { toggleContactForm } = useContactForm()
 
+  // Determine if a downloadable profile is available
+  const downloadEnabled = !!(downloads && downloads.profile && downloads.profile.enabled && downloads.profile.url)
+
+  // Label for primary button (download label if provided)
+  const primaryLabel = (downloadEnabled && downloads.profile.label) ? downloads.profile.label : buttonText
+
+  // Primary action for the button: download if available, otherwise open contact form
+  const handlePrimaryAction = () => {
+    if (downloadEnabled) {
+      const url = downloads.profile.url
+      const filename = downloads.profile.filename || url.split('/').pop().split('?')[0]
+      const link = document.createElement('a')
+      link.href = url
+      link.download = filename
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+      return
+    }
+
+    // If label explicitly requests contact (e.g., 'Get in Touch'), keep that behaviour
+    if (/get\s+in\s+touch/i.test(buttonText)) {
+      toggleContactForm()
+      return
+    }
+
+    // For other labels (e.g., 'Download Charging Profile' when no URL exists) do nothing
+    return
+  }
+
+  // Profile list layout
   if (layoutType === 'profile' && items && items.length > 0) {
     return (
-      <motion.section 
+      <motion.section
         className="flex flex-col items-center w-full py-12 md:py-16 lg:py-20 lg:mt-[80px] lg:mb-[80px] xl:mt-[100px] xl:mb-[100px] px-4 sm:px-6 lg:px-8"
         initial="hidden"
         whileInView="visible"
@@ -194,249 +184,80 @@ const ProfilesSection = ({
         variants={fadeIn}
       >
         <div className="max-w-4xl w-full mx-auto flex flex-col">
-          <motion.h2 
+          <motion.h2
             className="text-[#7F7F7F] text-2xl sm:text-3xl md:text-4xl mb-8 md:mb-10 font-semibold leading-tight"
             variants={fadeIn}
           >
             {sectionTitle}
           </motion.h2>
-          
-          <motion.div 
+
+          <motion.div
             className="mt-6 md:mt-8 space-y-8 md:space-y-10"
             variants={sectionFadeIn}
             viewport={{ amount: 0.1, once: true }}
           >
             {items.map((section, index) => (
-              <ProfileLayoutItem 
-                key={index}
-                title={section.title}
-                items={section.items}
-              />
+              <ProfileLayoutItem key={index} title={section.title} items={section.items} />
             ))}
           </motion.div>
 
           {showButton && (
-            <motion.div 
-              className="flex items-center justify-center w-full mt-12 md:mt-16"
-              variants={buttonAnimation}
-            >
-              <button 
-                onClick={() => toggleContactForm()}
-                className="text-base md:text-lg font-normal text-[#7F7F7F] text-center leading-none px-8 md:px-10 py-3.5 md:py-4 rounded-full border-[#BFBFBF] border-solid border-2 hover:bg-[rgba(127,127,127,0.1)] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[rgba(127,127,127,0.3)]"
-                aria-label={buttonText}
-              >
-                {buttonText}
+            <motion.div className="flex items-center justify-center w-full mt-12 md:mt-16" variants={buttonAnimation}>
+              <button onClick={handlePrimaryAction} className="text-base md:text-lg font-normal text-[#7F7F7F] text-center leading-none px-8 md:px-10 py-3.5 md:py-4 rounded-full border-[#BFBFBF] border-solid border-2 hover:bg-[rgba(127,127,127,0.1)] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[rgba(127,127,127,0.3)]" aria-label={primaryLabel}>
+                {primaryLabel}
               </button>
             </motion.div>
           )}
         </div>
       </motion.section>
-    );
+    )
   }
 
-  const useParagraphLayout = paragraph && (!leftProfiles.length && !rightProfiles.length);
->>>>>>> 7835af297b983ddf4449509f062367472ddf3fbc
+  const useParagraphLayout = paragraph && (!leftProfiles.length && !rightProfiles.length)
 
   return (
-<<<<<<< HEAD
-    <motion.section
-      className="flex flex-col items-center w-full py-12 md:py-16 lg:mt-[100px] lg:mb-[100px] px-4 sm:px-6 lg:px-8"
-=======
-    <motion.section 
-<<<<<<< HEAD
-      className="flex flex-col items-center w-full py-12 md:py-16 lg:py-20 lg:mt-[80px] lg:mb-[80px] xl:mt-[100px] xl:mb-[100px] px-4 sm:px-6 lg:px-8"
->>>>>>> 6673329e902498f3bc4427bc1104cdd7a3831868
-=======
-      className="flex flex-col items-center w-full py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8"
->>>>>>> 7835af297b983ddf4449509f062367472ddf3fbc
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ amount: 0.1, once: true }}
-      variants={fadeIn}
-    >
+    <motion.section className="flex flex-col items-center w-full py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8" initial="hidden" whileInView="visible" viewport={{ amount: 0.1, once: true }} variants={fadeIn}>
       <div className="max-w-7xl w-full mx-auto flex flex-col">
-<<<<<<< HEAD
-        {/* Section Title */}
-        <motion.h2
-          className="text-[#7F7F7F] text-3xl md:text-4xl mb-8 md:mb-12 font-bold leading-tight"
-=======
-        <motion.h2 
-<<<<<<< HEAD
-          className="text-[#7F7F7F] text-2xl sm:text-3xl md:text-4xl mb-6 md:mb-10 lg:mb-12 font-bold leading-tight px-4 sm:px-6 md:px-0"
->>>>>>> 6673329e902498f3bc4427bc1104cdd7a3831868
-=======
-          className="text-[#7F7F7F] text-xl sm:text-2xl md:text-3xl mb-8 md:mb-12 font-normal leading-tight px-0"
->>>>>>> 7835af297b983ddf4449509f062367472ddf3fbc
-          variants={fadeIn}
-        >
+        <motion.h2 className="text-[#7F7F7F] text-xl sm:text-2xl md:text-3xl mb-8 md:mb-12 font-normal leading-tight px-0" variants={fadeIn}>
           {sectionTitle}
         </motion.h2>
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-        {/* ---------------- PARAGRAPH LAYOUT (CPO) ---------------- */}
-        {useParagraphLayout && (
-          <motion.div
-            className="max-w-5xl mx-auto text-center"
-            variants={sectionFadeIn}
-          >
-            <p className="text-[#7F7F7F] text-base sm:text-lg md:text-xl lg:text-2xl font-light leading-relaxed lg:leading-[48px] mb-12">
-              {paragraph}
-            </p>
-
+        {useParagraphLayout ? (
+          <motion.div className="px-0" variants={sectionFadeIn}>
+            <p className="text-[#7F7F7F] text-base sm:text-lg md:text-xl lg:text-2xl font-light leading-relaxed md:leading-normal lg:leading-[48px] mb-6 md:mb-10 lg:mb-12">{paragraph}</p>
             {showButton && (
-              <motion.div
-                className="flex justify-center"
-                variants={buttonAnimation}
-              >
-                <button className="text-base md:text-lg font-normal px-8 md:px-12 py-[16px] rounded-[31px] border-2 border-[#7F7F7F] hover:bg-[rgba(127,127,127,0.1)] transition-colors">
-                  {buttonText}
-                </button>
+              <motion.div className="flex items-center justify-start w-full py-6 md:py-8 lg:py-[40px] lg:my-[70px]" variants={buttonAnimation}>
+                <button onClick={handlePrimaryAction} className="text-sm sm:text-base md:text-lg font-normal text-center leading-none px-6 md:px-8 lg:px-9 py-3 md:py-[16px] rounded-[31px] border-[#7F7F7F] border-solid border-2 hover:bg-[rgba(127,127,127,0.1)] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[rgba(127,127,127,0.3)]" aria-label={primaryLabel}>{primaryLabel}</button>
               </motion.div>
             )}
           </motion.div>
-        )}
+        ) : (
+          <div className="gap-8 md:gap-12 lg:gap-16 justify-between flex flex-col md:flex-row px-0">
+            <div className="w-full md:w-[45%]">
+              <div className="text-[#7F7F7F] text-base md:text-lg font-light leading-relaxed">
+                {leftProfiles.map((profile, index) => (
+                  <ProfileItem key={index} title={profile.title} description={profile.description} />
+                ))}
+              </div>
 
-        {/* ---------------- SINGLE COLUMN (MORE PAGE) ---------------- */}
-        {useSingleColumnLayout && !useParagraphLayout && (
-          <motion.div
-            className="max-w-5xl"
-            variants={sectionFadeIn}
-          >
-            {[...leftProfiles, ...rightProfiles].map((profile, index) => (
-              <ProfileItem
-                key={index}
-                title={profile.title}
-                description={profile.description}
-              />
-            ))}
-          </motion.div>
-        )}
-
-        {/* ---------------- TWO COLUMN (ENGINEERING) ---------------- */}
-        {!useParagraphLayout && !useSingleColumnLayout && (
-          <div className="flex flex-col md:flex-row justify-between gap-10">
-            <motion.div
-              className="w-full md:w-5/12"
-=======
-        <div className="mt-6 md:mt-10 lg:mt-[60px]">
-          {useParagraphLayout ? (
-            <motion.div 
-              className="px-4 sm:px-6 md:px-0"
->>>>>>> 6673329e902498f3bc4427bc1104cdd7a3831868
-=======
-        <div className="mt-0">
-          {useParagraphLayout ? (
-            <motion.div 
-              className="px-0"
->>>>>>> 7835af297b983ddf4449509f062367472ddf3fbc
-              variants={sectionFadeIn}
-            >
-<<<<<<< HEAD
-              {leftProfiles.map((profile, index) => (
-                <ProfileItem
-                  key={index}
-                  title={profile.title}
-                  description={profile.description}
-                />
-              ))}
-            </motion.div>
-
-            <motion.div
-              className="w-full md:w-5/12"
-              variants={sectionFadeIn}
-            >
-              {rightProfiles.map((profile, index) => (
-                <ProfileItem
-                  key={index}
-                  title={profile.title}
-                  description={profile.description}
-                />
-              ))}
-            </motion.div>
-          </div>
-        )}
-
-        {/* ---------------- BOTTOM BUTTON (COLUMNS ONLY) ---------------- */}
-        {!useParagraphLayout && !useSingleColumnLayout && showButton && (
-          <motion.div
-            className="flex justify-center mt-16"
-            variants={buttonAnimation}
-          >
-            <button className="text-base md:text-lg font-normal px-8 md:px-12 py-[16px] rounded-[31px] border-2 border-[#7F7F7F] hover:bg-[rgba(127,127,127,0.1)] transition-colors">
-              {buttonText}
-            </button>
-          </motion.div>
-        )}
-=======
-              <p className="text-[#7F7F7F] text-base sm:text-lg md:text-xl lg:text-2xl font-light leading-relaxed md:leading-normal lg:leading-[48px] mb-6 md:mb-10 lg:mb-12">
-                {paragraph}
-              </p>
               {showButton && (
-                <motion.div 
-                  className="flex items-center justify-start w-full py-6 md:py-8 lg:py-[40px] lg:my-[70px]"
-                  variants={buttonAnimation}
-                >
-                  <button                     onClick={() => toggleContactForm()}                    className="text-sm sm:text-base md:text-lg font-normal text-center leading-none px-6 md:px-8 lg:px-9 py-3 md:py-[16px] rounded-[31px] border-[#7F7F7F] border-solid border-2 hover:bg-[rgba(127,127,127,0.1)] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[rgba(127,127,127,0.3)]"
-                    aria-label={buttonText}
-                  >
-                    {buttonText}
-                  </button>
+                <motion.div className="flex items-center justify-start w-full mt-8 md:mt-12" variants={buttonAnimation}>
+                  <button onClick={handlePrimaryAction} className="text-sm sm:text-base font-normal text-[#7F7F7F] text-center leading-none px-8 md:px-10 py-3 md:py-3.5 rounded-full border-[#BFBFBF] border-solid border-2 hover:bg-[rgba(127,127,127,0.1)] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[rgba(127,127,127,0.3)]" aria-label={primaryLabel}>{primaryLabel}</button>
                 </motion.div>
               )}
-            </motion.div>
-          ) : (
-            <div className="gap-8 md:gap-12 lg:gap-16 justify-between flex flex-col md:flex-row px-0">
-              <motion.div 
-                className="w-full md:w-[45%]"
-                variants={sectionFadeIn}
-                viewport={{ amount: 0.1, once: true }}
-              >
-                <div className="text-[#7F7F7F] text-base md:text-lg font-light leading-relaxed">
-                  {leftProfiles.map((profile, index) => (
-                    <ProfileItem 
-                      key={index}
-                      title={profile.title} 
-                      description={profile.description}
-                    />
+            </div>
+
+            <div className="w-full md:w-[45%]">
+              <div className="flex flex-col items-start text-[#7F7F7F]">
+                <div className="text-base md:text-lg font-light leading-relaxed">
+                  {rightProfiles.map((profile, index) => (
+                    <ProfileItem key={index} title={profile.title} description={profile.description} />
                   ))}
                 </div>
-                {showButton && (
-                  <motion.div 
-                    className="flex items-center justify-start w-full mt-8 md:mt-12"
-                    variants={buttonAnimation}
-                  >
-                    <button 
-                      onClick={() => toggleContactForm()}
-                      className="text-sm sm:text-base font-normal text-[#7F7F7F] text-center leading-none px-8 md:px-10 py-3 md:py-3.5 rounded-full border-[#BFBFBF] border-solid border-2 hover:bg-[rgba(127,127,127,0.1)] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[rgba(127,127,127,0.3)]"
-                      aria-label={buttonText}
-                    >
-                      {buttonText}
-                    </button>
-                  </motion.div>
-                )}
-              </motion.div>
-              <motion.div 
-                className="w-full md:w-[45%]"
-                variants={sectionFadeIn}
-                viewport={{ amount: 0.1, once: true }}
-              >
-                <div className="flex flex-col items-start text-[#7F7F7F]">
-                  <div className="text-base md:text-lg font-light leading-relaxed">
-                    {rightProfiles.map((profile, index) => (
-                      <ProfileItem 
-                        key={index}
-                        title={profile.title} 
-                        description={profile.description}
-                      />
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
+              </div>
             </div>
-          )}
-        </div>
->>>>>>> 6673329e902498f3bc4427bc1104cdd7a3831868
+          </div>
+        )}
       </div>
     </motion.section>
   )

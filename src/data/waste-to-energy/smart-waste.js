@@ -60,7 +60,7 @@ export const smartWasteData = {
   profiles: {
     sectionTitle: 'Engineering Profiles',
     showButton: true,
-    buttonText: 'Get in Touch',
+    buttonText: 'Download Charging Profile',
     leftProfiles: [
       {
         title: 'Site Assessment & Feasibility Study',

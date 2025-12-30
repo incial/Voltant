@@ -41,18 +41,7 @@ const WhoAreWe = () => {
             alt='Voltant Energy Logo'
             className='h-[40px] sm:h-[48px] md:h-[55px] mb-[15px]'
           />
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-          <img
-            src={logos.icon}
-            alt='Voltant Energy Icon'
-            className='h-[12px] sm:h-[13px] md:h-[15px]'
-          />
->>>>>>> 6673329e902498f3bc4427bc1104cdd7a3831868
-=======
-         
->>>>>>> 7835af297b983ddf4449509f062367472ddf3fbc
+      
         </div>
       </div>
 
@@ -243,39 +232,12 @@ const WhoAreWe = () => {
       </div>
 
       {/* Get in Touch Button and Social Media Section */}
-<<<<<<< HEAD
-      <div className='w-full flex flex-col items-center gap-[100px] py-16'>
-        {/* Get in Touch Button */}
-        {/* Get in Touch Button */}
-<div className="w-full flex justify-center py-16">
-  <Link to="/contact">
-    <div
-      className="
-        flex items-center justify-center
-        w-[176px] h-[62px]
-        rounded-full
-        border border-[#9A9A9A]
-        text-[#9A9A9A] text-[16px] font-normal
-        bg-transparent
-        cursor-pointer
-        hover:bg-[#7f7f7f] hover:text-white hover:border-[#7f7f7f]
-        transition-all duration-300 ease-out
-      "
-    >
-      Get in Touch
-    </div>
-  </Link>
-</div>
-
-
-=======
       <div className='w-full flex flex-col items-center gap-[25px] sm:gap-[40px] md:gap-[60px] lg:gap-[80px] py-8 sm:py-10 md:py-14 lg:py-16 px-4 sm:px-6'>
         <div className='flex justify-center'>
           <button onClick={toggleContactForm} className='border-2 border-[#7f7f7f] text-[#7f7f7f] text-[16px] sm:text-[18px] md:text-[20px] px-[18px] rounded-[31px] hover:bg-[#7f7f7f] hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-[#7f7f7f]/50 w-[150px] sm:w-[165px] md:w-[176px] h-[52px] sm:h-[57px] md:h-[62px] flex items-center justify-center'>
             Get in Touch
           </button>
         </div>
->>>>>>> 6673329e902498f3bc4427bc1104cdd7a3831868
 
         {/* Social media icons */}
         <div className='flex flex-row justify-center items-center gap-[20px] sm:gap-[30px] md:gap-[40px] lg:gap-[50px] flex-wrap'>

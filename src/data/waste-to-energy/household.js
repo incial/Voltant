@@ -23,12 +23,7 @@ export const householdData = {
   seamlessCharging: {
     title: 'Household Biogas Solutions:Clean Energy,Right at Home',
     paragraphs: [
-<<<<<<< HEAD
-      'Our compact household biogas solutions convert kitchen and organic waste into clean, renewable energy right at your home.',
-      'These systems help families reduce dependence on conventional fuels while promoting sustainable living practices.'
-=======
-'Domestic biogas plants are compact, small-scale anaerobic digestion systems designed for household use. They convert kitchen and other organic waste—such as vegetable peels, fruit scraps, and garden trimmings—into clean, renewable biogas and nutrient-rich compost.'
->>>>>>> 7835af297b983ddf4449509f062367472ddf3fbc
+      'Domestic biogas plants are compact, small-scale anaerobic digestion systems designed for household use. They convert kitchen and other organic waste—such as vegetable peels, fruit scraps, and garden trimmings—into clean, renewable biogas and nutrient-rich compost. Our compact household biogas solutions help families reduce dependence on conventional fuels while promoting sustainable living practices.'
     ]
   },
 
@@ -70,10 +65,9 @@ export const householdData = {
   },
 
   profiles: {
-<<<<<<< HEAD
     sectionTitle: 'Household Biogas Benefits',
     showButton: true,
-    buttonText: 'Get in Touch',
+    buttonText: 'Download Charging Profile',
 
     leftProfiles: [
       {
@@ -93,17 +87,15 @@ export const householdData = {
           'By turning everyday organic waste into energy and fertilizer, domestic biogas plants allow families to adopt sustainable living practices, reduce reliance on conventional fuels, and contribute to a greener environment — all from the comfort of their home.'
       }
     ]
-=======
-    sectionTitle: '',
-    showButton: true,
-    buttonText: 'Download Charging Profile',
-    paragraph: 'By combining intelligent automation, data monitoring, and behavioral incentives, smart segregation bins help maximize recycling rates, reduce landfill dependency, and foster a circular economy, making waste management smarter, cleaner, and more sustainable.',
-    leftProfiles: [],
-    rightProfiles: []
->>>>>>> 7835af297b983ddf4449509f062367472ddf3fbc
   },
 
+
   downloads: {
+    profile: {
+      label: 'Download Charging Profile',
+      url: '',
+      enabled: false
+    },
     systemSpecs: {
       label: 'Download Household System Specs',
       url: '',

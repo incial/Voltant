@@ -87,6 +87,11 @@ export const ChargerComponent = ({
                 <div className='px-4 pb-8'>
                   {specifications.map((specSection, sectionIndex) => (
                     <div key={sectionIndex} className='mb-6'>
+                      {/* Section heading for mobile */}
+                      <h3 className='text-[#7F7F7F] text-sm md:text-base font-medium mb-3'>
+                        {specSection.category}
+                      </h3>
+
                       <div className='space-y-2'>
                         {specSection.items.map((item, itemIndex) => (
                           <div key={itemIndex} className='flex flex-col py-3'>
@@ -216,6 +221,13 @@ export const ChargerComponent = ({
             <tbody>
               {specifications.map((specSection, sectionIndex) => (
                 <React.Fragment key={sectionIndex}>
+                  {/* Section heading row */}
+                  <tr>
+                    <td colSpan={chargerModels.length + 1} className='py-6 text-left pr-8 text-[#7F7F7F] font-semibold border-b border-gray-200'>
+                      {specSection.category}
+                    </td>
+                  </tr>
+
                   {specSection.items.map((item, itemIndex) => (
                     <tr key={itemIndex} className={`group hover:bg-gray-50 ${itemIndex === 0 ? 'pt-8' : ''}`}>
                       <td className='py-6 text-right pr-20 text-gray-400 font-medium align-start'>

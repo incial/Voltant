@@ -33,6 +33,7 @@ const SmartWaste = () => (
         rightProfiles={smartWasteData.profiles.rightProfiles}
         buttonText={smartWasteData.profiles.buttonText}
         showButton={smartWasteData.profiles.showButton}
+        downloads={smartWasteData.downloads}
       />
     </div>
     <footer />
