@@ -65,31 +65,35 @@ export const largeScaleData = {
   },
 
   profiles: {
-    sectionTitle: 'Profiles',
+    sectionTitle: '',
     showButton: true,
-    buttonText: 'Get in Touch',
+    buttonText: 'Download Charging Profile',
     leftProfiles: [
       {
-        title: 'Site Assessment & Feasibility Study',
-        description: 'We begin with a comprehensive evaluation of the site, analyzing power availability, load capacity, and infrastructure readiness. This helps determine the best charger placement while ensuring compliance with local regulations and safety standards.'
+        title: 'Energy Applications',
+        description: 'The biogas produced can be utilized for:\n\n• Electricity and heat generation using CHP systems\n\n• Upgrading to Biomethane (EBG) for vehicular and industrial use\n\n• Thermal applications such as heating, boiling, cooling, pasteurization\n\n• Grid injection or storage as per project requirements\n\nIn addition to energy, the process generates digestate, a nutrient-rich organic byproduct used as biofertilizer, supporting sustainable agriculture and reducing dependency on chemical fertilizers.'
       },
       {
-        title: 'Design & Engineering Solutions',
-        description: "Every project is designed for maximum efficiency, integrating smart energy management, optimal power distribution, and scalable solutions. Whether it's a single charging point or a large-scale network, our engineering team develops tailored layouts and electrical schematics that align with sustainability goals."
+        title: 'Integrated Waste Sorting & Segregation',
+        description: 'To ensure high-quality feedstock and maximize gas output, large-scale plants can include:\n\n• Wet & dry waste segregation systems\n\n• Mechanical and manual sorting lines for MSW\n\n• Smart bins and digital waste tracking\n\n• Pre-processing units such as shredders, pulpers, and slurry preparation modules\n\nThis ensures only clean organic waste enters the digester, improving plant performance, efficiency, and output stability.'
       },
       {
-        title: 'Installation & Commissioning',
-        description: 'From civil and electrical work to network setup, our team manages the entire installation process, ensuring seamless execution. We conduct rigorous testing and commissioning to guarantee smooth operation and long-term reliability.'
+        title: 'System Features',
+        description: '• 24/7 automated and optimized operation\n\n• Advanced monitoring, control, and gas purification systems\n\n• Odor-controlled, environmentally compliant infrastructure\n\n• High reliability with proven global AD technologies\n\nLarge-scale biogas plants significantly reduce landfill dependency, curb methane emissions, and create long-term economic value—transforming organic waste into renewable energy and sustainable agricultural inputs.'
       }
     ],
     rightProfiles: [
       {
-        title: 'Maintenance & Support',
-        description: "Our job doesn't end after installation. We provide ongoing maintenance, real-time monitoring, and remote diagnostics to ensure optimal charger performance. With preventive service schedules and 24/7 technical support, we keep charging stations running efficiently."
+        title: 'Biogas Project Expertise',
+        description: 'Large-Scale Biogas & Biomethane (CBG) Projects Delivered\n\nComprehensive biogas and biomethane plants producing renewable energy from organic waste with capacities of up to 230 tons/day.'
       },
       {
-        title: 'Software & Network Integration',
-        description: 'Seamless connectivity is key to modern EV charging. We integrate smart Charge Point Management Systems (CPMS) with real-time data analytics, load balancing, and OCPP-compliant backend systems. This allows for efficient monitoring, remote control, and a smooth user experience.'
+        title: 'Diverse Organic Feedstock Capability',
+        description: "Expertise in processing a wide variety of organic materials including:\n\n– Vegetable & market waste\n\n– Food waste from hotels, malls, and central kitchens\n\n– Agricultural residues\n\n– Meat industry effluent\n\n– Cattle dung\n\n– Poultry litter\n\n– Industrial organic residues such as pressmudd"
+      },
+      {
+        title: 'Integrated Organic Waste Sorting Solutions',
+        description: 'Experience in designing and implementing systems for sorting organic waste from mixed Municipal Solid Waste (MSW), including mechanical segregation, manual sorting lines, and pre-processing systems.'
       }
     ]
   },

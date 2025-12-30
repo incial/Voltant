@@ -93,7 +93,7 @@ export const engineeringWorksData = {
       }
     ],
     buttonText: 'Download Charging Profile',
-    showButton: false
+    showButton: true
   },
 
   downloads: {
