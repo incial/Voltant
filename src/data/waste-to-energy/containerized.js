@@ -30,10 +30,8 @@ export const containerizedData = {
       'Containerized plants are designed for limited space requirements and are equipped with innovative and modern technologies for high efficiency, advanced monitoring, enhanced safety, durability, quick installation, and ease of use.These plants are installed directly at the waste generation source, enabling on-site conversion of waste into energy. This ensures that the energy produced is immediately utilized at the same location, maximizing efficiency and reducing transport-related handling.',
 
       'A containerized biogas system supports a circular economy by converting organic waste into valuable resources such as clean energy and bio-fertilizer directly at the source. Instead of sending waste to landfills, the system recycles waste into usable energy for cooking, heating, or electricity, and returns nutrient-rich digestate back to the soil, reducing dependence on chemical fertilizers.Environmentally, it helps cut methane emissions from decomposing waste, lowers carbon footprint by replacing fossil fuels, reduces waste transportation costs and pollution, and supports sustainable waste management practices. Overall, it transforms waste from a liability into a renewable asset.',
-
     ]
   },
-
 
   midSection: {
     backgroundImage: WASTE_IMAGES.cpAbout,
@@ -86,14 +84,14 @@ export const containerizedData = {
       {
         title: '',
         description:
-          'Sustainable and efficient onsite waste management solution for treating 100% of organic waste.\n\n' +
-          'A circular economy solution to cut down the cost on transportation and disposal of organic waste.\n\n' +
-          'Solution to produce value-added energy products from organic waste to cut down hotel’s fossil fuel consumption for energy requirements and in turn reduce carbon emissions and combat climate change.\n\n' +
-          'A sustainable waste management solution supporting and meeting UAE’s & UN’s sustainable development goals.\n\n' +
-          'An environmentally friendly solution with zero discharges. By-product is a nutrient-rich biofertilizer which can enhance landscape or be sold to generate revenue.\n\n' +
-          'Helps reduce waste sent to landfill and supports UAE’s mission of Zero landfill by 2030.\n\n' +
-          'Helps attain the Dubai Tourism stamp and earns credit for LEED certification, promoting green tourism.\n\n' +
-          'Eligible for carbon credits by implementing the solution.'
+          'Sustainable and efficient Onsite Waste management solution for treating 100% of Organic waste.\n\n' +
+          'A circular economy solution to cut down the cost on Transportation and disposal of Organic waste.\n\n' +
+          'Solution to produce value added energy products from organic waste to cut down hotels fossil fuel consumption for energy requirements and in turn reduce carbon emissions and combating climate change.\n\n' +
+          'A sustainable waste management solution supporting and meeting UAEs & UNs sustainable development goals.\n\n' +
+          'An environmentally friendly solution with Zero discharges. By-product is a Nutrient-rich Biofertilizer which can enhance landscape or sold to generate revenue.\n\n' +
+          'Helps to reduce the waste to landfill and supports UAEEs mission of Zero landfill by 2030.\n\n' +
+          'Help to attain the Dubai Tourism stamp & gets Credit for LEED Certification, promote Green Tourism.\n\n' +
+          'Eligible for Carbon credits by implementing the solution.'
       }
     ],
 
@@ -108,9 +106,7 @@ export const containerizedData = {
           '• Fish Market Waste'
       }
     ]
-  }
-  ,
-
+  },
 
   downloads: {
     profile: {

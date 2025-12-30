@@ -23,8 +23,7 @@ export const smartWasteData = {
   seamlessCharging: {
     title: 'Automated Sorting, Sustainable Living',
     paragraphs: [
-      'Efficient waste management starts with proper segregation. Our Smart Waste Segregation Bins use advanced sensors and AI-powered technology to automatically sort waste into recyclable, organic, and non-recyclable categories. Designed for homes, offices, and public spaces, these bins reduce landfill waste, promote recycling, and contribute to a cleaner environment.'
-    ]
+'Smart segregation bins are next-generation waste management solutions designed to streamline and optimize the segregation of different types of waste at the source. Equipped with AI-enabled cameras, these bins automatically identify and separate organic, recyclable, and non-recyclable waste into dedicated compartments, ensuring higher segregation accuracy and reducing contamination.'    ]
   },
 
   midSection: {
@@ -58,7 +57,6 @@ export const smartWasteData = {
       }
     ]
   },
-  img: WASTE_IMAGES.swEnd,
   profiles: {
     sectionTitle: 'Engineering Profiles',
     showButton: true,

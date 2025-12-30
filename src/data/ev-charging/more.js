@@ -56,39 +56,58 @@ export const moreData = {
   },
 
   profiles: {
+<<<<<<< HEAD
     sectionTitle: 'Technical Services',
 <<<<<<< HEAD
     layout: 'single',
     leftProfiles: [
 =======
+=======
+    sectionTitle: 'Profile',
+    layoutType: 'profile',
+>>>>>>> 7835af297b983ddf4449509f062367472ddf3fbc
     items: [
 >>>>>>> 6673329e902498f3bc4427bc1104cdd7a3831868
       {
-        title: 'EV Charging Accessories',
-        description:
-          'Charging cables including Type 1, Type 2, CCS, and CHAdeMO with defined power ratings (kW), insulation types, and durability standards. Accessories also include connectors and adapters compatible with AC and DC chargers, offering IP-rated weatherproofing and certified safety compliance. Mounting solutions range from wall-mounted to pedestal and pole-mounted systems designed for load-bearing stability. Surge protectors and smart relays protect equipment against voltage spikes, short circuits, and overheating, ensuring long-term charger reliability.'
+        title: 'EV Charging Accessories – Technical Overview',
+        items: [
+          'Charging Cables – Type 1, Type 2, CCS, and CHAdeMO with power ratings (kW), insulation types, and durability specs.',
+          'Connectors & Adapters – Compatibility with AC/DC chargers, IP rating for weatherproofing and safety certifications.',
+          'Mounting Solutions – Wall-mounted, pedestal, and pole-mounted options with load-bearing capacity and materials.',
+          'Surge Protectors & Smart Relays – Protection against voltage spikes, short circuits, and overheating to ensure longevity.'
+        ]
       },
       {
-        title: 'Annual Maintenance Contracts (AMC)',
-        description:
-          'Preventive maintenance includes routine hardware inspections, firmware updates, and load testing to prevent failures. On-demand repair services provide 24/7 troubleshooting, remote diagnostics, and fast component replacement to minimize downtime. Performance analytics deliver insights into energy consumption, fault logs, and efficiency optimization, while compliance checks ensure adherence to UAE and global safety standards.'
+        title: 'Annual Maintenance Contracts (AMC) – Scope of Service',
+        items: [
+          'Preventive Maintenance – Routine hardware inspections, firmware updates, and load testing to prevent failures.',
+          'On-Demand Repairs – 24/7 troubleshooting, remote diagnostics, and fast part replacement to reduce downtime.',
+          'Performance Analytics – Regular reports on energy consumption, fault logs, and efficiency optimization.',
+          'Compliance & Safety Checks – Ensures chargers meet standard UAE & global safety standards.'
+        ]
       },
       {
-        title: 'EV Conversions',
-        description:
-          'EV conversion solutions focus on lithium-ion battery systems with defined capacities and estimated range per charge. Powertrain solutions include AC and DC motors with optimized torque output, regenerative braking support, and high efficiency ratings. Charging compatibility ensures seamless integration with AC and DC chargers, onboard charging speeds, and industry-standard plug configurations supported by intelligent battery management systems (BMS).'
+        title: 'EV Conversions – Key Technical Aspects',
+        items: [
+          'Battery System – Type of battery packs, capacity (kWh), and estimated range per charge.',
+          'Motor & Powertrain – AC vs. DC motor, torque output, regenerative braking support, and efficiency rating.',
+          'Charging Compatibility – Integration with AC/DC chargers, onboard charging speed (kW), and plug compatibility.',
+          'Control Systems – Smart battery management systems (BMS) and regenerative energy utilization.'
+        ]
       },
       {
-        title: 'CPMS & Billing System',
-        description:
-          'The Charge Point Management System (CPMS) enables real-time monitoring of charger availability, usage statistics, and energy consumption. Automated billing supports RFID authentication, QR-based payments, and subscription models. Dynamic load management prevents grid overload while optimizing energy efficiency. A cloud-based dashboard provides operators with remote charger control, diagnostics, and advanced analytics for complete system visibility.'
+        title: 'CPMS & Billing System – Features & Integration',
+        items: [
+          'Real-Time Monitoring – Live status updates on charger availability, usage stats, and energy consumption.',
+          'Automated Billing & Payments – Supports RFID authentication, QR-based payments, and subscription models.',
+          'Load Management – Dynamic power distribution to avoid grid overload and optimize energy efficiency.',
+          'User & Operator Dashboard – Cloud-based system for remote charger control, diagnostics, and analytics.'
+        ]
       }
     ],
     buttonText: 'Download Charging Profile',
     showButton: true
-  }
-
-  ,
+  },
 
   downloads: {
     profile: {

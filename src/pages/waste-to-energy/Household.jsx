@@ -47,10 +47,30 @@ const Household = () => {
           />
         </motion.section>
 
+        {/* Image Section */}
+        {householdData.imageSection && (
+          <motion.section
+            className='w-full py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8'
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ amount: 0.2, once: true }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+          >
+            <div className='max-w-7xl mx-auto'>
+              <img 
+                src={householdData.imageSection.image}
+                alt={householdData.imageSection.alt}
+                className='w-full h-auto object-contain rounded-lg'
+              />
+            </div>
+          </motion.section>
+        )}
+
         <ProfilesSection 
           sectionTitle={householdData.profiles.sectionTitle}
           leftProfiles={householdData.profiles.leftProfiles}
           rightProfiles={householdData.profiles.rightProfiles}
+          paragraph={householdData.profiles.paragraph}
           buttonText={householdData.profiles.buttonText}
           showButton={householdData.profiles.showButton}
         />

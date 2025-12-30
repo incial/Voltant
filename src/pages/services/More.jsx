@@ -38,19 +38,13 @@ const More = () => (
         />
       </section>
 
-      <ProfilesSection
-        sectionTitle={moreData.profiles.sectionTitle}
-        paragraph={
-          moreData.profiles.items
-            .map(
-              item =>
-                `${item.title}\n\n${item.description}`
-            )
-            .join('\n\n')
-        }
-        buttonText={moreData.profiles.buttonText}
-        showButton={moreData.profiles.showButton}
-      />
+     <ProfilesSection
+  sectionTitle={moreData.profiles.sectionTitle}
+  layoutType={moreData.profiles.layoutType}
+  items={moreData.profiles.items}
+  buttonText={moreData.profiles.buttonText}
+  showButton={moreData.profiles.showButton}
+/>
     </div>
 
   </>

@@ -58,29 +58,19 @@ const EvCharging = () => {
               alt="EV Charging"
               className="w-full h-full object-cover"
               onLoad={() => setImageLoaded(true)}
-              style={{ objectPosition: '60% 70%' }}
+              style={{ objectPosition: 'center center' }}
             />
-            <div className='absolute inset-0 bg-black opacity-40'></div>
+            <div className='absolute inset-0 bg-gradient-to-r from-black/60 to-transparent'></div>
           </div>
-          {/* Hero Content - Positioned at absolute bottom left */}
-          <div className='absolute bottom-10 left-8 z-10 max-w-[85%] px-2'>
-            <h1 className="text-2xl font-semibold text-white mb-6 font-['Cairo'] leading-snug">
+          {/* Hero Content - Positioned at left side */}
+          <div className='absolute top-1/2 left-8 -translate-y-1/2 z-10 max-w-[85%] px-2'>
+            <h1 className="text-2xl font-semibold text-white mb-4 font-['Cairo'] leading-snug">
               EV Charging <br /> Infrastructure
             </h1>
 
-            <p className="text-md text-white font-light font-['Cairo'] w-full max-w-[300px] mb-6">
-              Powering the future of mobility with smart, efficient and scalable
-              EV charging solutions designed for homes, businesses, and public
-              spaces.
+            <p className="text-sm text-white font-light font-['Cairo'] w-full max-w-[280px] mb-6 leading-relaxed">
+              Powering the future of mobility with smart, efficient, and scalable EV charging solutions—designed for homes, businesses, and public spaces.
             </p>
-
-            <a
-              href="/pdfs/Voltant Energy – Leading Sustainable EV Infrastructure in the Middle East Voltant Energy delivers reliable, scalable EV charging solutions across residential, commercial, and public sectors—ensuri-5.pdf"
-              download="Voltant-Energy-EV-Charging-Solutions.pdf"
-              className="inline-block text-sm font-normal text-center leading-none px-5 py-3 rounded-[31px] border-white border-solid border-2 text-white hover:bg-white hover:text-gray-800 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-white"
-            >
-              Download Brochure
-            </a>
           </div>
         </div>
 
@@ -100,9 +90,10 @@ const EvCharging = () => {
       </div>
 
       {/* Desktop View - Only visible on medium and larger screens */}
-      <div className='hidden md:flex min-h-screen flex-col'>        {/* Hero Section with Video Background */}
+      <div className='hidden md:flex min-h-screen flex-col'>
+        {/* Hero Section with Image Background */}
         <section className='relative w-full h-screen'>
-          {/* Video Background */}
+          {/* Image Background */}
           <div className='absolute inset-0 w-full h-full overflow-hidden'>
             {!imageLoaded && (
               <div className='absolute inset-0 bg-gray-800 z-5 flex items-center justify-center'>
@@ -118,33 +109,26 @@ const EvCharging = () => {
               alt="EV Charging"
               className='w-full h-full object-cover'
               onLoad={() => setImageLoaded(true)}
-              style={{ objectPosition: '60% 70%' }}
+              style={{ objectPosition: 'center center' }}
             />
-            <div className='absolute inset-0 bg-black opacity-20'></div>
+            {/* Gradient overlay from left to right */}
+            <div className='absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent'></div>
           </div>
-          {/* Hero Content - Positioned at bottom left */}
+          
+          {/* Hero Content - Positioned at left center */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
-            className='absolute bottom-[200px] left-[100px] z-10 text-white text-left w-full max-w-[500px] px-4 md:px-0'
+            className='absolute top-1/2 left-[100px] -translate-y-1/2 z-10 text-white text-left w-full max-w-[450px] px-4 md:px-0'
           >
-            <h1 className="font-['Cairo'] text-[3rem] leading-tight font-semibold m-0">
+            <h1 className="font-['Cairo'] text-[2.75rem] leading-tight font-semibold m-0 mb-6">
               EV Charging <br /> Infrastructure
             </h1>
-            <p className="text-2xl text-white font-extralight font-['Cairo'] mt-10 md:mt-14 w-full max-w-[500px] mb-8">
-              Powering the future of mobility with smart, efficient and scalable
-              EV charging infrastructure solutions for homes, businesses, and
-              public spaces.
+            <p className="text-lg text-white font-light font-['Cairo'] w-full max-w-[400px] leading-relaxed">
+              Powering the future of mobility with smart, efficient, and scalable EV charging solutions—designed for homes, businesses, and public spaces.
             </p>
-            <a
-              href="/pdfs/Voltant Energy – Leading Sustainable EV Infrastructure in the Middle East Voltant Energy delivers reliable, scalable EV charging solutions across residential, commercial, and public sectors—ensuri-5.pdf"
-              download="Voltant-Energy-EV-Charging-Solutions.pdf"
-              className="inline-block text-base md:text-lg font-normal text-center leading-none px-6 md:px-9 py-4 rounded-[31px] border-white border-solid border-2 text-white hover:bg-white hover:text-gray-800 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-white"
-            >
-              Download Brochure
-            </a>
           </motion.div>
         </section>
 

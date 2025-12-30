@@ -125,7 +125,10 @@ export const EV_IMAGES = {
 
   // Product images
   acChargerImage: `${ASSET_PATHS.images}/EV_charging/AC_charger_image.png`,
-  dcChargerImage: `${ASSET_PATHS.images}/EV_charging/DC_charger_image.png`
+  dcChargerImage: `${ASSET_PATHS.images}/EV_charging/DC_charger_image.png`,
+  wallImage: `${ASSET_PATHS.images}/EV_charging/wallbox.png`,
+  dcImage: `${ASSET_PATHS.images}/EV_charging/DC_fast.png`,
+  dcNew: `${ASSET_PATHS.images}/EV_charging/DC_new.png`
 };
 
 /**
