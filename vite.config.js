@@ -16,6 +16,7 @@ export default defineConfig({
           'react-vendor': ['react', 'react-dom', 'react-router-dom'],
           'animation-vendor': ['framer-motion'],
           'ui-components': [
+            // Common UI components that are used across many pages
             './src/components/common/Navbar.jsx',
             './src/components/common/Footer.jsx',
           ],

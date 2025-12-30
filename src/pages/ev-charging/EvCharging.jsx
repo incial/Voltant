@@ -50,11 +50,15 @@ const EvCharging = () => {
               </div>
             )}
             <img
+<<<<<<< HEAD
               src="/assets/images/EV_charging/EV_charging.webp"
+=======
+              src="/assets/images/EV_charging/EV_main1.webp"
+>>>>>>> 6673329e902498f3bc4427bc1104cdd7a3831868
               alt="EV Charging"
               className="w-full h-full object-cover"
               onLoad={() => setImageLoaded(true)}
-              style={{ objectPosition: '70% 80%' }}
+              style={{ objectPosition: '60% 70%' }}
             />
             <div className='absolute inset-0 bg-black opacity-40'></div>
           </div>
@@ -70,7 +74,7 @@ const EvCharging = () => {
               spaces.
             </p>
 
-            <a 
+            <a
               href="/pdfs/Voltant Energy – Leading Sustainable EV Infrastructure in the Middle East Voltant Energy delivers reliable, scalable EV charging solutions across residential, commercial, and public sectors—ensuri-5.pdf"
               download="Voltant-Energy-EV-Charging-Solutions.pdf"
               className="inline-block text-sm font-normal text-center leading-none px-5 py-3 rounded-[31px] border-white border-solid border-2 text-white hover:bg-white hover:text-gray-800 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-white"
@@ -106,11 +110,15 @@ const EvCharging = () => {
               </div>
             )}
             <img
+<<<<<<< HEAD
               src="/assets/images/EV_charging/Ev_charging.jpg"
+=======
+              src="/assets/images/EV_charging/EV_main1.webp"
+>>>>>>> 6673329e902498f3bc4427bc1104cdd7a3831868
               alt="EV Charging"
               className='w-full h-full object-cover'
               onLoad={() => setImageLoaded(true)}
-              style={{ objectPosition: '70% 80%' }}
+              style={{ objectPosition: '60% 70%' }}
             />
             <div className='absolute inset-0 bg-black opacity-20'></div>
           </div>
@@ -130,7 +138,7 @@ const EvCharging = () => {
               EV charging infrastructure solutions for homes, businesses, and
               public spaces.
             </p>
-            <a 
+            <a
               href="/pdfs/Voltant Energy – Leading Sustainable EV Infrastructure in the Middle East Voltant Energy delivers reliable, scalable EV charging solutions across residential, commercial, and public sectors—ensuri-5.pdf"
               download="Voltant-Energy-EV-Charging-Solutions.pdf"
               className="inline-block text-base md:text-lg font-normal text-center leading-none px-6 md:px-9 py-4 rounded-[31px] border-white border-solid border-2 text-white hover:bg-white hover:text-gray-800 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-white"
@@ -141,7 +149,7 @@ const EvCharging = () => {
         </section>
 
         {/* Services Grid Section */}
-        <section className='py-16 px-32'>
+        <section className='py-16 px-32 bg-white'>
           <div className='mx-auto max-w-[1500px] px-8'>
             <div className='grid grid-cols-3 gap-6'>
               {services.map((service, index) => (

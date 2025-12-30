@@ -89,7 +89,7 @@ const WasteToEnergy = () => {
               energy
             </p>
 
-            <a 
+            <a
               href="/pdfs/FoodOrganic waste to Energy Solutions A CIRCULAR ECONOMY SOLUTION FOR A CARBON NEUTRAL FUTURE-4.pdf"
               download="Waste-to-Energy-Solutions.pdf"
               className="inline-block text-sm font-normal text-center leading-none px-5 py-3 rounded-[31px] border-white border-solid border-2 text-white hover:bg-white hover:text-gray-800 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-white"
@@ -100,7 +100,7 @@ const WasteToEnergy = () => {
         </div>
 
         {/* Services Grid Section - Improved grid layout */}
-        <div className='bg-white p-4 sm:p-8 py-12 sm:py-16'>
+        <div className='p-4 sm:p-8 py-12 sm:py-16 bg-white'>
           <div className='grid grid-cols-2 gap-4 sm:gap-6'>
             {services.map((service, index) => (
               <ServiceCard
@@ -152,7 +152,7 @@ const WasteToEnergy = () => {
               digestion solutions, we transform organic waste into sustainable
               energy
             </p>
-            <a 
+            <a
               href="/pdfs/FoodOrganic waste to Energy Solutions A CIRCULAR ECONOMY SOLUTION FOR A CARBON NEUTRAL FUTURE-4.pdf"
               download="Waste-to-Energy-Solutions.pdf"
               className="inline-block text-base md:text-lg font-normal text-center leading-none px-6 md:px-9 py-4 rounded-[31px] border-white border-solid border-2 text-white hover:bg-white hover:text-gray-800 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-white"
@@ -163,7 +163,7 @@ const WasteToEnergy = () => {
         </section>
 
         {/* Services Grid Section */}
-        <section className='py-16 px-8 md:px-16 lg:px-32'>
+        <section className='py-16 px-8 md:px-16 lg:px-32 bg-white'>
           <div className='mx-auto max-w-[1500px] px-4 sm:px-6'>
             <div className='grid grid-cols-2 lg:grid-cols-3 gap-6'>
               {services.map((service, index) => (
