@@ -16,9 +16,9 @@ export const acChargersData = {
   seamlessCharging: {
     title: ' AC Chargers: Smart, Efficient & Reliable EV Charging',
     paragraphs: [
-      'AC chargers offer a seamless and cost-effective solution for home, workplace, and commercial EV charging, making electric vehicle ownership more convenient than ever. Designed for long-duration and overnight charging, they provide a steady, optimized power flow while ensuring energy efficiency and lower infrastructure costs.',
-      'Ideal for residential garages, offices, and public parking spaces, AC chargers integrate smart connectivity features, allowing remote monitoring, scheduling, and usage tracking. With universal compatibility, they support a wide range of EV models, making them a versatile and future-ready charging solution. Whether for personal use or building a broader EV charging network, our AC charging solutions deliver safe, reliable, and intelligent energy management for a sustainable future.'
-    ]
+
+'Voltant Energy offers high-performance AC charging solutions, delivering safe, reliable, and energy-efficient charging for electric vehicles. Our 7kW to 22kW AC chargers support GBT, Type 1, and Type 2 connectors, ensuring compatibility with a wide range of EV models.',
+'Designed for homes, offices, and commercial spaces, our AC chargers provide seamless integration, intelligent load management, and remote monitoring capabilities. Whether you need a wall-mounted or pedestal charger, Voltant Energy ensures a future-ready, hassle-free charging experience.'    ]
   },
   
   midSection: {

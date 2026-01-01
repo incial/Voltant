@@ -23,7 +23,13 @@ export const containerizedData = {
   seamlessCharging: {
     title: 'Containerized Biogas Plants: Scalable & Sustainable Energy Solutions',
     paragraphs: [
-      'Our Containerized Biogas Plants offer a modular, pre-assembled solution for converting organic waste into renewable energy. Designed for flexibility and efficiency, these compact units integrate advanced anaerobic digestion technology, making them ideal for industries, municipalities, and commercial setups. With quick installation, minimal space requirements, and scalable capacity, our plants enable seamless waste-to-energy conversion while reducing carbon footprints and promoting a circular economy.'
+      'A Containerized Biogas Solution is an Anaerobic Digestion Plant designed to efficiently decompose organic waste under oxygen-free conditions to generate biogas for energy requirements.',
+
+      'It is suitable for facilities such as malls, hotels, food-processing industries, and dairy farms to convert pure organic waste into usable energy. The generated energy can be utilized for various thermal applications including boiling, cooking, and pasteurization, or for electricity generation. Additionally, the resulting bio-fertilizer can be used for landscaping and garden enhancement.',
+
+      'Containerized plants are designed for limited space requirements and are equipped with innovative and modern technologies for high efficiency, advanced monitoring, enhanced safety, durability, quick installation, and ease of use.These plants are installed directly at the waste generation source, enabling on-site conversion of waste into energy. This ensures that the energy produced is immediately utilized at the same location, maximizing efficiency and reducing transport-related handling.',
+
+      'A containerized biogas system supports a circular economy by converting organic waste into valuable resources such as clean energy and bio-fertilizer directly at the source. Instead of sending waste to landfills, the system recycles waste into usable energy for cooking, heating, or electricity, and returns nutrient-rich digestate back to the soil, reducing dependence on chemical fertilizers.Environmentally, it helps cut methane emissions from decomposing waste, lowers carbon footprint by replacing fossil fuels, reduces waste transportation costs and pollution, and supports sustainable waste management practices. Overall, it transforms waste from a liability into a renewable asset.',
     ]
   },
 
@@ -70,31 +76,34 @@ export const containerizedData = {
   },
 
   profiles: {
-    sectionTitle: 'Profiles',
+    sectionTitle: 'Benefits',
     showButton: true,
-    buttonText: 'Get in Touch',
+    buttonText: 'Download Charging Profile',
+
     leftProfiles: [
       {
-        title: 'Site Assessment & Feasibility Study',
-        description: 'We begin with a comprehensive evaluation of the site, analyzing power availability, load capacity, and infrastructure readiness. This helps determine the best charger placement while ensuring compliance with local regulations and safety standards.'
-      },
-      {
-        title: 'Design & Engineering Solutions',
-        description: "Every project is designed for maximum efficiency, integrating smart energy management, optimal power distribution, and scalable solutions. Whether it's a single charging point or a large-scale network, our engineering team develops tailored layouts and electrical schematics that align with sustainability goals."
-      },
-      {
-        title: 'Installation & Commissioning',
-        description: 'From civil and electrical work to network setup, our team manages the entire installation process, ensuring seamless execution. We conduct rigorous testing and commissioning to guarantee smooth operation and long-term reliability.'
+        title: '',
+        description:
+          'Sustainable and efficient Onsite Waste management solution for treating 100% of Organic waste.\n\n' +
+          'A circular economy solution to cut down the cost on Transportation and disposal of Organic waste.\n\n' +
+          'Solution to produce value added energy products from organic waste to cut down hotels fossil fuel consumption for energy requirements and in turn reduce carbon emissions and combating climate change.\n\n' +
+          'A sustainable waste management solution supporting and meeting UAEs & UNs sustainable development goals.\n\n' +
+          'An environmentally friendly solution with Zero discharges. By-product is a Nutrient-rich Biofertilizer which can enhance landscape or sold to generate revenue.\n\n' +
+          'Helps to reduce the waste to landfill and supports UAEEs mission of Zero landfill by 2030.\n\n' +
+          'Help to attain the Dubai Tourism stamp & gets Credit for LEED Certification, promote Green Tourism.\n\n' +
+          'Eligible for Carbon credits by implementing the solution.'
       }
     ],
+
     rightProfiles: [
       {
-        title: 'Maintenance & Support',
-        description: "Our job doesn't end after installation. We provide ongoing maintenance, real-time monitoring, and remote diagnostics to ensure optimal charger performance. With preventive service schedules and 24/7 technical support, we keep charging stations running efficiently."
-      },
-      {
-        title: 'Software & Network Integration',
-        description: 'Seamless connectivity is key to modern EV charging. We integrate smart Charge Point Management Systems (CPMS) with real-time data analytics, load balancing, and OCPP-compliant backend systems. This allows for efficient monitoring, remote control, and a smooth user experience.'
+        title: 'Caters Waste to Energy Solutions for following Sectors:',
+        description:
+          '• Municipalities (Organic Waste)\n' +
+          '• Food waste from Malls\n' +
+          '• Vegetable & Fruit Market Waste\n' +
+          '• Slaughter House Waste\n' +
+          '• Fish Market Waste'
       }
     ]
   },

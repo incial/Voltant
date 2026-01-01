@@ -71,21 +71,21 @@ export const dcChargersData = {
     chargerModels: [
       {
         power: '30kW',
-        imageUrl: EV_IMAGES.dcChargerImage,
+        imageUrl: EV_IMAGES.wallImage,
         model: 'Wall Box Charger',
         current: '120A',
         maxPower: '30kW'
       },
       {
         power: '60kW - 180kW',
-        imageUrl: EV_IMAGES.dcChargerImage,
+        imageUrl: EV_IMAGES.dcImage,
         model: 'DC Fast Chargers',
         current: 'Up to 250A',
         maxPower: '60kW, 90kW, 120kW, 150kW, 180kW'
       },
       {
         power: '240kW - 360kW',
-        imageUrl: EV_IMAGES.dcChargerImage,
+        imageUrl: EV_IMAGES.dcNew,
         model: 'DC Fast Chargers',
         current: '250A (Optional: 300A/400A)',
         maxPower: '240kW, 300kW, 360kW'

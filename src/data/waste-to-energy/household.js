@@ -14,17 +14,16 @@ export const householdData = {
   },
 
   hero: {
-    title: 'Household',
+    title: 'Domestic/Household Biogas Plants',
     breadcrumbs: ['Home', 'Waste To Energy', 'Household'],
     showSubtitle: false,
     heroImage: WASTE_IMAGES.household
   },
 
   seamlessCharging: {
-    title: 'Sustainable Solutions for Home Waste Management',
+    title: 'Household Biogas Solutions:Clean Energy,Right at Home',
     paragraphs: [
-      'Our compact household biogas solutions convert kitchen and organic waste into clean, renewable energy right at your home. These user-friendly systems offer a sustainable way to manage household waste while producing biogas for cooking and heating.',
-      'With minimal maintenance requirements and significant environmental benefits, our household waste-to-energy systems help families reduce their carbon footprint while generating cost-effective energy for daily use.'
+'Domestic biogas plants are compact, small-scale anaerobic digestion systems designed for household use. They convert kitchen and other organic waste—such as vegetable peels, fruit scraps, and garden trimmings—into clean, renewable biogas and nutrient-rich compost.'
     ]
   },
 
@@ -60,30 +59,18 @@ export const householdData = {
     ]
   },
 
+  imageSection: {
+    image: '/assets/images/WateTOEnergy/smartbin.png',
+    alt: 'Smart Waste Segregation Bin'
+  },
+
   profiles: {
-    sectionTitle: 'Profiles',
+    sectionTitle: '',
     showButton: true,
-    buttonText: 'Get in Touch',
-    leftProfiles: [
-      {
-        title: 'Compact Home Biogas Systems',
-        description: 'Our household biogas systems are designed for easy integration into residential settings. These compact units efficiently convert kitchen scraps, garden waste, and other organic materials into biogas, providing a renewable energy source for cooking and heating needs.'
-      },
-      {
-        title: 'User-Friendly Operation',
-        description: 'With intuitive controls and minimal maintenance requirements, our household systems are accessible to all family members. Simple waste input and easy gas collection make daily operation straightforward and hassle-free.'
-      }
-    ],
-    rightProfiles: [
-      {
-        title: 'Sustainable Waste Solution',
-        description: 'By converting household organic waste into energy, our systems significantly reduce landfill contribution while creating a valuable resource. This closed-loop approach supports sustainable living and environmental responsibility at home.'
-      },
-      {
-        title: 'Cost-Effective Energy Alternative',
-        description: 'Our household biogas units reduce dependency on conventional energy sources, lowering utility bills and offering financial benefits over time. With minimal operational costs, they provide an economical approach to home energy production.'
-      }
-    ]
+    buttonText: 'Download Charging Profile',
+    paragraph: 'By combining intelligent automation, data monitoring, and behavioral incentives, smart segregation bins help maximize recycling rates, reduce landfill dependency, and foster a circular economy, making waste management smarter, cleaner, and more sustainable.',
+    leftProfiles: [],
+    rightProfiles: []
   },
 
   downloads: {

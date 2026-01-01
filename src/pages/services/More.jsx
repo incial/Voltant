@@ -1,10 +1,15 @@
-import React from 'react';
+import React from 'react'
 
-import { Navbar, Footer } from '../../components/layout';
-import { ChatButton } from '../../components/features';
-import { HeroSection, SeamlessChargingSection, MidSection, ProfilesSection } from '../../components/sections/shared';
+import { Navbar, Footer } from '../../components/layout'
+import { ChatButton } from '../../components/features'
+import {
+  HeroSection,
+  SeamlessChargingSection,
+  MidSection,
+  ProfilesSection
+} from '../../components/sections/shared'
 
-import { moreData } from '../../data/ev-charging/more';
+import { moreData } from '../../data/ev-charging/more'
 
 const More = () => (
   <>
@@ -17,12 +22,14 @@ const More = () => (
         breadcrumbs={moreData.hero.breadcrumbs}
         heroImage={moreData.hero.heroImage}
       />
+
       <div className='w-full flex flex-col items-center justify-center px-0 md:px-20'>
         <SeamlessChargingSection
           title={moreData.seamlessCharging.title}
           paragraphs={moreData.seamlessCharging.paragraphs}
         />
       </div>
+
       <section className='w-full py-16'>
         <MidSection
           backgroundImage={moreData.midSection.backgroundImage}
@@ -30,16 +37,17 @@ const More = () => (
           features={moreData.midSection.features}
         />
       </section>
-      <ProfilesSection
-        sectionTitle={moreData.profiles.sectionTitle}
-        leftProfiles={moreData.profiles.leftProfiles}
-        rightProfiles={moreData.profiles.rightProfiles}
-        buttonText={moreData.profiles.buttonText}
-        showButton={moreData.profiles.showButton}
-      />
-    </div>
-    <footer />
-  </>
-);
 
-export default More;
+     <ProfilesSection
+  sectionTitle={moreData.profiles.sectionTitle}
+  layoutType={moreData.profiles.layoutType}
+  items={moreData.profiles.items}
+  buttonText={moreData.profiles.buttonText}
+  showButton={moreData.profiles.showButton}
+/>
+    </div>
+
+  </>
+)
+
+export default More

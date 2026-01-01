@@ -68,11 +68,11 @@ export const ChargerComponent = ({
                 <div className='h-80 flex flex-col items-center justify-end pb-2'>
                   <div className='mb-4 relative w-full'>
                     {' '}
-                    <div className='w-full h-64 bg-white rounded-xl relative'>
+                      <div className='w-full h-64 bg-white rounded-xl relative overflow-hidden'>
                       <img
                         src={model.imageUrl}
                         alt='Charger Image'
-                        className='w-full h-full object-contain'
+                        className='w-full h-full object-cover object-center rounded-xl'
                       />
                       <div className='absolute inset-0 flex items-center justify-center'>
                         <h2 className='text-xl font-bold text-white drop-shadow-md rounded-xl'>
@@ -87,12 +87,9 @@ export const ChargerComponent = ({
                 <div className='px-4 pb-8'>
                   {specifications.map((specSection, sectionIndex) => (
                     <div key={sectionIndex} className='mb-6'>
-                      <h3 className='text-md font-bold text-gray-500 mb-5'>
-                        {specSection.category}
-                      </h3>
                       <div className='space-y-2'>
                         {specSection.items.map((item, itemIndex) => (
-                          <div key={itemIndex} className='flex flex-col py-1'>
+                          <div key={itemIndex} className='flex flex-col py-3'>
                             <div className='text-gray-400 mb-2 text-xs'>
                               {item.label}
                             </div>
@@ -197,11 +194,11 @@ export const ChargerComponent = ({
                     <div className='h-80 flex flex-col items-center justify-end pb-2'>
                       <div className='mb-4 relative w-full'>
                         {' '}
-                        <div className='w-full h-64 bg-white rounded-xl relative'>
+                        <div className='w-full h-64 bg-white rounded-xl relative overflow-hidden'>
                           <img
                             src={model.imageUrl}
                             alt='Hero Image'
-                            className='w-full h-full object-contain'
+                            className='w-full h-full object-cover object-center rounded-xl'
                           />
                           {/* Centered Text Overlay */}
                           <div className='absolute inset-0 flex items-center justify-center'>
@@ -219,20 +216,9 @@ export const ChargerComponent = ({
             <tbody>
               {specifications.map((specSection, sectionIndex) => (
                 <React.Fragment key={sectionIndex}>
-                  <tr>
-                    <td
-                      colSpan={chargerModels.length + 1}
-                      className='pt-8 pb-4'
-                    >
-                      <div className='flex items-center justify-start ml-18 text-left text-xl font-semibold text-gray-700 border-b-2 border-gray-200 pb-2'>
-                        {specSection.category}
-                      </div>
-                    </td>
-                  </tr>
-
                   {specSection.items.map((item, itemIndex) => (
-                    <tr key={itemIndex} className='group hover:bg-gray-50'>
-                      <td className='py-3 text-right pr-20 text-gray-400 font-medium align-start'>
+                    <tr key={itemIndex} className={`group hover:bg-gray-50 ${itemIndex === 0 ? 'pt-8' : ''}`}>
+                      <td className='py-6 text-right pr-20 text-gray-400 font-medium align-start'>
                         <div className='h-full flex items-center justify-end'>
                           {item.label}
                         </div>
@@ -240,7 +226,7 @@ export const ChargerComponent = ({
                       {item.values.map((value, valueIndex) => (
                         <td
                           key={valueIndex}
-                          className='py-3 text-center text-gray-400 align-middle px-4'
+                          className='py-6 text-center text-gray-400 align-middle px-4'
                         >
                           <div className='min-h-[10spx] flex items-start justify-start ml-12'>
                             {value}

@@ -23,11 +23,6 @@ const WasteToEnergy = () => {
       path: '/waste-to-energy/containerized-plant'
     },
     {
-      title: <>Household</>,
-      image: wasteImgs.household,
-      path: '/waste-to-energy/household'
-    },
-    {
       title: (
         <>
           Large Scale
@@ -37,6 +32,11 @@ const WasteToEnergy = () => {
       ),
       image: wasteImgs.largeScalePlant,
       path: '/waste-to-energy/large-scale'
+    },
+    {
+      title: <>Household</>,
+      image: wasteImgs.household,
+      path: '/waste-to-energy/household'
     },
     {
       title: (
@@ -89,7 +89,7 @@ const WasteToEnergy = () => {
               energy
             </p>
 
-            <a 
+            <a
               href="/pdfs/FoodOrganic waste to Energy Solutions A CIRCULAR ECONOMY SOLUTION FOR A CARBON NEUTRAL FUTURE-4.pdf"
               download="Waste-to-Energy-Solutions.pdf"
               className="inline-block text-sm font-normal text-center leading-none px-5 py-3 rounded-[31px] border-white border-solid border-2 text-white hover:bg-white hover:text-gray-800 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-white"
@@ -152,7 +152,7 @@ const WasteToEnergy = () => {
               digestion solutions, we transform organic waste into sustainable
               energy
             </p>
-            <a 
+            <a
               href="/pdfs/FoodOrganic waste to Energy Solutions A CIRCULAR ECONOMY SOLUTION FOR A CARBON NEUTRAL FUTURE-4.pdf"
               download="Waste-to-Energy-Solutions.pdf"
               className="inline-block text-base md:text-lg font-normal text-center leading-none px-6 md:px-9 py-4 rounded-[31px] border-white border-solid border-2 text-white hover:bg-white hover:text-gray-800 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-white"
