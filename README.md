@@ -71,7 +71,7 @@ Instead of fragmented information, Voltant Energy provides a **clean, modern, an
 
 ## 🛠️ Tech Stack
 
-Voltant Energy is built using modern web technologies:
+Voltant Energy is built using modern web technologies
 
 <div align="center">
 
