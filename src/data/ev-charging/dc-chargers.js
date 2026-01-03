@@ -72,10 +72,11 @@ export const dcChargersData = {
       {
         power: '30kW',
         imageUrl: EV_IMAGES.wallImage,
-        model: 'Wall Box Charger',
+        model: 'WallBox Charger',
         current: '120A',
         maxPower: '30kW'
       },
+
       {
         power: '60kW - 180kW',
         imageUrl: EV_IMAGES.dcImage,
@@ -93,43 +94,37 @@ export const dcChargersData = {
     ],
     specifications: [
       {
-        category: 'Power Capacity',
+       
         items: [
           { label: 'Power Capacity:', values: ['30kW', '60kW, 90kW, 120kW, 150kW, 180kW', '240kW, 360kW'] }
         ]
       },
       {
-        category: 'Max DC Output Current',
         items: [
           { label: 'Max DC Output Current:', values: ['100A', 'Up to 250A', '250A (Optional: 300A/400A)'] }
         ]
       },
       {
-        category: 'Efficiency',
         items: [
           { label: 'Efficiency:', values: ['95%', '96% (Power Module), 95% (System)', '95%'] }
         ]
       },
       {
-        category: 'Dimensions (W x D x H)',
         items: [
           { label: 'Dimensions:', values: ['600mm x 600mm x 1700mm', '850mm x 770mm x 1850mm', '240kW: 850mm x 770mm x 1850mm, 360kW: 1000mm x 900mm x 2000mm'] }
         ]
       },
       {
-        category: 'Nominal AC Input Current',
         items: [
           { label: 'Nominal AC Input Current:', values: ['Low', 'Increases with power levels', 'Higher'] }
         ]
       },
       {
-        category: 'Supported Connectors',
         items: [
           { label: 'Supported Connectors:', values: ['CCS1, CCS2, CHAdeMO, GB-T', 'CCS1, CCS2, CHAdeMO, AC Type 2', 'CCS1, CCS2, CHAdeMO, AC Type 2'] }
         ]
       },
       {
-        category: 'Target Use Case',
         items: [
           { label: 'Target Use Case:', values: ['Ideal for low-demand settings (small EV fleets)', 'Medium to large-scale installations', 'Ultra-fast charging for high-demand environments'] }
         ]

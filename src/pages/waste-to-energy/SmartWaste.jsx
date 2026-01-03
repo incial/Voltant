@@ -27,13 +27,39 @@ const SmartWaste = () => (
           features={smartWasteData.midSection.features}
         />
       </section>
-      <ProfilesSection
-        sectionTitle={smartWasteData.profiles.sectionTitle}
-        leftProfiles={smartWasteData.profiles.leftProfiles}
-        rightProfiles={smartWasteData.profiles.rightProfiles}
-        buttonText={smartWasteData.profiles.buttonText}
-        showButton={smartWasteData.profiles.showButton}
-      />
+
+      {/* Three-step image + paragraph + button (centered) */}
+      {smartWasteData.imageSection && (
+        <section className='w-full py-12 md:py-20'>
+          <div className='max-w-6xl mx-auto px-4'>
+            <div className='text-center'>
+              <img src={smartWasteData.imageSection.image} alt={smartWasteData.imageSection.alt} className='mx-auto w-full max-w-4xl object-contain mb-8' />
+            </div>
+
+            <div className='max-w-3xl mx-auto text-justify'>
+              {smartWasteData.imageSection.description.map((p, i) => (
+  <p
+    key={i}
+    className='text-[#9F9F9F] text-sm sm:text-base md:text-lg font-light
+               leading-[28px] sm:leading-[32px] md:leading-[38px]
+               mb-8 md:mb-12 max-w-3xl mx-auto'
+  >
+    {p}
+  </p>
+))}
+
+            </div>
+
+            <div className='flex items-center justify-start max-w-3xl mx-auto mt-6'>
+              <button onClick={() => {}} className='text-sm sm:text-base md:text-lg font-normal text-center leading-none px-6 py-3 rounded-full border-[#7F7F7F] border-solid border-2 hover:bg-[rgba(127,127,127,0.05)] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[rgba(127,127,127,0.12)]' aria-label={smartWasteData.downloads.profile.label}>
+                {smartWasteData.downloads.profile.label}
+              </button>
+            </div>
+          </div>
+        </section>
+      )}
+
+
     </div>
     <footer />
   </>

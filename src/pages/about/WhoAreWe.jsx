@@ -37,11 +37,11 @@ const WhoAreWe = () => {
       <div className='relative w-full pt-[50px] sm:pt-[70px] md:pt-[100px] lg:pt-[130px] pb-[35px] sm:pb-[45px] md:pb-[55px] lg:pb-[65px]'>
         <div className='flex flex-col items-center justify-center'>
           <img
-            src={logos.main}
+            src={logos.explore}
             alt='Voltant Energy Logo'
             className='h-[40px] sm:h-[48px] md:h-[55px] mb-[15px]'
           />
-         
+      
         </div>
       </div>
 

@@ -32,7 +32,7 @@ function Feature({ icon, title, description }) {
 
   return (
     <motion.div
-      className='flex items-center gap-6 md:gap-8 lg:gap-[38px] mt-8 md:mt-10 first:mt-16 md:first:mt-20 first:max-md:mt-6'
+      className='flex items-center gap-6 md:gap-8 lg:gap-[38px]'
       variants={itemVariants}
     >
       {/* Desktop and Mobile: Icon */}
@@ -113,13 +113,13 @@ const MidSection = ({
           variants={containerVariants}
         >
           <motion.h2
-            className='text-[28px] sm:text-[32px] md:text-[36px] lg:text-[40px] text-white ml-0 font-bold text-center md:text-left mb-8 md:mb-4 lg:mb-0'
+            className='text-[28px] sm:text-[32px] md:text-[36px] lg:text-[40px] text-white ml-0 font-bold text-center md:text-left mb-8'
             variants={itemVariants}
           >
             {sectionTitle}
           </motion.h2>
 
-          <div className='space-y-8 space-x-4 md:space-x-0 md:space-y-0'>
+          <div className='space-y-8'>
             {features.map((feature, index) => (
               <Feature
                 key={index}
