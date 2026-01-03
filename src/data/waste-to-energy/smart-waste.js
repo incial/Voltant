@@ -26,6 +26,14 @@ export const smartWasteData = {
 'Smart segregation bins are next-generation waste management solutions designed to streamline and optimize the segregation of different types of waste at the source. Equipped with AI-enabled cameras, these bins automatically identify and separate organic, recyclable, and non-recyclable waste into dedicated compartments, ensuring higher segregation accuracy and reducing contamination.'    ]
   },
 
+ imageSection: {
+  image: '/assets/images/WateTOEnergy/smartbin.png',
+  alt: 'Three step smart segregation process',
+  description: [
+    'By combining intelligent automation, data monitoring, and behavioral incentives, smart segregation bins help maximize recycling rates, reduce landfill dependency, and foster a circular economy—making waste management smarter, cleaner, and more sustainable.'
+  ]
+},
+
   midSection: {
     backgroundImage: WASTE_IMAGES.swAbout,
     sectionTitle: 'Sort Smart, Waste Less',
@@ -57,35 +65,7 @@ export const smartWasteData = {
       }
     ]
   },
-  profiles: {
-    sectionTitle: 'Engineering Profiles',
-    showButton: true,
-    buttonText: 'Download Charging Profile',
-    leftProfiles: [
-      {
-        title: 'Site Assessment & Feasibility Study',
-        description: 'We begin with a comprehensive evaluation of the site, analyzing power availability, load capacity, and infrastructure readiness. This helps determine the best charger placement while ensuring compliance with local regulations and safety standards.'
-      },
-      {
-        title: 'Design & Engineering Solutions',
-        description: "Every project is designed for maximum efficiency, integrating smart energy management, optimal power distribution, and scalable solutions. Whether it's a single charging point or a large-scale network, our engineering team develops tailored layouts and electrical schematics that align with sustainability goals."
-      },
-      {
-        title: 'Installation & Commissioning',
-        description: 'From civil and electrical work to network setup, our team manages the entire installation process, ensuring seamless execution. We conduct rigorous testing and commissioning to guarantee smooth operation and long-term reliability.'
-      }
-    ],
-    rightProfiles: [
-      {
-        title: 'Maintenance & Support',
-        description: "Our job doesn't end after installation. We provide ongoing maintenance, real-time monitoring, and remote diagnostics to ensure optimal charger performance. With preventive service schedules and 24/7 technical support, we keep charging stations running efficiently."
-      },
-      {
-        title: 'Software & Network Integration',
-        description: 'Seamless connectivity is key to modern EV charging. We integrate smart Charge Point Management Systems (CPMS) with real-time data analytics, load balancing, and OCPP-compliant backend systems. This allows for efficient monitoring, remote control, and a smooth user experience.'
-      }
-    ]
-  },
+
 
   downloads: {
     profile: {

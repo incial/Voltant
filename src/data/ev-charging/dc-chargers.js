@@ -72,10 +72,11 @@ export const dcChargersData = {
       {
         power: '30kW',
         imageUrl: EV_IMAGES.wallImage,
-        model: 'Wall Box Charger',
+        model: 'WallBox Charger',
         current: '120A',
         maxPower: '30kW'
       },
+
       {
         power: '60kW - 180kW',
         imageUrl: EV_IMAGES.dcImage,

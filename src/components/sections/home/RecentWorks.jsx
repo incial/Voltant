@@ -14,7 +14,8 @@ const RecentWorks = () => {
     'Image 20.png',
     'Image 21.png',
     'Image 22.png',
-    'Image 23.png'
+    'Image 23.png',
+    'Image 24.png'
   ];
 
   const cards = showcaseImages.map((img, index) => ({

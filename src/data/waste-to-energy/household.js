@@ -59,11 +59,6 @@ export const householdData = {
     ]
   },
 
-  imageSection: {
-    image: '/assets/images/WateTOEnergy/smartbin.png',
-    alt: 'Smart Waste Segregation Bin'
-  },
-
   profiles: {
     sectionTitle: 'Household Biogas Benefits',
     showButton: true,

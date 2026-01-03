@@ -218,7 +218,7 @@ const ProfilesSection = ({
   return (
     <motion.section className="flex flex-col items-center w-full py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8" initial="hidden" whileInView="visible" viewport={{ amount: 0.1, once: true }} variants={fadeIn}>
       <div className="max-w-7xl w-full mx-auto flex flex-col">
-        <motion.h2 className="text-[#7F7F7F] text-xl sm:text-2xl md:text-3xl mb-8 md:mb-12 font-normal leading-tight px-0" variants={fadeIn}>
+        <motion.h2 className="text-[#7F7F7F] text-xl sm:text-2xl md:text-3xl mb-8 md:mb-12 font-semibold leading-tight px-0" variants={fadeIn}>
           {sectionTitle}
         </motion.h2>
 
@@ -226,7 +226,7 @@ const ProfilesSection = ({
           <motion.div className="px-0" variants={sectionFadeIn}>
             <p className="text-[#7F7F7F] text-base sm:text-lg md:text-xl lg:text-2xl font-light leading-relaxed md:leading-normal lg:leading-[48px] mb-6 md:mb-10 lg:mb-12">{paragraph}</p>
             {showButton && (
-              <motion.div className="flex items-center justify-start w-full py-6 md:py-8 lg:py-[40px] lg:my-[70px]" variants={buttonAnimation}>
+              <motion.div className="flex items-center justify-center w-full py-6 md:py-8 lg:py-[40px] lg:my-[70px]" variants={buttonAnimation}>
                 <button onClick={handlePrimaryAction} className="text-sm sm:text-base md:text-lg font-normal text-center leading-none px-6 md:px-8 lg:px-9 py-3 md:py-[16px] rounded-[31px] border-[#7F7F7F] border-solid border-2 hover:bg-[rgba(127,127,127,0.1)] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[rgba(127,127,127,0.3)]" aria-label={primaryLabel}>{primaryLabel}</button>
               </motion.div>
             )}
@@ -239,15 +239,9 @@ const ProfilesSection = ({
                   <ProfileItem key={index} title={profile.title} description={profile.description} />
                 ))}
               </div>
-
-              {showButton && (
-                <motion.div className="flex items-center justify-start w-full mt-8 md:mt-12" variants={buttonAnimation}>
-                  <button onClick={handlePrimaryAction} className="text-sm sm:text-base font-normal text-[#7F7F7F] text-center leading-none px-8 md:px-10 py-3 md:py-3.5 rounded-full border-[#BFBFBF] border-solid border-2 hover:bg-[rgba(127,127,127,0.1)] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[rgba(127,127,127,0.3)]" aria-label={primaryLabel}>{primaryLabel}</button>
-                </motion.div>
-              )}
             </div>
 
-            <div className="w-full md:w-[45%]">
+            <div className="w-full md:w-[45%] relative">
               <div className="flex flex-col items-start text-[#7F7F7F]">
                 <div className="text-base md:text-lg font-light leading-relaxed">
                   {rightProfiles.map((profile, index) => (
@@ -255,6 +249,20 @@ const ProfilesSection = ({
                   ))}
                 </div>
               </div>
+
+              {/* Desktop: absolutely positioned centered button opposite the paragraph */}
+              {showButton && (
+                <motion.div className="hidden md:flex absolute left-1/2 z-10 -translate-x-1/2" style={{ top: '78%' }} variants={buttonAnimation}>
+                  <button onClick={handlePrimaryAction} className="text-sm sm:text-base font-medium text-[#7F7F7F] text-center leading-none px-8 md:px-10 py-3 md:py-3.5 rounded-full border-[#BFBFBF] border-solid border-2 hover:bg-[rgba(127,127,127,0.1)] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[rgba(127,127,127,0.3)]" aria-label={primaryLabel}>{primaryLabel}</button>
+                </motion.div>
+              )}
+
+              {/* Mobile: keep button below content for small screens */}
+              {showButton && (
+                <motion.div className="flex md:hidden items-center justify-start w-full mt-8" variants={buttonAnimation}>
+                  <button onClick={handlePrimaryAction} className="text-sm sm:text-base font-medium text-[#7F7F7F] text-center leading-none px-8 md:px-10 py-3 md:py-3.5 rounded-full border-[#BFBFBF] border-solid border-2 hover:bg-[rgba(127,127,127,0.1)] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[rgba(127,127,127,0.3)]" aria-label={primaryLabel}>{primaryLabel}</button>
+                </motion.div>
+              )}
             </div>
           </div>
         )}
