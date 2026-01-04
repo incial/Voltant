@@ -20,12 +20,14 @@ export const largeScaleData = {
     heroImage: WASTE_IMAGES.largeScalePlant
   },
 
-  seamlessCharging: {
-    title: 'Powering Sustainability at Scale',
-    paragraphs: [
-      'Our Large-Scale Biogas Plants are designed for high-volume organic waste processing, transforming waste into renewable energy on an industrial scale. These plants utilize advanced anaerobic digestion technology to maximize biogas production, reduce landfill dependency, and contribute to a circular economy. Ideal for municipalities, industries, and large commercial establishments, our solutions offer high efficiency, scalability, and long-term sustainability.'
-    ]
-  },
+seamlessCharging: {
+  title: 'Powering Sustainability\nat Scale.',
+  paragraphs: [
+    'Large-scale biogas plants are advanced anaerobic digestion facilities designed to process several tonnes to hundreds of tonnes of organic waste every day. They serve municipalities, industrial zones, food-processing industries, livestock farms, commercial establishments, and integrated waste management operators seeking reliable and sustainable energy solutions.',
+    'Under controlled, oxygen-free conditions, microorganisms break down organic waste—such as food waste, agricultural residues, green waste, market waste, and animal manure—to generate biogas, a renewable fuel rich in methane.'
+  ]
+}
+,
 
   midSection: {
     backgroundImage: WASTE_IMAGES.lsAbout,

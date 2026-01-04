@@ -67,7 +67,7 @@ export const engineeringWorksData = {
   },
 
   profiles: {
-    sectionTitle: 'Our Services',
+    sectionTitle: 'Engineering Profiles',
     leftProfiles: [
       {
         title: 'Site Assessment & Feasibility Study',

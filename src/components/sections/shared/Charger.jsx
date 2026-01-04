@@ -74,7 +74,8 @@ export const ChargerComponent = ({
                         alt='Charger Image'
                         className='w-full h-full object-cover object-center rounded-xl'
                       />
-                      <div className='absolute inset-0 flex items-center justify-center'>
+                      <div className='absolute inset-0 flex flex-col items-center justify-center'>
+                        <span className='text-xl font-bold text-white drop-shadow-md mb-1'>{model.model}</span>
                         <h2 className='text-xl font-bold text-white drop-shadow-md rounded-xl'>
                           {model.power}
                         </h2>
@@ -87,6 +88,11 @@ export const ChargerComponent = ({
                 <div className='px-4 pb-8'>
                   {specifications.map((specSection, sectionIndex) => (
                     <div key={sectionIndex} className='mb-6'>
+                      {/* Section heading for mobile */}
+                      <h3 className='text-[#7F7F7F] text-sm md:text-base font-medium mb-3'>
+                        {specSection.category}
+                      </h3>
+
                       <div className='space-y-2'>
                         {specSection.items.map((item, itemIndex) => (
                           <div key={itemIndex} className='flex flex-col py-3'>
@@ -169,21 +175,27 @@ export const ChargerComponent = ({
         }}
       >
         <div className='w-full px-8 min-w-[1200px]'>
-          <table className='w-full border-collapse'>
+          <table className='w-full border-collapse border-0'>
             <colgroup>
-              <col className='w-[280px]' />
+              <col className='w-[200px]' />
               {chargerModels.map((_, index) => (
                 <col key={index} className='w-[300px]' />
               ))}
             </colgroup>
             <thead>
               <tr>
+                <th colSpan={chargerModels.length + 1} className='text-center pt-6 pb-4 border-t-0'>
+                  <h1 className='text-2xl font-semibold text-gray-500'>Models</h1>
+                </th>
+              </tr>
+
+              <tr>
                 <th className='text-left align-middle'>
-                  <div className='h-60 flex flex-col justify-center pr-8 ml-18'>
-                    <h1 className='text-3xl font-bold text-gray-500 mb-2'>
+                  <div className='h-48 flex flex-col justify-center pr-8 pl-6'>
+                    <h1 className='text-2xl font-semibold text-gray-500 mb-2'>
                       {title}
                     </h1>
-                    <h2 className='text-2xl font-medium text-gray-500'>
+                    <h2 className='text-base font-medium text-gray-500'>
                       {subtitle}
                     </h2>
                   </div>
@@ -201,7 +213,8 @@ export const ChargerComponent = ({
                             className='w-full h-full object-cover object-center rounded-xl'
                           />
                           {/* Centered Text Overlay */}
-                          <div className='absolute inset-0 flex items-center justify-center'>
+                          <div className='absolute inset-0 flex flex-col items-center justify-center'>
+                            <span className='text-xl font-bold text-white drop-shadow-md mb-1'>{model.model}</span>
                             <h2 className='text-xl font-bold text-white drop-shadow-md rounded-xl'>
                               {model.power}
                             </h2>
@@ -216,19 +229,26 @@ export const ChargerComponent = ({
             <tbody>
               {specifications.map((specSection, sectionIndex) => (
                 <React.Fragment key={sectionIndex}>
+                  {/* Section heading row */}
+                  <tr>
+                    <td colSpan={chargerModels.length + 1} className='py-4 text-left pl-6 pr-8 text-[#7F7F7F] text-base font-bold'>
+                      {specSection.category}
+                    </td>
+                  </tr>
+
                   {specSection.items.map((item, itemIndex) => (
-                    <tr key={itemIndex} className={`group hover:bg-gray-50 ${itemIndex === 0 ? 'pt-8' : ''}`}>
-                      <td className='py-6 text-right pr-20 text-gray-400 font-medium align-start'>
-                        <div className='h-full flex items-center justify-end'>
+                    <tr key={itemIndex} className='group hover:bg-gray-50'>
+                      <td className='py-3 text-left pl-6 text-gray-400 text-sm font-medium align-top'>
+                        <div className='h-full flex items-start justify-start'>
                           {item.label}
                         </div>
                       </td>
                       {item.values.map((value, valueIndex) => (
                         <td
                           key={valueIndex}
-                          className='py-6 text-center text-gray-400 align-middle px-4'
+                          className='py-3 text-left text-gray-400 align-top pl-8 pr-4'
                         >
-                          <div className='min-h-[10spx] flex items-start justify-start ml-12'>
+                          <div className='flex items-start justify-start'>
                             {value}
                           </div>
                         </td>

@@ -28,7 +28,7 @@ const AC = () => (
         />
       </section>
     </div>
-    <footer>
+    <footer className='border-t-0'>
       <Charger 
         title={acChargersData.chargerData.title}
         subtitle={acChargersData.chargerData.subtitle}

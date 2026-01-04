@@ -23,13 +23,14 @@ export const vids = {
   // Fallback for missing video files
   evCharging: '/Videos/SubHeroVid1.mp4', // Fallback for EV_charging _video.mp4
   wasteToEnergy: '/Videos/SubHeroVid2.mp4', // Fallback for Waste_To_Energy.mp4
-  videoBanner: '/Videos/Goatfooter.mp4', // Fallback for Video_Banner.mp4
+  videoBanner: '/assets/images/Home/About_Banner.jpg', // Fallback for Video_Banner.mp4
   connectWithUs: '/Videos/Subfooter.mp4' // Fallback for Connectwithus.mp4
 };
 
 // Logo and Brand Assets
 export const logos = {
   main: '/assets/images/Home/Logo.webp',
+  explore: '/assets/images/Home/logo1.png',
   white: '/assets/images/Home/Logo_white.webp',
   icon: '/assets/images/Home/Logo_icon.webp'
 };
@@ -73,7 +74,7 @@ export const heroIcons = {
 export const homeImgs = {
   aboutUs: '/assets/images/Home/About_us.webp',
   aboutUsSection: '/assets/images/Home/About_us.webp', // For WhoAreWe background
-  aboutSectionSubLogo: '/assets/images/Home/About_section_sub_logo.png',
+  aboutSectionSubLogo: '/assets/images/Home/sub_logo.png',
   connectWithUsBg: '/assets/images/Home/ConnecwithusBg.png',
   DescriptionBg: '/assets/images/Home/Descpition.png',
   footerImage: '/assets/images/Home/Footer.webp', // For footer_image.png reference
@@ -95,7 +96,8 @@ export const showcaseImgs = {
   showcase8: '/assets/images/showcaseimages/Image 20.png',
   showcase9: '/assets/images/showcaseimages/Image 21.png',
   showcase10: '/assets/images/showcaseimages/Image 22.png',
-  showcase11: '/assets/images/showcaseimages/Image 23.png'
+  showcase11: '/assets/images/showcaseimages/Image 23.png',
+  showcase12: '/assets/images/showcaseimages/Image 24.png'
 };
 
 // Client Images
