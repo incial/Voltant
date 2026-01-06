@@ -234,7 +234,7 @@ const WhoAreWe = () => {
       {/* Get in Touch Button and Social Media Section */}
       <div className='w-full flex flex-col items-center gap-[25px] sm:gap-[40px] md:gap-[60px] lg:gap-[80px] py-8 sm:py-10 md:py-14 lg:py-16 px-4 sm:px-6'>
         <div className='flex justify-center'>
-          <button onClick={toggleContactForm} className='border-2 border-[#7f7f7f] text-[#7f7f7f] text-[16px] sm:text-[18px] md:text-[20px] px-[18px] rounded-[31px] hover:bg-[#7f7f7f] hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-[#7f7f7f]/50 w-[150px] sm:w-[165px] md:w-[176px] h-[52px] sm:h-[57px] md:h-[62px] flex items-center justify-center'>
+          <button onClick={toggleContactForm} className='text-[#7f7f7f] text-[16px] sm:text-[18px] md:text-[20px] px-[18px] rounded-[31px] w-[150px] sm:w-[165px] md:w-[176px] h-[52px] sm:h-[57px] md:h-[62px] flex items-center justify-center' style={{ border: '2px solid #7f7f7f' }}>
             Get in Touch
           </button>
         </div>
