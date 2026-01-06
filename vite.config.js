@@ -17,8 +17,8 @@ export default defineConfig({
           'animation-vendor': ['framer-motion'],
           'ui-components': [
             // Common UI components that are used across many pages
-            './src/components/common/Navbar.jsx',
-            './src/components/common/Footer.jsx',
+            './src/components/layout/Navbar.jsx',
+            './src/components/layout/Footer.jsx',
           ],
         },
       },
