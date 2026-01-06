@@ -147,19 +147,20 @@ const Navbar = () => {
         </div>
 
         {/* Call To Action Button (Desktop) */}
-        <div className="hidden md:block z-10">
+       <div className="hidden md:block z-10">
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={toggleContactForm}
-            className={`${isContactFormOpen ? 'bg-white bg-opacity-10 text-green-400 border-green-400' : 'bg-transparent text-white border-white hover:bg-white hover:text-black hover:bg-opacity-10'} py-2 px-6 rounded-full font-medium border-2 cursor-pointer transition-colors`}
+            className="bg-transparent text-white border-white border-2 py-2 px-6 rounded-full font-medium cursor-pointer transition-colors hover:bg-white hover:bg-opacity-10"
+          style={{ border: '2px solid white' }}
           >
             Get in Touch
           </motion.button>
         </div>
 
         {/* Mobile Menu Button */}
-        <div className="md:hidden flex items-center mr-4">
+       <div className="md:hidden flex items-center mr-4">
           <button
             onClick={toggleMobileMenu}
             className="text-white p-2"
