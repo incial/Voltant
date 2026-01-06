@@ -17,15 +17,20 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        manualChunks: {
+        manualChunks(id) {
           // Create dedicated chunks for major frameworks
-          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
-          'animation-vendor': ['framer-motion'],
-          'ui-components': [
-            // Common UI components that are used across many pages
-            './src/components/layout/Navbar.jsx',
-            './src/components/layout/Footer.jsx',
-          ],
+          if (id.includes('node_modules')) {
+            if (id.includes('react-dom') || id.includes('react-router-dom')) {
+              return 'react-vendor';
+            }
+            if (id.includes('framer-motion')) {
+              return 'animation-vendor';
+            }
+          }
+          // Common UI components that are used across many pages
+          if (id.includes('/components/layout/Navbar') || id.includes('/components/layout/Footer')) {
+            return 'ui-components';
+          }
         },
       },
     },
