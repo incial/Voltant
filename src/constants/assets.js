@@ -49,6 +49,8 @@ export const ICONS = {
   stat: `${ASSET_PATHS.icons}/stat.webp`,
   scale: `${ASSET_PATHS.icons}/Scale.webp`,
   scaleMoney: `${ASSET_PATHS.icons}/Scale_money.webp`,
+  // Backwards-compatible alias for previous 'money' key
+  money: `${ASSET_PATHS.icons}/Scale_money.webp`,
   time: `${ASSET_PATHS.icons}/TIme.webp`,
 
   // Other
@@ -130,7 +132,6 @@ export const WASTE_IMAGES = {
   largeScalePlant: `${ASSET_PATHS.images}/WateTOEnergy/Large_Scale_plant.webp`,
   containerizedPlant: `${ASSET_PATHS.images}/WateTOEnergy/container.png`,
   smartWaste: `${ASSET_PATHS.images}/WateTOEnergy/bins.png`,
-
   // About/Detail images
   hsAbout: `${ASSET_PATHS.images}/WateTOEnergy/biogas.jpg`,
   lsAbout: `${ASSET_PATHS.images}/WateTOEnergy/LS_about.webp`,

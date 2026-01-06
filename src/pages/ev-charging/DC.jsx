@@ -28,7 +28,7 @@ const DC = () => (
         />
       </section>
     </div>
-    <footer>
+    <footer className='border-t-0' style={{ borderTop: '0' }}>
       <Charger
         title={dcChargersData.chargerData.title}
         subtitle={dcChargersData.chargerData.subtitle}

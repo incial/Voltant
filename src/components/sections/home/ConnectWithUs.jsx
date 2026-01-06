@@ -61,12 +61,15 @@ const ConnectWithUs = () => {
                   <FaWhatsapp className="text-xl md:text-2xl flex-shrink-0" />
                 </a>
               </div>
+
+
             </div>
           </div>
         </div>
+
       </div>
     </div>
   );
 };
 
-export default ConnectWithUs; 
+export default ConnectWithUs;
