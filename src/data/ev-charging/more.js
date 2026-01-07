@@ -4,6 +4,8 @@
  */
 
 import { EV_IMAGES, ICONS } from '../../constants/assets.js';
+import { CHARGING_PROFILE_PDF } from '../../constants/pdfs';
+
 
 export const moreData = {
   meta: {
@@ -97,7 +99,15 @@ export const moreData = {
       }
     ],
     buttonText: 'Download Charging Profile',
-    showButton: true
+    showButton: true,
+    downloads: {               
+    profile: {
+      enabled: true,
+      url: CHARGING_PROFILE_PDF.url,
+      filename: 'Voltant-Energy-Charging-Profile.pdf',
+      label: 'Download Charging Profile'
+    }
+  }
   },
 
   downloads: {

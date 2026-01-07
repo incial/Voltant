@@ -55,7 +55,7 @@ function LargeScale() {
           rightProfiles={largeScaleData.profiles.rightProfiles}
           buttonText={largeScaleData.profiles.buttonText}
           showButton={largeScaleData.profiles.showButton}
-          downloads={largeScaleData.downloads}
+          downloads={largeScaleData.profiles.downloads}
         />
       </main>
       

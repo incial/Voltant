@@ -4,6 +4,7 @@
  */
 
 import { EV_IMAGES, ICONS } from '../../constants/assets.js';
+import { CHARGING_PROFILE_PDF } from '../../constants/pdfs';
 
 export const acChargersData = {
   hero: {
@@ -63,11 +64,20 @@ export const acChargersData = {
     ]
   },
 
-  profiles: {
-    sectionTitle: 'Profiles',
-    buttonText: 'Download Charging Profile',
-    showButton: true
-  },
+profiles: {
+  sectionTitle: 'Profiles',
+  buttonText: 'Download Charging Profile',
+  showButton: true,
+  downloads: {
+    profile: {
+      enabled: true,
+      url: '/pdfs/voltant-energy-ev-charging-profile.pdf',
+      filename: 'Voltant-Energy-AC-Charging-Profile.pdf',
+      label: 'Download Charging Profile'
+    }
+  }
+},
+
   
   chargerData: {
     title: "AMPHAWK",
@@ -137,7 +147,7 @@ export const acChargersData = {
     buttonText2: "Download Charging Profile",
     showButton: true,
     showButton2: true,
-    pdfUrl: "",
-    pdfUrl2: "",
+    pdfUrl:null,
+    pdfUrl2: CHARGING_PROFILE_PDF.url,
   }
 };
