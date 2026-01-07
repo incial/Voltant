@@ -4,6 +4,8 @@
  */
 
 import { WASTE_IMAGES, ICONS } from '../../constants/assets.js';
+import { WASTE_TO_ENERGY_PROFILE_PDF } from '../../constants/pdfs';
+
 
 export const householdData = {
   meta: {
@@ -62,7 +64,7 @@ export const householdData = {
   profiles: {
     sectionTitle: 'Household Biogas Benefits',
     showButton: true,
-    buttonText: 'Download Charging Profile',
+    buttonText: 'Waste to Energy Profile',
 
     leftProfiles: [
       {
@@ -81,20 +83,24 @@ export const householdData = {
         description:
           'By turning everyday organic waste into energy and fertilizer, domestic biogas plants allow families to adopt sustainable living practices, reduce reliance on conventional fuels, and contribute to a greener environment — all from the comfort of their home.'
       }
-    ]
+    ],
+      downloads: {
+    profile: {
+      enabled: true,
+      url: WASTE_TO_ENERGY_PROFILE_PDF.url,
+      filename: WASTE_TO_ENERGY_PROFILE_PDF.filename,
+      label: 'Waste to Energy Profile'
+    }
+  }
   },
 
 
-  downloads: {
-    profile: {
-      label: 'Download Charging Profile',
-      url: '',
-      enabled: false
-    },
+
+ 
     systemSpecs: {
       label: 'Download Household System Specs',
       url: '',
       enabled: false
     }
-  }
+  
 };

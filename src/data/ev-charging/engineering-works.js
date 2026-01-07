@@ -4,6 +4,8 @@
  */
 
 import { EV_IMAGES, ICONS } from '../../constants/assets.js';
+import { CHARGING_PROFILE_PDF } from '../../constants/pdfs';
+
 
 export const engineeringWorksData = {
   meta: {
@@ -93,7 +95,15 @@ export const engineeringWorksData = {
       }
     ],
     buttonText: 'Download Charging Profile',
-    showButton: true
+    showButton: true,
+    downloads: {
+    profile: {
+      enabled: true,
+      url: CHARGING_PROFILE_PDF.url,
+      filename: CHARGING_PROFILE_PDF.filename,
+      label: 'Download Charging Profile'
+    }
+  }
   },
 
   downloads: {

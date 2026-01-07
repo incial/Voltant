@@ -4,6 +4,8 @@
  */
 
 import { WASTE_IMAGES, ICONS } from '../../constants/assets.js';
+import { WASTE_TO_ENERGY_PROFILE_PDF } from '../../constants/pdfs';
+
 
 export const largeScaleData = {
   meta: {
@@ -69,7 +71,7 @@ seamlessCharging: {
   profiles: {
     sectionTitle: '',
     showButton: true,
-    buttonText: 'Download Charging Profile',
+    buttonText: 'Waste to Energy Profile',
     leftProfiles: [
       {
         title: 'Energy Applications',
@@ -97,14 +99,16 @@ seamlessCharging: {
         title: 'Integrated Organic Waste Sorting Solutions',
         description: 'Experience in designing and implementing systems for sorting organic waste from mixed Municipal Solid Waste (MSW), including mechanical segregation, manual sorting lines, and pre-processing systems.'
       }
-    ]
-  },
-
-  downloads: {
+    ],
+      downloads: {
     profile: {
-      label: 'Download Charging Profile',
-      url: '',
-      enabled: false
+      enabled: true,
+      url: WASTE_TO_ENERGY_PROFILE_PDF.url,
+      filename: WASTE_TO_ENERGY_PROFILE_PDF.filename,
+      label: 'Waste to Energy Profile'
     }
   }
+  },
+
+
 };

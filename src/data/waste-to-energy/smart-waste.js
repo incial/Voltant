@@ -4,6 +4,8 @@
  */
 
 import { WASTE_IMAGES, ICONS } from '../../constants/assets.js';
+import { WASTE_TO_ENERGY_PROFILE_PDF } from '../../constants/pdfs';
+
 
 export const smartWasteData = {
   meta: {
@@ -67,13 +69,15 @@ export const smartWasteData = {
   },
 
 
-  downloads: {
-    profile: {
-      label: 'Download Charging Profile',
-      url: '',
-      enabled: false
-    }
+downloads: {
+  profile: {
+    enabled: true,
+    url: WASTE_TO_ENERGY_PROFILE_PDF.url,
+    filename: WASTE_TO_ENERGY_PROFILE_PDF.filename,
+    label: 'Waste to Energy Profile'
   }
+}
+
 };
 
 // Export alias for backwards compatibility

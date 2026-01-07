@@ -4,6 +4,8 @@
  */
 
 import { WASTE_IMAGES, ICONS } from '../../constants/assets.js';
+import { WASTE_TO_ENERGY_PROFILE_PDF } from '../../constants/pdfs';
+
 
 export const containerizedData = {
   meta: {
@@ -78,7 +80,7 @@ export const containerizedData = {
   profiles: {
     sectionTitle: 'Benefits',
     showButton: true,
-    buttonText: 'Download Charging Profile',
+    buttonText: 'Waste to Energy Profile',
 
     leftProfiles: [
       {
@@ -105,14 +107,15 @@ export const containerizedData = {
           '• Slaughter House Waste\n' +
           '• Fish Market Waste'
       }
-    ]
-  },
-
-  downloads: {
+    ],
+      downloads: {
     profile: {
-      label: 'Download Charging Profile',
-      url: '',
-      enabled: false
+      enabled: true,
+      url: WASTE_TO_ENERGY_PROFILE_PDF.url,
+      filename: WASTE_TO_ENERGY_PROFILE_PDF.filename,
+      label: 'Waste to Energy Profile'
     }
   }
+  },
+
 };

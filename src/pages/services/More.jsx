@@ -44,6 +44,7 @@ const More = () => (
   items={moreData.profiles.items}
   buttonText={moreData.profiles.buttonText}
   showButton={moreData.profiles.showButton}
+   downloads={moreData.profiles.downloads}
 />
     </div>
 

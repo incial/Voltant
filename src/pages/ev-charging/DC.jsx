@@ -38,6 +38,8 @@ const DC = () => (
         buttonText2={dcChargersData.chargerData.buttonText2}
         showButton={dcChargersData.chargerData.showButton}
         showButton2={dcChargersData.chargerData.showButton2}
+        pdfUrl={dcChargersData.chargerData.pdfUrl}
+  pdfUrl2={dcChargersData.chargerData.pdfUrl2}
       />
     </footer>
   </>

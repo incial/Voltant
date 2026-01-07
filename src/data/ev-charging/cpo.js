@@ -4,6 +4,7 @@
  */
 
 import { EV_IMAGES, ICONS } from '../../constants/assets.js';
+import { CHARGING_PROFILE_PDF } from '../../constants/pdfs';
 
 export const cpoData = {
   meta: {
@@ -74,9 +75,19 @@ export const cpoData = {
   },
 
   profiles: {
-    sectionTitle: 'Partner with Voltant Energy Today',
-    paragraph: 'Transform your parking spaces into profit-generating, sustainable assets. With reliable chargers, end-to-end support, and a focus on net-zero impact, Voltant Energy is your ideal CPO partner for the future of mobility.',
-    buttonText: 'Download Charging Profile',
-    showButton: true
+  sectionTitle: 'Partner with Voltant Energy Today',
+  paragraph:
+    'Transform your parking spaces into profit-generating, sustainable assets. With reliable chargers, end-to-end support, and a focus on net-zero impact, Voltant Energy is your ideal CPO partner for the future of mobility.',
+  buttonText: 'Download Charging Profile',
+  showButton: true,
+ downloads: {
+  profile: {
+    enabled: true,
+    url: CHARGING_PROFILE_PDF.url,
+    filename: CHARGING_PROFILE_PDF.filename,
+    label: 'Download Charging Profile'
   }
+}
+
+}
 };

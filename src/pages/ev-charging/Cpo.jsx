@@ -22,13 +22,13 @@ const Cpo = () => (
           paragraphs={cpoData.seamlessCharging.paragraphs}
         />
       </div>
-      <section className='w-full py-16'>
-        <MidSection 
-          backgroundImage={cpoData.midSection.backgroundImage}
-          sectionTitle={cpoData.midSection.sectionTitle}
-          features={cpoData.midSection.features}
-        />
-      </section>
+      <MidSection
+  backgroundImage={cpoData.midSection.backgroundImage}
+  sectionTitle={cpoData.midSection.sectionTitle}
+  features={cpoData.midSection.features}
+  variant="cpo"
+/>
+
       <HowItWorksSection 
         sectionTitle={cpoData.howItWorks.sectionTitle}
         steps={cpoData.howItWorks.steps}
@@ -38,6 +38,7 @@ const Cpo = () => (
         paragraph={cpoData.profiles.paragraph}
         buttonText={cpoData.profiles.buttonText}
         showButton={cpoData.profiles.showButton}
+        downloads={cpoData.profiles.downloads}
       />
     </div>
     <footer />
