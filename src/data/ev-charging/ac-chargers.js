@@ -147,7 +147,7 @@ profiles: {
     buttonText2: "Download Charging Profile",
     showButton: true,
     showButton2: true,
-    pdfUrl:null,
+    pdfUrl:CHARGING_PROFILE_PDF.url,
     pdfUrl2: CHARGING_PROFILE_PDF.url,
   }
 };

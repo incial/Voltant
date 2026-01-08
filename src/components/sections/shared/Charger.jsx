@@ -150,7 +150,12 @@ const handleDownload = async (url, filename) => {
                 <button
                   className='w-64 text-base md:text-lg font-normal text-center leading-none px-6 md:px-9 py-[16px] rounded-[31px] border-[#7F7F7F] border-solid border-2 hover:bg-[rgba(127,127,127,0.1)] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[rgba(127,127,127,0.3)]'
                   aria-label={buttonText}
-                 onClick={() => {}}
+                 onClick={() =>
+  handleDownload(
+    pdfUrl2,
+    `${title}-${subtitle}-Charging-Profile.pdf`
+  )
+}
 
 
                 >
@@ -299,7 +304,12 @@ const handleDownload = async (url, filename) => {
                   <button
                     className='text-base md:text-lg font-normal text-center leading-none px-6 md:px-9 py-[16px] rounded-[31px] border-[#7F7F7F] border-solid border-2 hover:bg-[rgba(127,127,127,0.1)] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[rgba(127,127,127,0.3)]'
                     aria-label={buttonText}
-onClick={() => {}}
+onClick={() =>
+  handleDownload(
+    pdfUrl2,
+    `${title}-${subtitle}-Charging-Profile.pdf`
+  )
+}
 
                   >
                     {buttonText}
