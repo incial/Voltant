@@ -101,9 +101,9 @@ export const HOME_IMAGES = {
  */
 export const EV_IMAGES = {
   // Hero images
-  acCharger: `${ASSET_PATHS.images}/EV_charging/AC_charger1.jpg`,
+  acCharger: `${ASSET_PATHS.images}/EV_charging/AC_charger1.webp`,
   dcCharger: `${ASSET_PATHS.images}/EV_charging/EV_main1.webp`,
-  cpo: `${ASSET_PATHS.images}/EV_charging/cpo1.jpg`,
+  cpo: `${ASSET_PATHS.images}/EV_charging/Cpo1.webp`,
   engineeringWorks: `${ASSET_PATHS.images}/EV_charging/Engineering_works.webp`,
   more: `${ASSET_PATHS.images}/EV_charging/More.webp`,
   charger: `${ASSET_PATHS.images}/EV_charging/charger.webp`,
@@ -111,16 +111,16 @@ export const EV_IMAGES = {
   // About/Detail images
   acAbout: `${ASSET_PATHS.images}/EV_charging/AC_about.webp`,
   dcAbout: `${ASSET_PATHS.images}/EV_charging/DC_about.webp`,
-  cpoAbout: `${ASSET_PATHS.images}/EV_charging/cpo_abt.png`,
+  cpoAbout: `${ASSET_PATHS.images}/EV_charging/cpo_abt.webp`,
   ewAbout: `${ASSET_PATHS.images}/EV_charging/EW_about.webp`,
   moreAbout: `${ASSET_PATHS.images}/EV_charging/More_about.webp`,
 
   // Product images
-  acChargerImage: `${ASSET_PATHS.images}/EV_charging/AC_charger_image.png`,
-  dcChargerImage: `${ASSET_PATHS.images}/EV_charging/DC_charger_image.png`,
-  wallImage: `${ASSET_PATHS.images}/EV_charging/wallbox.png`,
-  dcImage: `${ASSET_PATHS.images}/EV_charging/DC_fast.png`,
-  dcNew: `${ASSET_PATHS.images}/EV_charging/DC_new.png`
+  acChargerImage: `${ASSET_PATHS.images}/EV_charging/AC_charger_image.webp`,
+  dcChargerImage: `${ASSET_PATHS.images}/EV_charging/DC_charger_image.webp`,
+  wallImage: `${ASSET_PATHS.images}/EV_charging/wallbox.webp`,
+  dcImage: `${ASSET_PATHS.images}/EV_charging/DC_fast.webp`,
+  dcNew: `${ASSET_PATHS.images}/EV_charging/DC_new.webp`
 };
 
 /**
@@ -128,15 +128,15 @@ export const EV_IMAGES = {
  */
 export const WASTE_IMAGES = {
   // Hero images
-  household: `${ASSET_PATHS.images}/WateTOEnergy/biogas.jpg`,
+  household: `${ASSET_PATHS.images}/WateTOEnergy/biogas.webp`,
   largeScalePlant: `${ASSET_PATHS.images}/WateTOEnergy/Large_Scale_plant.webp`,
-  containerizedPlant: `${ASSET_PATHS.images}/WateTOEnergy/container.png`,
-  smartWaste: `${ASSET_PATHS.images}/WateTOEnergy/bins.png`,
+  containerizedPlant: `${ASSET_PATHS.images}/WateTOEnergy/container.webp`,
+  smartWaste: `${ASSET_PATHS.images}/WateTOEnergy/bins.webp`,
   // About/Detail images
-  hsAbout: `${ASSET_PATHS.images}/WateTOEnergy/biogas.jpg`,
+  hsAbout: `${ASSET_PATHS.images}/WateTOEnergy/biogas.webp`,
   lsAbout: `${ASSET_PATHS.images}/WateTOEnergy/LS_about.webp`,
   cpAbout: `${ASSET_PATHS.images}/WateTOEnergy/CP_about.webp`,
-  swAbout: `${ASSET_PATHS.images}/WateTOEnergy/smart_about.png`
+  swAbout: `${ASSET_PATHS.images}/WateTOEnergy/smart_about.webp`
 };
 
 /**

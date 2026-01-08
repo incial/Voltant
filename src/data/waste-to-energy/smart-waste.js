@@ -29,7 +29,7 @@ export const smartWasteData = {
   },
 
  imageSection: {
-  image: '/assets/images/WateTOEnergy/smartbin.png',
+  image: '/assets/images/WateTOEnergy/smartbin.webp',
   alt: 'Three step smart segregation process',
   description: [
     'By combining intelligent automation, data monitoring, and behavioral incentives, smart segregation bins help maximize recycling rates, reduce landfill dependency, and foster a circular economy—making waste management smarter, cleaner, and more sustainable.'

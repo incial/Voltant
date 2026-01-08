@@ -4,18 +4,18 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 const RecentWorks = () => {
   // Card data - showcase images
   const showcaseImages = [
-    'Image 13.png',
-    'Image 14.png',
-    'Image 15.png',
-    'Image 16.png',
-    'Image 17.png',
-    'Image 18.png',
-    'Image 19.png',
-    'Image 20.png',
-    'Image 21.png',
-    'Image 22.png',
-    'Image 23.png',
-    'Image 24.png'
+    'Image 13.webp',
+    'Image 14.webp',
+    'Image 15.webp',
+    'Image 16.webp',
+    'Image 17.webp',
+    'Image 18.webp',
+    'Image 19.webp',
+    'Image 20.webp',
+    'Image 21.webp',
+    'Image 22.webp',
+    'Image 23.webp',
+    'Image 24.webp'
   ];
 
   const cards = showcaseImages.map((img, index) => ({

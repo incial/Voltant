@@ -68,7 +68,7 @@ const WasteToEnergy = () => {
               </div>
             )}
             <img
-              src="/assets/images/WateTOEnergy/main.jpg"
+              src="/assets/images/WateTOEnergy/main.webp"
               alt="Waste to Energy"
               className="w-full h-full object-cover"
               onLoad={() => setImageLoaded(true)}
@@ -125,7 +125,7 @@ const WasteToEnergy = () => {
               </div>
             )}
             <img
-              src="/assets/images/WateTOEnergy/main.jpg"
+              src="/assets/images/WateTOEnergy/main.webp"
               alt="Waste to Energy"
               className="w-full h-full object-cover"
               onLoad={() => setImageLoaded(true)}
