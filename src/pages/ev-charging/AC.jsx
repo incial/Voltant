@@ -38,6 +38,8 @@ const AC = () => (
         buttonText2={acChargersData.chargerData.buttonText2}
         showButton={acChargersData.chargerData.showButton}
         showButton2={acChargersData.chargerData.showButton2}
+        pdfUrl={acChargersData.chargerData.pdfUrl}
+        pdfUrl2={acChargersData.chargerData.pdfUrl2}
       />
     </footer>
   </>

@@ -34,6 +34,7 @@ const EngineeringWorks = () => (
         rightProfiles={engineeringWorksData.profiles.rightProfiles}
         buttonText={engineeringWorksData.profiles.buttonText}
         showButton={engineeringWorksData.profiles.showButton}
+        downloads={engineeringWorksData.profiles.downloads}
       />
     </main>
     <footer className='w-full' />

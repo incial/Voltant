@@ -56,7 +56,7 @@ const Household = () => {
           paragraph={householdData.profiles.paragraph}
           buttonText={householdData.profiles.buttonText}
           showButton={householdData.profiles.showButton}
-          downloads={householdData.downloads}
+          downloads={householdData.profiles.downloads}
         />
       </div>
       

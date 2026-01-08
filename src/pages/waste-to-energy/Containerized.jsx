@@ -54,7 +54,7 @@ const Containerized = () => {
           rightProfiles={containerizedData.profiles.rightProfiles}
           buttonText={containerizedData.profiles.buttonText}
           showButton={containerizedData.profiles.showButton}
-          downloads={containerizedData.downloads}
+          downloads={containerizedData.profiles.downloads}
         />
       </div>
 

@@ -79,8 +79,10 @@ function Feature({ icon, title, description }) {
 const MidSection = ({
   backgroundImage,
   sectionTitle = 'Why Choose Us?',
-  features = []
+  features = [],
+  variant
 }) => {
+
   const [imageLoaded, setImageLoaded] = useState(false)
 
   // Get background image path from local assets or fallback to provided path
@@ -102,7 +104,12 @@ const MidSection = ({
       />
       <div className='absolute inset-0 bg-black/50 md:bg-black/40 z-10'></div>
       <motion.div
-        className='relative md:absolute top-0 left-0 backdrop-blur-sm w-full md:w-1/2 min-h-screen md:h-full flex justify-center items-center z-20 px-5 py-16 md:py-12 md:px-12 lg:px-24 bg-transparent'
+  className={`relative backdrop-blur-sm w-full md:w-1/2 z-20 bg-transparent
+    ${variant === 'cpo'
+      ? 'flex items-start pt-16 md:pt-20 lg:pt-24 pb-40 md:pb-56 lg:pb-64 px-6 md:px-16 lg:px-24'
+      : 'md:absolute top-0 left-0 min-h-screen md:h-full flex justify-center items-center px-5 py-16 md:py-12 md:px-12 lg:px-24'
+    }`}
+
         initial='hidden'
         whileInView='visible'
         viewport={{ amount: 0.1 }}

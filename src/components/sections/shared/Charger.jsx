@@ -25,23 +25,46 @@ export const ChargerComponent = ({
   buttonText2,
   showButton = false,
   showButton2 = false,
+
   pdfUrl,
   pdfUrl2
 }) => {
   // Function to handle PDF download
-  const handleDownload = (url, fileName) => {
-    if (!url) return
+/*   const handleDownload = (url) => {
+  if (typeof url !== 'string' || !url.startsWith('/pdfs/')) {
+    console.warn('Blocked invalid download:', url)
+    return
+  }
 
-    // Create a link elements
+  const link = document.createElement('a')
+  link.href = url
+  link.download = url.split('/').pop()
+  document.body.appendChild(link)
+  link.click()
+  document.body.removeChild(link)
+} */
+const handleDownload = async (url, filename) => {
+  if (!url) return
+
+  try {
+    const response = await fetch(url)
+    const blob = await response.blob()
+
     const link = document.createElement('a')
-    link.href = url
-    link.download =
-      fileName ||
-      `${title.toLowerCase().replace(/\s+/g, '-')}-specifications.pdf`
+    const blobUrl = window.URL.createObjectURL(blob)
+
+    link.href = blobUrl
+    link.download = filename || url.split('/').pop()
     document.body.appendChild(link)
     link.click()
+
     document.body.removeChild(link)
+    window.URL.revokeObjectURL(blobUrl)
+  } catch (err) {
+    console.error('Download failed:', err)
   }
+}
+
 
   const MobileView = () => {
     return (
@@ -127,12 +150,9 @@ export const ChargerComponent = ({
                 <button
                   className='w-64 text-base md:text-lg font-normal text-center leading-none px-6 md:px-9 py-[16px] rounded-[31px] border-[#7F7F7F] border-solid border-2 hover:bg-[rgba(127,127,127,0.1)] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[rgba(127,127,127,0.3)]'
                   aria-label={buttonText}
-                  onClick={() =>
-                    handleDownload(
-                      pdfUrl,
-                      `${title}-${subtitle}-specifications.pdf`
-                    )
-                  }
+                 onClick={() => {}}
+
+
                 >
                   {buttonText}
                 </button>
@@ -151,8 +171,13 @@ export const ChargerComponent = ({
                   className='w-64 text-base md:text-lg font-normal text-center leading-none px-6 md:px-9 py-[16px] rounded-[31px] border-[#7F7F7F] border-solid border-2 hover:bg-[rgba(127,127,127,0.1)] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[rgba(127,127,127,0.3)]'
                   aria-label={buttonText2}
                   onClick={() =>
-                    handleDownload(pdfUrl2, `${title}-installation-guide.pdf`)
-                  }
+  handleDownload(
+    pdfUrl2,
+    `${title}-${subtitle}-Charging-Profile.pdf`
+  )
+}
+
+
                 >
                   {buttonText2}
                 </button>
@@ -274,15 +299,11 @@ export const ChargerComponent = ({
                   <button
                     className='text-base md:text-lg font-normal text-center leading-none px-6 md:px-9 py-[16px] rounded-[31px] border-[#7F7F7F] border-solid border-2 hover:bg-[rgba(127,127,127,0.1)] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[rgba(127,127,127,0.3)]'
                     aria-label={buttonText}
-                    onClick={() =>
-                      handleDownload(
-                        pdfUrl,
-                        `${title}-${subtitle}-specifications.pdf`
-                      )
-                    }
+onClick={() => {}}
+
                   >
                     {buttonText}
-                  </button>
+                  </button>``
                 </motion.div>
               )}
 
@@ -297,9 +318,15 @@ export const ChargerComponent = ({
                   <button
                     className='text-base md:text-lg font-normal text-center leading-none px-6 md:px-9 py-[16px] rounded-[31px] border-[#7F7F7F] border-solid border-2 hover:bg-[rgba(127,127,127,0.1)] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[rgba(127,127,127,0.3)]'
                     aria-label={buttonText2}
-                    onClick={() =>
-                      handleDownload(pdfUrl2, `${title}-installation-guide.pdf`)
-                    }
+                   onClick={() =>
+        handleDownload(
+          pdfUrl2,
+          `${title}-${subtitle}-Charging-Profile.pdf`
+        )
+      }
+
+
+
                   >
                     {buttonText2}
                   </button>

@@ -4,6 +4,8 @@
  */
 
 import { EV_IMAGES, ICONS } from '../../constants/assets.js';
+import { CHARGING_PROFILE_PDF } from '../../constants/pdfs';
+
 
 export const dcChargersData = {
   meta: {
@@ -134,19 +136,19 @@ export const dcChargersData = {
     buttonText2: 'Download Charging Profile',
     showButton: true,
     showButton2: true,
-    pdfUrl: '',
-    pdfUrl2: ''
+    pdfUrl: null,
+    pdfUrl2: CHARGING_PROFILE_PDF.url
   },
 
   downloads: {
     datasheet: {
       label: 'Download Datasheet',
-      url: '',
+      url: null,
       enabled: true
     },
     profile: {
       label: 'Download Charging Profile',
-      url: '',
+      url: CHARGING_PROFILE_PDF.url,
       enabled: true
     }
   }
