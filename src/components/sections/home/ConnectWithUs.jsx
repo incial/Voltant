@@ -44,7 +44,7 @@ const ConnectWithUs = () => {
                 <div className="text-white">
                   <p className="text-base md:text-lg lg:text-xl font-light mb-1 font-['Cairo']">Call us at</p>
                   <a href="tel:+971506719857" className="text-base md:text-lg lg:text-xl font-normal hover:text-gray-300 transition-colors font-['Cairo']">
-                    +971 50 671 9857
+                    +971 50 641 9857
                   </a>
                 </div>
               </div>
