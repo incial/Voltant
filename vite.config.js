@@ -10,6 +10,7 @@ export default defineConfig({
     open: true,
   },
   build: {
+    target: 'es2015', // for iOS
     rollupOptions: {
       output: {
         manualChunks: {
