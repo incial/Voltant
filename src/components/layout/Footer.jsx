@@ -121,7 +121,7 @@ const Footer = () => {
             </div>
             <div className='text-xs md:text-sm'>
               <p>
-                © Copyright {currentYear} Voltant Energy LLC FZ. All Rights
+                © Copyright {currentYear} Voltant Energy. All Rights
                 Reserved and Designed by{' '}
                 <span className='font-semibold hover:underline'>
                 <a
