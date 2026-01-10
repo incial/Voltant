@@ -20,7 +20,10 @@ const buttonAnimation = {
 const buttonStyles = 'text-base md:text-lg font-normal text-center leading-none px-6 md:px-9 py-[16px] rounded-[31px] border-[#7F7F7F] border-solid border-2 hover:bg-[rgba(127,127,127,0.1)] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[rgba(127,127,127,0.3)]'
 const mobileButtonStyles = 'w-64 text-base md:text-lg font-normal text-center leading-none px-6 md:px-9 py-[16px] rounded-[31px] border-[#7F7F7F] border-solid border-2 hover:bg-[rgba(127,127,127,0.1)] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[rgba(127,127,127,0.3)]'
 
-export const ChargerComponent = ({
+// Generate filename for download
+const getFilename = (title, subtitle) => `${title}-${subtitle}-Charging-Profile.pdf`
+
+const MobileView = ({
   title,
   subtitle,
   chargerModels,
@@ -29,17 +32,10 @@ export const ChargerComponent = ({
   buttonText2,
   showButton = false,
   showButton2 = false,
-
-  pdfUrl,
   pdfUrl2
 }) => {
-  // Generate filename for download
-  const getFilename = () => `${title}-${subtitle}-Charging-Profile.pdf`
-
-
-  const MobileView = () => {
-    return (
-      <div className='bg-white'>
+  return (
+    <div className='bg-white'>
         {/* Fixed header section */}
         <div className='text-center mb-5 p-5'>
           <h1 className='text-2xl font-bold text-gray-500'>Models</h1>
@@ -158,11 +154,20 @@ export const ChargerComponent = ({
           </div>
         )}
       </div>
-    )
+      )
   }
-
-  // Desktop view with horizontal scrolling
-  const DesktopView = () => {
+  
+  const DesktopView = ({
+    title,
+    subtitle,
+    chargerModels,
+    specifications,
+    buttonText,
+    buttonText2,
+    showButton = false,
+    showButton2 = false,
+    pdfUrl2
+  }) => {
     return (
       <div
         className='overflow-x-auto bg-white py-8 w-full'
@@ -308,50 +313,52 @@ export const ChargerComponent = ({
             </div>
           )}
         </div>
-      </div>
-    )
+        </div>
+      )
   }
-
-  return (
+  
+  const Charger = ({
+    title,
+    subtitle,
+    chargerModels,
+    specifications,
+    buttonText,
+    buttonText2,
+    showButton = false,
+    showButton2 = false,
+    pdfUrl2
+  }) => {
+    return (
     <section className='bg-white w-full' style={{ overflowX: 'hidden' }}>
       <div className='md:hidden'>
-        <MobileView />
+        <MobileView
+          title={title}
+          subtitle={subtitle}
+          chargerModels={chargerModels}
+          specifications={specifications}
+          buttonText={buttonText}
+          buttonText2={buttonText2}
+          showButton={showButton}
+          showButton2={showButton2}
+          pdfUrl2={pdfUrl2}
+        />
       </div>
 
       {/* Desktop view - hidden on small screens */}
       <div className='hidden md:block'>
-        <DesktopView />
+        <DesktopView
+          title={title}
+          subtitle={subtitle}
+          chargerModels={chargerModels}
+          specifications={specifications}
+          buttonText={buttonText}
+          buttonText2={buttonText2}
+          showButton={showButton}
+          showButton2={showButton2}
+          pdfUrl2={pdfUrl2}
+        />
       </div>
     </section>
-  )
-}
-
-// Main component that accepts individual props
-const Charger = ({
-  title,
-  subtitle,
-  chargerModels,
-  specifications,
-  buttonText,
-  buttonText2,
-  showButton = false,
-  showButton2 = false,
-  pdfUrl,
-  pdfUrl2
-}) => {
-  return (
-    <ChargerComponent
-      title={title}
-      subtitle={subtitle}
-      chargerModels={chargerModels}
-      specifications={specifications}
-      buttonText={buttonText}
-      buttonText2={buttonText2}
-      showButton={showButton}
-      showButton2={showButton2}
-      pdfUrl={pdfUrl}
-      pdfUrl2={pdfUrl2}
-    />
   )
 }
 
