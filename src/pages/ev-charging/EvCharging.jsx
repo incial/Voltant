@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import { ServiceCard } from '../../components/ui'
-import { evImgs, vids } from '../../utils/localAssets'
+import { ServiceCard, OptimizedImage } from '../../components/ui'
+import { evImgs } from '../../utils/localAssets'
 
 const EvCharging = () => {
   const [imageLoaded, setImageLoaded] = useState(false)
@@ -48,12 +48,15 @@ const EvCharging = () => {
                 <div className="w-6 h-6 border-4 border-green-400 border-t-transparent rounded-full animate-spin" />
               </div>
             )}
-            <img
+            <OptimizedImage
               src="/assets/images/EV_charging/EV_main1.webp"
               alt="EV Charging"
               className="w-full h-full object-cover"
+              loading="eager"
+              decoding="async"
               onLoad={() => setImageLoaded(true)}
               style={{ objectPosition: 'center center' }}
+              preload
             />
             <div className='absolute inset-0 bg-gradient-to-r from-black/60 to-transparent'></div>
           </div>
@@ -95,12 +98,15 @@ const EvCharging = () => {
                 <div className="w-6 h-6 border-4 border-green-400 border-t-transparent rounded-full animate-spin" />
               </div>
             )}
-            <img
+            <OptimizedImage
               src="/assets/images/EV_charging/EV_main1.webp"
               alt="EV Charging"
               className='w-full h-full object-cover'
+              loading='eager'
+              decoding='async'
               onLoad={() => setImageLoaded(true)}
               style={{ objectPosition: 'center center' }}
+              preload
             />
             {/* Gradient overlay from left to right */}
             <div className='absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent'></div>

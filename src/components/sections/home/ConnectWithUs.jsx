@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaWhatsapp } from "react-icons/fa6";
 import { homeImgs } from "../../../utils/localAssets";
+import { OptimizedImage } from "../../ui";
 
 const ConnectWithUs = () => {
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -15,7 +16,7 @@ const ConnectWithUs = () => {
               <div className="w-12 h-12 border-4 border-green-400 border-t-transparent rounded-full animate-spin" />
             </div>
           )}
-          <img
+          <OptimizedImage
             src={homeImgs.connectWithUsBg}
             alt="Connect with us background"
             width={1920}

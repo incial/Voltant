@@ -8,6 +8,11 @@ import {
   FaXTwitter
 } from 'react-icons/fa6';
 import { isIOS } from '../../../utils/device';
+import {
+  getPreferredImage,
+  preloadImages,
+  supportsWebp
+} from '../../../utils/imageSupport';
 
 const heroFrames = [
   {
@@ -50,13 +55,11 @@ const HeroSection = () => {
   const iosDevice = isIOS;
   const enableMotion = !iosDevice;
 
-  const supportsWebP = useMemo(() => {
-    if (typeof document === 'undefined') return false;
-    const canvas = document.createElement('canvas');
-    canvas.width = 1;
-    canvas.height = 1;
-    return canvas.toDataURL('image/webp').includes('data:image/webp');
-  }, []);
+  const supportsWebP = useMemo(() => supportsWebp(), []);
+  const frameSources = useMemo(
+    () => heroFrames.map((frame) => getPreferredImage(frame.webp, frame.fallback, supportsWebP)),
+    [supportsWebP]
+  );
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 768);
@@ -66,8 +69,11 @@ const HeroSection = () => {
   }, []);
 
   useEffect(() => {
-    const frame = heroFrames[0];
-    const primary = supportsWebP ? frame.webp : frame.fallback;
+    const primary = frameSources[0];
+    if (!primary) {
+      setFirstImageReady(true);
+      return undefined;
+    }
     let cancelled = false;
     const preloader = new Image();
     preloader.src = primary;
@@ -77,15 +83,12 @@ const HeroSection = () => {
     return () => {
       cancelled = true;
     };
-  }, [supportsWebP]);
+  }, [frameSources]);
 
   useEffect(() => {
     if (!firstImageReady || iosDevice) return;
-    heroFrames.slice(1).forEach((frame) => {
-      const preload = new Image();
-      preload.src = supportsWebP ? frame.webp : frame.fallback;
-    });
-  }, [firstImageReady, iosDevice, supportsWebP]);
+    preloadImages(frameSources.slice(1));
+  }, [firstImageReady, iosDevice, frameSources]);
 
   useEffect(() => {
     if (!firstImageReady || iosDevice) return;
@@ -140,7 +143,7 @@ const HeroSection = () => {
             key={index}
             className={frameClassName(index)}
             style={{
-              backgroundImage: `url(${supportsWebP ? frame.webp : frame.fallback})`
+              backgroundImage: `url(${frameSources[index] || frame.fallback})`
             }}
           />
         ))}

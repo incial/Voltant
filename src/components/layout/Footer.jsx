@@ -8,6 +8,7 @@ import {
 } from 'react-icons/fa'
 import { FaXTwitter } from 'react-icons/fa6'
 import { footerImage, whiteLogo } from '../../utils/localAssets'
+import { OptimizedImage } from '../ui'
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()
@@ -21,7 +22,7 @@ const Footer = () => {
             <div className="w-8 h-8 border-4 border-green-400 border-t-transparent rounded-full animate-spin" />
           </div>
         )}
-        <img
+        <OptimizedImage
           src={footerImage}
           alt='Footer background'
           width={1920}
@@ -37,7 +38,7 @@ const Footer = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 flex flex-col items-center md:hidden font-['Cairo']">
           {/* Logo */}
           <div className='mb-6 sm:mb-8'>
-            <img
+            <OptimizedImage
               src={whiteLogo}
               alt='Voltant Energy Logo'
               width={144}
@@ -45,6 +46,7 @@ const Footer = () => {
               className='h-8 sm:h-9'
               loading="eager"
               decoding="async"
+              preload
             />
           </div>
 
@@ -119,7 +121,7 @@ const Footer = () => {
         <div className='flex flex-row justify-between items-center'>          {/* Left side: Logo and Copyright */}
           <div className='flex flex-col gap-6 md:gap-7 lg:gap-8'>
             <div>
-              <img
+              <OptimizedImage
                 src={whiteLogo}
                 alt='Voltant Energy Logo'
                 width={160}
@@ -127,6 +129,7 @@ const Footer = () => {
                 className='h-10 md:h-11 lg:h-12'
                 loading="eager"
                 decoding="async"
+                preload
               />
             </div>
             <div className='text-xs md:text-sm'>

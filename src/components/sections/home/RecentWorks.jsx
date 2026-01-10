@@ -1,38 +1,63 @@
-import React, { useRef, useEffect, useState } from 'react'
+import React, { useRef, useEffect, useState, useMemo } from 'react'
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
+import { preloadImages, getPreferredImage, supportsWebp } from '../../../utils/imageSupport'
+import { OptimizedImage } from '../../ui'
+
+const SHOWCASE_BASE_PATH = '/assets/images/showcaseimages'
+const SHOWCASE_IMAGES = [
+  { name: 'Image 13', webp: 'Image 13.webp', fallback: 'Image 13(1).png' },
+  { name: 'Image 14', webp: 'Image 14.webp' },
+  { name: 'Image 15', webp: 'Image 15.webp' },
+  { name: 'Image 16', webp: 'Image 16.webp' },
+  { name: 'Image 17', webp: 'Image 17.webp' },
+  { name: 'Image 18', webp: 'Image 18.webp', fallback: 'Image 18d.png' },
+  { name: 'Image 19', webp: 'Image 19.webp' },
+  { name: 'Image 20', webp: 'Image 20.webp' },
+  { name: 'Image 21', webp: 'Image 21.webp' },
+  { name: 'Image 22', webp: 'Image 22.webp' },
+  { name: 'Image 23', webp: 'Image 23.webp' },
+  { name: 'Image 24', webp: 'Image 24.webp' }
+]
 
 const RecentWorks = () => {
-  // Card data - showcase images
-  const showcaseImages = [
-    'Image 13.webp',
-    'Image 14.webp',
-    'Image 15.webp',
-    'Image 16.webp',
-    'Image 17.webp',
-    'Image 18.webp',
-    'Image 19.webp',
-    'Image 20.webp',
-    'Image 21.webp',
-    'Image 22.webp',
-    'Image 23.webp',
-    'Image 24.webp'
-  ];
+  const supportsWebP = useMemo(() => supportsWebp(), [])
+  const cards = useMemo(
+    () =>
+      SHOWCASE_IMAGES.map((image, index) => {
+        const webpPath = image.webp
+          ? `${SHOWCASE_BASE_PATH}/${encodeURIComponent(image.webp)}`
+          : undefined
+        const fallbackPath = image.fallback
+          ? `${SHOWCASE_BASE_PATH}/${encodeURIComponent(image.fallback)}`
+          : undefined
+        const resolvedSrc = getPreferredImage(webpPath, fallbackPath, supportsWebP)
 
-  console.log('Total images:', showcaseImages.length);
+        return {
+          webp: webpPath,
+          fallback: fallbackPath,
+          resolved: resolvedSrc,
+          alt: image.alt || `Showcase ${index + 13}`,
+          isImage22: image.name === 'Image 22',
+          isImage19: image.name === 'Image 19'
+        }
+      }),
+    [supportsWebP]
+  )
 
-  const cards = showcaseImages.map((img, index) => ({
-    img: `/assets/images/showcaseimages/${encodeURIComponent(img)}`,
-    alt: `Showcase ${index + 13}`,
-    isImage22: img === 'Image 22.png',
-    isImage19: img === 'Image 19.png'
-  }));
+  useEffect(() => {
+    if (!cards.length) return
+    preloadImages(cards.map((card) => card.resolved))
+  }, [cards])
 
   // For infinite scroll, clone cards at both ends
-  const infiniteCards = [
-    ...cards.slice(-3),
-    ...cards,
-    ...cards.slice(0, 3)
-  ];
+  const infiniteCards = useMemo(
+    () => [
+      ...cards.slice(-3),
+      ...cards,
+      ...cards.slice(0, 3)
+    ],
+    [cards]
+  )
 
   // Ref for the scrollable card row
   const rowRef = useRef(null);
@@ -147,7 +172,7 @@ const RecentWorks = () => {
           >
             {infiniteCards.map((card, idx) => (
               <div
-                key={card.img + idx}
+                key={`${card.resolved}-${idx}`}
                 data-card
                 className={`h-64 sm:h-72 md:h-80 lg:h-88 xl:h-96 w-72 sm:w-80 md:w-88 lg:w-96 xl:w-[26rem] shrink-0 rounded-xl md:rounded-2xl shadow-md overflow-hidden cursor-pointer transition-shadow duration-500 ${
                   card.isImage22 ? 'bg-[#d4824a]' : card.isImage19 ? 'bg-gray-900' : ''
@@ -168,8 +193,9 @@ const RecentWorks = () => {
                     hoveredCard === idx ? 'scale-110' : 'scale-100'
                   }`}
                 >
-                  <img
-                    src={card.img}
+                  <OptimizedImage
+                    src={card.webp}
+                    fallbackSrc={card.fallback}
                     alt={card.alt}
                     width={416}
                     height={384}
