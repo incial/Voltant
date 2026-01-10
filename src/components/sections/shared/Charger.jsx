@@ -1,6 +1,7 @@
 import React from 'react'
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion'
+import { downloadPDF } from '../../../utils/downloadHelper'
 
 // Animation variants
 const buttonAnimation = {
@@ -29,41 +30,8 @@ export const ChargerComponent = ({
   pdfUrl,
   pdfUrl2
 }) => {
-  // Function to handle PDF download
-/*   const handleDownload = (url) => {
-  if (typeof url !== 'string' || !url.startsWith('/pdfs/')) {
-    console.warn('Blocked invalid download:', url)
-    return
-  }
-
-  const link = document.createElement('a')
-  link.href = url
-  link.download = url.split('/').pop()
-  document.body.appendChild(link)
-  link.click()
-  document.body.removeChild(link)
-} */
-const handleDownload = async (url, filename) => {
-  if (!url) return
-
-  try {
-    const response = await fetch(url)
-    const blob = await response.blob()
-
-    const link = document.createElement('a')
-    const blobUrl = window.URL.createObjectURL(blob)
-
-    link.href = blobUrl
-    link.download = filename || url.split('/').pop()
-    document.body.appendChild(link)
-    link.click()
-
-    document.body.removeChild(link)
-    window.URL.revokeObjectURL(blobUrl)
-  } catch (err) {
-    console.error('Download failed:', err)
-  }
-}
+  // Use iOS-compatible download handler
+  const handleDownload = downloadPDF
 
 
   const MobileView = () => {
