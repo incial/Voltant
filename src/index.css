@@ -371,8 +371,17 @@ img {
   .hero-background-layer {
     position: absolute;
     inset: 0;
+    overflow: hidden;
   }
 
+  .hero-background-layer img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Legacy hero-frame styles (for fallback) */
   .hero-frame {
     position: absolute;
     inset: 0;

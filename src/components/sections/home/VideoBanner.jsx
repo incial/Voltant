@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { homeImgs } from "../../../utils/localAssets";
+import { homeImgs } from '@utils/localAssets'
 import { OptimizedImage } from '../../ui'
 
 const VideoBanner = () => {
@@ -16,9 +16,9 @@ const VideoBanner = () => {
           </div>
         )}
         <OptimizedImage
-          src={homeImgs.DescriptionBg}
-          className='absolute inset-0 w-full h-full object-cover object-bottom z-0'
-          alt='Background'
+          src={homeImgs.aboutBanner}
+          className='absolute inset-0 w-full h-full object-cover object-center z-0'
+          alt='Sustainable Energy Background'
           onLoad={() => setImageLoaded(true)}
           style={{ opacity: imageLoaded ? 1 : 0, transition: 'opacity 1s' }}
         />

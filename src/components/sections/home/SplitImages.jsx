@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
-// eslint-disable-next-line no-unused-vars
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { heroIcons } from '../../../utils/localAssets'
 import { Link } from 'react-router-dom'
 import { OptimizedImage } from '../../ui'
@@ -12,7 +11,7 @@ const images = [
     description:
       'Powering the future of mobility with smart, efficient, and scalable EV charging solutions—designed for homes, businesses, and public spaces.',
     button: 'Learn More',
-    img: '/assets/images/Home/split/split2.webp',
+    img: '/assets/images/Home/split/split2.png',
     icon: heroIcons.battery,
     link: '/ev-charging'
   },
@@ -22,7 +21,7 @@ const images = [
     description:
       'From smart modular containerized plants to large-scale anaerobic digestion solutions, we transform organic waste into sustainable energy.',
     button: 'Learn More',
-    img: '/assets/images/Home/split/split1.webp',
+    img: '/assets/images/Home/split/split1.png',
     icon: heroIcons.waterPure,
     link: '/waste-to-energy'
   }
