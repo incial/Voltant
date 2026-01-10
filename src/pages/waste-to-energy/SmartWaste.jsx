@@ -6,10 +6,8 @@ import {
   MidSection
 } from '../../components/sections/shared'
 import { smartWasteData } from '../../data/waste-to-energy/smart-waste'
-import { downloadPDF } from '../../utils/downloadHelper'
 
 const SmartWaste = () => {
-  const handleDownload = downloadPDF
 
   return (
     <>
@@ -69,15 +67,13 @@ const SmartWaste = () => {
                 ))}
               </div>
 
-              {/* Download Button */}
+              {/* Download Button - Native anchor for iOS Safari compatibility */}
               <div className='flex items-center justify-start max-w-3xl mx-auto mt-4'>
-                <button
-                  onClick={() =>
-                    handleDownload(
-                      smartWasteData.downloads.profile.url,
-                      smartWasteData.downloads.profile.filename
-                    )
-                  }
+                <a
+                  href={smartWasteData.downloads.profile.url}
+                  download={smartWasteData.downloads.profile.filename}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className='text-sm sm:text-base md:text-lg font-normal text-center leading-none
                              px-6 py-3 rounded-full border-[#7F7F7F] border-solid border-2
                              hover:bg-[rgba(127,127,127,0.05)]
@@ -86,7 +82,7 @@ const SmartWaste = () => {
                   aria-label={smartWasteData.downloads.profile.label}
                 >
                   {smartWasteData.downloads.profile.label}
-                </button>
+                </a>
               </div>
             </div>
           </section>

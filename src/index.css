@@ -2,6 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================
+   iOS SAFARI FIXES
+   ============================================ */
+html {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: none;
+}
+
+body {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: none;
+}
+
+/* Prevent iOS image scaling issues */
+img {
+  max-width: 100%;
+  height: auto;
+  -webkit-user-drag: none;
+}
 
 /* ============================================
    FONT DECLARATIONS

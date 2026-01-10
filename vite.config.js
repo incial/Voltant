@@ -11,7 +11,8 @@ export default defineConfig({
     open: true,
   },
   build: {
-    target: ['es2015', 'safari13', 'ios13'],
+    target: 'es2018',
+    assetsInlineLimit: 0,
     cssTarget: ['chrome61', 'firefox60', 'safari11', 'edge18'],
     rollupOptions: {
       output: {
