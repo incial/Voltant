@@ -1,7 +1,6 @@
 import React from 'react'
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion'
-import { downloadPDF } from '../../../utils/downloadHelper'
 
 // Animation variants
 const buttonAnimation = {
@@ -17,6 +16,10 @@ const buttonAnimation = {
   }
 }
 
+// Shared button/anchor styles
+const buttonStyles = 'text-base md:text-lg font-normal text-center leading-none px-6 md:px-9 py-[16px] rounded-[31px] border-[#7F7F7F] border-solid border-2 hover:bg-[rgba(127,127,127,0.1)] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[rgba(127,127,127,0.3)]'
+const mobileButtonStyles = 'w-64 text-base md:text-lg font-normal text-center leading-none px-6 md:px-9 py-[16px] rounded-[31px] border-[#7F7F7F] border-solid border-2 hover:bg-[rgba(127,127,127,0.1)] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[rgba(127,127,127,0.3)]'
+
 export const ChargerComponent = ({
   title,
   subtitle,
@@ -30,8 +33,8 @@ export const ChargerComponent = ({
   pdfUrl,
   pdfUrl2
 }) => {
-  // Use iOS-compatible download handler
-  const handleDownload = downloadPDF
+  // Generate filename for download
+  const getFilename = () => `${title}-${subtitle}-Charging-Profile.pdf`
 
 
   const MobileView = () => {
@@ -64,6 +67,8 @@ export const ChargerComponent = ({
                         src={model.imageUrl}
                         alt='Charger Image'
                         className='w-full h-full object-cover object-center rounded-xl'
+                        loading='lazy'
+                        decoding='async'
                       />
                       <div className='absolute inset-0 flex flex-col items-center justify-center'>
                         <span className='text-xl font-bold text-white drop-shadow-md mb-1'>{model.model}</span>
@@ -107,7 +112,7 @@ export const ChargerComponent = ({
         {/* Buttons Section for Mobile */}
         {(showButton || showButton2) && (
           <div className='flex flex-col items-center justify-center gap-4 py-8 px-4'>
-            {showButton && (
+            {showButton && pdfUrl2 && (
               <motion.div
                 className='flex items-center justify-center w-full'
                 variants={buttonAnimation}
@@ -115,24 +120,20 @@ export const ChargerComponent = ({
                 whileInView='visible'
                 viewport={{ amount: 0.1 }}
               >
-                <button
-                  className='w-64 text-base md:text-lg font-normal text-center leading-none px-6 md:px-9 py-[16px] rounded-[31px] border-[#7F7F7F] border-solid border-2 hover:bg-[rgba(127,127,127,0.1)] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[rgba(127,127,127,0.3)]'
+                <a
+                  href={pdfUrl2}
+                  download={getFilename()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={mobileButtonStyles}
                   aria-label={buttonText}
-                 onClick={() =>
-  handleDownload(
-    pdfUrl2,
-    `${title}-${subtitle}-Charging-Profile.pdf`
-  )
-}
-
-
                 >
                   {buttonText}
-                </button>
+                </a>
               </motion.div>
             )}
 
-            {showButton2 && (
+            {showButton2 && pdfUrl2 && (
               <motion.div
                 className='flex items-center justify-center w-full'
                 variants={buttonAnimation}
@@ -140,20 +141,16 @@ export const ChargerComponent = ({
                 whileInView='visible'
                 viewport={{ amount: 0.1 }}
               >
-                <button
-                  className='w-64 text-base md:text-lg font-normal text-center leading-none px-6 md:px-9 py-[16px] rounded-[31px] border-[#7F7F7F] border-solid border-2 hover:bg-[rgba(127,127,127,0.1)] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[rgba(127,127,127,0.3)]'
+                <a
+                  href={pdfUrl2}
+                  download={getFilename()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={mobileButtonStyles}
                   aria-label={buttonText2}
-                  onClick={() =>
-  handleDownload(
-    pdfUrl2,
-    `${title}-${subtitle}-Charging-Profile.pdf`
-  )
-}
-
-
                 >
                   {buttonText2}
-                </button>
+                </a>
               </motion.div>
             )}
           </div>
@@ -207,8 +204,10 @@ export const ChargerComponent = ({
                         <div className='w-full h-64 bg-white rounded-xl relative overflow-hidden'>
                           <img
                             src={model.imageUrl}
-                            alt='Hero Image'
+                            alt='Charger Image'
                             className='w-full h-full object-cover object-center rounded-xl'
+                            loading='lazy'
+                            decoding='async'
                           />
                           {/* Centered Text Overlay */}
                           <div className='absolute inset-0 flex flex-col items-center justify-center'>
@@ -261,7 +260,7 @@ export const ChargerComponent = ({
           {/* Buttons Section for Desktop */}
           {(showButton || showButton2) && (
             <div className='flex flex-row justify-center items-center gap-6 mt-16 mb-8'>
-              {showButton && (
+              {showButton && pdfUrl2 && (
                 <motion.div
                   className='flex items-center justify-start'
                   variants={buttonAnimation}
@@ -269,23 +268,20 @@ export const ChargerComponent = ({
                   whileInView='visible'
                   viewport={{ amount: 0.1 }}
                 >
-                  <button
-                    className='text-base md:text-lg font-normal text-center leading-none px-6 md:px-9 py-[16px] rounded-[31px] border-[#7F7F7F] border-solid border-2 hover:bg-[rgba(127,127,127,0.1)] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[rgba(127,127,127,0.3)]'
+                  <a
+                    href={pdfUrl2}
+                    download={getFilename()}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={buttonStyles}
                     aria-label={buttonText}
-onClick={() =>
-  handleDownload(
-    pdfUrl2,
-    `${title}-${subtitle}-Charging-Profile.pdf`
-  )
-}
-
                   >
                     {buttonText}
-                  </button>``
+                  </a>
                 </motion.div>
               )}
 
-              {showButton2 && (
+              {showButton2 && pdfUrl2 && (
                 <motion.div
                   className='flex items-center justify-start'
                   variants={buttonAnimation}
@@ -293,21 +289,16 @@ onClick={() =>
                   whileInView='visible'
                   viewport={{ amount: 0.1 }}
                 >
-                  <button
-                    className='text-base md:text-lg font-normal text-center leading-none px-6 md:px-9 py-[16px] rounded-[31px] border-[#7F7F7F] border-solid border-2 hover:bg-[rgba(127,127,127,0.1)] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[rgba(127,127,127,0.3)]'
+                  <a
+                    href={pdfUrl2}
+                    download={getFilename()}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={buttonStyles}
                     aria-label={buttonText2}
-                   onClick={() =>
-        handleDownload(
-          pdfUrl2,
-          `${title}-${subtitle}-Charging-Profile.pdf`
-        )
-      }
-
-
-
                   >
                     {buttonText2}
-                  </button>
+                  </a>
                 </motion.div>
               )}
             </div>

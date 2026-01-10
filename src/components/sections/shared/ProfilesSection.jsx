@@ -1,7 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { useContactForm } from '../../../context/ContactFormContext'
-import { downloadPDF } from '../../../utils/downloadHelper'
 
 // ---------------- Animations ----------------
 const fadeIn = {
@@ -150,23 +149,60 @@ const ProfilesSection = ({
   // Label for primary button (download label if provided)
   const primaryLabel = (downloadEnabled && downloads.profile.label) ? downloads.profile.label : buttonText
 
-  // Primary action for the button: download if available, otherwise open contact form
-  const handlePrimaryAction = () => {
+  // Get download URL and filename for native anchor
+  const downloadUrl = downloadEnabled ? downloads.profile.url : null
+  const downloadFilename = downloadEnabled 
+    ? (downloads.profile.filename || downloads.profile.url.split('/').pop().split('?')[0])
+    : null
+
+  // Handler for non-download actions (contact form)
+  const handleContactAction = () => {
+    toggleContactForm()
+  }
+
+  // Shared button styles
+  const buttonStyles = "text-base md:text-lg font-normal text-[#7F7F7F] text-center leading-none px-8 md:px-10 py-3.5 md:py-4 rounded-full border-[#BFBFBF] border-solid border-2 hover:bg-[rgba(127,127,127,0.1)] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[rgba(127,127,127,0.3)]"
+
+  // Render button or anchor based on download availability
+  const renderActionButton = (customStyles = buttonStyles) => {
     if (downloadEnabled) {
-      const url = downloads.profile.url
-      const filename = downloads.profile.filename || url.split('/').pop().split('?')[0]
-      downloadPDF(url, filename)
-      return
+      return (
+        <a 
+          href={downloadUrl}
+          download={downloadFilename}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={customStyles}
+          aria-label={primaryLabel}
+        >
+          {primaryLabel}
+        </a>
+      )
     }
 
-    // If label explicitly requests contact (e.g., 'Get in Touch'), keep that behaviour
+    // If label explicitly requests contact (e.g., 'Get in Touch')
     if (/get\s+in\s+touch/i.test(buttonText)) {
-      toggleContactForm()
-      return
+      return (
+        <button 
+          onClick={handleContactAction} 
+          className={customStyles} 
+          aria-label={primaryLabel}
+        >
+          {primaryLabel}
+        </button>
+      )
     }
 
-    // For other labels (e.g., 'Download Charging Profile' when no URL exists) do nothing
-    return
+    // For other labels without download URL, show disabled or no action
+    return (
+      <button 
+        className={customStyles} 
+        aria-label={primaryLabel}
+        disabled
+      >
+        {primaryLabel}
+      </button>
+    )
   }
 
   // Profile list layout
@@ -199,9 +235,7 @@ const ProfilesSection = ({
 
           {showButton && (
             <motion.div className="flex items-center justify-center w-full mt-12 md:mt-16" variants={buttonAnimation}>
-              <button onClick={handlePrimaryAction} className="text-base md:text-lg font-normal text-[#7F7F7F] text-center leading-none px-8 md:px-10 py-3.5 md:py-4 rounded-full border-[#BFBFBF] border-solid border-2 hover:bg-[rgba(127,127,127,0.1)] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[rgba(127,127,127,0.3)]" aria-label={primaryLabel}>
-                {primaryLabel}
-              </button>
+              {renderActionButton()}
             </motion.div>
           )}
         </div>
@@ -223,7 +257,7 @@ const ProfilesSection = ({
             <p className="text-[#7F7F7F] text-base sm:text-lg md:text-xl lg:text-2xl font-light leading-relaxed md:leading-normal lg:leading-[48px] mb-6 md:mb-10 lg:mb-12">{paragraph}</p>
             {showButton && (
               <motion.div className="flex items-center justify-center w-full py-6 md:py-8 lg:py-[40px] lg:my-[70px]" variants={buttonAnimation}>
-                <button onClick={handlePrimaryAction} className="text-sm sm:text-base md:text-lg font-normal text-center leading-none px-6 md:px-8 lg:px-9 py-3 md:py-[16px] rounded-[31px] border-[#7F7F7F] border-solid border-2 hover:bg-[rgba(127,127,127,0.1)] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[rgba(127,127,127,0.3)]" aria-label={primaryLabel}>{primaryLabel}</button>
+                {renderActionButton("text-sm sm:text-base md:text-lg font-normal text-center leading-none px-6 md:px-8 lg:px-9 py-3 md:py-[16px] rounded-[31px] border-[#7F7F7F] border-solid border-2 hover:bg-[rgba(127,127,127,0.1)] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[rgba(127,127,127,0.3)]")}
               </motion.div>
             )}
           </motion.div>
@@ -249,14 +283,14 @@ const ProfilesSection = ({
               {/* Desktop: absolutely positioned centered button opposite the paragraph */}
               {showButton && (
                 <motion.div className="hidden md:flex absolute left-1/2 z-10 -translate-x-1/2" style={{ top: '78%' }} variants={buttonAnimation}>
-                  <button onClick={handlePrimaryAction} className="text-sm sm:text-base font-medium text-[#7F7F7F] text-center leading-none px-8 md:px-10 py-3 md:py-3.5 rounded-full border-[#BFBFBF] border-solid border-2 hover:bg-[rgba(127,127,127,0.1)] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[rgba(127,127,127,0.3)]" aria-label={primaryLabel}>{primaryLabel}</button>
+                  {renderActionButton("text-sm sm:text-base font-medium text-[#7F7F7F] text-center leading-none px-8 md:px-10 py-3 md:py-3.5 rounded-full border-[#BFBFBF] border-solid border-2 hover:bg-[rgba(127,127,127,0.1)] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[rgba(127,127,127,0.3)]")}
                 </motion.div>
               )}
 
               {/* Mobile: keep button below content for small screens */}
               {showButton && (
                 <motion.div className="flex md:hidden items-center justify-start w-full mt-8" variants={buttonAnimation}>
-                  <button onClick={handlePrimaryAction} className="text-sm sm:text-base font-medium text-[#7F7F7F] text-center leading-none px-8 md:px-10 py-3 md:py-3.5 rounded-full border-[#BFBFBF] border-solid border-2 hover:bg-[rgba(127,127,127,0.1)] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[rgba(127,127,127,0.3)]" aria-label={primaryLabel}>{primaryLabel}</button>
+                  {renderActionButton("text-sm sm:text-base font-medium text-[#7F7F7F] text-center leading-none px-8 md:px-10 py-3 md:py-3.5 rounded-full border-[#BFBFBF] border-solid border-2 hover:bg-[rgba(127,127,127,0.1)] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[rgba(127,127,127,0.3)]")}
                 </motion.div>
               )}
             </div>

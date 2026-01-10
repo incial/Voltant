@@ -5,12 +5,11 @@ import { Link } from "react-router-dom";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import { vids, wasteImgs } from "../../utils/localAssets";
-import { downloadPDF } from "../../utils/downloadHelper";
 
 const WasteToEnergy = () => {
   const [imageLoaded, setImageLoaded] = useState(false);
 
-  // PDF download configuration
+  // PDF download configuration - using native anchor for iOS Safari compatibility
   const brochureUrl = "/pdfs/FoodOrganic waste to Energy Solutions A CIRCULAR ECONOMY SOLUTION FOR A CARBON NEUTRAL FUTURE-4.pdf";
   const brochureFilename = "Waste-to-Energy-Solutions.pdf";
 
@@ -93,12 +92,15 @@ const WasteToEnergy = () => {
               energy
             </p>
 
-            <button
-              onClick={() => downloadPDF(brochureUrl, brochureFilename)}
+            <a
+              href={brochureUrl}
+              download={brochureFilename}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-block text-xs sm:text-sm font-normal text-center leading-none px-4 py-2 sm:px-5 sm:py-3 rounded-full border-white border-solid border-2 text-white hover:bg-white hover:text-gray-800 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-white"
             >
               Download Brochure
-            </button>
+            </a>
           </div>
         </div>
 
@@ -155,12 +157,15 @@ const WasteToEnergy = () => {
               digestion solutions, we transform organic waste into sustainable
               energy
             </p>
-            <button
-              onClick={() => downloadPDF(brochureUrl, brochureFilename)}
+            <a
+              href={brochureUrl}
+              download={brochureFilename}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-block mt-8 text-lg font-medium text-center px-6 py-3 rounded-full border-2 border-white text-white hover:bg-white hover:text-gray-900 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
             >
               Download Brochure
-            </button>
+            </a>
           </motion.div>
         </section>
         {/* Services Grid Section */}
