@@ -66,6 +66,8 @@ export const ChargerComponent = ({
                       <img
                         src={model.imageUrl}
                         alt='Charger Image'
+                        width={256}
+                        height={256}
                         className='w-full h-full object-cover object-center rounded-xl'
                         loading='lazy'
                         decoding='async'
@@ -205,6 +207,8 @@ export const ChargerComponent = ({
                           <img
                             src={model.imageUrl}
                             alt='Charger Image'
+                            width={300}
+                            height={256}
                             className='w-full h-full object-cover object-center rounded-xl'
                             loading='lazy'
                             decoding='async'

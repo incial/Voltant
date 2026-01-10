@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react';
+// eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
 import {
   FaYoutube,
@@ -69,8 +70,15 @@ const HeroSection = () => {
   const [showSocialTray, setShowSocialTray] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [firstImageLoaded, setFirstImageLoaded] = useState(false);
-  const [supportsWebP, setSupportsWebP] = useState(true);
   const imageDuration = 8000;
+
+  // Detect WebP support once at component mount
+  const supportsWebP = useMemo(() => {
+    const canvas = document.createElement('canvas');
+    canvas.width = 1;
+    canvas.height = 1;
+    return canvas.toDataURL('image/webp').indexOf('data:image/webp') === 0;
+  }, []);
 
   // Detect mobile
   useEffect(() => {
@@ -78,15 +86,6 @@ const HeroSection = () => {
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
-  // WebP support detection
-  useEffect(() => {
-    const canvas = document.createElement('canvas');
-    canvas.width = 1;
-    canvas.height = 1;
-    const supported = canvas.toDataURL('image/webp').indexOf('data:image/webp') === 0;
-    setSupportsWebP(supported);
   }, []);
 
   // Handle first image load - critical for iOS
@@ -107,7 +106,6 @@ const HeroSection = () => {
   useEffect(() => {
     if (!firstImageLoaded) return;
     
-    setProgress(0);
     const startTime = Date.now();
     const interval = setInterval(() => {
       const elapsed = Date.now() - startTime;
@@ -132,11 +130,11 @@ const HeroSection = () => {
 
   return (
     <section 
-      className="relative w-full min-h-screen overflow-hidden bg-black"
+      className="relative w-full min-h-screen overflow-hidden"
       style={{ minHeight: '-webkit-fill-available' }}
     >
       {/* Image Container */}
-      <div className="absolute inset-0 z-[1] bg-black">
+      <div className="absolute inset-0 z-[1]">
         {heroImages.map((img, index) => (
           <div
             key={index}
@@ -161,7 +159,7 @@ const HeroSection = () => {
               className="w-full h-full object-cover"
               loading={index === 0 ? 'eager' : 'lazy'}
               decoding={index === 0 ? 'sync' : 'async'}
-              fetchpriority={index === 0 ? 'high' : 'low'}
+              fetchPriority={index === 0 ? 'high' : 'low'}
               onLoad={index === 0 ? handleFirstImageLoad : undefined}
               draggable={false}
             />

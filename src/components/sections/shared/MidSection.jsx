@@ -46,6 +46,8 @@ function Feature({ icon, title, description }) {
           <img
             src={iconPath}
             alt={`${title} icon`}
+            width={48}
+            height={48}
             className='aspect-[1] object-contain w-8 md:w-10 lg:w-12 shrink-0 my-auto'
             loading="lazy"
             decoding="async"
@@ -100,6 +102,8 @@ const MidSection = ({
       <img
         src={backgroundPath}
         alt='Section Background'
+        width={1920}
+        height={1080}
         className='w-full h-full object-cover absolute inset-0'
         loading="lazy"
         decoding="async"

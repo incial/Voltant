@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
-import { ServiceCard } from '../../components/ui'
-// eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion'
+import { ServiceCard } from '../../components/ui'
 import { evImgs, vids } from '../../utils/localAssets'
 
 const EvCharging = () => {

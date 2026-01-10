@@ -117,7 +117,12 @@ const Navbar = () => {
             <img
               src={whiteLogo}
               alt="Voltant Energy"
+              width={160}
+              height={40}
               className="h-8 md:h-10"
+              loading="eager"
+              decoding="sync"
+              fetchPriority="high"
             />
           </Link>
         </div>
