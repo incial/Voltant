@@ -10,7 +10,7 @@ import {
 
 const heroImages = [
   {
-    path: '/assets/images/Home/Hero/hero1.png',
+    path: '/assets/images/Home/Hero/hero1.webp',
     title: (
       <>
         For a Sustainable Tomorrow,<br />Save Energy Today.
@@ -18,7 +18,7 @@ const heroImages = [
     )
   },
   {
-    path: '/assets/images/Home/Hero/hero2.jpg',
+    path: '/assets/images/Home/Hero/hero2.webp',
     title: (
       <>
         Turning Waste into Power,<br /> Fueling a Greener Future.
@@ -26,7 +26,7 @@ const heroImages = [
     )
   },
   {
-    path: '/assets/images/Home/Hero/hero3.jpg',
+    path: '/assets/images/Home/Hero/hero3.webp',
     title: (
       <>
         Maximize Efficiency,<br /> Minimize Waste.
