@@ -3,6 +3,26 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { isIOS } from '../../../utils/device'
 import { OptimizedImage } from '../../ui'
+import { getResponsiveAsset } from '../../../utils/responsiveAssets'
+
+const getChargerImageProps = (imageSource, defaultSizes) => {
+  if (imageSource && typeof imageSource === 'object') {
+    return {
+      src: imageSource.src,
+      fallbackSrc: imageSource.fallbackSrc,
+      srcSet: imageSource.srcSet,
+      sizes: imageSource.sizes || defaultSizes
+    }
+  }
+
+  const asset = typeof imageSource === 'string' ? getResponsiveAsset(imageSource) : null
+  return {
+    src: asset?.src || imageSource,
+    fallbackSrc: asset?.fallbackSrc,
+    srcSet: asset?.srcSet,
+    sizes: asset?.sizes || defaultSizes
+  }
+}
 
 // Animation variants
 const buttonAnimation = {
@@ -61,7 +81,7 @@ const MobileView = ({
                     {' '}
                       <div className='w-full h-64 bg-white rounded-xl relative overflow-hidden'>
                       <OptimizedImage
-                        src={model.imageUrl}
+                        {...getChargerImageProps(model.imageUrl, '(max-width: 768px) 256px, 256px')}
                         alt='Charger Image'
                         width={256}
                         height={256}
@@ -216,7 +236,7 @@ const MobileView = ({
                         {' '}
                         <div className='w-full h-64 bg-white rounded-xl relative overflow-hidden'>
                           <OptimizedImage
-                            src={model.imageUrl}
+                            {...getChargerImageProps(model.imageUrl, '(max-width: 1024px) 256px, 300px')}
                             alt='Charger Image'
                             width={300}
                             height={256}

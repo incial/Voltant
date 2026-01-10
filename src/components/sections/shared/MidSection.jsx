@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { heroIcons, homeImgs } from '../../../utils/localAssets'
 import { OptimizedImage } from '../../ui'
+import { getResponsiveAsset } from '../../../utils/responsiveAssets'
 
 // Animation variants
 const containerVariants = {
@@ -90,8 +91,16 @@ const MidSection = ({
 
   const [imageLoaded, setImageLoaded] = useState(false)
 
-  // Get background image path from local assets or fallback to provided path
-  const backgroundPath = homeImgs[backgroundImage] || backgroundImage
+  const resolvedBackgroundValue = typeof backgroundImage === 'string'
+    ? (homeImgs[backgroundImage] || backgroundImage)
+    : backgroundImage
+  const backgroundAsset = typeof resolvedBackgroundValue === 'string'
+    ? getResponsiveAsset(resolvedBackgroundValue) || { src: resolvedBackgroundValue }
+    : resolvedBackgroundValue
+  const backgroundSrc = backgroundAsset?.src || resolvedBackgroundValue
+  const backgroundFallback = backgroundAsset?.fallbackSrc
+  const backgroundSrcSet = backgroundAsset?.srcSet
+  const backgroundSizes = backgroundAsset?.sizes || '100vw'
 
   return (
     <section className='relative h-auto min-h-screen md:min-h-[120vh] lg:min-h-[140vh] w-full overflow-hidden'>
@@ -101,7 +110,10 @@ const MidSection = ({
         </div>
       )}
       <OptimizedImage
-        src={backgroundPath}
+        src={backgroundSrc}
+        fallbackSrc={backgroundFallback}
+        srcSet={backgroundSrcSet}
+        sizes={backgroundSizes}
         alt='Section Background'
         width={1920}
         height={1080}
