@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+// eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion'
 import { ServiceCard, OptimizedImage } from '../../components/ui'
 import { evImgs } from '../../utils/localAssets'

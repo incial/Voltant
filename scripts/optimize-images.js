@@ -58,7 +58,6 @@ function updateReferences() {
      const ext = path.extname(file).toLowerCase();
      if (ext === '.jsx' || ext === '.js' || ext === '.ts' || ext === '.tsx' || ext === '.css') {
         let content = fs.readFileSync(file, 'utf8');
-        let updated = false;
         
         // Simple replace for .png/.jpg/.jpeg to .webp
         // This regex looks for these extensions followed by a quote or parenthesis or end of line, trying to be safe

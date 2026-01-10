@@ -14,6 +14,7 @@
 import sharp from 'sharp';
 import fs from 'fs';
 import path from 'path';
+import process from 'node:process';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
