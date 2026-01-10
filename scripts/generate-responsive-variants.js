@@ -12,22 +12,21 @@ const TARGET_CONFIG = [
     label: 'EV Charging',
     directory: path.join(SOURCE_ROOT, 'EV_charging'),
     widths: [480, 768, 1200, 1600],
-    quality: 70
   },
   {
     label: 'Waste To Energy',
     directory: path.join(SOURCE_ROOT, 'WateTOEnergy'),
     widths: [480, 768, 1200, 1600],
-    quality: 70
   }
 ];
 
-const VARIANT_SUFFIX_PATTERN = /-\d+w\.webp$/i;
+const VARIANT_SUFFIX_PATTERN = /-\d+w\.png$/i;
 
-async function ensureVariant(filePath, width, quality) {
+async function ensureVariant(filePath, width) {
   const directory = path.dirname(filePath);
-  const baseName = path.basename(filePath, '.webp');
-  const targetName = `${baseName}-${width}w.webp`;
+  const extension = path.extname(filePath);
+  const baseName = path.basename(filePath, extension);
+  const targetName = `${baseName}-${width}w${extension}`;
   const targetPath = path.join(directory, targetName);
 
   try {
@@ -46,7 +45,7 @@ async function ensureVariant(filePath, width, quality) {
 
   await image
     .resize({ width, withoutEnlargement: true })
-    .webp({ quality, effort: 5 })
+    .png({ compressionLevel: 9 })
     .toFile(targetPath);
 
   const stats = await fs.stat(targetPath);
@@ -57,23 +56,23 @@ async function ensureVariant(filePath, width, quality) {
   };
 }
 
-async function processDirectory(directory, widths, quality) {
+async function processDirectory(directory, widths) {
   const created = [];
   const entries = await fs.readdir(directory, { withFileTypes: true });
 
   for (const entry of entries) {
     const fullPath = path.join(directory, entry.name);
     if (entry.isDirectory()) {
-      const nested = await processDirectory(fullPath, widths, quality);
+      const nested = await processDirectory(fullPath, widths);
       created.push(...nested);
       continue;
     }
 
-    if (!entry.isFile() || !entry.name.toLowerCase().endsWith('.webp')) continue;
+    if (!entry.isFile() || !entry.name.toLowerCase().endsWith('.png')) continue;
     if (VARIANT_SUFFIX_PATTERN.test(entry.name)) continue;
 
     for (const width of widths) {
-      const variant = await ensureVariant(fullPath, width, quality);
+      const variant = await ensureVariant(fullPath, width);
       if (variant) created.push(variant);
     }
   }
@@ -82,10 +81,10 @@ async function processDirectory(directory, widths, quality) {
 }
 
 async function main() {
-  console.log('Generating responsive WebP variants...');
+  console.log('Generating responsive PNG variants...');
   for (const config of TARGET_CONFIG) {
     console.log(`-> ${config.label}`);
-    const results = await processDirectory(config.directory, config.widths, config.quality);
+    const results = await processDirectory(config.directory, config.widths);
     if (!results.length) {
       console.log('  No new variants required.');
       continue;
