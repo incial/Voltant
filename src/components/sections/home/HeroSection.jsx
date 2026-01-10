@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { motion } from 'framer-motion';
 import {
   FaYoutube,
   FaInstagram,
@@ -160,7 +161,7 @@ const HeroSection = () => {
               className="w-full h-full object-cover"
               loading={index === 0 ? 'eager' : 'lazy'}
               decoding={index === 0 ? 'sync' : 'async'}
-              fetchpriority={index === 0 ? 'high' : 'low'}
+              fetchPriority={index === 0 ? 'high' : 'low'}
               onLoad={index === 0 ? handleFirstImageLoad : undefined}
               draggable={false}
             />

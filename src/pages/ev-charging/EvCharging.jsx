@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { motion } from 'framer-motion'
 import { ServiceCard } from '../../components/ui'
 import { evImgs } from '../../utils/localAssets'
 

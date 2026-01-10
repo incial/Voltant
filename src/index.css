@@ -108,11 +108,7 @@ img {
 /* ============================================
    FONT DECLARATIONS
    ============================================ */
-@font-face {
-  font-family: "Cairo";
-  src: url("https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&display=swap");
-  font-display: swap;
-}
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&display=swap');
 
 /* ============================================
    CUSTOM SCROLLBAR
