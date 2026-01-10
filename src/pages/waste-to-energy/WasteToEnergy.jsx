@@ -3,8 +3,6 @@ import { motion } from "framer-motion";
 import { Navbar, Footer } from "../../components/layout";
 import { ServiceCard } from "../../components/ui";
 import { Link } from "react-router-dom";
-// eslint-disable-next-line no-unused-vars
-import { motion } from "framer-motion";
 import { vids, wasteImgs } from "../../utils/localAssets";
 
 const WasteToEnergy = () => {
