@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { ServiceCard } from "../../components/ui";
+import { ServiceCard, OptimizedImage } from "../../components/ui";
 import { wasteImgs } from "../../utils/localAssets";
 import { isIOS } from "../../utils/device";
 
@@ -70,12 +70,15 @@ const WasteToEnergy = () => {
                 <div className="w-6 h-6 border-4 border-green-400 border-t-transparent rounded-full animate-spin" />
               </div>
             )}
-            <img
+            <OptimizedImage
               src="/assets/images/WateTOEnergy/main.webp"
               alt="Waste to Energy"
               className="w-full h-full object-cover transform-gpu"
+              loading="eager"
+              decoding="async"
               onLoad={() => setImageLoaded(true)}
               style={{ objectPosition: "70% 80%" }}
+              preload
             />
             <div className="absolute inset-0 bg-black opacity-40"></div>
           </div>
@@ -135,12 +138,15 @@ const WasteToEnergy = () => {
                 <div className="w-6 h-6 border-4 border-green-400 border-t-transparent rounded-full animate-spin" />
               </div>
             )}
-            <img
+            <OptimizedImage
               src="/assets/images/WateTOEnergy/main.webp"
               alt="Waste to Energy"
               className="w-full h-full object-cover transform-gpu"
+              loading="eager"
+              decoding="async"
               onLoad={() => setImageLoaded(true)}
               style={{ objectPosition: "50% 45%" }}
+              preload
             />
             <div className="absolute inset-0 bg-black opacity-40"></div>
           </div>

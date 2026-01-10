@@ -2,6 +2,7 @@ import React from 'react'
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion'
 import { isIOS } from '../../../utils/device'
+import { OptimizedImage } from '../../ui'
 
 // Animation variants
 const buttonAnimation = {
@@ -59,7 +60,7 @@ const MobileView = ({
                   <div className='mb-4 relative w-full'>
                     {' '}
                       <div className='w-full h-64 bg-white rounded-xl relative overflow-hidden'>
-                      <img
+                      <OptimizedImage
                         src={model.imageUrl}
                         alt='Charger Image'
                         width={256}
@@ -214,7 +215,7 @@ const MobileView = ({
                       <div className='mb-4 relative w-full'>
                         {' '}
                         <div className='w-full h-64 bg-white rounded-xl relative overflow-hidden'>
-                          <img
+                          <OptimizedImage
                             src={model.imageUrl}
                             alt='Charger Image'
                             width={300}

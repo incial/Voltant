@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+// eslint-disable-next-line no-unused-vars
+import { motion } from 'framer-motion'
 import { heroIcons } from '../../../utils/localAssets'
 import { Link } from 'react-router-dom'
+import { OptimizedImage } from '../../ui'
 
 const images = [
   {
@@ -71,7 +73,7 @@ const SplitHoverImages = () => {
             }}
           >
             {/* Top-right Icon */}
-            <img
+            <OptimizedImage
               src={item.icon}
               alt={`${item.id} icon`}
               width={64}
@@ -88,7 +90,7 @@ const SplitHoverImages = () => {
               animate={{ scale: !isMobile && isActive ? 1.02 : 1 }}
               transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
             >
-              <img
+              <OptimizedImage
                 src={item.img}
                 alt={item.title}
                 width={1920}
@@ -96,9 +98,10 @@ const SplitHoverImages = () => {
                 className='w-full h-full object-cover transition-opacity duration-1000'
                 loading='eager'
                 decoding='async'
-                fetchPriority='high'
+                fetchPriority={item.id === images[0].id ? 'high' : undefined}
                 draggable={false}
                 style={{ opacity: 1 }}
+                preload={item.id === images[0].id}
               />
             </motion.div>
 

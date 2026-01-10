@@ -5,6 +5,7 @@ import {
   SeamlessChargingSection,
   MidSection
 } from '../../components/sections/shared'
+import { OptimizedImage } from '../../components/ui'
 import { smartWasteData } from '../../data/waste-to-energy/smart-waste'
 import { isIOS } from '../../utils/device'
 
@@ -48,10 +49,12 @@ const SmartWaste = () => {
             <div className='max-w-6xl mx-auto px-4'>
               {/* Image */}
               <div className='text-center'>
-                <img
+                <OptimizedImage
                   src={smartWasteData.imageSection.image}
                   alt={smartWasteData.imageSection.alt}
                   className='mx-auto w-full max-w-4xl object-contain mb-10'
+                  loading='lazy'
+                  decoding='async'
                 />
               </div>
 

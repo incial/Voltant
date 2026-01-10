@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { homeImgs } from "../../../utils/localAssets";
+import { OptimizedImage } from '../../ui'
 
 const VideoBanner = () => {
   const [imageLoaded, setImageLoaded] = useState(false)
@@ -14,7 +15,7 @@ const VideoBanner = () => {
             <div className="w-12 h-12 border-4 border-green-400 border-t-transparent rounded-full animate-spin" />
           </div>
         )}
-        <img
+        <OptimizedImage
           src={homeImgs.DescriptionBg}
           className='absolute inset-0 w-full h-full object-cover object-bottom z-0'
           alt='Background'
