@@ -2,11 +2,30 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import OptimizedImage from './OptimizedImage'
+import { getResponsiveAsset } from '../../utils/responsiveAssets'
 
 const MotionOptimizedImage = motion(OptimizedImage)
 
 const ServiceCard = ({ title, image, path }) => {
   const [imageLoaded, setImageLoaded] = useState(false)
+  const responsiveEntry = typeof image === 'string' ? getResponsiveAsset(image) : undefined
+  const imageConfig = typeof image === 'string'
+    ? (responsiveEntry ? { ...responsiveEntry, src: responsiveEntry.src } : { src: image })
+    : image
+  const fallbackAlt = typeof title === 'string' ? title : 'Service image'
+  const imageAlt = imageConfig?.alt || fallbackAlt
+  const handleLoad = () => setImageLoaded(true)
+  const commonImageProps = {
+    src: imageConfig?.src,
+    fallbackSrc: imageConfig?.fallbackSrc,
+    srcSet: imageConfig?.srcSet,
+    sizes: imageConfig?.sizes || '(max-width: 768px) 50vw, 370px',
+    alt: imageAlt,
+    loading: 'lazy',
+    decoding: 'async',
+    className: 'w-full h-full object-cover',
+    onLoad: handleLoad
+  }
 
   return (
     <Link to={path} className="relative group overflow-hidden cursor-pointer font-['Cairo'] w-full">
@@ -18,14 +37,9 @@ const ServiceCard = ({ title, image, path }) => {
           </div>
         )}
         <OptimizedImage
-          src={image}
-          alt={title}
+          {...commonImageProps}
           width={400}
           height={400}
-          className="w-full h-full object-cover"
-          loading="lazy"
-          decoding="async"
-          onLoad={() => setImageLoaded(true)}
           style={{ opacity: imageLoaded ? 1 : 0, transition: 'opacity 1.2s cubic-bezier(0.4,0,0.2,1)' }}
         />
         <div className="absolute inset-0 bg-black opacity-30"></div>
@@ -48,14 +62,9 @@ const ServiceCard = ({ title, image, path }) => {
           </div>
         )}
         <MotionOptimizedImage
-          src={image}
-          alt={title}
+          {...commonImageProps}
           width={370}
           height={300}
-          className="w-full h-full object-cover"
-          loading="lazy"
-          decoding="async"
-          onLoad={() => setImageLoaded(true)}
           style={{ opacity: imageLoaded ? 1 : 0, transition: 'opacity 1.2s cubic-bezier(0.4,0,0.2,1)' }}
           variants={{
             rest: { scale: 1, rotate: 0, transition: { type: 'spring', stiffness: 60, damping: 16, mass: 0.8 } },

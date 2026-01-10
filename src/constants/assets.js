@@ -20,6 +20,7 @@ const ASSET_PATHS = {
 export const LOGOS = {
   main: `${ASSET_PATHS.images}/Home/Logo.webp`,
   white: `${ASSET_PATHS.images}/Home/Logo_white.webp`,
+  whitePng: `${ASSET_PATHS.images}/Home/Logo_white.png`,
   icon: `${ASSET_PATHS.images}/Home/Logo_icon.webp`
 };
 

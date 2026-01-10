@@ -2,36 +2,39 @@ import React, { useState } from 'react'
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion'
 import { ServiceCard, OptimizedImage } from '../../components/ui'
-import { evImgs } from '../../utils/localAssets'
+import { EV_RESPONSIVE_IMAGES } from '../../utils/responsiveAssets'
 
 const EvCharging = () => {
   const [imageLoaded, setImageLoaded] = useState(false)
+
+  const cardSizes = '(max-width: 768px) 50vw, 370px'
+  const heroImage = EV_RESPONSIVE_IMAGES.dcHero
 
   // Services data array
   const services = [
     {
       title: 'AC Chargers',
-      image: evImgs.acCharger,
+      image: { ...EV_RESPONSIVE_IMAGES.acCharger, sizes: cardSizes },
       path: '/ev-charging/ac-chargers'
     },
     {
       title: 'DC Chargers',
-      image: evImgs.dcCharger,
+      image: { ...EV_RESPONSIVE_IMAGES.dcAlt, sizes: cardSizes },
       path: '/ev-charging/dc-chargers'
     },
     {
       title: 'Engineering Works',
-      image: evImgs.engineeringWorks,
+      image: { ...EV_RESPONSIVE_IMAGES.engineeringWorks, sizes: cardSizes },
       path: '/ev-charging/engineering-works'
     },
     {
       title: 'CPO',
-      image: evImgs.cpo,
+      image: { ...EV_RESPONSIVE_IMAGES.cpoHero, sizes: cardSizes },
       path: '/ev-charging/cpo'
     },
     {
       title: 'More',
-      image: evImgs.more,
+      image: { ...EV_RESPONSIVE_IMAGES.moreHero, sizes: cardSizes },
       path: '/ev-charging/more'
     }
   ]
@@ -50,7 +53,10 @@ const EvCharging = () => {
               </div>
             )}
             <OptimizedImage
-              src="/assets/images/EV_charging/EV_main1.webp"
+              src={heroImage.src}
+              fallbackSrc={heroImage.fallbackSrc}
+              srcSet={heroImage.srcSet}
+              sizes="(max-width: 768px) 100vw, 1600px"
               alt="EV Charging"
               className="w-full h-full object-cover"
               loading="eager"
@@ -100,7 +106,10 @@ const EvCharging = () => {
               </div>
             )}
             <OptimizedImage
-              src="/assets/images/EV_charging/EV_main1.webp"
+              src={heroImage.src}
+              fallbackSrc={heroImage.fallbackSrc}
+              srcSet={heroImage.srcSet}
+              sizes="(max-width: 768px) 100vw, 1600px"
               alt="EV Charging"
               className='w-full h-full object-cover'
               loading='eager'
