@@ -17,6 +17,7 @@ const OptimizedImage = ({
   ...rest
 }) => {
   const supportsWebP = useMemo(() => supportsWebp(), []);
+<<<<<<< HEAD
   const computedFallback = useMemo(() => {
     if (fallbackSrc) return fallbackSrc;
     if (typeof src === 'string' && src.toLowerCase().endsWith('.webp')) {
@@ -27,9 +28,11 @@ const OptimizedImage = ({
     }
     return undefined;
   }, [src, fallbackSrc]);
+=======
+>>>>>>> parent of 1d60c50 (Add JPEG fallback generation for WebP images and update OptimizedImage component to support fallbacks)
   const resolvedSrc = useMemo(
-    () => getPreferredImage(src, computedFallback, supportsWebP),
-    [src, computedFallback, supportsWebP]
+    () => getPreferredImage(src, fallbackSrc, supportsWebP),
+    [src, fallbackSrc, supportsWebP]
   );
 
   useEffect(() => {
