@@ -18,16 +18,20 @@ const RecentWorks = () => {
     'Image 24.webp'
   ];
 
+  console.log('Total images:', showcaseImages.length);
+
   const cards = showcaseImages.map((img, index) => ({
     img: `/assets/images/showcaseimages/${encodeURIComponent(img)}`,
-    alt: `Showcase ${index + 13}`
+    alt: `Showcase ${index + 13}`,
+    isImage22: img === 'Image 22.png',
+    isImage19: img === 'Image 19.png'
   }));
 
   // For infinite scroll, clone cards at both ends
   const infiniteCards = [
-    ...cards.slice(-4),
+    ...cards.slice(-3),
     ...cards,
-    ...cards.slice(0, 4)
+    ...cards.slice(0, 3)
   ];
 
   // Ref for the scrollable card row
@@ -66,7 +70,7 @@ const RecentWorks = () => {
     const cardWidth = card.offsetWidth + parseInt(getComputedStyle(card).marginRight);
     
     // On mount, scroll to the first real card
-    row.scrollLeft = cardWidth * 4;
+    row.scrollLeft = cardWidth * 3;
 
     // Auto-scroll interval (scroll right to left continuously)
     const autoScrollInterval = setInterval(() => {
@@ -78,15 +82,19 @@ const RecentWorks = () => {
     // Handle infinite scroll loop
     const onScroll = () => {
       if (isAdjusting.current) return;
-      const maxScroll = cardWidth * (cards.length + 4);
+      const maxScroll = row.scrollWidth - row.clientWidth;
+      const currentScroll = row.scrollLeft;
       
-      if (row.scrollLeft <= 0) {
+      // When scrolling near the end, jump back to start of real content
+      if (currentScroll >= maxScroll - cardWidth) {
         isAdjusting.current = true;
-        row.scrollLeft = cardWidth * cards.length;
+        row.scrollLeft = cardWidth * 3;
         setTimeout(() => { isAdjusting.current = false; }, 10);
-      } else if (row.scrollLeft >= maxScroll) {
+      } 
+      // When scrolling near the beginning, jump to end of real content
+      else if (currentScroll <= cardWidth) {
         isAdjusting.current = true;
-        row.scrollLeft = cardWidth * 4;
+        row.scrollLeft = cardWidth * (cards.length + 2);
         setTimeout(() => { isAdjusting.current = false; }, 10);
       }
     };
@@ -141,7 +149,9 @@ const RecentWorks = () => {
               <div
                 key={card.img + idx}
                 data-card
-                className='h-40 sm:h-44 md:h-48 lg:h-52 xl:h-56 w-48 sm:w-56 md:w-60 lg:w-64 xl:w-72 shrink-0 rounded-xl md:rounded-2xl shadow-md overflow-hidden cursor-pointer transition-shadow duration-500'
+                className={`h-64 sm:h-72 md:h-80 lg:h-88 xl:h-96 w-72 sm:w-80 md:w-88 lg:w-96 xl:w-[26rem] shrink-0 rounded-xl md:rounded-2xl shadow-md overflow-hidden cursor-pointer transition-shadow duration-500 ${
+                  card.isImage22 ? 'bg-[#d4824a]' : card.isImage19 ? 'bg-gray-900' : ''
+                }`}
                 title={card.alt}
                 onMouseEnter={() => {
                   isPaused.current = true;
@@ -153,7 +163,7 @@ const RecentWorks = () => {
                 }}
               >
                 <div
-                  className={`w-full h-full bg-cover bg-center transition-transform duration-500 ${
+                  className={`w-full h-full ${card.isImage22 || card.isImage19 ? 'bg-contain bg-no-repeat' : 'bg-cover'} bg-center transition-transform duration-500 ${
                     hoveredCard === idx ? 'scale-110' : 'scale-100'
                   }`}
                   style={{ backgroundImage: `url(${card.img})` }}

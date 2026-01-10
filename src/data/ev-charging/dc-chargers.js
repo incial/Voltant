@@ -136,14 +136,14 @@ export const dcChargersData = {
     buttonText2: 'Download Charging Profile',
     showButton: true,
     showButton2: true,
-    pdfUrl: null,
+    pdfUrl: CHARGING_PROFILE_PDF.url,
     pdfUrl2: CHARGING_PROFILE_PDF.url
   },
 
   downloads: {
     datasheet: {
       label: 'Download Datasheet',
-      url: null,
+      url: CHARGING_PROFILE_PDF.url,
       enabled: true
     },
     profile: {
