@@ -1,6 +1,7 @@
 import React from 'react'
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion'
+import { isIOS } from '../../../utils/device'
 
 // Animation variants
 const buttonAnimation = {
@@ -20,9 +21,6 @@ const buttonAnimation = {
 const buttonStyles = 'text-base md:text-lg font-normal text-center leading-none px-6 md:px-9 py-[16px] rounded-[31px] border-[#7F7F7F] border-solid border-2 hover:bg-[rgba(127,127,127,0.1)] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[rgba(127,127,127,0.3)]'
 const mobileButtonStyles = 'w-64 text-base md:text-lg font-normal text-center leading-none px-6 md:px-9 py-[16px] rounded-[31px] border-[#7F7F7F] border-solid border-2 hover:bg-[rgba(127,127,127,0.1)] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[rgba(127,127,127,0.3)]'
 
-// Generate filename for download
-const getFilename = (title, subtitle) => `${title}-${subtitle}-Charging-Profile.pdf`
-
 const MobileView = ({
   title,
   subtitle,
@@ -34,6 +32,8 @@ const MobileView = ({
   showButton2 = false,
   pdfUrl2
 }) => {
+  const iosDevice = isIOS;
+
   return (
     <div className='bg-white'>
         {/* Fixed header section */}
@@ -120,7 +120,6 @@ const MobileView = ({
               >
                 <a
                   href={pdfUrl2}
-                  download={getFilename()}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={mobileButtonStyles}
@@ -141,7 +140,6 @@ const MobileView = ({
               >
                 <a
                   href={pdfUrl2}
-                  download={getFilename()}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={mobileButtonStyles}
@@ -150,6 +148,11 @@ const MobileView = ({
                   {buttonText2}
                 </a>
               </motion.div>
+            )}
+            {iosDevice && (
+              <p className='text-xs text-gray-500 text-center px-6'>
+                Tip: Tap Share → Save to Files to keep this brochure on iPhone.
+              </p>
             )}
           </div>
         )}
@@ -168,6 +171,8 @@ const MobileView = ({
     showButton2 = false,
     pdfUrl2
   }) => {
+    const iosDevice = isIOS;
+
     return (
       <div
         className='overflow-x-auto bg-white py-8 w-full'
@@ -279,7 +284,6 @@ const MobileView = ({
                 >
                   <a
                     href={pdfUrl2}
-                    download={getFilename()}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={buttonStyles}
@@ -300,7 +304,6 @@ const MobileView = ({
                 >
                   <a
                     href={pdfUrl2}
-                    download={getFilename()}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={buttonStyles}
@@ -311,6 +314,11 @@ const MobileView = ({
                 </motion.div>
               )}
             </div>
+          )}
+          {iosDevice && (showButton || showButton2) && (
+            <p className='text-xs text-gray-500 text-center mb-10'>
+              Tip: Tap Share → Save to Files to store this PDF on iPhone.
+            </p>
           )}
         </div>
         </div>

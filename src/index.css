@@ -351,6 +351,47 @@ img {
    Note: All component-specific styles moved to components
    ============================================ */
 @layer components {
+  /* Hero background handling */
+  .hero-section {
+    min-height: 100vh;
+    background-color: #000000;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    will-change: auto;
+  }
+
+  @supports (height: 100svh) {
+    .hero-section {
+      min-height: 100svh;
+    }
+  }
+
+  .hero-background-layer {
+    position: absolute;
+    inset: 0;
+  }
+
+  .hero-frame {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 1000ms ease-in-out;
+    will-change: opacity;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  .hero-frame--active {
+    opacity: 1;
+  }
+
   /* Header / Navbar */
   header {
     @apply w-screen fixed top-0 left-0 z-50 flex items-center justify-center min-h-[7vh];
