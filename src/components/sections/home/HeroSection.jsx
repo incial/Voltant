@@ -8,16 +8,12 @@ import {
   FaXTwitter
 } from 'react-icons/fa6';
 import { isIOS } from '../../../utils/device';
-import {
-  getPreferredImage,
-  preloadImages,
-  supportsWebp
-} from '../../../utils/imageSupport';
+import { preloadImages } from '../../../utils/imageSupport';
 
 const heroFrames = [
   {
-    webp: '/images/hero/hero1-1920w.webp',
-    fallback: '/images/hero/hero1-1200w.jpg',
+    src: '/assets/images/Home/Hero/hero1.png',
+    mobileSrc: '/assets/images/Home/Hero/hero1-mobile.png',
     title: (
       <>
         For a Sustainable Tomorrow,<br />Save Energy Today.
@@ -25,8 +21,8 @@ const heroFrames = [
     )
   },
   {
-    webp: '/images/hero/hero2-1920w.webp',
-    fallback: '/images/hero/hero2-1200w.jpg',
+    src: '/assets/images/Home/Hero/hero2.png',
+    mobileSrc: '/assets/images/Home/Hero/hero2-mobile.png',
     title: (
       <>
         Turning Waste into Power,<br /> Fueling a Greener Future.
@@ -34,8 +30,8 @@ const heroFrames = [
     )
   },
   {
-    webp: '/images/hero/hero3-1920w.webp',
-    fallback: '/images/hero/hero3-1200w.jpg',
+    src: '/assets/images/Home/Hero/hero3.png',
+    mobileSrc: '/assets/images/Home/Hero/hero3-mobile.png',
     title: (
       <>
         Maximize Efficiency,<br /> Minimize Waste.
@@ -55,10 +51,9 @@ const HeroSection = () => {
   const iosDevice = isIOS;
   const enableMotion = !iosDevice;
 
-  const supportsWebP = useMemo(() => supportsWebp(), []);
   const frameSources = useMemo(
-    () => heroFrames.map((frame) => getPreferredImage(frame.webp, frame.fallback, supportsWebP)),
-    [supportsWebP]
+    () => heroFrames.map((frame) => isMobile ? frame.mobileSrc : frame.src),
+    [isMobile]
   );
 
   useEffect(() => {
@@ -143,7 +138,7 @@ const HeroSection = () => {
             key={index}
             className={frameClassName(index)}
             style={{
-              backgroundImage: `url(${frameSources[index] || frame.fallback})`
+              backgroundImage: `url(${frameSources[index]})`
             }}
           />
         ))}

@@ -1,47 +1,39 @@
 import React, { useRef, useEffect, useState, useMemo } from 'react'
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
-import { preloadImages, getPreferredImage, supportsWebp } from '../../../utils/imageSupport'
+import { preloadImages } from '../../../utils/imageSupport'
 import { OptimizedImage } from '../../ui'
 
 const SHOWCASE_BASE_PATH = '/assets/images/showcaseimages'
 const SHOWCASE_IMAGES = [
-  { name: 'Image 13', webp: 'Image 13.webp', fallback: 'Image 13(1).png' },
-  { name: 'Image 14', webp: 'Image 14.webp' },
-  { name: 'Image 15', webp: 'Image 15.webp' },
-  { name: 'Image 16', webp: 'Image 16.webp' },
-  { name: 'Image 17', webp: 'Image 17.webp' },
-  { name: 'Image 18', webp: 'Image 18.webp', fallback: 'Image 18d.png' },
-  { name: 'Image 19', webp: 'Image 19.webp' },
-  { name: 'Image 20', webp: 'Image 20.webp' },
-  { name: 'Image 21', webp: 'Image 21.webp' },
-  { name: 'Image 22', webp: 'Image 22.webp' },
-  { name: 'Image 23', webp: 'Image 23.webp' },
-  { name: 'Image 24', webp: 'Image 24.webp' }
+  { name: 'Image 13', src: 'Image 13.png' },
+  { name: 'Image 14', src: 'Image 14.png' },
+  { name: 'Image 15', src: 'Image 15.png' },
+  { name: 'Image 16', src: 'Image 16.png' },
+  { name: 'Image 17', src: 'Image 17.png' },
+  { name: 'Image 18', src: 'Image 18.png' },
+  { name: 'Image 19', src: 'Image 19.png' },
+  { name: 'Image 20', src: 'Image 20.png' },
+  { name: 'Image 21', src: 'Image 21.png' },
+  { name: 'Image 22', src: 'Image 22.png' },
+  { name: 'Image 23', src: 'Image 23.png' },
+  { name: 'Image 24', src: 'Image 24.png' }
 ]
 
 const RecentWorks = () => {
-  const supportsWebP = useMemo(() => supportsWebp(), [])
   const cards = useMemo(
     () =>
       SHOWCASE_IMAGES.map((image, index) => {
-        const webpPath = image.webp
-          ? `${SHOWCASE_BASE_PATH}/${encodeURIComponent(image.webp)}`
-          : undefined
-        const fallbackPath = image.fallback
-          ? `${SHOWCASE_BASE_PATH}/${encodeURIComponent(image.fallback)}`
-          : undefined
-        const resolvedSrc = getPreferredImage(webpPath, fallbackPath, supportsWebP)
+        const imagePath = `${SHOWCASE_BASE_PATH}/${encodeURIComponent(image.src)}`
 
         return {
-          webp: webpPath,
-          fallback: fallbackPath,
-          resolved: resolvedSrc,
+          src: imagePath,
+          resolved: imagePath,
           alt: image.alt || `Showcase ${index + 13}`,
           isImage22: image.name === 'Image 22',
           isImage19: image.name === 'Image 19'
         }
       }),
-    [supportsWebP]
+    []
   )
 
   useEffect(() => {
@@ -194,8 +186,7 @@ const RecentWorks = () => {
                   }`}
                 >
                   <OptimizedImage
-                    src={card.webp}
-                    fallbackSrc={card.fallback}
+                    src={card.resolved}
                     alt={card.alt}
                     width={416}
                     height={384}

@@ -1,7 +1,26 @@
 /**
  * Local Assets Utility
  * Provides shorter named imports for local images, videos, and icons
+ * 
+ * @deprecated This file is maintained for backward compatibility.
+ * Please migrate to using '@constants/assets' instead.
+ * 
+ * New usage:
+ * import { LOGOS, EV_IMAGES, WASTE_IMAGES } from '@constants/assets';
+ * import { ICONS } from '@constants/assets/icons';
  */
+
+// Re-export from new modular system for forward compatibility
+export {
+  preloadImage,
+  preloadImages,
+  preloadVideo,
+  preloadVideos,
+} from '@constants/assets/loaders';
+
+// =============================================================================
+// LEGACY EXPORTS (maintained for backward compatibility)
+// =============================================================================
 
 
 
@@ -59,6 +78,7 @@ export const homeImgs = {
   aboutUs: '/assets/images/Home/About_us.png',
   aboutUsSection: '/assets/images/Home/About_us.png', // For WhoAreWe background
   aboutSectionSubLogo: '/assets/images/Home/sub_logo.png',
+  aboutBanner: '/assets/images/Home/Descpition.png', // High-quality banner for VideoBanner section
   connectWithUsBg: '/assets/images/Home/ConnecwithusBg.png',
   DescriptionBg: '/assets/images/Home/Descpition.png',
   footerImage: '/assets/images/Home/Footer.png', // For footer_image.webp reference
@@ -169,21 +189,6 @@ export const getIconSrc = (iconKey) => {
   }
 
   return heroIcons[iconKey];
-};
-
-// Helper function to preload videos for better performance
-export const preloadVideo = (videoSrc) => {
-  if (!videoSrc) return;
-
-  const video = document.createElement('video');
-  video.preload = 'metadata';
-  video.src = videoSrc;
-  video.load();
-};
-
-// Helper function to preload multiple videos
-export const preloadVideos = (videoSources) => {
-  videoSources.forEach(src => preloadVideo(src));
 };
 
 // Common exports for easy importing

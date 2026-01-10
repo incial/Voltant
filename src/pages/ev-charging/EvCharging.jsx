@@ -49,7 +49,7 @@ const EvCharging = () => {
               </div>
             )}
             <OptimizedImage
-              src="/assets/images/EV_charging/EV_main1.webp"
+              src="/assets/images/EV_charging/EV_main1.png"
               alt="EV Charging"
               className="w-full h-full object-cover"
               loading="eager"
@@ -99,7 +99,7 @@ const EvCharging = () => {
               </div>
             )}
             <OptimizedImage
-              src="/assets/images/EV_charging/EV_main1.webp"
+              src="/assets/images/EV_charging/EV_main1.png"
               alt="EV Charging"
               className='w-full h-full object-cover'
               loading='eager'

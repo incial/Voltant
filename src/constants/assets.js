@@ -1,11 +1,22 @@
 /**
  * Asset Path Constants
- * Centralized asset path management with lazy loading support
+ * DEPRECATED: This file is maintained for backward compatibility.
+ * Please use imports from '@constants/assets' folder instead.
+ * 
+ * @deprecated Use src/constants/assets/index.js instead
  * @module constants/assets
  */
 
+// Re-export everything from new modular structure
+export * from './assets/index';
+
+// =============================================================================
+// LEGACY EXPORTS (for backward compatibility - will be removed in future)
+// =============================================================================
+
 /**
  * Base paths for different asset types
+ * @deprecated Use ASSET_PATHS from './assets/paths' instead
  */
 const ASSET_PATHS = {
   images: '/assets/images',
@@ -16,6 +27,7 @@ const ASSET_PATHS = {
 
 /**
  * Logo assets
+ * @deprecated Use LOGOS from './assets/images' instead
  */
 export const LOGOS = {
   main: `${ASSET_PATHS.images}/Home/Logo.png`,
@@ -26,6 +38,7 @@ export const LOGOS = {
 
 /**
  * Icon assets organized by category
+ * @deprecated Use ICONS from './assets/icons' instead
  */
 export const ICONS = {
   // Energy & Power

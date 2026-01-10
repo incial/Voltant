@@ -71,7 +71,7 @@ const WasteToEnergy = () => {
               </div>
             )}
             <OptimizedImage
-              src="/assets/images/WateTOEnergy/main.webp"
+              src="/assets/images/WateTOEnergy/main.png"
               alt="Waste to Energy"
               className="w-full h-full object-cover transform-gpu"
               loading="eager"
@@ -139,7 +139,7 @@ const WasteToEnergy = () => {
               </div>
             )}
             <OptimizedImage
-              src="/assets/images/WateTOEnergy/main.webp"
+              src="/assets/images/WateTOEnergy/main.png"
               alt="Waste to Energy"
               className="w-full h-full object-cover transform-gpu"
               loading="eager"
