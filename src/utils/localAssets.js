@@ -23,14 +23,14 @@ export const vids = {
   // Fallback for missing video files
   evCharging: '/Videos/SubHeroVid1.mp4', // Fallback for EV_charging _video.mp4
   wasteToEnergy: '/Videos/SubHeroVid2.mp4', // Fallback for Waste_To_Energy.mp4
-  videoBanner: '/assets/images/Home/About_Banner.jpg', // Fallback for Video_Banner.mp4
+  videoBanner: '/assets/images/Home/About_Banner.webp', // Fallback for Video_Banner.mp4
   connectWithUs: '/Videos/Subfooter.mp4' // Fallback for Connectwithus.mp4
 };
 
 // Logo and Brand Assets
 export const logos = {
   main: '/assets/images/Home/Logo.webp',
-  explore: '/assets/images/Home/logo1.png',
+  explore: '/assets/images/Home/logo1.webp',
   white: '/assets/images/Home/Logo_white.webp',
   icon: '/assets/images/Home/Logo_icon.webp'
 };
@@ -74,30 +74,30 @@ export const heroIcons = {
 export const homeImgs = {
   aboutUs: '/assets/images/Home/About_us.webp',
   aboutUsSection: '/assets/images/Home/About_us.webp', // For WhoAreWe background
-  aboutSectionSubLogo: '/assets/images/Home/sub_logo.png',
-  connectWithUsBg: '/assets/images/Home/ConnecwithusBg.png',
-  DescriptionBg: '/assets/images/Home/Descpition.png',
-  footerImage: '/assets/images/Home/Footer.webp', // For footer_image.png reference
+  aboutSectionSubLogo: '/assets/images/Home/sub_logo.webp',
+  connectWithUsBg: '/assets/images/Home/ConnecwithusBg.webp',
+  DescriptionBg: '/assets/images/Home/Descpition.webp',
+  footerImage: '/assets/images/Home/Footer.webp', // For footer_image.webp reference
   footerPng: '/assets/images/Home/Footer.webp',
   logoWhite: '/assets/images/Home/Logo_white.webp',
   logo: '/assets/images/Home/Logo.webp',
-  fallbackBg: '/assets/images/Home/About_us.webp' // Fallback for fallbackBg.png
+  fallbackBg: '/assets/images/Home/About_us.webp' // Fallback for fallbackBg.webp
 };
 
 // Showcase Images
 export const showcaseImgs = {
-  showcase1: '/assets/images/showcaseimages/Image 13.png',
-  showcase2: '/assets/images/showcaseimages/Image 14.png',
-  showcase3: '/assets/images/showcaseimages/Image 15.png',
-  showcase4: '/assets/images/showcaseimages/Image 16.png',
-  showcase5: '/assets/images/showcaseimages/Image 17.png',
-  showcase6: '/assets/images/showcaseimages/Image 18.png',
-  showcase7: '/assets/images/showcaseimages/Image 19.png',
-  showcase8: '/assets/images/showcaseimages/Image 20.png',
-  showcase9: '/assets/images/showcaseimages/Image 21.png',
-  showcase10: '/assets/images/showcaseimages/Image 22.png',
-  showcase11: '/assets/images/showcaseimages/Image 23.png',
-  showcase12: '/assets/images/showcaseimages/Image 24.png'
+  showcase1: '/assets/images/showcaseimages/Image 13.webp',
+  showcase2: '/assets/images/showcaseimages/Image 14.webp',
+  showcase3: '/assets/images/showcaseimages/Image 15.webp',
+  showcase4: '/assets/images/showcaseimages/Image 16.webp',
+  showcase5: '/assets/images/showcaseimages/Image 17.webp',
+  showcase6: '/assets/images/showcaseimages/Image 18.webp',
+  showcase7: '/assets/images/showcaseimages/Image 19.webp',
+  showcase8: '/assets/images/showcaseimages/Image 20.webp',
+  showcase9: '/assets/images/showcaseimages/Image 21.webp',
+  showcase10: '/assets/images/showcaseimages/Image 22.webp',
+  showcase11: '/assets/images/showcaseimages/Image 23.webp',
+  showcase12: '/assets/images/showcaseimages/Image 24.webp'
 };
 
 // Client Images
@@ -118,12 +118,12 @@ export const clientImgs = {
 export const evImgs = {
   acAbout: '/assets/images/EV_charging/AC_about.webp',
   acCharger: '/assets/images/EV_charging/Ac_charger.webp',
-  acChargerImage: '/assets/images/EV_charging/AC_charger_image.png',
+  acChargerImage: '/assets/images/EV_charging/AC_charger_image.webp',
   cpoAbout: '/assets/images/EV_charging/CPO_about.webp',
-  cpo: '/assets/images/EV_charging/cpo1.jpg',
+  cpo: '/assets/images/EV_charging/Cpo1.webp',
   dcAbout: '/assets/images/EV_charging/DC_about.webp',
   dcCharger: '/assets/images/EV_charging/Dc_charger.webp',
-  dcChargerImage: '/assets/images/EV_charging/DC_charger_image.png',
+  dcChargerImage: '/assets/images/EV_charging/DC_charger_image.webp',
   engineeringWorks: '/assets/images/EV_charging/Engineering_works.webp',
   ewAbout: '/assets/images/EV_charging/EW_about.webp',
   moreAbout: '/assets/images/EV_charging/More_about.webp',
@@ -135,11 +135,11 @@ export const evImgs = {
 export const wasteImgs = {
   containerizedPlant: '/assets/images/WateTOEnergy/Containerized_Plant.webp',
   cpAbout: '/assets/images/WateTOEnergy/CP_about.webp',
-  household: '/assets/images/WateTOEnergy/biogas.jpg',
+  household: '/assets/images/WateTOEnergy/biogas.webp',
   hsAbout: '/assets/images/WateTOEnergy/HS_about.webp',
   largeScalePlant: '/assets/images/WateTOEnergy/Large_Scale_plant.webp',
   lsAbout: '/assets/images/WateTOEnergy/LS_about.webp',
-  smartWaste: '/assets/images/WateTOEnergy/bins.png',
+  smartWaste: '/assets/images/WateTOEnergy/bins.webp',
   swAbout: '/assets/images/WateTOEnergy/SW_about.webp'
 };
 

@@ -6,11 +6,13 @@ export default defineConfig({
     react(),
   ],
   server: {
+    host: true,
     port: 3002,
     open: true,
   },
   build: {
-    target: 'es2015', // for iOS
+    target: ['es2015', 'safari13', 'ios13'],
+    cssTarget: ['chrome61', 'firefox60', 'safari11', 'edge18'],
     rollupOptions: {
       output: {
         manualChunks: {

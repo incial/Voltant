@@ -10,7 +10,7 @@ const images = [
     description:
       'Powering the future of mobility with smart, efficient, and scalable EV charging solutions—designed for homes, businesses, and public spaces.',
     button: 'Learn More',
-    img: '/assets/images/Home/split/split2.png',
+    img: '/assets/images/Home/split/split2.webp',
     icon: heroIcons.battery,
     link: '/ev-charging'
   },
@@ -20,7 +20,7 @@ const images = [
     description:
       'From smart modular containerized plants to large-scale anaerobic digestion solutions, we transform organic waste into sustainable energy.',
     button: 'Learn More',
-    img: '/assets/images/Home/split/split1.png',
+    img: '/assets/images/Home/split/split1.webp',
     icon: heroIcons.waterPure,
     link: '/waste-to-energy'
   }
