@@ -8,7 +8,7 @@ import {
 import { FaXTwitter } from 'react-icons/fa6'
 import { Link } from 'react-router-dom'
 import { useContactForm } from '../../context/ContactFormContext'
-import { homeImgs, logos } from '../../utils/localAssets'
+import { homeImgs, logos, showcaseImgs } from '../../utils/localAssets'
 import { RecentWorks } from '../../components/sections/home'
 
 const WhoAreWe = () => {

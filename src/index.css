@@ -1,89 +1,6 @@
-@import "tailwindcss";
-
-/* ============================================
-   TAILWIND V4 THEME CONFIGURATION
-   Replaces tailwind.config.js
-   ============================================ */
-@theme {
-  /* =======================
-     FONTS
-  ======================= */
-  --font-sans: 'Cairo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-cairo: 'Cairo', sans-serif;
-
-  /* =======================
-     COLORS
-  ======================= */
-  --color-primary: #4AB757;
-  --color-primary-dark: #3a9246;
-  --color-primary-light: #5bc768;
-
-  --color-black: #000000;
-  --color-white: #ffffff;
-
-  --color-dark-100: #86868b;
-  --color-dark-200: #2e2e30;
-  --color-dark-300: #1d1d1f;
-
-  --color-light-100: #adb5bd;
-  --color-light-200: #f5f5f7;
-
-  /* =======================
-     SPACING
-  ======================= */
-  --spacing-128: 32rem;
-  --spacing-144: 36rem;
-
-  /* =======================
-     BORDER RADIUS
-  ======================= */
-  --radius-2xl: 1.5rem;
-  --radius-3xl: 1.75rem;
-  --radius-4xl: 2rem;
-
-  /* =======================
-     SHADOWS
-  ======================= */
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  --shadow-custom: 0 10px 40px rgba(0, 0, 0, 0.1);
-
-  /* =======================
-     BACKDROP BLUR
-  ======================= */
-  --blur-xs: 2px;
-
-  /* =======================
-     ANIMATIONS
-  ======================= */
-  --animate-fadeIn: fadeIn 0.6s ease-out forwards;
-  --animate-slideInLeft: slideInLeft 0.6s ease-out forwards;
-  --animate-slideInRight: slideInRight 0.6s ease-out forwards;
-  --animate-scaleIn: scaleIn 0.4s ease-out forwards;
-
-  @keyframes fadeIn {
-    0% { opacity: 0; transform: translateY(20px); }
-    100% { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes slideInLeft {
-    0% { opacity: 0; transform: translateX(-50px); }
-    100% { opacity: 1; transform: translateX(0); }
-  }
-
-  @keyframes slideInRight {
-    0% { opacity: 0; transform: translateX(50px); }
-    100% { opacity: 1; transform: translateX(0); }
-  }
-
-  @keyframes scaleIn {
-    0% { opacity: 0; transform: scale(0.95); }
-    100% { opacity: 1; transform: scale(1); }
-  }
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /* ============================================
    iOS SAFARI FIXES
@@ -137,9 +54,23 @@ img {
 }
 
 /* ============================================
-   CSS VARIABLES / LEGACY THEME SUPPORT
+   CSS VARIABLES / THEME
    ============================================ */
 :root {
+  /* Brand Colors */
+  --color-primary: #4AB757;
+  --color-primary-dark: #3a9246;
+  --color-primary-light: #5bc768;
+  
+  /* Neutral Colors */
+  --color-black: #000000;
+  --color-white: #ffffff;
+  --color-dark-100: #86868b;
+  --color-dark-200: #2e2e30;
+  --color-dark-300: #1d1d1f;
+  --color-light-100: #adb5bd;
+  --color-light-200: #f5f5f7;
+  
   /* Gradient */
   --gradient-primary: linear-gradient(
     to bottom right,
@@ -155,6 +86,12 @@ img {
     #f2416b 74%,
     #eb7500 100%
   );
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
   
   /* Transitions */
   --transition-fast: 150ms ease-in-out;
@@ -256,7 +193,7 @@ img {
 }
 
 /* ============================================
-   UTILITY CLASSES
+   UTILITY CLASSES (Essential Only)
    ============================================ */
 @layer utilities {
   /* Text Gradient utilities - Cannot be replaced by Tailwind */
@@ -276,51 +213,19 @@ img {
 
   /* Heading utilities */
   .h1-bold {
-    font-weight: 700;
-    font-size: 2.25rem;
-    color: var(--color-white);
-  }
-  
-  @media (min-width: 1024px) {
-    .h1-bold {
-      font-size: 3.75rem;
-    }
+    @apply font-bold text-4xl lg:text-6xl text-white;
   }
   
   .h2-bold {
-    font-weight: 700;
-    font-size: 1.875rem;
-    color: var(--color-white);
-  }
-  
-  @media (min-width: 1024px) {
-    .h2-bold {
-      font-size: 3rem;
-    }
+    @apply font-bold text-3xl lg:text-5xl text-white;
   }
   
   .h3-semibold {
-    font-weight: 600;
-    font-size: 1.25rem;
-    color: var(--color-white);
-  }
-  
-  @media (min-width: 1024px) {
-    .h3-semibold {
-      font-size: 1.875rem;
-    }
+    @apply font-semibold text-xl lg:text-3xl text-white;
   }
   
   .h4-semibold {
-    font-weight: 600;
-    font-size: 1.125rem;
-    color: var(--color-white);
-  }
-  
-  @media (min-width: 1024px) {
-    .h4-semibold {
-      font-size: 1.5rem;
-    }
+    @apply font-semibold text-lg lg:text-2xl text-white;
   }
 
   /* Body text utilities */
@@ -341,52 +246,11 @@ img {
 
   /* Container utilities */
   .container-full {
-    width: 100%;
-    max-width: 80rem;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-  
-  @media (min-width: 768px) {
-    .container-full {
-      padding-left: 2rem;
-      padding-right: 2rem;
-    }
-  }
-  
-  @media (min-width: 1024px) {
-    .container-full {
-      padding-left: 5rem;
-      padding-right: 5rem;
-    }
-  }
-  
-  @media (min-width: 1536px) {
-    .container-full {
-      padding-left: 0;
-      padding-right: 0;
-    }
+    @apply container mx-auto px-4 md:px-8 lg:px-20 2xl:px-0;
   }
   
   .section-padding {
-    padding-top: 4rem;
-    padding-bottom: 4rem;
-  }
-  
-  @media (min-width: 768px) {
-    .section-padding {
-      padding-top: 6rem;
-      padding-bottom: 6rem;
-    }
-  }
-  
-  @media (min-width: 1024px) {
-    .section-padding {
-      padding-top: 8rem;
-      padding-bottom: 8rem;
-    }
+    @apply py-16 md:py-24 lg:py-32;
   }
 
   /* Button utilities */
@@ -486,115 +350,49 @@ img {
 }
 
 /* ============================================
-   COMPONENT STYLES
+   COMPONENT STYLES (Removed - Use Tailwind)
+   Note: All component-specific styles moved to components
    ============================================ */
 @layer components {
   /* Header / Navbar */
   header {
-    width: 100vw;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 50;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 7vh;
+    @apply w-screen fixed top-0 left-0 z-50 flex items-center justify-center min-h-[7vh];
     transition: background-color var(--transition-base), 
                 backdrop-filter var(--transition-base);
 
     nav {
-      width: 100%;
-      max-width: 80rem;
-      margin-left: auto;
-      margin-right: auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-left: 1.25rem;
-      padding-right: 1.25rem;
+      @apply container mx-auto flex items-center justify-between px-5 2xl:px-0;
 
       img {
-        cursor: pointer;
-        transition: all 300ms ease-in-out;
-      }
-      
-      img:hover {
-        transform: translateY(-0.125rem);
+        @apply cursor-pointer hover:-translate-y-0.5 
+               transition-all duration-300 ease-in-out;
       }
 
       ul {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 2rem;
+        @apply flex items-center justify-center gap-8;
 
         a {
-          display: none;
-          color: white;
-          opacity: 0.8;
-          font-weight: 500;
-          font-size: 0.875rem;
-          cursor: pointer;
-          transition: all 300ms;
-        }
-        
-        @media (min-width: 768px) {
-          a {
-            display: block;
-          }
-        }
-        
-        a:hover {
-          opacity: 1;
+          @apply hidden md:block text-white opacity-80 font-medium text-sm 
+                 cursor-pointer hover:opacity-100 transition-all duration-300;
         }
       }
-    }
-  }
-  
-  @media (min-width: 1536px) {
-    header nav {
-      padding-left: 0;
-      padding-right: 0;
     }
   }
 
   /* Hero Section */
   #hero-section {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
-    background-color: black;
+    @apply relative w-full h-screen overflow-hidden bg-black;
 
     .hero-content {
-      position: absolute;
-      bottom: 5rem;
-      left: 2rem;
-      z-index: 10;
-      color: white;
+      @apply absolute bottom-20 left-8 md:left-20 z-10 text-white;
       
       h1 {
-        font-size: 1.875rem;
-        font-weight: 600;
-        margin-bottom: 1rem;
-      }
-    }
-    
-    @media (min-width: 768px) {
-      .hero-content {
-        left: 5rem;
-        
-        h1 {
-          font-size: 3rem;
-        }
+        @apply text-3xl md:text-5xl font-semibold mb-4;
       }
     }
 
     .hero-overlay {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
+      @apply absolute inset-0 pointer-events-none;
       mix-blend-mode: multiply;
     }
   }
@@ -684,6 +482,8 @@ img {
     position: relative;
     z-index: 10;
   }
+
+
 
   /* Features Grid */
   .features-grid {
