@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
- 
 import { motion } from 'framer-motion'
+import OptimizedImage from './OptimizedImage'
+
+const MotionOptimizedImage = motion(OptimizedImage)
 
 const ServiceCard = ({ title, image, path }) => {
   const [imageLoaded, setImageLoaded] = useState(false)
@@ -15,7 +17,7 @@ const ServiceCard = ({ title, image, path }) => {
             <div className="w-6 h-6 border-4 border-green-400 border-t-transparent rounded-full animate-spin" />
           </div>
         )}
-        <img 
+        <OptimizedImage
           src={image}
           alt={title}
           width={400}
@@ -45,7 +47,7 @@ const ServiceCard = ({ title, image, path }) => {
             <div className="w-8 h-8 border-4 border-green-400 border-t-transparent rounded-full animate-spin" />
           </div>
         )}
-        <motion.img 
+        <MotionOptimizedImage
           src={image}
           alt={title}
           width={370}

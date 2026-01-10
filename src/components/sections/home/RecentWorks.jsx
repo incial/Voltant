@@ -1,38 +1,55 @@
-import React, { useRef, useEffect, useState } from 'react'
+import React, { useRef, useEffect, useState, useMemo } from 'react'
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
+import { preloadImages } from '../../../utils/imageSupport'
+import { OptimizedImage } from '../../ui'
+
+const SHOWCASE_BASE_PATH = '/assets/images/showcaseimages'
+const SHOWCASE_IMAGES = [
+  { name: 'Image 13', src: 'Image 13.png' },
+  { name: 'Image 14', src: 'Image 14.png' },
+  { name: 'Image 15', src: 'Image 15.png' },
+  { name: 'Image 16', src: 'Image 16.png' },
+  { name: 'Image 17', src: 'Image 17.png' },
+  { name: 'Image 18', src: 'Image 18.png' },
+  { name: 'Image 19', src: 'Image 19.png' },
+  { name: 'Image 20', src: 'Image 20.png' },
+  { name: 'Image 21', src: 'Image 21.png' },
+  { name: 'Image 22', src: 'Image 22.png' },
+  { name: 'Image 23', src: 'Image 23.png' },
+  { name: 'Image 24', src: 'Image 24.png' }
+]
 
 const RecentWorks = () => {
-  // Card data - showcase images
-  const showcaseImages = [
-    'Image 13.webp',
-    'Image 14.webp',
-    'Image 15.webp',
-    'Image 16.webp',
-    'Image 17.webp',
-    'Image 18.webp',
-    'Image 19.webp',
-    'Image 20.webp',
-    'Image 21.webp',
-    'Image 22.webp',
-    'Image 23.webp',
-    'Image 24.webp'
-  ];
+  const cards = useMemo(
+    () =>
+      SHOWCASE_IMAGES.map((image, index) => {
+        const imagePath = `${SHOWCASE_BASE_PATH}/${encodeURIComponent(image.src)}`
 
-  console.log('Total images:', showcaseImages.length);
+        return {
+          src: imagePath,
+          resolved: imagePath,
+          alt: image.alt || `Showcase ${index + 13}`,
+          isImage22: image.name === 'Image 22',
+          isImage19: image.name === 'Image 19'
+        }
+      }),
+    []
+  )
 
-  const cards = showcaseImages.map((img, index) => ({
-    img: `/assets/images/showcaseimages/${encodeURIComponent(img)}`,
-    alt: `Showcase ${index + 13}`,
-    isImage22: img === 'Image 22.png',
-    isImage19: img === 'Image 19.png'
-  }));
+  useEffect(() => {
+    if (!cards.length) return
+    preloadImages(cards.map((card) => card.resolved))
+  }, [cards])
 
   // For infinite scroll, clone cards at both ends
-  const infiniteCards = [
-    ...cards.slice(-3),
-    ...cards,
-    ...cards.slice(0, 3)
-  ];
+  const infiniteCards = useMemo(
+    () => [
+      ...cards.slice(-3),
+      ...cards,
+      ...cards.slice(0, 3)
+    ],
+    [cards]
+  )
 
   // Ref for the scrollable card row
   const rowRef = useRef(null);
@@ -147,7 +164,7 @@ const RecentWorks = () => {
           >
             {infiniteCards.map((card, idx) => (
               <div
-                key={card.img + idx}
+                key={`${card.resolved}-${idx}`}
                 data-card
                 className={`h-64 sm:h-72 md:h-80 lg:h-88 xl:h-96 w-72 sm:w-80 md:w-88 lg:w-96 xl:w-[26rem] shrink-0 rounded-xl md:rounded-2xl shadow-md overflow-hidden cursor-pointer transition-shadow duration-500 ${
                   card.isImage22 ? 'bg-[#d4824a]' : card.isImage19 ? 'bg-gray-900' : ''
@@ -168,12 +185,12 @@ const RecentWorks = () => {
                     hoveredCard === idx ? 'scale-110' : 'scale-100'
                   }`}
                 >
-                  <img
-                    src={card.img}
+                  <OptimizedImage
+                    src={card.resolved}
                     alt={card.alt}
-                    width={416}
-                    height={384}
-                    className={`w-full h-full ${card.isImage22 || card.isImage19 ? 'object-contain' : 'object-cover'} object-center`}
+                    width={400}
+                    height={200}
+                    className={`w-full h-full object-cover  object-center`}
                     loading="lazy"
                     decoding="async"
                     draggable={false}

@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
- 
+// eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion'
 import { heroIcons, homeImgs } from '../../../utils/localAssets'
+import { OptimizedImage } from '../../ui'
 
 // Animation variants
 const containerVariants = {
@@ -43,7 +44,7 @@ function Feature({ icon, title, description }) {
               <div className="w-4 h-4 border-2 border-green-400 border-t-transparent rounded-full animate-spin" />
             </div>
           )}
-          <img
+          <OptimizedImage
             src={iconPath}
             alt={`${title} icon`}
             width={48}
@@ -99,7 +100,7 @@ const MidSection = ({
           <div className="w-12 h-12 border-4 border-green-400 border-t-transparent rounded-full animate-spin" />
         </div>
       )}
-      <img
+      <OptimizedImage
         src={backgroundPath}
         alt='Section Background'
         width={1920}

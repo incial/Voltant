@@ -1,6 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { useContactForm } from '../../../context/ContactFormContext'
+import { isIOS } from '../../../utils/device'
 
 // ---------------- Animations ----------------
 const fadeIn = {
@@ -142,6 +143,7 @@ const ProfilesSection = ({
   downloads = {}
 }) => {
   const { toggleContactForm } = useContactForm()
+  const iosDevice = isIOS
 
   // Determine if a downloadable profile is available
   const downloadEnabled = !!(downloads && downloads.profile && downloads.profile.enabled && downloads.profile.url)
@@ -151,10 +153,6 @@ const ProfilesSection = ({
 
   // Get download URL and filename for native anchor
   const downloadUrl = downloadEnabled ? downloads.profile.url : null
-  const downloadFilename = downloadEnabled 
-    ? (downloads.profile.filename || downloads.profile.url.split('/').pop().split('?')[0])
-    : null
-
   // Handler for non-download actions (contact form)
   const handleContactAction = () => {
     toggleContactForm()
@@ -167,16 +165,22 @@ const ProfilesSection = ({
   const renderActionButton = (customStyles = buttonStyles) => {
     if (downloadEnabled) {
       return (
-        <a 
-          href={downloadUrl}
-          download={downloadFilename}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={customStyles}
-          aria-label={primaryLabel}
-        >
-          {primaryLabel}
-        </a>
+        <div className="flex flex-col items-center gap-2">
+          <a 
+            href={downloadUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={customStyles}
+            aria-label={primaryLabel}
+          >
+            {primaryLabel}
+          </a>
+          {iosDevice && (
+            <p className="text-xs text-[#7F7F7F] text-center max-w-[220px]">
+              Tip: Tap Share → Save to Files to store this brochure on iPhone.
+            </p>
+          )}
+        </div>
       )
     }
 

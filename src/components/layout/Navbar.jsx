@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
- 
+// eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from 'framer-motion';
-import { whiteLogo } from '../../utils/localAssets';
+import { whiteLogo, whiteLogoPng } from '../../utils/localAssets';
 import { useContactForm } from '../../context/ContactFormContext';
+import { OptimizedImage } from '../ui';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -114,8 +115,9 @@ const Navbar = () => {
     >
       <div className="relative max-w-7xl mx-auto flex justify-between items-center py-4 px-4 sm:px-6 lg:px-8">
         {/* Logo */}        <div className="flex items-center z-10">          <Link to="/" className="flex items-center">
-            <img
+            <OptimizedImage
               src={whiteLogo}
+              fallbackSrc={whiteLogoPng}
               alt="Voltant Energy"
               width={160}
               height={40}
@@ -123,6 +125,7 @@ const Navbar = () => {
               loading="eager"
               decoding="sync"
               fetchPriority="high"
+              preload
             />
           </Link>
         </div>
@@ -228,10 +231,14 @@ const Navbar = () => {
             }}
           >
             <div className="w-full max-w-7xl mx-auto px-4 sm:px-6">              <div className="absolute top-4 left-4 sm:left-6 p-6 py-8">                <Link to="/" className="flex items-center">
-                  <img
+                  <OptimizedImage
                     src={whiteLogo}
+                    fallbackSrc={whiteLogoPng}
                     alt="Voltant Energy"
                     className="h-8"
+                    loading="eager"
+                    decoding="sync"
+                    preload
                   />
                 </Link>
               </div>

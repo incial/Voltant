@@ -1,54 +1,13 @@
 import React from 'react'
+import { ServicePageTemplate } from '@components/templates'
+import { moreData } from '@data/ev-charging/more'
 
-import { Navbar, Footer } from '../../components/layout'
-import { ChatButton } from '../../components/features'
-import {
-  HeroSection,
-  SeamlessChargingSection,
-  MidSection,
-  ProfilesSection
-} from '../../components/sections/shared'
-
-import { moreData } from '../../data/ev-charging/more'
-
+/**
+ * More Services Page
+ * Displays additional services and solutions
+ */
 const More = () => (
-  <>
-    <ChatButton phoneNumber='+971506419857' />
-    <div className='flex flex-col min-h-screen bg-white px-0 overflow-hidden'>
-      <HeroSection
-        title={moreData.hero.title}
-        showSubtitle={moreData.hero.showSubtitle}
-        subtitle={moreData.hero.subtitle}
-        breadcrumbs={moreData.hero.breadcrumbs}
-        heroImage={moreData.hero.heroImage}
-      />
-
-      <div className='w-full flex flex-col items-center justify-center px-0 md:px-20'>
-        <SeamlessChargingSection
-          title={moreData.seamlessCharging.title}
-          paragraphs={moreData.seamlessCharging.paragraphs}
-        />
-      </div>
-
-      <section className='w-full py-16'>
-        <MidSection
-          backgroundImage={moreData.midSection.backgroundImage}
-          sectionTitle={moreData.midSection.sectionTitle}
-          features={moreData.midSection.features}
-        />
-      </section>
-
-     <ProfilesSection
-  sectionTitle={moreData.profiles.sectionTitle}
-  layoutType={moreData.profiles.layoutType}
-  items={moreData.profiles.items}
-  buttonText={moreData.profiles.buttonText}
-  showButton={moreData.profiles.showButton}
-   downloads={moreData.profiles.downloads}
-/>
-    </div>
-
-  </>
+  <ServicePageTemplate data={moreData} />
 )
 
 export default More

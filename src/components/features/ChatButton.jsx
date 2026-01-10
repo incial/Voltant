@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
- 
+// eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
 import { FaWhatsapp } from 'react-icons/fa';
 

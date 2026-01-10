@@ -6,10 +6,10 @@ import {
   FaYoutube
 } from 'react-icons/fa'
 import { FaXTwitter } from 'react-icons/fa6'
-import { Link } from 'react-router-dom'
 import { useContactForm } from '../../context/ContactFormContext'
 import { homeImgs, logos } from '../../utils/localAssets'
 import { RecentWorks } from '../../components/sections/home'
+import { OptimizedImage } from '../../components/ui'
 
 const WhoAreWe = () => {
   const { toggleContactForm } = useContactForm()
@@ -36,10 +36,13 @@ const WhoAreWe = () => {
       {/* Logo Section */}
       <div className='relative w-full pt-[50px] sm:pt-[70px] md:pt-[100px] lg:pt-[130px] pb-[35px] sm:pb-[45px] md:pb-[55px] lg:pb-[65px]'>
         <div className='flex flex-col items-center justify-center'>
-          <img
+          <OptimizedImage
             src={logos.explore}
             alt='Voltant Energy Logo'
             className='h-[40px] sm:h-[48px] md:h-[55px] mb-[15px]'
+            loading='eager'
+            decoding='async'
+            preload
           />
       
         </div>
@@ -140,10 +143,12 @@ const WhoAreWe = () => {
 
           {/* About Section Sub Logo */}
           <div className='flex justify-center items-center w-full py-[25px] sm:py-[35px] md:py-[45px] lg:py-[60px]'>
-            <img
+            <OptimizedImage
               src={homeImgs.aboutSectionSubLogo}
               alt='Voltant Energy Mission'
               className='max-w-full h-auto'
+              loading='lazy'
+              decoding='async'
             />
           </div>
 

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { heroIcons } from '../../../utils/localAssets'
 import { Link } from 'react-router-dom'
+import { OptimizedImage } from '../../ui'
 
 const images = [
   {
@@ -10,7 +11,7 @@ const images = [
     description:
       'Powering the future of mobility with smart, efficient, and scalable EV charging solutions—designed for homes, businesses, and public spaces.',
     button: 'Learn More',
-    img: '/assets/images/Home/split/split2.webp',
+    img: '/assets/images/Home/split/split2.png',
     icon: heroIcons.battery,
     link: '/ev-charging'
   },
@@ -20,7 +21,7 @@ const images = [
     description:
       'From smart modular containerized plants to large-scale anaerobic digestion solutions, we transform organic waste into sustainable energy.',
     button: 'Learn More',
-    img: '/assets/images/Home/split/split1.webp',
+    img: '/assets/images/Home/split/split1.png',
     icon: heroIcons.waterPure,
     link: '/waste-to-energy'
   }
@@ -71,7 +72,7 @@ const SplitHoverImages = () => {
             }}
           >
             {/* Top-right Icon */}
-            <img
+            <OptimizedImage
               src={item.icon}
               alt={`${item.id} icon`}
               width={64}
@@ -88,7 +89,7 @@ const SplitHoverImages = () => {
               animate={{ scale: !isMobile && isActive ? 1.02 : 1 }}
               transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
             >
-              <img
+              <OptimizedImage
                 src={item.img}
                 alt={item.title}
                 width={1920}
@@ -96,9 +97,10 @@ const SplitHoverImages = () => {
                 className='w-full h-full object-cover transition-opacity duration-1000'
                 loading='eager'
                 decoding='async'
-                fetchPriority='high'
+                fetchPriority={item.id === images[0].id ? 'high' : undefined}
                 draggable={false}
                 style={{ opacity: 1 }}
+                preload={item.id === images[0].id}
               />
             </motion.div>
 

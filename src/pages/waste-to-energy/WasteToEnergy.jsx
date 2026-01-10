@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Navbar, Footer } from "../../components/layout";
-import { ServiceCard } from "../../components/ui";
-import { Link } from "react-router-dom";
+import { ServiceCard, OptimizedImage } from "../../components/ui";
 import { wasteImgs } from "../../utils/localAssets";
+import { isIOS } from "../../utils/device";
 
 const WasteToEnergy = () => {
   const [imageLoaded, setImageLoaded] = useState(false);
 
   // PDF download configuration - using native anchor for iOS Safari compatibility
   const brochureUrl = "/pdfs/FoodOrganic waste to Energy Solutions A CIRCULAR ECONOMY SOLUTION FOR A CARBON NEUTRAL FUTURE-4.pdf";
-  const brochureFilename = "Waste-to-Energy-Solutions.pdf";
+  const iosDevice = isIOS;
+  const enableMotion = !iosDevice;
+  const HeroContent = enableMotion ? motion.div : "div";
 
   // Services data array
   const services = [
@@ -69,12 +70,15 @@ const WasteToEnergy = () => {
                 <div className="w-6 h-6 border-4 border-green-400 border-t-transparent rounded-full animate-spin" />
               </div>
             )}
-            <img
-              src="/assets/images/WateTOEnergy/main.webp"
+            <OptimizedImage
+              src="/assets/images/WateTOEnergy/main.png"
               alt="Waste to Energy"
               className="w-full h-full object-cover transform-gpu"
+              loading="eager"
+              decoding="async"
               onLoad={() => setImageLoaded(true)}
               style={{ objectPosition: "70% 80%" }}
+              preload
             />
             <div className="absolute inset-0 bg-black opacity-40"></div>
           </div>
@@ -93,13 +97,17 @@ const WasteToEnergy = () => {
 
             <a
               href={brochureUrl}
-              download={brochureFilename}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block text-xs sm:text-sm font-normal text-center leading-none px-4 py-2 sm:px-5 sm:py-3 rounded-full border-white border-solid border-2 text-white hover:bg-white hover:text-gray-800 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-white"
             >
               Download Brochure
             </a>
+            {iosDevice && (
+              <p className="mt-2 text-xs text-white/80">
+                Tip: Tap Share → Save to Files to keep this brochure on iPhone.
+              </p>
+            )}
           </div>
         </div>
 
@@ -130,22 +138,29 @@ const WasteToEnergy = () => {
                 <div className="w-6 h-6 border-4 border-green-400 border-t-transparent rounded-full animate-spin" />
               </div>
             )}
-            <img
-              src="/assets/images/WateTOEnergy/main.webp"
+            <OptimizedImage
+              src="/assets/images/WateTOEnergy/main.png"
               alt="Waste to Energy"
               className="w-full h-full object-cover transform-gpu"
+              loading="eager"
+              decoding="async"
               onLoad={() => setImageLoaded(true)}
               style={{ objectPosition: "50% 45%" }}
+              preload
             />
             <div className="absolute inset-0 bg-black opacity-40"></div>
           </div>
 
           {/* Hero Content - Positioned at bottom left */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+          <HeroContent
+            {...(enableMotion
+              ? {
+                  initial: { opacity: 0, x: -20 },
+                  animate: { opacity: 1, x: 0 },
+                  exit: { opacity: 0 },
+                  transition: { duration: 0.8, ease: "easeOut" }
+                }
+              : {})}
             className="relative z-10 text-white text-left w-full max-w-[450px] ml-[100px] mb-1"
           >
             <h1 className="font-['Cairo'] text-[2.75rem] leading-tight font-semibold m-0 mb-6">
@@ -158,14 +173,18 @@ const WasteToEnergy = () => {
             </p>
             <a
               href={brochureUrl}
-              download={brochureFilename}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block mt-8 text-lg font-medium text-center px-6 py-3 rounded-full border-2 border-white text-white hover:bg-white hover:text-gray-900 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
             >
               Download Brochure
             </a>
-          </motion.div>
+            {iosDevice && (
+              <p className="mt-4 text-sm text-white/80">
+                Tip: Tap Share → Save to Files to keep this brochure on iPhone.
+              </p>
+            )}
+          </HeroContent>
         </section>
         {/* Services Grid Section */}
         <section className="py-16 px-8 md:px-16 lg:px-32 bg-white">

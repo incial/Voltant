@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
- 
+// eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion'
 import { homeImgs } from '../../../utils/localAssets'
+import { OptimizedImage } from '../../ui'
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -35,17 +36,18 @@ const HeroSection = ({
       
       <div className='absolute inset-0 bg-black/30 z-10'></div>
 
-      <img
+      <OptimizedImage
         src={imagePath}
         alt='Hero Image'
-        width={1920}
-        height={1080}
         className='w-full h-full object-cover'
+        usage="hero"
         loading="eager"
         decoding="sync"
         fetchPriority="high"
         onLoad={() => setImageLoaded(true)}
-        style={{ opacity: imageLoaded ? 1 : 0, transition: 'opacity 1s' }}
+        style={{ opacity: imageLoaded ? 1 : 0, transition: 'opacity 0.5s' }}
+        preload
+        enableResponsive
       />
 
         <div className='absolute inset-0 flex flex-col items-center justify-center z-20'>

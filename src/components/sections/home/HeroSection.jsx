@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import {
   FaYoutube,
@@ -7,20 +7,18 @@ import {
   FaLinkedin,
   FaXTwitter
 } from 'react-icons/fa6';
+import { isIOS } from '../../../utils/device';
+import { preloadImages, supportsWebp } from '../../../utils/imageSupport';
 
-/**
- * Hero Images Configuration
- * Using responsive WebP with JPEG fallback for iOS Safari
- * Images served from /public/images/hero/ with srcSet for optimal loading
- */
-const heroImages = [
+const heroFrames = [
   {
-    // Responsive srcSet for all devices
-    srcSet: '/images/hero/hero1-480w.webp 480w, /images/hero/hero1-768w.webp 768w, /images/hero/hero1-1200w.webp 1200w, /images/hero/hero1-1920w.webp 1920w',
-    src: '/images/hero/hero1-1200w.webp', // Default fallback
-    fallbackSrc: '/images/hero/hero1-1200w.jpg', // JPEG for older Safari
-    width: 1920,
-    height: 1347,
+    src: '/assets/images/Home/Hero/hero1.png',
+    webpSrc: '/assets/images/Home/Hero/hero1.webp',
+    mobileSrc: '/assets/images/Home/Hero/hero1-mobile.png',
+    mobileWebpSrc: '/assets/images/Home/Hero/hero1-mobile.webp',
+    // srcset for responsive loading
+    srcSet: '/assets/images/Home/Hero/hero1-480w.png 480w, /assets/images/Home/Hero/hero1-768w.png 768w, /assets/images/Home/Hero/hero1-1200w.png 1200w, /assets/images/Home/Hero/hero1-1600w.png 1600w, /assets/images/Home/Hero/hero1.png 1920w',
+    webpSrcSet: '/assets/images/Home/Hero/hero1-480w.webp 480w, /assets/images/Home/Hero/hero1-768w.webp 768w, /assets/images/Home/Hero/hero1-1200w.webp 1200w, /assets/images/Home/Hero/hero1-1600w.webp 1600w, /assets/images/Home/Hero/hero1.webp 1920w',
     title: (
       <>
         For a Sustainable Tomorrow,<br />Save Energy Today.
@@ -28,11 +26,12 @@ const heroImages = [
     )
   },
   {
-    srcSet: '/images/hero/hero2-480w.webp 480w, /images/hero/hero2-768w.webp 768w, /images/hero/hero2-1200w.webp 1200w, /images/hero/hero2-1920w.webp 1920w',
-    src: '/images/hero/hero2-1200w.webp',
-    fallbackSrc: '/images/hero/hero2-1200w.jpg',
-    width: 1920,
-    height: 3413,
+    src: '/assets/images/Home/Hero/hero2.png',
+    webpSrc: '/assets/images/Home/Hero/hero2.webp',
+    mobileSrc: '/assets/images/Home/Hero/hero2-mobile.png',
+    mobileWebpSrc: '/assets/images/Home/Hero/hero2-mobile.webp',
+    srcSet: '/assets/images/Home/Hero/hero2-480w.png 480w, /assets/images/Home/Hero/hero2-768w.png 768w, /assets/images/Home/Hero/hero2-1200w.png 1200w, /assets/images/Home/Hero/hero2-1600w.png 1600w, /assets/images/Home/Hero/hero2.png 1920w',
+    webpSrcSet: '/assets/images/Home/Hero/hero2-480w.webp 480w, /assets/images/Home/Hero/hero2-768w.webp 768w, /assets/images/Home/Hero/hero2-1200w.webp 1200w, /assets/images/Home/Hero/hero2-1600w.webp 1600w, /assets/images/Home/Hero/hero2.webp 1920w',
     title: (
       <>
         Turning Waste into Power,<br /> Fueling a Greener Future.
@@ -40,11 +39,12 @@ const heroImages = [
     )
   },
   {
-    srcSet: '/images/hero/hero3-480w.webp 480w, /images/hero/hero3-768w.webp 768w, /images/hero/hero3-1200w.webp 1200w, /images/hero/hero3-1920w.webp 1920w',
-    src: '/images/hero/hero3-1200w.webp',
-    fallbackSrc: '/images/hero/hero3-1200w.jpg',
-    width: 1920,
-    height: 2880,
+    src: '/assets/images/Home/Hero/hero3.png',
+    webpSrc: '/assets/images/Home/Hero/hero3.webp',
+    mobileSrc: '/assets/images/Home/Hero/hero3-mobile.png',
+    mobileWebpSrc: '/assets/images/Home/Hero/hero3-mobile.webp',
+    srcSet: '/assets/images/Home/Hero/hero3-480w.png 480w, /assets/images/Home/Hero/hero3-768w.png 768w, /assets/images/Home/Hero/hero3-1200w.png 1200w, /assets/images/Home/Hero/hero3-1600w.png 1600w, /assets/images/Home/Hero/hero3.png 1920w',
+    webpSrcSet: '/assets/images/Home/Hero/hero3-480w.webp 480w, /assets/images/Home/Hero/hero3-768w.webp 768w, /assets/images/Home/Hero/hero3-1200w.webp 1200w, /assets/images/Home/Hero/hero3-1600w.webp 1600w, /assets/images/Home/Hero/hero3.webp 1920w',
     title: (
       <>
         Maximize Efficiency,<br /> Minimize Waste.
@@ -53,125 +53,168 @@ const heroImages = [
   }
 ];
 
-/**
- * iOS-Safe Hero Section Component
- * 
- * Performance optimizations:
- * - Responsive srcSet for optimal image delivery
- * - fetchPriority="high" for first image
- * - Preloaded via index.html
- * - Animations only start AFTER first image loads
- * - No heavy GPU filters (blur, backdrop-filter)
- */
+const imageDuration = 8000;
+
 const HeroSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [progress, setProgress] = useState(0);
   const [showSocialTray, setShowSocialTray] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [firstImageLoaded, setFirstImageLoaded] = useState(false);
-  const [supportsWebP, setSupportsWebP] = useState(true);
-  const imageDuration = 8000;
+  const [firstImageReady, setFirstImageReady] = useState(false);
+  const [imagesLoaded, setImagesLoaded] = useState({});
+  const iosDevice = isIOS;
+  const enableMotion = !iosDevice;
+  const webpSupported = useMemo(() => supportsWebp(), []);
 
-  // Detect mobile
+  // Get the appropriate image source for preloading
+  const getImageSrc = (frame) => {
+    if (isMobile) {
+      return webpSupported ? frame.mobileWebpSrc : frame.mobileSrc;
+    }
+    return webpSupported ? frame.webpSrc : frame.src;
+  };
+
   useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // WebP support detection
+  // Preload first image
   useEffect(() => {
-    const canvas = document.createElement('canvas');
-    canvas.width = 1;
-    canvas.height = 1;
-    const supported = canvas.toDataURL('image/webp').indexOf('data:image/webp') === 0;
-    setSupportsWebP(supported);
-  }, []);
-
-  // Handle first image load - critical for iOS
-  const handleFirstImageLoad = useCallback(() => {
-    setFirstImageLoaded(true);
-  }, []);
-
-  // Preload remaining images after first loads
-  useEffect(() => {
-    if (!firstImageLoaded) return;
-    heroImages.slice(1).forEach((img) => {
-      const image = new Image();
-      image.src = supportsWebP ? img.src : img.fallbackSrc;
-    });
-  }, [firstImageLoaded, supportsWebP]);
-
-  // Carousel logic - only after first image loads
-  useEffect(() => {
-    if (!firstImageLoaded) return;
-    
-    setProgress(0);
-    const startTime = Date.now();
-    const interval = setInterval(() => {
-      const elapsed = Date.now() - startTime;
-      const newProgress = Math.min(elapsed / imageDuration, 1);
-      setProgress(newProgress);
-      if (newProgress >= 1) {
-        setCurrentIndex((prev) => (prev + 1) % heroImages.length);
+    const primarySrc = getImageSrc(heroFrames[0]);
+    if (!primarySrc) {
+      setFirstImageReady(true);
+      return undefined;
+    }
+    let cancelled = false;
+    const preloader = new Image();
+    preloader.src = primarySrc;
+    preloader.onload = preloader.onerror = () => {
+      if (!cancelled) {
+        setFirstImageReady(true);
+        setImagesLoaded(prev => ({ ...prev, 0: true }));
       }
-    }, 50);
-    return () => clearInterval(interval);
-  }, [currentIndex, firstImageLoaded]);
+    };
+    return () => {
+      cancelled = true;
+    };
+  }, [isMobile, webpSupported]);
 
-  // Show social tray after delay
+  // Preload remaining images
   useEffect(() => {
-    if (isMobile || !firstImageLoaded) return;
+    if (!firstImageReady || iosDevice) return;
+    const sources = heroFrames.slice(1).map(getImageSrc);
+    preloadImages(sources);
+  }, [firstImageReady, iosDevice, isMobile, webpSupported]);
+
+  useEffect(() => {
+    if (!firstImageReady || iosDevice) return;
+    let animationFrame = 0;
+    let startTime = performance.now();
+
+    const tick = (now) => {
+      const elapsed = now - startTime;
+      const localProgress = Math.min(elapsed / imageDuration, 1);
+      setProgress(localProgress);
+
+      if (localProgress >= 1) {
+        startTime = now;
+        setProgress(0);
+        setCurrentIndex((prev) => (prev + 1) % heroFrames.length);
+      }
+
+      animationFrame = requestAnimationFrame(tick);
+    };
+
+    animationFrame = requestAnimationFrame(tick);
+
+    return () => {
+      cancelAnimationFrame(animationFrame);
+    };
+  }, [firstImageReady, iosDevice]);
+
+  useEffect(() => {
+    if (!firstImageReady) return;
+    if (iosDevice) {
+      setShowSocialTray(true);
+      return;
+    }
+    if (isMobile) return;
     const timer = setTimeout(() => setShowSocialTray(true), 2500);
     return () => clearTimeout(timer);
-  }, [isMobile, firstImageLoaded]);
+  }, [firstImageReady, iosDevice, isMobile]);
 
-  // Responsive sizes attribute for srcSet
-  const imageSizes = "(max-width: 480px) 100vw, (max-width: 768px) 100vw, (max-width: 1200px) 100vw, 1920px";
+  const currentFrame = heroFrames[currentIndex];
+
+  const SocialWrapper = enableMotion ? motion.div : 'div';
+  const CaptionWrapper = enableMotion ? motion.div : 'div';
+
+  // Handle individual image load
+  const handleImageLoad = (index) => {
+    setImagesLoaded(prev => ({ ...prev, [index]: true }));
+  };
 
   return (
-    <section 
-      className="relative w-full min-h-screen overflow-hidden bg-black"
-      style={{ minHeight: '-webkit-fill-available' }}
-    >
-      {/* Image Container */}
-      <div className="absolute inset-0 z-[1] bg-black">
-        {heroImages.map((img, index) => (
-          <div
-            key={index}
-            className="absolute inset-0 w-full h-full"
-            style={{ 
-              opacity: index === currentIndex ? 1 : 0,
-              transition: 'opacity 1000ms ease-in-out',
-              zIndex: index === currentIndex ? 10 : 0,
-              transform: 'translate3d(0, 0, 0)',
-              WebkitTransform: 'translate3d(0, 0, 0)',
-              backfaceVisibility: 'hidden',
-              WebkitBackfaceVisibility: 'hidden'
-            }}
-          >
-            <img
-              src={supportsWebP ? img.src : img.fallbackSrc}
-              srcSet={supportsWebP ? img.srcSet : undefined}
-              sizes={supportsWebP ? imageSizes : undefined}
-              width={img.width}
-              height={img.height}
-              alt={`Hero Slide ${index + 1}`}
-              className="w-full h-full object-cover"
-              loading={index === 0 ? 'eager' : 'lazy'}
-              decoding={index === 0 ? 'sync' : 'async'}
-              fetchPriority={index === 0 ? 'high' : 'low'}
-              onLoad={index === 0 ? handleFirstImageLoad : undefined}
-              draggable={false}
-            />
-          </div>
-        ))}
+    <section className="hero-section relative w-full">
+      {/* Hero Images using picture element for WebP with fallback */}
+      <div className="hero-background-layer absolute inset-0 z-[1]">
+        {heroFrames.map((frame, index) => {
+          const isActive = index === currentIndex;
+          return (
+            <div
+              key={index}
+              className={`absolute inset-0 transition-opacity duration-1000 ${isActive ? 'opacity-100' : 'opacity-0'}`}
+            >
+              <picture>
+                {/* WebP sources for modern browsers */}
+                {!isMobile && (
+                  <source
+                    type="image/webp"
+                    srcSet={frame.webpSrcSet}
+                    sizes="100vw"
+                  />
+                )}
+                {isMobile && (
+                  <source
+                    type="image/webp"
+                    srcSet={frame.mobileWebpSrc}
+                    media="(max-width: 768px)"
+                  />
+                )}
+                {/* PNG fallback sources */}
+                {!isMobile && (
+                  <source
+                    type="image/png"
+                    srcSet={frame.srcSet}
+                    sizes="100vw"
+                  />
+                )}
+                {/* Fallback img element */}
+                <img
+                  src={isMobile ? frame.mobileSrc : frame.src}
+                  srcSet={isMobile ? undefined : frame.srcSet}
+                  sizes={isMobile ? undefined : "100vw"}
+                  alt={`Hero slide ${index + 1}`}
+                  className="w-full h-full object-cover"
+                  loading={index === 0 ? "eager" : "lazy"}
+                  decoding={index === 0 ? "sync" : "async"}
+                  fetchpriority={index === 0 ? "high" : "auto"}
+                  onLoad={() => handleImageLoad(index)}
+                  style={{
+                    objectFit: 'cover',
+                    objectPosition: 'center',
+                  }}
+                />
+              </picture>
+            </div>
+          );
+        })}
       </div>
 
-      {/* Gradient Overlay - NO backdrop-blur */}
       <div
-        className="absolute inset-0 z-[2] pointer-events-none"
+        className="hero-overlay absolute inset-0 z-[2] pointer-events-none"
         style={{
           background: currentIndex === 0
             ? 'radial-gradient(circle, rgba(144, 238, 144, 0.15) 0%, rgba(0, 0, 0, 0.4) 100%)'
@@ -179,12 +222,15 @@ const HeroSection = () => {
         }}
       />
 
-      {/* Social Icons - Only after image loads */}
-      {firstImageLoaded && !isMobile && showSocialTray && (
-        <motion.div
-          initial={{ x: 100, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ type: 'spring', stiffness: 260, damping: 20 }}
+      {firstImageReady && !isMobile && showSocialTray && (
+        <SocialWrapper
+          {...(enableMotion
+            ? {
+                initial: { x: 100, opacity: 0 },
+                animate: { x: 0, opacity: 1 },
+                transition: { type: 'spring', stiffness: 260, damping: 20 }
+              }
+            : {})}
           className="hidden lg:flex absolute right-4 xl:right-8 top-1/2 -translate-y-1/2 flex-col gap-4 lg:gap-5 xl:gap-6 z-20"
         >
           {[FaYoutube, FaInstagram, FaFacebook, FaLinkedin, FaXTwitter].map((Icon, idx) => (
@@ -196,65 +242,91 @@ const HeroSection = () => {
               className="text-white p-1 block hover:text-primary transition-colors duration-200"
               aria-label={Icon.name.replace('Fa', '')}
             >
-              <motion.div whileHover={{ scale: 1.2 }} transition={{ duration: 0.2 }}>
-                <Icon className="w-5 h-5 lg:w-6 lg:h-6" />
-              </motion.div>
+              {enableMotion ? (
+                <motion.div whileHover={{ scale: 1.2 }} transition={{ duration: 0.2 }}>
+                  <Icon className="w-5 h-5 lg:w-6 lg:h-6" />
+                </motion.div>
+              ) : (
+                <div className="transition-transform duration-200">
+                  <Icon className="w-5 h-5 lg:w-6 lg:h-6" />
+                </div>
+              )}
             </a>
           ))}
-        </motion.div>
+        </SocialWrapper>
       )}
 
-      {/* Text Content - Only after image loads */}
-      {firstImageLoaded && (
-        <motion.div
-          key={`caption-${currentIndex}`}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
+      {firstImageReady && (
+        <CaptionWrapper
+          {...(enableMotion
+            ? {
+                key: `caption-${currentIndex}`,
+                initial: { opacity: 0, y: 20 },
+                animate: { opacity: 1, y: 0 },
+                transition: { duration: 0.8, ease: [0.33, 1, 0.68, 1] }
+              }
+            : {})}
           className={`absolute z-10 text-white text-left ${
-            isMobile 
-              ? 'bottom-[18%] left-4 max-w-[80%]' 
+            isMobile
+              ? 'bottom-[18%] left-4 max-w-[80%]'
               : 'bottom-12 sm:bottom-16 lg:bottom-20 left-6 sm:left-8 lg:left-16 xl:left-24'
           }`}
           style={{ maxWidth: isMobile ? '80%' : '600px' }}
         >
-          <h1 className={`${
-            isMobile 
-              ? 'text-xl leading-snug' 
-              : 'text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[2.45rem] leading-tight'
-          } font-normal m-0 font-['Cairo'] drop-shadow-lg`}>
-            {heroImages[currentIndex].title}
+          <h1
+            className={`${
+              isMobile
+                ? 'text-xl leading-snug'
+                : 'text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[2.45rem] leading-tight'
+            } font-normal m-0 font-['Cairo'] drop-shadow-lg`}
+          >
+            {currentFrame.title}
           </h1>
-        </motion.div>
+        </CaptionWrapper>
       )}
 
-      {/* Progress Indicators */}
-      {firstImageLoaded && (
-        <div className={`absolute ${isMobile ? 'bottom-[10%]' : 'bottom-6 sm:bottom-6 lg:bottom-8'} left-0 right-0 flex justify-center gap-2 sm:gap-4 lg:gap-6 z-10`}>
-          {heroImages.map((_, index) => (
-            <div
-              key={index}
-              className={`${isMobile ? 'h-1' : 'h-1 md:h-[4px]'} rounded-[2px] overflow-hidden`}
-              style={{
-                width: index === currentIndex ? (isMobile ? '80px' : '90px') : (isMobile ? '40px' : '48px'),
-                backgroundColor: 'rgba(255,255,255,0.3)',
-                transition: 'width 300ms ease'
-              }}
-            >
+      {firstImageReady && (
+        <div
+          className={`absolute ${
+            isMobile ? 'bottom-[10%]' : 'bottom-6 sm:bottom-6 lg:bottom-8'
+          } left-0 right-0 flex justify-center gap-2 sm:gap-4 lg:gap-6 z-10`}
+        >
+          {heroFrames.map((_, index) => {
+            const isActive = index === currentIndex;
+            const width = isActive
+              ? isMobile
+                ? '80px'
+                : '90px'
+              : isMobile
+                ? '40px'
+                : '48px';
+
+            const barProgress = enableMotion ? `${progress * 100}%` : isActive ? '100%' : '0%';
+
+            return (
               <div
-                className="h-full rounded-[2px] bg-white"
+                key={index}
+                className={`${isMobile ? 'h-1' : 'h-1 md:h-[4px]'} rounded-[2px] overflow-hidden`}
                 style={{
-                  width: index === currentIndex ? `${progress * 100}%` : index < currentIndex ? '100%' : '0%',
-                  transition: 'width 100ms linear'
+                  width,
+                  backgroundColor: 'rgba(255,255,255,0.3)',
+                  transition: 'width 300ms ease'
                 }}
-              />
-            </div>
-          ))}
+              >
+                <div
+                  className="h-full rounded-[2px] bg-white"
+                  style={{
+                    width: barProgress,
+                    transition: enableMotion ? 'width 100ms linear' : 'none'
+                  }}
+                />
+              </div>
+            );
+          })}
         </div>
       )}
 
-      {/* Loading State */}
-      {!firstImageLoaded && (
+      {!firstImageReady && (
         <div className="absolute inset-0 z-50 bg-black flex items-center justify-center">
           <div className="w-8 h-8 border-2 border-white/20 border-t-white rounded-full animate-spin" />
         </div>

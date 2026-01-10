@@ -5,9 +5,12 @@ import {
   SeamlessChargingSection,
   MidSection
 } from '../../components/sections/shared'
+import { OptimizedImage } from '../../components/ui'
 import { smartWasteData } from '../../data/waste-to-energy/smart-waste'
+import { isIOS } from '../../utils/device'
 
 const SmartWaste = () => {
+  const iosDevice = isIOS;
 
   return (
     <>
@@ -46,10 +49,12 @@ const SmartWaste = () => {
             <div className='max-w-6xl mx-auto px-4'>
               {/* Image */}
               <div className='text-center'>
-                <img
+                <OptimizedImage
                   src={smartWasteData.imageSection.image}
                   alt={smartWasteData.imageSection.alt}
                   className='mx-auto w-full max-w-4xl object-contain mb-10'
+                  loading='lazy'
+                  decoding='async'
                 />
               </div>
 
@@ -71,7 +76,6 @@ const SmartWaste = () => {
               <div className='flex items-center justify-start max-w-3xl mx-auto mt-4'>
                 <a
                   href={smartWasteData.downloads.profile.url}
-                  download={smartWasteData.downloads.profile.filename}
                   target="_blank"
                   rel="noopener noreferrer"
                   className='text-sm sm:text-base md:text-lg font-normal text-center leading-none
@@ -83,6 +87,11 @@ const SmartWaste = () => {
                 >
                   {smartWasteData.downloads.profile.label}
                 </a>
+                {iosDevice && (
+                  <p className='ml-4 text-xs text-gray-500 max-w-[240px]'>
+                    Tip: Tap Share → Save to Files to store this brochure on iPhone.
+                  </p>
+                )}
               </div>
             </div>
           </section>
