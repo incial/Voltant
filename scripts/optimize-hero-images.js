@@ -27,6 +27,9 @@ async function optimizeHeroImages() {
     console.log(`Processing ${imageName} (${(originalSize / 1024).toFixed(2)} KB)`);
     
     try {
+      // Get image metadata
+      const metadata = await sharp(inputPath).metadata();
+      
       // Optimize WebP with better compression
       const webpOptimizedPath = path.join(heroImagesPath, `${baseName}-optimized.webp`);
       await sharp(inputPath)

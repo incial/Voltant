@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
-// eslint-disable-next-line no-unused-vars
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { heroIcons } from '../../../utils/localAssets'
 import { Link } from 'react-router-dom'
 import { OptimizedImage } from '../../ui'
