@@ -17,9 +17,16 @@ const OptimizedImage = ({
   ...rest
 }) => {
   const supportsWebP = useMemo(() => supportsWebp(), []);
+  const computedFallback = useMemo(() => {
+    if (fallbackSrc) return fallbackSrc;
+    if (typeof src === 'string' && src.toLowerCase().endsWith('.webp')) {
+      return src.replace(/\.webp$/i, '.jpg');
+    }
+    return undefined;
+  }, [src, fallbackSrc]);
   const resolvedSrc = useMemo(
-    () => getPreferredImage(src, fallbackSrc, supportsWebP),
-    [src, fallbackSrc, supportsWebP]
+    () => getPreferredImage(src, computedFallback, supportsWebP),
+    [src, computedFallback, supportsWebP]
   );
 
   useEffect(() => {
