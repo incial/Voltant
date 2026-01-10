@@ -47,6 +47,8 @@ function Feature({ icon, title, description }) {
             src={iconPath}
             alt={`${title} icon`}
             className='aspect-[1] object-contain w-8 md:w-10 lg:w-12 shrink-0 my-auto'
+            loading="lazy"
+            decoding="async"
             onLoad={() => setIconLoaded(true)}
             style={{ opacity: iconLoaded ? 1 : 0, transition: 'opacity 0.5s' }}
           />
@@ -99,6 +101,8 @@ const MidSection = ({
         src={backgroundPath}
         alt='Section Background'
         className='w-full h-full object-cover absolute inset-0'
+        loading="lazy"
+        decoding="async"
         onLoad={() => setImageLoaded(true)}
         style={{ opacity: imageLoaded ? 1 : 0, transition: 'opacity 1s' }}
       />

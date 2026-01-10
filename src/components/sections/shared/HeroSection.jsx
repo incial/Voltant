@@ -39,6 +39,9 @@ const HeroSection = ({
         src={imagePath}
         alt='Hero Image'
         className='w-full h-full object-cover'
+        loading="eager"
+        decoding="async"
+        fetchpriority="high"
         onLoad={() => setImageLoaded(true)}
         style={{ opacity: imageLoaded ? 1 : 0, transition: 'opacity 1s' }}
       />

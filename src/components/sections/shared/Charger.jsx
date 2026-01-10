@@ -67,6 +67,8 @@ export const ChargerComponent = ({
                         src={model.imageUrl}
                         alt='Charger Image'
                         className='w-full h-full object-cover object-center rounded-xl'
+                        loading='lazy'
+                        decoding='async'
                       />
                       <div className='absolute inset-0 flex flex-col items-center justify-center'>
                         <span className='text-xl font-bold text-white drop-shadow-md mb-1'>{model.model}</span>
@@ -202,8 +204,10 @@ export const ChargerComponent = ({
                         <div className='w-full h-64 bg-white rounded-xl relative overflow-hidden'>
                           <img
                             src={model.imageUrl}
-                            alt='Hero Image'
+                            alt='Charger Image'
                             className='w-full h-full object-cover object-center rounded-xl'
+                            loading='lazy'
+                            decoding='async'
                           />
                           {/* Centered Text Overlay */}
                           <div className='absolute inset-0 flex flex-col items-center justify-center'>
