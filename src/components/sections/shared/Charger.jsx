@@ -56,13 +56,13 @@ const MobileView = ({
               <div className='h-80 flex flex-col items-center justify-end pb-2'>
                 <div className='mb-4 relative w-full'>
                   {' '}
-                    <div className='w-full h-64 bg-white rounded-xl relative overflow-hidden'>
+                    <div className='w-full h-64 bg-white rounded-xl relative overflow-hidden flex items-center justify-center'>
                     <img
                       src={model.imageUrl}
                       alt='Charger Image'
                       width={256}
                       height={256}
-                      className='w-full h-full object-cover object-center rounded-xl'
+                      className='max-w-full max-h-full object-contain rounded-xl'
                       loading='lazy'
                       decoding='async'
                     />
@@ -208,13 +208,13 @@ const DesktopView = ({
                   <div className='h-80 flex flex-col items-center justify-end pb-2'>
                     <div className='mb-4 relative w-full'>
                       {' '}
-                      <div className='w-full h-64 bg-white rounded-xl relative overflow-hidden'>
+                      <div className='w-full h-64 bg-white rounded-xl relative overflow-hidden flex items-center justify-center'>
                         <img
                           src={model.imageUrl}
                           alt='Charger Image'
                           width={300}
                           height={256}
-                          className='w-full h-full object-cover object-center rounded-xl'
+                          className='max-w-full max-h-full object-contain rounded-xl'
                           loading='lazy'
                           decoding='async'
                         />
