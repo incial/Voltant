@@ -8,7 +8,9 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test:emailjs": "node scripts/test-emailjs.js"
+    "test:emailjs": "node scripts/test-emailjs.js",
+    "optimize-images": "node scripts/optimize-images.js",
+    "prebuild": "node scripts/optimize-images.js"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",

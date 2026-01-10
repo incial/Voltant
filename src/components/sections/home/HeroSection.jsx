@@ -8,12 +8,17 @@ import {
   FaXTwitter
 } from 'react-icons/fa6';
 import { isIOS } from '../../../utils/device';
-import { preloadImages } from '../../../utils/imageSupport';
+import { preloadImages, supportsWebp } from '../../../utils/imageSupport';
 
 const heroFrames = [
   {
     src: '/assets/images/Home/Hero/hero1.png',
+    webpSrc: '/assets/images/Home/Hero/hero1.webp',
     mobileSrc: '/assets/images/Home/Hero/hero1-mobile.png',
+    mobileWebpSrc: '/assets/images/Home/Hero/hero1-mobile.webp',
+    // srcset for responsive loading
+    srcSet: '/assets/images/Home/Hero/hero1-480w.png 480w, /assets/images/Home/Hero/hero1-768w.png 768w, /assets/images/Home/Hero/hero1-1200w.png 1200w, /assets/images/Home/Hero/hero1-1600w.png 1600w, /assets/images/Home/Hero/hero1.png 1920w',
+    webpSrcSet: '/assets/images/Home/Hero/hero1-480w.webp 480w, /assets/images/Home/Hero/hero1-768w.webp 768w, /assets/images/Home/Hero/hero1-1200w.webp 1200w, /assets/images/Home/Hero/hero1-1600w.webp 1600w, /assets/images/Home/Hero/hero1.webp 1920w',
     title: (
       <>
         For a Sustainable Tomorrow,<br />Save Energy Today.
@@ -22,7 +27,11 @@ const heroFrames = [
   },
   {
     src: '/assets/images/Home/Hero/hero2.png',
+    webpSrc: '/assets/images/Home/Hero/hero2.webp',
     mobileSrc: '/assets/images/Home/Hero/hero2-mobile.png',
+    mobileWebpSrc: '/assets/images/Home/Hero/hero2-mobile.webp',
+    srcSet: '/assets/images/Home/Hero/hero2-480w.png 480w, /assets/images/Home/Hero/hero2-768w.png 768w, /assets/images/Home/Hero/hero2-1200w.png 1200w, /assets/images/Home/Hero/hero2-1600w.png 1600w, /assets/images/Home/Hero/hero2.png 1920w',
+    webpSrcSet: '/assets/images/Home/Hero/hero2-480w.webp 480w, /assets/images/Home/Hero/hero2-768w.webp 768w, /assets/images/Home/Hero/hero2-1200w.webp 1200w, /assets/images/Home/Hero/hero2-1600w.webp 1600w, /assets/images/Home/Hero/hero2.webp 1920w',
     title: (
       <>
         Turning Waste into Power,<br /> Fueling a Greener Future.
@@ -31,7 +40,11 @@ const heroFrames = [
   },
   {
     src: '/assets/images/Home/Hero/hero3.png',
+    webpSrc: '/assets/images/Home/Hero/hero3.webp',
     mobileSrc: '/assets/images/Home/Hero/hero3-mobile.png',
+    mobileWebpSrc: '/assets/images/Home/Hero/hero3-mobile.webp',
+    srcSet: '/assets/images/Home/Hero/hero3-480w.png 480w, /assets/images/Home/Hero/hero3-768w.png 768w, /assets/images/Home/Hero/hero3-1200w.png 1200w, /assets/images/Home/Hero/hero3-1600w.png 1600w, /assets/images/Home/Hero/hero3.png 1920w',
+    webpSrcSet: '/assets/images/Home/Hero/hero3-480w.webp 480w, /assets/images/Home/Hero/hero3-768w.webp 768w, /assets/images/Home/Hero/hero3-1200w.webp 1200w, /assets/images/Home/Hero/hero3-1600w.webp 1600w, /assets/images/Home/Hero/hero3.webp 1920w',
     title: (
       <>
         Maximize Efficiency,<br /> Minimize Waste.
@@ -48,13 +61,18 @@ const HeroSection = () => {
   const [showSocialTray, setShowSocialTray] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [firstImageReady, setFirstImageReady] = useState(false);
+  const [imagesLoaded, setImagesLoaded] = useState({});
   const iosDevice = isIOS;
   const enableMotion = !iosDevice;
+  const webpSupported = useMemo(() => supportsWebp(), []);
 
-  const frameSources = useMemo(
-    () => heroFrames.map((frame) => isMobile ? frame.mobileSrc : frame.src),
-    [isMobile]
-  );
+  // Get the appropriate image source for preloading
+  const getImageSrc = (frame) => {
+    if (isMobile) {
+      return webpSupported ? frame.mobileWebpSrc : frame.mobileSrc;
+    }
+    return webpSupported ? frame.webpSrc : frame.src;
+  };
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 768);
@@ -63,27 +81,33 @@ const HeroSection = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  // Preload first image
   useEffect(() => {
-    const primary = frameSources[0];
-    if (!primary) {
+    const primarySrc = getImageSrc(heroFrames[0]);
+    if (!primarySrc) {
       setFirstImageReady(true);
       return undefined;
     }
     let cancelled = false;
     const preloader = new Image();
-    preloader.src = primary;
+    preloader.src = primarySrc;
     preloader.onload = preloader.onerror = () => {
-      if (!cancelled) setFirstImageReady(true);
+      if (!cancelled) {
+        setFirstImageReady(true);
+        setImagesLoaded(prev => ({ ...prev, 0: true }));
+      }
     };
     return () => {
       cancelled = true;
     };
-  }, [frameSources]);
+  }, [isMobile, webpSupported]);
 
+  // Preload remaining images
   useEffect(() => {
     if (!firstImageReady || iosDevice) return;
-    preloadImages(frameSources.slice(1));
-  }, [firstImageReady, iosDevice, frameSources]);
+    const sources = heroFrames.slice(1).map(getImageSrc);
+    preloadImages(sources);
+  }, [firstImageReady, iosDevice, isMobile, webpSupported]);
 
   useEffect(() => {
     if (!firstImageReady || iosDevice) return;
@@ -124,24 +148,69 @@ const HeroSection = () => {
 
   const currentFrame = heroFrames[currentIndex];
 
-  const frameClassName = (index) =>
-    index === currentIndex ? 'hero-frame hero-frame--active' : 'hero-frame';
-
   const SocialWrapper = enableMotion ? motion.div : 'div';
   const CaptionWrapper = enableMotion ? motion.div : 'div';
 
+  // Handle individual image load
+  const handleImageLoad = (index) => {
+    setImagesLoaded(prev => ({ ...prev, [index]: true }));
+  };
+
   return (
     <section className="hero-section relative w-full">
+      {/* Hero Images using picture element for WebP with fallback */}
       <div className="hero-background-layer absolute inset-0 z-[1]">
-        {heroFrames.map((frame, index) => (
-          <div
-            key={index}
-            className={frameClassName(index)}
-            style={{
-              backgroundImage: `url(${frameSources[index]})`
-            }}
-          />
-        ))}
+        {heroFrames.map((frame, index) => {
+          const isActive = index === currentIndex;
+          return (
+            <div
+              key={index}
+              className={`absolute inset-0 transition-opacity duration-1000 ${isActive ? 'opacity-100' : 'opacity-0'}`}
+            >
+              <picture>
+                {/* WebP sources for modern browsers */}
+                {!isMobile && (
+                  <source
+                    type="image/webp"
+                    srcSet={frame.webpSrcSet}
+                    sizes="100vw"
+                  />
+                )}
+                {isMobile && (
+                  <source
+                    type="image/webp"
+                    srcSet={frame.mobileWebpSrc}
+                    media="(max-width: 768px)"
+                  />
+                )}
+                {/* PNG fallback sources */}
+                {!isMobile && (
+                  <source
+                    type="image/png"
+                    srcSet={frame.srcSet}
+                    sizes="100vw"
+                  />
+                )}
+                {/* Fallback img element */}
+                <img
+                  src={isMobile ? frame.mobileSrc : frame.src}
+                  srcSet={isMobile ? undefined : frame.srcSet}
+                  sizes={isMobile ? undefined : "100vw"}
+                  alt={`Hero slide ${index + 1}`}
+                  className="w-full h-full object-cover"
+                  loading={index === 0 ? "eager" : "lazy"}
+                  decoding={index === 0 ? "sync" : "async"}
+                  fetchpriority={index === 0 ? "high" : "auto"}
+                  onLoad={() => handleImageLoad(index)}
+                  style={{
+                    objectFit: 'cover',
+                    objectPosition: 'center',
+                  }}
+                />
+              </picture>
+            </div>
+          );
+        })}
       </div>
 
       <div

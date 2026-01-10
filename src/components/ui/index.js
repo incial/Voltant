@@ -7,3 +7,4 @@
 
 export { default as ServiceCard } from './ServiceCard';
 export { default as OptimizedImage } from './OptimizedImage';
+export { default as ResponsiveImage } from './ResponsiveImage';

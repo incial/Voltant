@@ -39,15 +39,15 @@ const HeroSection = ({
       <OptimizedImage
         src={imagePath}
         alt='Hero Image'
-        width={1920}
-        height={1080}
         className='w-full h-full object-cover'
+        usage="hero"
         loading="eager"
         decoding="sync"
         fetchPriority="high"
         onLoad={() => setImageLoaded(true)}
-        style={{ opacity: imageLoaded ? 1 : 0, transition: 'opacity 1s' }}
+        style={{ opacity: imageLoaded ? 1 : 0, transition: 'opacity 0.5s' }}
         preload
+        enableResponsive
       />
 
         <div className='absolute inset-0 flex flex-col items-center justify-center z-20'>

@@ -26,7 +26,8 @@ export default defineConfig({
   },
   build: {
     target: 'es2018',
-    assetsInlineLimit: 0,
+    // Inline only very small assets (< 4KB) to reduce HTTP requests
+    assetsInlineLimit: 4096,
     cssTarget: ['chrome61', 'firefox60', 'safari11', 'edge18'],
     rollupOptions: {
       output: {
@@ -39,10 +40,40 @@ export default defineConfig({
             './src/components/layout/Footer.jsx',
           ],
         },
+        // Optimize asset file naming for better caching
+        assetFileNames: (assetInfo) => {
+          const info = assetInfo.name.split('.');
+          const ext = info[info.length - 1];
+          // Images go into assets/images folder
+          if (/png|jpe?g|svg|gif|tiff|bmp|ico|webp|avif/i.test(ext)) {
+            return `assets/images/[name]-[hash][extname]`;
+          }
+          // Fonts go into assets/fonts folder
+          if (/woff2?|ttf|eot|otf/i.test(ext)) {
+            return `assets/fonts/[name]-[hash][extname]`;
+          }
+          return `assets/[name]-[hash][extname]`;
+        },
+        chunkFileNames: 'assets/js/[name]-[hash].js',
+        entryFileNames: 'assets/js/[name]-[hash].js',
       },
     },
     chunkSizeWarningLimit: 1000,
     minify: 'terser',
-    terserOptions: { compress: { drop_console: true, drop_debugger: true } },
+    terserOptions: { 
+      compress: { 
+        drop_console: true, 
+        drop_debugger: true,
+        pure_funcs: ['console.log', 'console.info'],
+      } 
+    },
+    // Enable source maps for debugging (disable in production if not needed)
+    sourcemap: false,
+    // Improve CSS code splitting
+    cssCodeSplit: true,
+  },
+  // Optimize dependencies
+  optimizeDeps: {
+    include: ['react', 'react-dom', 'react-router-dom', 'framer-motion'],
   },
 })

@@ -188,9 +188,9 @@ const RecentWorks = () => {
                   <OptimizedImage
                     src={card.resolved}
                     alt={card.alt}
-                    width={416}
-                    height={384}
-                    className={`w-full h-full ${card.isImage22 || card.isImage19 ? 'object-contain' : 'object-cover'} object-center`}
+                    width={400}
+                    height={200}
+                    className={`w-full h-full object-cover  object-center`}
                     loading="lazy"
                     decoding="async"
                     draggable={false}

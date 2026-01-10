@@ -149,16 +149,13 @@ export const wasteImgs = {
 };
 
 // Utility function to get video source with error handling
-export const getVideoSrc = (videoKey, category = 'heroVids') => {
-  const videoMaps = { heroVids, vids };
-  const videoMap = videoMaps[category];
-
-  if (!videoMap || !videoMap[videoKey]) {
-    console.warn(`Video not found: ${category}.${videoKey}`);
+export const getVideoSrc = (videoKey) => {
+  if (!vids || !vids[videoKey]) {
+    console.warn(`Video not found: ${videoKey}`);
     return '';
   }
 
-  return videoMap[videoKey];
+  return vids[videoKey];
 };
 
 // Utility function to get image source with error handling
