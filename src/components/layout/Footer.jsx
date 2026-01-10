@@ -7,7 +7,7 @@ import {
   FaWhatsapp
 } from 'react-icons/fa'
 import { FaXTwitter } from 'react-icons/fa6'
-import { footerImage, whiteLogo } from '../../utils/localAssets'
+import { footerImage, whiteLogo, whiteLogoPng } from '../../utils/localAssets'
 import { OptimizedImage } from '../ui'
 
 const Footer = () => {
@@ -40,6 +40,7 @@ const Footer = () => {
           <div className='mb-6 sm:mb-8'>
             <OptimizedImage
               src={whiteLogo}
+              fallbackSrc={whiteLogoPng}
               alt='Voltant Energy Logo'
               width={144}
               height={36}
@@ -123,6 +124,7 @@ const Footer = () => {
             <div>
               <OptimizedImage
                 src={whiteLogo}
+                fallbackSrc={whiteLogoPng}
                 alt='Voltant Energy Logo'
                 width={160}
                 height={48}

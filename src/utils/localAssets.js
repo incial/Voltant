@@ -3,28 +3,11 @@
  * Provides shorter named imports for local images, videos, and icons
  */
 
-// Hero Section Videos
-export const heroVids = {
-  vid1: '/Videos/HeroVid1.mp4',
-  vid2: '/Videos/HeroVid2.mp4',
-  vid3: '/Videos/HeroVid3.mp4',
-  // Fallback mappings for missing hero videos
-  heroSection1: '/Videos/HeroVid1.mp4', // Fallback for Hero-Section-1.mp4
-  heroSection2: '/Videos/HeroVid2.mp4', // Fallback for Hero-Section-2.mp4
-  heroSection3: '/Videos/HeroVid3.mp4'  // Fallback for Hero-Section-3.mp4
-};
+
 
 // Other Videos
 export const vids = {
-  subfooter: '/Videos/Subfooter.mp4',
-  goatfooter: '/Videos/Goatfooter.mp4',
-  subhero1: '/Videos/SubHeroVid1.mp4',
-  subhero2: '/Videos/SubHeroVid2.mp4',
-  // Fallback for missing video files
-  evCharging: '/Videos/SubHeroVid1.mp4', // Fallback for EV_charging _video.mp4
-  wasteToEnergy: '/Videos/SubHeroVid2.mp4', // Fallback for Waste_To_Energy.mp4
   videoBanner: '/assets/images/Home/About_Banner.webp', // Fallback for Video_Banner.mp4
-  connectWithUs: '/Videos/Subfooter.mp4' // Fallback for Connectwithus.mp4
 };
 
 // Logo and Brand Assets
@@ -32,6 +15,7 @@ export const logos = {
   main: '/assets/images/Home/Logo.webp',
   explore: '/assets/images/Home/logo1.webp',
   white: '/assets/images/Home/Logo_white.webp',
+  whitePng: '/assets/images/Home/Logo_white.png',
   icon: '/assets/images/Home/Logo_icon.webp'
 };
 
@@ -80,6 +64,7 @@ export const homeImgs = {
   footerImage: '/assets/images/Home/Footer.webp', // For footer_image.webp reference
   footerPng: '/assets/images/Home/Footer.webp',
   logoWhite: '/assets/images/Home/Logo_white.webp',
+  logoWhitePng: '/assets/images/Home/Logo_white.png',
   logo: '/assets/images/Home/Logo.webp',
   fallbackBg: '/assets/images/Home/About_us.webp' // Fallback for fallbackBg.webp
 };
@@ -204,3 +189,4 @@ export const preloadVideos = (videoSources) => {
 // Common exports for easy importing
 export const footerImage = homeImgs.footerImage;
 export const whiteLogo = logos.white;
+export const whiteLogoPng = logos.whitePng;
