@@ -10,12 +10,17 @@ import {
 
 /**
  * Hero Images Configuration
- * Using JPEG for maximum iOS Safari compatibility
+ * Using responsive WebP with JPEG fallback for iOS Safari
+ * Images served from /public/images/hero/ with srcSet for optimal loading
  */
 const heroImages = [
   {
-    src: '/assets/images/Home/Hero/hero1.jpg',
-    srcMobile: '/assets/images/Home/Hero/hero1-mobile.jpg',
+    // Responsive srcSet for all devices
+    srcSet: '/images/hero/hero1-480w.webp 480w, /images/hero/hero1-768w.webp 768w, /images/hero/hero1-1200w.webp 1200w, /images/hero/hero1-1920w.webp 1920w',
+    src: '/images/hero/hero1-1200w.webp', // Default fallback
+    fallbackSrc: '/images/hero/hero1-1200w.jpg', // JPEG for older Safari
+    width: 1920,
+    height: 1347,
     title: (
       <>
         For a Sustainable Tomorrow,<br />Save Energy Today.
@@ -23,8 +28,11 @@ const heroImages = [
     )
   },
   {
-    src: '/assets/images/Home/Hero/hero2.jpg',
-    srcMobile: '/assets/images/Home/Hero/hero2-mobile.jpg',
+    srcSet: '/images/hero/hero2-480w.webp 480w, /images/hero/hero2-768w.webp 768w, /images/hero/hero2-1200w.webp 1200w, /images/hero/hero2-1920w.webp 1920w',
+    src: '/images/hero/hero2-1200w.webp',
+    fallbackSrc: '/images/hero/hero2-1200w.jpg',
+    width: 1920,
+    height: 3413,
     title: (
       <>
         Turning Waste into Power,<br /> Fueling a Greener Future.
@@ -32,8 +40,11 @@ const heroImages = [
     )
   },
   {
-    src: '/assets/images/Home/Hero/hero3.jpg',
-    srcMobile: '/assets/images/Home/Hero/hero3-mobile.jpg',
+    srcSet: '/images/hero/hero3-480w.webp 480w, /images/hero/hero3-768w.webp 768w, /images/hero/hero3-1200w.webp 1200w, /images/hero/hero3-1920w.webp 1920w',
+    src: '/images/hero/hero3-1200w.webp',
+    fallbackSrc: '/images/hero/hero3-1200w.jpg',
+    width: 1920,
+    height: 2880,
     title: (
       <>
         Maximize Efficiency,<br /> Minimize Waste.
@@ -45,11 +56,12 @@ const heroImages = [
 /**
  * iOS-Safe Hero Section Component
  * 
- * Key iOS Safari fixes:
- * - Uses min-h-screen instead of h-screen (100vh issues)
- * - No position:fixed
+ * Performance optimizations:
+ * - Responsive srcSet for optimal image delivery
+ * - fetchPriority="high" for first image
+ * - Preloaded via index.html
  * - Animations only start AFTER first image loads
- * - No heavy GPU filters (blur, backdrop-blur)
+ * - No heavy GPU filters (blur, backdrop-filter)
  */
 const HeroSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -57,6 +69,7 @@ const HeroSection = () => {
   const [showSocialTray, setShowSocialTray] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [firstImageLoaded, setFirstImageLoaded] = useState(false);
+  const [supportsWebP, setSupportsWebP] = useState(true);
   const imageDuration = 8000;
 
   // Detect mobile
@@ -65,6 +78,15 @@ const HeroSection = () => {
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // WebP support detection
+  useEffect(() => {
+    const canvas = document.createElement('canvas');
+    canvas.width = 1;
+    canvas.height = 1;
+    const supported = canvas.toDataURL('image/webp').indexOf('data:image/webp') === 0;
+    setSupportsWebP(supported);
   }, []);
 
   // Handle first image load - critical for iOS
@@ -77,9 +99,9 @@ const HeroSection = () => {
     if (!firstImageLoaded) return;
     heroImages.slice(1).forEach((img) => {
       const image = new Image();
-      image.src = isMobile ? img.srcMobile : img.src;
+      image.src = supportsWebP ? img.src : img.fallbackSrc;
     });
-  }, [firstImageLoaded, isMobile]);
+  }, [firstImageLoaded, supportsWebP]);
 
   // Carousel logic - only after first image loads
   useEffect(() => {
@@ -105,7 +127,8 @@ const HeroSection = () => {
     return () => clearTimeout(timer);
   }, [isMobile, firstImageLoaded]);
 
-  const getImageSrc = (img) => isMobile ? img.srcMobile : img.src;
+  // Responsive sizes attribute for srcSet
+  const imageSizes = "(max-width: 480px) 100vw, (max-width: 768px) 100vw, (max-width: 1200px) 100vw, 1920px";
 
   return (
     <section 
@@ -129,11 +152,16 @@ const HeroSection = () => {
             }}
           >
             <img
-              src={getImageSrc(img)}
+              src={supportsWebP ? img.src : img.fallbackSrc}
+              srcSet={supportsWebP ? img.srcSet : undefined}
+              sizes={supportsWebP ? imageSizes : undefined}
+              width={img.width}
+              height={img.height}
               alt={`Hero Slide ${index + 1}`}
               className="w-full h-full object-cover"
               loading={index === 0 ? 'eager' : 'lazy'}
               decoding={index === 0 ? 'sync' : 'async'}
+              fetchPriority={index === 0 ? 'high' : 'low'}
               onLoad={index === 0 ? handleFirstImageLoad : undefined}
               draggable={false}
             />

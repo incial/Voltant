@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { heroIcons } from '../../../utils/localAssets'
 import { Link } from 'react-router-dom'
 
@@ -74,8 +74,11 @@ const SplitHoverImages = () => {
             <img
               src={item.icon}
               alt={`${item.id} icon`}
+              width={64}
+              height={64}
               className='absolute top-4 sm:top-5 md:top-8 lg:top-12 xl:top-16 right-4 sm:right-5 md:right-8 lg:right-12 xl:right-16 w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-14 lg:h-14 xl:w-16 xl:h-16 z-20 opacity-100'
-              loading='lazy'
+              loading='eager'
+              decoding='async'
             />
 
             {/* Image Background */}
@@ -88,7 +91,12 @@ const SplitHoverImages = () => {
               <img
                 src={item.img}
                 alt={item.title}
+                width={1920}
+                height={1080}
                 className='w-full h-full object-cover transition-opacity duration-1000'
+                loading='eager'
+                decoding='async'
+                fetchPriority='high'
                 draggable={false}
                 style={{ opacity: 1 }}
               />

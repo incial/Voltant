@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-// eslint-disable-next-line no-unused-vars
+ 
 import { motion, AnimatePresence } from 'framer-motion';
 import { whiteLogo } from '../../utils/localAssets';
 import { useContactForm } from '../../context/ContactFormContext';
@@ -117,7 +117,12 @@ const Navbar = () => {
             <img
               src={whiteLogo}
               alt="Voltant Energy"
+              width={160}
+              height={40}
               className="h-8 md:h-10"
+              loading="eager"
+              decoding="sync"
+              fetchPriority="high"
             />
           </Link>
         </div>

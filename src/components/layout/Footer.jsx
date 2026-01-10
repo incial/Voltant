@@ -24,7 +24,11 @@ const Footer = () => {
         <img
           src={footerImage}
           alt='Footer background'
+          width={1920}
+          height={400}
           className='w-full h-full object-cover'
+          loading="lazy"
+          decoding="async"
           onLoad={() => setImageLoaded(prev => ({ ...prev, background: true }))}
           style={{ opacity: imageLoaded.background ? 1 : 0, transition: 'opacity 1s' }}
         />
@@ -36,8 +40,11 @@ const Footer = () => {
             <img
               src={whiteLogo}
               alt='Voltant Energy Logo'
+              width={144}
+              height={36}
               className='h-8 sm:h-9'
               loading="eager"
+              decoding="async"
             />
           </div>
 
@@ -115,8 +122,11 @@ const Footer = () => {
               <img
                 src={whiteLogo}
                 alt='Voltant Energy Logo'
+                width={160}
+                height={48}
                 className='h-10 md:h-11 lg:h-12'
                 loading="eager"
+                decoding="async"
               />
             </div>
             <div className='text-xs md:text-sm'>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-// eslint-disable-next-line no-unused-vars
+ 
 import { motion } from 'framer-motion'
 import { homeImgs } from '../../../utils/localAssets'
 
@@ -38,7 +38,12 @@ const HeroSection = ({
       <img
         src={imagePath}
         alt='Hero Image'
+        width={1920}
+        height={1080}
         className='w-full h-full object-cover'
+        loading="eager"
+        decoding="sync"
+        fetchPriority="high"
         onLoad={() => setImageLoaded(true)}
         style={{ opacity: imageLoaded ? 1 : 0, transition: 'opacity 1s' }}
       />

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-// eslint-disable-next-line no-unused-vars
+ 
 import { motion } from 'framer-motion'
 
 const ServiceCard = ({ title, image, path }) => {
@@ -17,9 +17,12 @@ const ServiceCard = ({ title, image, path }) => {
         )}
         <img 
           src={image}
-          alt={title} 
+          alt={title}
+          width={400}
+          height={400}
           className="w-full h-full object-cover"
           loading="lazy"
+          decoding="async"
           onLoad={() => setImageLoaded(true)}
           style={{ opacity: imageLoaded ? 1 : 0, transition: 'opacity 1.2s cubic-bezier(0.4,0,0.2,1)' }}
         />
@@ -44,9 +47,12 @@ const ServiceCard = ({ title, image, path }) => {
         )}
         <motion.img 
           src={image}
-          alt={title} 
+          alt={title}
+          width={370}
+          height={300}
           className="w-full h-full object-cover"
           loading="lazy"
+          decoding="async"
           onLoad={() => setImageLoaded(true)}
           style={{ opacity: imageLoaded ? 1 : 0, transition: 'opacity 1.2s cubic-bezier(0.4,0,0.2,1)' }}
           variants={{

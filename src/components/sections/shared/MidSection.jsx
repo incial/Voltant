@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-// eslint-disable-next-line no-unused-vars
+ 
 import { motion } from 'framer-motion'
 import { heroIcons, homeImgs } from '../../../utils/localAssets'
 
@@ -46,7 +46,11 @@ function Feature({ icon, title, description }) {
           <img
             src={iconPath}
             alt={`${title} icon`}
+            width={48}
+            height={48}
             className='aspect-[1] object-contain w-8 md:w-10 lg:w-12 shrink-0 my-auto'
+            loading="lazy"
+            decoding="async"
             onLoad={() => setIconLoaded(true)}
             style={{ opacity: iconLoaded ? 1 : 0, transition: 'opacity 0.5s' }}
           />
@@ -98,7 +102,11 @@ const MidSection = ({
       <img
         src={backgroundPath}
         alt='Section Background'
+        width={1920}
+        height={1080}
         className='w-full h-full object-cover absolute inset-0'
+        loading="lazy"
+        decoding="async"
         onLoad={() => setImageLoaded(true)}
         style={{ opacity: imageLoaded ? 1 : 0, transition: 'opacity 1s' }}
       />

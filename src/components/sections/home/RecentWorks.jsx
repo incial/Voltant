@@ -162,12 +162,23 @@ const RecentWorks = () => {
                   setHoveredCard(null);
                 }}
               >
+                {/* Using img tag instead of background-image for iOS Safari compatibility */}
                 <div
-                  className={`w-full h-full ${card.isImage22 || card.isImage19 ? 'bg-contain bg-no-repeat' : 'bg-cover'} bg-center transition-transform duration-500 ${
+                  className={`w-full h-full overflow-hidden transition-transform duration-500 ${
                     hoveredCard === idx ? 'scale-110' : 'scale-100'
                   }`}
-                  style={{ backgroundImage: `url(${card.img})` }}
-                />
+                >
+                  <img
+                    src={card.img}
+                    alt={card.alt}
+                    width={416}
+                    height={384}
+                    className={`w-full h-full ${card.isImage22 || card.isImage19 ? 'object-contain' : 'object-cover'} object-center`}
+                    loading="lazy"
+                    decoding="async"
+                    draggable={false}
+                  />
+                </div>
               </div>
             ))}
           </div>

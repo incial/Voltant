@@ -18,7 +18,11 @@ const ConnectWithUs = () => {
           <img
             src={homeImgs.connectWithUsBg}
             alt="Connect with us background"
+            width={1920}
+            height={600}
             className="absolute inset-0 w-full h-full object-cover rounded-[40px] z-0"
+            loading="lazy"
+            decoding="async"
             onLoad={() => setImageLoaded(true)}
             style={{ opacity: imageLoaded ? 1 : 0, transition: 'opacity 1s' }}
           />
@@ -52,7 +56,7 @@ const ConnectWithUs = () => {
               {/* Right side - WhatsApp Button */}
               <div className="flex flex-col md:items-end w-full md:w-auto">
                 <a
-                  href="https://wa.me/971506719857"
+                  href="https://wa.me/971506419857"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-[#4AB757] text-white px-4 py-3 md:px-6 md:py-3.5 lg:px-7 lg:py-4 rounded-full flex items-center justify-center gap-3 hover:bg-[#3a9246] transition-colors w-full md:w-auto shadow-lg hover:shadow-xl font-['Cairo']"
