@@ -1,6 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { useContactForm } from '../../../context/ContactFormContext'
+import { downloadPDF } from '../../../utils/downloadHelper'
 
 // ---------------- Animations ----------------
 const fadeIn = {
@@ -154,12 +155,7 @@ const ProfilesSection = ({
     if (downloadEnabled) {
       const url = downloads.profile.url
       const filename = downloads.profile.filename || url.split('/').pop().split('?')[0]
-      const link = document.createElement('a')
-      link.href = url
-      link.download = filename
-      document.body.appendChild(link)
-      link.click()
-      document.body.removeChild(link)
+      downloadPDF(url, filename)
       return
     }
 

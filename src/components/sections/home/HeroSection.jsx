@@ -10,7 +10,10 @@ import {
 
 const heroImages = [
   {
-    path: '/assets/images/Home/Hero/hero1.webp',
+    webp: '/assets/images/Home/Hero/hero1.webp',
+    jpg: '/assets/images/Home/Hero/hero1.jpg',
+    webpMobile: '/assets/images/Home/Hero/hero1-mobile.webp',
+    jpgMobile: '/assets/images/Home/Hero/hero1-mobile.jpg',
     title: (
       <>
         For a Sustainable Tomorrow,<br />Save Energy Today.
@@ -18,7 +21,10 @@ const heroImages = [
     )
   },
   {
-    path: '/assets/images/Home/Hero/hero2.webp',
+    webp: '/assets/images/Home/Hero/hero2.webp',
+    jpg: '/assets/images/Home/Hero/hero2.jpg',
+    webpMobile: '/assets/images/Home/Hero/hero2-mobile.webp',
+    jpgMobile: '/assets/images/Home/Hero/hero2-mobile.jpg',
     title: (
       <>
         Turning Waste into Power,<br /> Fueling a Greener Future.
@@ -26,7 +32,10 @@ const heroImages = [
     )
   },
   {
-    path: '/assets/images/Home/Hero/hero3.webp',
+    webp: '/assets/images/Home/Hero/hero3.webp',
+    jpg: '/assets/images/Home/Hero/hero3.jpg',
+    webpMobile: '/assets/images/Home/Hero/hero3-mobile.webp',
+    jpgMobile: '/assets/images/Home/Hero/hero3-mobile.jpg',
     title: (
       <>
         Maximize Efficiency,<br /> Minimize Waste.
@@ -51,6 +60,37 @@ const HeroSection = () => {
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
+
+  // Preload images for better performance
+  useEffect(() => {
+    const preloadImages = () => {
+      heroImages.forEach((img, index) => {
+        // Preload both WebP and JPEG for better compatibility
+        const webpImg = new Image();
+        const jpgImg = new Image();
+        const webpMobileImg = new Image();
+        const jpgMobileImg = new Image();
+
+        // Prioritize current and next image
+        if (index === currentIndex || index === (currentIndex + 1) % heroImages.length) {
+          webpImg.src = img.webp;
+          jpgImg.src = img.jpg;
+          webpMobileImg.src = img.webpMobile;
+          jpgMobileImg.src = img.jpgMobile;
+        } else {
+          // Lazy load others
+          setTimeout(() => {
+            webpImg.src = img.webp;
+            jpgImg.src = img.jpg;
+            webpMobileImg.src = img.webpMobile;
+            jpgMobileImg.src = img.jpgMobile;
+          }, 1000);
+        }
+      });
+    };
+
+    preloadImages();
+  }, [currentIndex]);
 
   // Carousel logic
   useEffect(() => {
@@ -79,13 +119,43 @@ const HeroSection = () => {
       {/* Image Container */}
       <div className="absolute inset-0 z-[1] bg-black overflow-hidden">
         {heroImages.map((img, index) => (
-          <img
+          <picture
             key={index}
-            src={img.path}
-            alt="Hero Slide"
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${index === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
-            draggable={false}
-          />
+            className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ${index === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+          >
+            {/* Mobile optimized images */}
+            <source
+              media="(max-width: 768px)"
+              srcSet={img.webpMobile}
+              type="image/webp"
+            />
+            <source
+              media="(max-width: 768px)"
+              srcSet={img.jpgMobile}
+              type="image/jpeg"
+            />
+            
+            {/* Desktop optimized images */}
+            <source
+              srcSet={img.webp}
+              type="image/webp"
+            />
+            <source
+              srcSet={img.jpg}
+              type="image/jpeg"
+            />
+            
+            {/* Fallback for older browsers */}
+            <img
+              src={img.jpg}
+              alt={`Hero Slide ${index + 1}`}
+              className="absolute inset-0 w-full h-full object-cover"
+              draggable={false}
+              loading={index === 0 ? 'eager' : 'lazy'}
+              fetchpriority={index === 0 ? 'high' : 'auto'}
+              decoding={index === 0 ? 'sync' : 'async'}
+            />
+          </picture>
         ))}
       </div>
 
