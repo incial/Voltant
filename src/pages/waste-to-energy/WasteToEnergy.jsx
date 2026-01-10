@@ -191,17 +191,13 @@ const WasteToEnergy = () => {
                   image={service.image}
                   path={service.path}
                 />
-              <a
-                href={brochureUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block text-xs sm:text-sm font-normal text-center leading-none px-4 py-2 sm:px-5 sm:py-3 rounded-full border-white border-solid border-2 text-white hover:bg-white hover:text-gray-800 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-white"
-              >
-                Download Brochure
-              </a>
-              {iosDevice && (
-                <p className="mt-3 text-xs text-white/80">
-                  Tip: Tap Share → Save to Files to keep this brochure on iPhone.
-                </p>
-              )}
+              ))}
+            </div>
+          </div>
+        </section>
+      </div>
+    </>
+  );
+};
+
 export default WasteToEnergy;
