@@ -6,21 +6,10 @@ import {
   MidSection
 } from '../../components/sections/shared'
 import { smartWasteData } from '../../data/waste-to-energy/smart-waste'
+import { downloadPDF } from '../../utils/downloadHelper'
 
 const SmartWaste = () => {
-  const handleDownload = (url, filename) => {
-    if (!url || typeof url !== 'string' || !url.startsWith('/pdfs/')) {
-      console.warn('Invalid PDF download attempt:', url)
-      return
-    }
-
-    const link = document.createElement('a')
-    link.href = url
-    link.download = filename || url.split('/').pop()
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
-  }
+  const handleDownload = downloadPDF
 
   return (
     <>

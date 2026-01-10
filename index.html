@@ -8,6 +8,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!-- Preconnect to Cloudinary to establish early connection -->
     <link rel="preconnect" href="https://res.cloudinary.com">
+    <!-- Preload critical hero images for faster initial load -->
+    <link rel="preload" as="image" href="/assets/images/Home/Hero/hero1.webp" type="image/webp" fetchpriority="high">
+    <link rel="preload" as="image" href="/assets/images/Home/Hero/hero1.jpg" type="image/jpeg" fetchpriority="high">
     <!-- Load font CSS asynchronously with font-display: swap -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@100;200;400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <!-- Fallback in case JavaScript is disabled -->
