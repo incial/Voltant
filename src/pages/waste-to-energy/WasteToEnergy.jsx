@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { ServiceCard, OptimizedImage } from "../../components/ui";
-import { WASTE_RESPONSIVE_IMAGES } from "../../utils/responsiveAssets";
+import { wasteImgs } from "../../utils/localAssets";
 import { isIOS } from "../../utils/device";
 
 const WasteToEnergy = () => {
@@ -13,9 +13,6 @@ const WasteToEnergy = () => {
   const enableMotion = !iosDevice;
   const HeroContent = enableMotion ? motion.div : "div";
 
-  const cardSizes = "(max-width: 768px) 50vw, 370px";
-  const heroImage = WASTE_RESPONSIVE_IMAGES.main;
-
   // Services data array
   const services = [
     {
@@ -26,11 +23,7 @@ const WasteToEnergy = () => {
           Plant
         </>
       ),
-      image: {
-        ...WASTE_RESPONSIVE_IMAGES.containerized,
-        sizes: cardSizes,
-        alt: "Containerized plant"
-      },
+      image: wasteImgs.containerizedPlant,
       path: "/waste-to-energy/containerized-plant",
     },
     {
@@ -41,20 +34,12 @@ const WasteToEnergy = () => {
           Plant
         </>
       ),
-      image: {
-        ...WASTE_RESPONSIVE_IMAGES.largeScale,
-        sizes: cardSizes,
-        alt: "Large scale plant"
-      },
+      image: wasteImgs.largeScalePlant,
       path: "/waste-to-energy/large-scale",
     },
     {
       title: <>Household</>,
-      image: {
-        ...WASTE_RESPONSIVE_IMAGES.household,
-        sizes: cardSizes,
-        alt: "Household waste solution"
-      },
+      image: wasteImgs.household,
       path: "/waste-to-energy/household",
     },
     {
@@ -67,11 +52,7 @@ const WasteToEnergy = () => {
           Bins
         </>
       ),
-      image: {
-        ...WASTE_RESPONSIVE_IMAGES.smartWaste,
-        sizes: cardSizes,
-        alt: "Smart waste segregation"
-      },
+      image: wasteImgs.smartWaste,
       path: "/waste-to-energy/smart-waste",
     },
   ];
@@ -90,10 +71,7 @@ const WasteToEnergy = () => {
               </div>
             )}
             <OptimizedImage
-              src={heroImage.src}
-              fallbackSrc={heroImage.fallbackSrc}
-              srcSet={heroImage.srcSet}
-              sizes="(max-width: 768px) 100vw, 1600px"
+              src="/assets/images/WateTOEnergy/main.webp"
               alt="Waste to Energy"
               className="w-full h-full object-cover transform-gpu"
               loading="eager"
@@ -161,10 +139,7 @@ const WasteToEnergy = () => {
               </div>
             )}
             <OptimizedImage
-              src={heroImage.src}
-              fallbackSrc={heroImage.fallbackSrc}
-              srcSet={heroImage.srcSet}
-              sizes="(max-width: 768px) 100vw, 1600px"
+              src="/assets/images/WateTOEnergy/main.webp"
               alt="Waste to Energy"
               className="w-full h-full object-cover transform-gpu"
               loading="eager"

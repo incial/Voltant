@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion'
 import { homeImgs } from '../../../utils/localAssets'
-import { getResponsiveAsset } from '../../../utils/responsiveAssets'
 import { OptimizedImage } from '../../ui'
 
 const fadeIn = {
@@ -18,15 +17,9 @@ const HeroSection = ({
   heroImage
 }) => {
   const [imageLoaded, setImageLoaded] = useState(false)
-
-  const resolvedHeroValue = typeof heroImage === 'string' ? (homeImgs[heroImage] || heroImage) : heroImage
-  const heroAsset = typeof resolvedHeroValue === 'string'
-    ? getResponsiveAsset(resolvedHeroValue) || { src: resolvedHeroValue }
-    : resolvedHeroValue
-  const heroSrc = heroAsset?.src || resolvedHeroValue
-  const heroFallback = heroAsset?.fallbackSrc
-  const heroSrcSet = heroAsset?.srcSet
-  const heroSizes = heroAsset?.sizes || '(max-width: 768px) 100vw, 1600px'
+  
+  // Get image path from local assets or fallback to provided path
+  const imagePath = homeImgs[heroImage] || heroImage
 
   return (
     <motion.section
@@ -44,10 +37,7 @@ const HeroSection = ({
       <div className='absolute inset-0 bg-black/30 z-10'></div>
 
       <OptimizedImage
-        src={heroSrc}
-        fallbackSrc={heroFallback}
-        srcSet={heroSrcSet}
-        sizes={heroSizes}
+        src={imagePath}
         alt='Hero Image'
         width={1920}
         height={1080}

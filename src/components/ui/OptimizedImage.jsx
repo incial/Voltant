@@ -8,8 +8,6 @@ import {
 const OptimizedImage = ({
   src,
   fallbackSrc,
-  srcSet,
-  fallbackSrcSet,
   alt,
   loading = 'lazy',
   decoding = 'async',
@@ -33,15 +31,6 @@ const OptimizedImage = ({
     () => getPreferredImage(src, computedFallback, supportsWebP),
     [src, computedFallback, supportsWebP]
   );
-  const resolvedSrcSet = useMemo(() => {
-    if (!srcSet) return undefined;
-    if (!supportsWebP) {
-      if (fallbackSrcSet) return fallbackSrcSet;
-      // When falling back to PNG/JPG, drop WebP srcSet to avoid unsupported candidates.
-      return undefined;
-    }
-    return srcSet;
-  }, [srcSet, fallbackSrcSet, supportsWebP]);
 
   useEffect(() => {
     if (preload && resolvedSrc) preloadImage(resolvedSrc);
@@ -49,7 +38,6 @@ const OptimizedImage = ({
 
   const imgProps = {
     src: resolvedSrc,
-    srcSet: resolvedSrcSet,
     alt,
     loading,
     decoding,
