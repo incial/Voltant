@@ -39,7 +39,7 @@ const HeroSection = ({
       <OptimizedImage
         src={imagePath}
         alt='Hero Image'
-        className='w-full h-full object-cover'
+        className='w-full h-full object-cover object-[center_12%] scale-[4] md:scale-100 md:object-center'
         usage="hero"
         loading="eager"
         decoding="sync"
