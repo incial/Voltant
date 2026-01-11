@@ -301,7 +301,10 @@ const HeroSection = () => {
                 ? '40px'
                 : '48px';
 
-            const barProgress = enableMotion ? `${progress * 100}%` : isActive ? '100%' : '0%';
+            // Calculate progress only for the active bar
+            const barProgress = isActive 
+              ? (enableMotion ? `${progress * 100}%` : '100%')
+              : '0%';
 
             return (
               <div
