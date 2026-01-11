@@ -23,7 +23,7 @@ const HeroSection = ({
 
   return (
     <motion.section
-      className='relative w-full h-[80vh] overflow-hidden'
+className='relative w-full h-[60vh] md:h-[80vh] overflow-hidden'
       initial='hidden'
       animate='visible'
       variants={fadeIn}
@@ -39,7 +39,11 @@ const HeroSection = ({
       <OptimizedImage
         src={imagePath}
         alt='Hero Image'
-        className='w-full h-full object-cover'
+className='
+  w-full h-full object-cover
+  object-center
+  scale-[1.3] sm:scale-[1.6] md:scale-100
+'
         usage="hero"
         loading="eager"
         decoding="sync"
@@ -50,12 +54,12 @@ const HeroSection = ({
         enableResponsive
       />
 
-        <div className='absolute inset-0 flex flex-col items-center justify-center z-20'>
+        <div className='absolute inset-0 flex flex-col items-center justify-center md:justify-center z-20 px-4 md:px-0'>
           <motion.h1
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className='text-5xl md:text-5xl font-semibold text-white text-center md:px-0 px-20'
+            className='text-3xl sm:text-4xl md:text-5xl font-semibold text-white text-center px-6 md:px-0'
           >
             {title}
           </motion.h1>

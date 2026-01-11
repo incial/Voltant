@@ -150,7 +150,7 @@ export const WASTE_IMAGES = {
   hsAbout: `${ASSET_PATHS.images}/WateTOEnergy/biogas.png`,
   lsAbout: `${ASSET_PATHS.images}/WateTOEnergy/LS_about.png`,
   cpAbout: `${ASSET_PATHS.images}/WateTOEnergy/CP_about.png`,
-  swAbout: `${ASSET_PATHS.images}/WateTOEnergy/smart_about.png`
+  swAbout: `${ASSET_PATHS.images}/WateTOEnergy/wastebin1.png`
 };
 
 /**

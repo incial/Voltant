@@ -166,7 +166,7 @@ const RecentWorks = () => {
               <div
                 key={`${card.resolved}-${idx}`}
                 data-card
-                className={`h-64 sm:h-72 md:h-80 lg:h-88 xl:h-96 w-72 sm:w-80 md:w-88 lg:w-96 xl:w-[26rem] shrink-0 rounded-xl md:rounded-2xl shadow-md overflow-hidden cursor-pointer transition-shadow duration-500 ${
+                className={`h-80 w-96 shrink-0 rounded-xl md:rounded-2xl shadow-md overflow-hidden cursor-pointer transition-shadow duration-500 ${
                   card.isImage22 ? 'bg-[#d4824a]' : card.isImage19 ? 'bg-gray-900' : ''
                 }`}
                 title={card.alt}
@@ -188,9 +188,9 @@ const RecentWorks = () => {
                   <OptimizedImage
                     src={card.resolved}
                     alt={card.alt}
-                    width={400}
-                    height={200}
-                    className={`w-full h-full object-cover  object-center`}
+                    width={384}
+                    height={320}
+                    className={`w-full h-full ${card.isImage22 || card.isImage19 ? 'object-contain' : 'object-cover'} object-center`}
                     loading="lazy"
                     decoding="async"
                     draggable={false}

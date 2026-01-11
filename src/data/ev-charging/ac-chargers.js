@@ -64,19 +64,6 @@ export const acChargersData = {
     ]
   },
 
-profiles: {
-  sectionTitle: 'Profiles',
-  buttonText: 'Download Charging Profile',
-  showButton: true,
-  downloads: {
-    profile: {
-      enabled: true,
-      url: '/pdfs/voltant-energy-ev-charging-profile.pdf',
-      filename: 'Voltant-Energy-AC-Charging-Profile.pdf',
-      label: 'Download Charging Profile'
-    }
-  }
-},
 
   
   chargerData: {
@@ -151,3 +138,17 @@ profiles: {
     pdfUrl2: CHARGING_PROFILE_PDF.url,
   }
 };
+/* profiles: {
+  sectionTitle: 'Profiles',
+  buttonText: 'Download Charging Profile',
+  showButton: true,
+  downloads: {
+    profile: {
+      enabled: true,
+      url: '/pdfs/voltant-energy-ev-charging-profile.pdf',
+      filename: 'Voltant-Energy-AC-Charging-Profile.pdf',
+      label: 'Download Charging Profile'
+    }
+  }
+},
+ */

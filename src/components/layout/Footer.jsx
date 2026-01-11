@@ -44,7 +44,7 @@ const Footer = () => {
               alt='Voltant Energy Logo'
               width={144}
               height={36}
-              className='h-8 sm:h-9'
+              className='h-8 sm:h-9 w-auto object-contain'
               loading="eager"
               decoding="async"
               preload
@@ -112,7 +112,7 @@ const Footer = () => {
         {/* Copyright */}
         <div className="text-center text-xs sm:text-sm pt-2 font-['Cairo']">
           <p>
-            © Copyright {currentYear} Voltant Energy LLC FZ. All Rights Reserved
+            © Copyright {currentYear} Voltant Energy. All Rights Reserved
           </p>
         </div>
       </div>
