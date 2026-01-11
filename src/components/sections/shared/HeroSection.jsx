@@ -23,7 +23,7 @@ const HeroSection = ({
 
   return (
     <motion.section
-      className='relative w-full min-h-[80vh] md:h-[80vh] overflow-visible md:overflow-hidden'
+className='relative w-full h-[60vh] md:h-[80vh] overflow-hidden'
       initial='hidden'
       animate='visible'
       variants={fadeIn}
@@ -39,7 +39,11 @@ const HeroSection = ({
       <OptimizedImage
         src={imagePath}
         alt='Hero Image'
-        className='w-full h-full object-cover object-[center_12%] scale-[4] md:scale-100 md:object-center'
+className='
+  w-full h-full object-cover
+  object-center
+  scale-[1.3] sm:scale-[1.6] md:scale-100
+'
         usage="hero"
         loading="eager"
         decoding="sync"
