@@ -3,12 +3,13 @@ import { motion } from "framer-motion";
 import { ServiceCard, OptimizedImage } from "../../components/ui";
 import { wasteImgs } from "../../utils/localAssets";
 import { isIOS } from "../../utils/device";
+import { WASTE_TO_ENERGY_PROFILE_PDF } from "../../constants/pdfs";
 
 const WasteToEnergy = () => {
   const [imageLoaded, setImageLoaded] = useState(false);
 
   // PDF download configuration - using native anchor for iOS Safari compatibility
-  const brochureUrl = "/pdfs/FoodOrganic waste to Energy Solutions A CIRCULAR ECONOMY SOLUTION FOR A CARBON NEUTRAL FUTURE-4.pdf";
+  const brochureUrl = WASTE_TO_ENERGY_PROFILE_PDF.url;
   const iosDevice = isIOS;
   const enableMotion = !iosDevice;
   const HeroContent = enableMotion ? motion.div : "div";
