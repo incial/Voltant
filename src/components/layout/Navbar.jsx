@@ -121,7 +121,7 @@ const Navbar = () => {
               alt="Voltant Energy"
               width={160}
               height={40}
-              className="h-8 md:h-10"
+              className="h-8 w-auto object-contain md:h-10 md:w-[160px]"
               loading="eager"
               decoding="sync"
               fetchPriority="high"
