@@ -52,7 +52,7 @@ const SplitHoverImages = () => {
   }, [isMobile, mobileInitialized])
 
   return (
-    <div className='flex md:flex-row flex-col h-auto md:h-[100vh] w-full overflow-hidden'>
+<div className='flex md:flex-row flex-col min-h-screen md:h-screen w-full overflow-hidden'>
       {images.map(item => {
         const isActive = activeId === item.id
         const isPlayed = playedId === item.id || (isMobile && mobileInitialized)
@@ -67,8 +67,9 @@ const SplitHoverImages = () => {
             style={{
               flexBasis: isMobile ? '100%' : isActive ? '66.66%' : '33.33%',
               transition: 'flex-basis 0.8s cubic-bezier(0.83, 0, 0.17, 1)',
-              aspectRatio: isMobile ? '14 / 14' : undefined,
-              height: isMobile ? '70vh' : '100%'
+              minHeight: isMobile ? '80svh' : '100%',
+              //aspectRatio: isMobile ? '14 / 14' : undefined,
+height: isMobile ? 'auto' : '100%'
             }}
           >
             {/* Top-right Icon */}

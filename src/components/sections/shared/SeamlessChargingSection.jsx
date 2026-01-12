@@ -37,14 +37,14 @@ const SeamlessChargingSection = ({
       className="w-full py-20 md:py-28 px-4 sm:px-6 lg:px-8"
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-100px" }}
+      viewport={{ once: true, margin: "-120px" }}
       variants={sectionFadeIn}
     >
       <div className="max-w-7xl mx-auto">
         <motion.h2
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: "-120px" }}
           variants={fadeIn}
           className="text-4xl text-gray-500 font-black text-center mb-24"
         >
