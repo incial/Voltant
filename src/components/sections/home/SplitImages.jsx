@@ -60,16 +60,17 @@ const SplitHoverImages = () => {
         return (
           <motion.div
             key={item.id}
-            layout
+              layout={!isMobile}
             className='relative cursor-pointer overflow-hidden transition-all'
             onMouseEnter={() => !isMobile && setActiveId(item.id)}
             onClick={() => isMobile && setPlayedId(item.id)}
             style={{
   flexBasis: isMobile ? '100%' : isActive ? '66.66%' : '33.33%',
   transition: 'flex-basis 0.8s cubic-bezier(0.83, 0, 0.17, 1)',
-  minHeight: isMobile ? '100svh' : '100%',
-  height: isMobile ? '100svh' : '100%'
+  minHeight: isMobile ? '100dvh' : '100%',
+  height: isMobile ? '100dvh' : '100%'
 }}
+
           >
             {/* Top-right Icon */}
             <OptimizedImage
@@ -107,11 +108,12 @@ const SplitHoverImages = () => {
 
             {/* Overlay */}
             <motion.div
-              className='absolute inset-0 bg-black/30 p-5 sm:p-6 md:p-8 lg:p-12 xl:p-16 2xl:p-20 text-white flex flex-col justify-center'
-              initial={{ opacity: 0 }}
-              animate={{ opacity: isActive || isPlayed ? 1 : 0 }}
-              transition={{ duration: 0.5, ease: 'easeInOut' }}
-            >
+  className='absolute inset-0 bg-black/30 p-5 sm:p-6 md:p-8 lg:p-12 xl:p-16 2xl:p-20 text-white flex flex-col justify-center pb-[env(safe-area-inset-bottom)] pt-[env(safe-area-inset-top)]'
+  initial={{ opacity: 0 }}
+  animate={{ opacity: isActive || isPlayed ? 1 : 0 }}
+  transition={{ duration: 0.5, ease: 'easeInOut' }}
+>
+
               <div className='relative flex flex-col'>
                 <div></div>
                 {/* Standalone vertical line */}
