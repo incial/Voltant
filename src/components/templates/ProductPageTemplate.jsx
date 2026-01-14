@@ -101,14 +101,16 @@ const ProductPageTemplate = ({
         {/* Profiles Section */}
         {showProfiles && (
           <ProfilesSection
-            sectionTitle={profiles.sectionTitle}
-            leftProfiles={profiles.leftProfiles}
-            rightProfiles={profiles.rightProfiles}
-            paragraph={profiles.paragraph}
-            buttonText={profiles.buttonText}
-            showButton={profiles.showButton}
-            downloads={profiles.downloads}
-          />
+  sectionTitle={profiles.sectionTitle}
+  layoutType={profiles.layoutType}
+  items={profiles.items}
+  leftProfiles={profiles.leftProfiles}
+  rightProfiles={profiles.rightProfiles}
+  paragraph={profiles.paragraph}
+  buttonText={profiles.buttonText}
+  showButton={profiles.showButton}
+  downloads={profiles.downloads}
+/>
         )}
 
         {/* Additional custom content */}

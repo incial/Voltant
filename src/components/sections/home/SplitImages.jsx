@@ -52,7 +52,7 @@ const SplitHoverImages = () => {
   }, [isMobile, mobileInitialized])
 
   return (
-    <div className='flex md:flex-row flex-col h-auto md:h-[100vh] w-full overflow-hidden'>
+<div className="flex md:flex-row flex-col md:h-screen w-full">
       {images.map(item => {
         const isActive = activeId === item.id
         const isPlayed = playedId === item.id || (isMobile && mobileInitialized)
@@ -65,11 +65,11 @@ const SplitHoverImages = () => {
             onMouseEnter={() => !isMobile && setActiveId(item.id)}
             onClick={() => isMobile && setPlayedId(item.id)}
             style={{
-              flexBasis: isMobile ? '100%' : isActive ? '66.66%' : '33.33%',
-              transition: 'flex-basis 0.8s cubic-bezier(0.83, 0, 0.17, 1)',
-              aspectRatio: isMobile ? '14 / 14' : undefined,
-              height: isMobile ? '70vh' : '100%'
-            }}
+  flexBasis: isMobile ? '100%' : isActive ? '66.66%' : '33.33%',
+  transition: 'flex-basis 0.8s cubic-bezier(0.83, 0, 0.17, 1)',
+  minHeight: isMobile ? '100svh' : '100%',
+  height: isMobile ? '100svh' : '100%'
+}}
           >
             {/* Top-right Icon */}
             <OptimizedImage
@@ -84,7 +84,7 @@ const SplitHoverImages = () => {
 
             {/* Image Background */}
             <motion.div
-              className='w-full h-full overflow-hidden'
+              className="w-full absolute inset-0 overflow-hidden"
               initial={{ scale: 1 }}
               animate={{ scale: !isMobile && isActive ? 1.02 : 1 }}
               transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
@@ -103,6 +103,7 @@ const SplitHoverImages = () => {
                 preload={item.id === images[0].id}
               />
             </motion.div>
+
 
             {/* Overlay */}
             <motion.div

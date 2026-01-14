@@ -213,7 +213,13 @@ const ProfilesSection = ({
   if (layoutType === 'profile' && items && items.length > 0) {
     return (
       <motion.section
-        className="flex flex-col items-center w-full py-12 md:py-16 lg:py-20 lg:mt-[80px] lg:mb-[80px] xl:mt-[100px] xl:mb-[100px] px-4 sm:px-6 lg:px-8"
+      className="
+    flex flex-col items-center w-full
+    py-12 md:py-16 lg:py-20
+    lg:mt-[40px] lg:mb-[40px]
+    xl:mt-[60px] xl:mb-[60px]
+    px-4 sm:px-6 lg:px-8
+  "
         initial="hidden"
         whileInView="visible"
         viewport={{ amount: 0.1, once: true }}
@@ -230,7 +236,9 @@ const ProfilesSection = ({
           <motion.div
             className="mt-6 md:mt-8 space-y-8 md:space-y-10"
             variants={sectionFadeIn}
-            viewport={{ amount: 0.1, once: true }}
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ amount: 0.1, once: true }}
           >
             {items.map((section, index) => (
               <ProfileLayoutItem key={index} title={section.title} items={section.items} />
