@@ -52,7 +52,14 @@ const SplitHoverImages = () => {
   }, [isMobile, mobileInitialized])
 
   return (
-    <div className="flex md:flex-row flex-col md:h-screen w-full">
+    <div 
+      className="flex md:flex-row flex-col md:h-screen w-full md:overflow-y-visible"
+      style={{
+        WebkitOverflowScrolling: 'touch',
+        height: isMobile ? 'auto' : undefined,
+        overflowY: isMobile ? 'visible' : undefined
+      }}
+    >
       {images.map(item => {
         const isActive = activeId === item.id
         const isPlayed = playedId === item.id || (isMobile && mobileInitialized)
@@ -67,10 +74,10 @@ const SplitHoverImages = () => {
             style={{
               flexBasis: isMobile ? '100%' : isActive ? '66.66%' : '33.33%',
               transition: isMobile ? 'none' : 'flex-basis 0.8s cubic-bezier(0.83, 0, 0.17, 1)',
-              minHeight: isMobile ? '100dvh' : '100%',
-              height: isMobile ? '100dvh' : '100%',
-              display: 'flex',
-              flexDirection: 'column'
+              minHeight: isMobile ? '100vh' : '100%',
+              height: isMobile ? '100vh' : '100%',
+              WebkitBackfaceVisibility: 'hidden',
+              backfaceVisibility: 'hidden'
             }}
           >
             {/* Top-right Icon */}
@@ -85,26 +92,28 @@ const SplitHoverImages = () => {
             />
 
             {/* Image Background */}
-            <motion.div
-              className="w-full absolute inset-0 overflow-hidden"
-              initial={false}
-              animate={{ scale: !isMobile && isActive ? 1.02 : 1 }}
-              transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
-            >
-              <OptimizedImage
-                src={item.img}
-                alt={item.title}
-                width={1920}
-                height={1080}
-                className='w-full h-full object-cover'
-                loading='eager'
-                decoding='async'
-                fetchPriority={item.id === images[0].id ? 'high' : undefined}
-                draggable={false}
-                style={{ opacity: 1 }}
-                preload={item.id === images[0].id}
-              />
-            </motion.div>
+            <div className="w-full absolute inset-0 overflow-hidden">
+              <motion.div
+                className="w-full h-full"
+                initial={false}
+                animate={{ scale: !isMobile && isActive ? 1.02 : 1 }}
+                transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
+              >
+                <OptimizedImage
+                  src={item.img}
+                  alt={item.title}
+                  width={1920}
+                  height={1080}
+                  className='w-full h-full object-cover'
+                  loading='eager'
+                  decoding='async'
+                  fetchPriority={item.id === images[0].id ? 'high' : undefined}
+                  draggable={false}
+                  style={{ opacity: 1 }}
+                  preload={item.id === images[0].id}
+                />
+              </motion.div>
+            </div>
 
             {/* Overlay */}
             <motion.div
