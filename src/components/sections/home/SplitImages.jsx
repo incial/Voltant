@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import OptimizedImage from "@/components/ui/OptimizedImage";
 
 const images = [
   {
@@ -31,9 +32,14 @@ const images = [
 const SplitImages = () => {
   const [activeId, setActiveId] = useState(images[0].id);
   const [isMobile, setIsMobile] = useState(false);
+  const [playedId, setPlayedId] = useState(null);
+  const [mobileInitialized, setMobileInitialized] = useState(false);
 
   useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+      setMobileInitialized(true);
+    };
     checkMobile();
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
@@ -52,6 +58,7 @@ const SplitImages = () => {
         const isActive = activeId === item.id;
         const isPlayed =
           playedId === item.id || (isMobile && mobileInitialized);
+        const showContent = isActive || isPlayed;
 
         return (
           <motion.div
