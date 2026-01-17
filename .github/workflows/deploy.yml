@@ -25,13 +25,17 @@ jobs:
       - name: Build Project
         run: npm run build
 
+      - name: Copy static assets to standalone
+        run: |
+          mkdir -p .next/standalone/public
+          mkdir -p .next/standalone/.next/static
+          cp -r public/* .next/standalone/public/
+          cp -r .next/static/* .next/standalone/.next/static/
+
       - name: Sync files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          exclude: |
-            **/.git/**
-            **/.github/**
-            **/node_modules/**
+          local-dir: ./.next/standalone/
