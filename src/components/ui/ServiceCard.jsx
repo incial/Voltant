@@ -1,37 +1,30 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
-import OptimizedImage from './OptimizedImage'
+"use client";
 
-const MotionOptimizedImage = motion(OptimizedImage)
+import React from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { motion } from "framer-motion";
 
 const ServiceCard = ({ title, image, path }) => {
-  const [imageLoaded, setImageLoaded] = useState(false)
-
   return (
-    <Link to={path} className="relative group overflow-hidden cursor-pointer font-['Cairo'] w-full">
+    <Link
+      href={path}
+      className="relative group overflow-hidden cursor-pointer w-full"
+    >
       {/* Mobile styling */}
       <div className="md:hidden block relative aspect-square rounded-lg overflow-hidden">
-        {!imageLoaded && (
-          <div className='absolute inset-0 bg-gray-800 z-5 flex items-center justify-center'>
-            <div className="w-6 h-6 border-4 border-green-400 border-t-transparent rounded-full animate-spin" />
-          </div>
-        )}
-        <OptimizedImage
+        <Image
           src={image}
           alt={title}
-          width={400}
-          height={400}
-          className="w-full h-full object-cover"
-          loading="lazy"
-          decoding="async"
-          onLoad={() => setImageLoaded(true)}
-          style={{ opacity: imageLoaded ? 1 : 0, transition: 'opacity 1.2s cubic-bezier(0.4,0,0.2,1)' }}
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, 50vw"
         />
-        <div className="absolute inset-0 bg-black opacity-30"></div>
-
+        <div className="absolute inset-0 bg-black opacity-30" />
         <div className="absolute bottom-3 left-3 z-10 p-2">
-          <h3 className="text-sm font-medium text-white font-['Cairo'] leading-tight">{title}</h3>
+          <h3 className="text-sm font-medium text-white leading-tight">
+            {title}
+          </h3>
         </div>
       </div>
 
@@ -42,43 +35,35 @@ const ServiceCard = ({ title, image, path }) => {
         whileHover="hover"
         animate="rest"
       >
-        {!imageLoaded && (
-          <div className='absolute inset-0 bg-gray-800 z-5 flex items-center justify-center'>
-            <div className="w-8 h-8 border-4 border-green-400 border-t-transparent rounded-full animate-spin" />
-          </div>
-        )}
-        <MotionOptimizedImage
-          src={image}
-          alt={title}
-          width={370}
-          height={300}
-          className="w-full h-full object-cover"
-          loading="lazy"
-          decoding="async"
-          onLoad={() => setImageLoaded(true)}
-          style={{ opacity: imageLoaded ? 1 : 0, transition: 'opacity 1.2s cubic-bezier(0.4,0,0.2,1)' }}
+        <motion.div
+          className="absolute inset-0"
           variants={{
-            rest: { scale: 1, rotate: 0, transition: { type: 'spring', stiffness: 60, damping: 16, mass: 0.8 } },
-            hover: { scale: 1.12, rotate: -2.5, transition: { type: 'spring', stiffness: 60, damping: 16, mass: 0.8 } }
+            rest: { scale: 1 },
+            hover: { scale: 1.12, rotate: -2.5 },
           }}
-        />
-        <div className="absolute inset-0 bg-black opacity-30"></div>
+          transition={{ type: "spring", stiffness: 60, damping: 16 }}
+        >
+          <Image
+            src={image}
+            alt={title}
+            fill
+            className="object-cover"
+            sizes="370px"
+          />
+        </motion.div>
+        <div className="absolute inset-0 bg-black opacity-30" />
         <div className="absolute inset-0 flex flex-col justify-end p-6 z-10">
-          <h3 className="text-xl md:text-2xl font-semibold text-white transition-transform duration-500 ease-in-out transform group-hover:translate-y-[-8px] font-['Cairo']">{title}</h3>
-          <div className="h-0 overflow-hidden transition-all duration-500 ease-in-out group-hover:h-[40px] mt-2 opacity-0 group-hover:opacity-100">
-            <motion.div 
-              initial={{ opacity: 0, y: 10 }} 
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1, duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
-            >
-              <span className="text-white text-sm font-['Cairo'] whitespace-nowrap">View Details</span>
-              <span className="ml-2 inline-block text-white">→</span>
-            </motion.div>
+          <h3 className="text-xl md:text-2xl font-semibold text-white transition-transform duration-500 transform group-hover:-translate-y-2">
+            {title}
+          </h3>
+          <div className="h-0 overflow-hidden transition-all duration-500 group-hover:h-10 mt-2 opacity-0 group-hover:opacity-100">
+            <span className="text-white text-sm">View Details</span>
+            <span className="ml-2 text-white">→</span>
           </div>
         </div>
       </motion.div>
     </Link>
-  )
-}
+  );
+};
 
-export default ServiceCard
+export default ServiceCard;

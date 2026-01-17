@@ -1,216 +1,118 @@
-import React, { useState } from 'react'
+"use client";
+
+import React from "react";
+import Image from "next/image";
 import {
   FaYoutube,
   FaInstagram,
   FaFacebook,
   FaLinkedin,
-  FaWhatsapp
-} from 'react-icons/fa'
-import { FaXTwitter } from 'react-icons/fa6'
-import { footerImage, whiteLogo, whiteLogoPng } from '../../utils/localAssets'
-import { OptimizedImage } from '../ui'
+  FaWhatsapp,
+} from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
+
+const socialLinks = [
+  { Icon: FaYoutube, href: "https://youtube.com", label: "YouTube" },
+  { Icon: FaInstagram, href: "https://instagram.com", label: "Instagram" },
+  { Icon: FaFacebook, href: "https://facebook.com", label: "Facebook" },
+  { Icon: FaLinkedin, href: "https://linkedin.com", label: "LinkedIn" },
+  { Icon: FaXTwitter, href: "https://twitter.com", label: "X/Twitter" },
+  { Icon: FaWhatsapp, href: "https://wa.me/+971506419857", label: "WhatsApp" },
+];
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear()
-  const [imageLoaded, setImageLoaded] = useState({})
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer className="bg-[#00251a] text-white relative py-8 md:py-10 lg:py-12 font-['Cairo']">
-      {/* Footer background image with overlay */}
-      <div className='absolute inset-0 z-0 overflow-hidden'>
-        {!imageLoaded.background && (
-          <div className='absolute inset-0 bg-gray-800 z-5 flex items-center justify-center'>
-            <div className="w-8 h-8 border-4 border-green-400 border-t-transparent rounded-full animate-spin" />
-          </div>
-        )}
-        <OptimizedImage
-          src={footerImage}
-          alt='Footer background'
-          width={1920}
-          height={400}
-          className='w-full h-full object-cover'
-          loading="lazy"
-          decoding="async"
-          onLoad={() => setImageLoaded(prev => ({ ...prev, background: true }))}
-          style={{ opacity: imageLoaded.background ? 1 : 0, transition: 'opacity 1s' }}
+    <footer className="bg-[#00251a] text-white relative py-8 md:py-12">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <Image
+          src="/assets/images/Home/Footer.png"
+          alt="Footer background"
+          fill
+          className="object-cover"
+          style={{ objectFit: "cover" }}
+          quality={75}
         />
-        <div className='absolute inset-0 bg-black/30 backdrop-blur-[2px]'></div>
-      </div>        {/* Mobile Layout (Default) */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 flex flex-col items-center md:hidden font-['Cairo']">
-          {/* Logo */}
-          <div className='mb-6 sm:mb-8'>
-            <OptimizedImage
-              src={whiteLogo}
-              fallbackSrc={whiteLogoPng}
-              alt='Voltant Energy Logo'
-              width={144}
-              height={36}
-              className='h-8 sm:h-9 w-auto object-contain'
-              loading="eager"
-              decoding="async"
-              preload
+        <div className="absolute inset-0 bg-black/30 backdrop-blur-[2px]" />
+      </div>
+
+      {/* Mobile Layout */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-20 flex flex-col items-center md:hidden">
+        <Image
+          src="/assets/images/Home/Logo_white.png"
+          alt="Voltant Energy Logo"
+          width={180}
+          height={45}
+          className="w-[180px] h-auto mb-6"
+          style={{ width: "140px", height: "auto" }}
+        />
+
+        <div className="flex justify-center space-x-5 mb-6">
+          {socialLinks.map(({ Icon, href, label }) => (
+            <a
+              key={label}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white text-lg hover:scale-110 transition-transform"
+              aria-label={label}
+            >
+              <Icon />
+            </a>
+          ))}
+        </div>
+
+        <p className="text-center text-xs">
+          © Copyright {currentYear} Voltant Energy. All Rights Reserved
+        </p>
+      </div>
+
+      {/* Desktop Layout */}
+      <div className="hidden md:block max-w-7xl mx-auto px-6 lg:px-10 relative z-20 py-4">
+        <div className="flex justify-between items-center">
+          <div className="flex flex-col gap-6">
+            <Image
+              src="/assets/images/Home/Logo_white.png"
+              alt="Voltant Energy Logo"
+              width={140}
+              height={35}
+              className="w-[200px] h-auto"
+              style={{ width: "200px", height: "auto" }}
             />
+            <p className="text-xs md:text-sm">
+              © Copyright {currentYear} Voltant Energy. All Rights Reserved and
+              Designed by{" "}
+              <a
+                href="https://incial.in"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold hover:underline"
+              >
+                Incial
+              </a>
+            </p>
           </div>
 
-        {/* Social Media Icons */}
-        <div className='flex justify-center space-x-5 sm:space-x-6 mb-6 sm:mb-8'>
-          <a
-            href='https://youtube.com'
-            target='_blank'
-            rel='noopener noreferrer'
-            className='text-white text-lg sm:text-xl transform hover:scale-110 transition-all duration-300 p-1'
-            aria-label='YouTube'
-          >
-            <FaYoutube />
-          </a>
-          <a
-            href='https://instagram.com'
-            target='_blank'
-            rel='noopener noreferrer'
-            className='text-white text-lg sm:text-xl transform hover:scale-110 transition-all duration-300 p-1'
-            aria-label='Instagram'
-          >
-            <FaInstagram />
-          </a>
-          <a
-            href='https://facebook.com'
-            target='_blank'
-            rel='noopener noreferrer'
-            className='text-white text-lg sm:text-xl transform hover:scale-110 transition-all duration-300 p-1'
-            aria-label='Facebook'
-          >
-            <FaFacebook />
-          </a>
-          <a
-            href='https://linkedin.com'
-            target='_blank'
-            rel='noopener noreferrer'
-            className='text-white text-lg sm:text-xl transform hover:scale-110 transition-all duration-300 p-1'
-            aria-label='LinkedIn'
-          >
-            <FaLinkedin />
-          </a>
-          <a
-            href='https://twitter.com'
-            target='_blank'
-            rel='noopener noreferrer'
-            className='text-white text-lg sm:text-xl transform hover:scale-110 transition-all duration-300 p-1'
-            aria-label='X/Twitter'
-          >
-            <FaXTwitter />
-          </a>
-          <a
-            href='https://wa.me/+971506419857'
-            target='_blank'
-            rel='noopener noreferrer'
-            className='text-white text-lg sm:text-xl transform hover:scale-110 transition-all duration-300 p-1'
-            aria-label='WhatsApp'
-          >
-            <FaWhatsapp />
-          </a>
-        </div>
-
-        {/* Copyright */}
-        <div className="text-center text-xs sm:text-sm pt-2 font-['Cairo']">
-          <p>
-            © Copyright {currentYear} Voltant Energy. All Rights Reserved
-          </p>
-        </div>
-      </div>
-
-      {/* Desktop Layout (md and up) */}
-      <div className="hidden md:block max-w-7xl mx-auto px-6 md:px-8 lg:px-10 relative z-20 py-4 md:py-5 lg:py-6 font-['Cairo']">
-        <div className='flex flex-row justify-between items-center'>          {/* Left side: Logo and Copyright */}
-          <div className='flex flex-col gap-6 md:gap-7 lg:gap-8'>
-            <div>
-              <OptimizedImage
-                src={whiteLogo}
-                fallbackSrc={whiteLogoPng}
-                alt='Voltant Energy Logo'
-                width={160}
-                height={48}
-                className='h-10 md:h-11 lg:h-12'
-                loading="eager"
-                decoding="async"
-                preload
-              />
-            </div>
-            <div className='text-xs md:text-sm'>
-              <p>
-                © Copyright {currentYear} Voltant Energy. All Rights
-                Reserved and Designed by{' '}
-                <span className='font-semibold hover:underline'>
-                <a
-                  href='https://incial.in'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                >
-                  Incial
-                </a>
-                </span>
-              </p>
-            </div>
+          <div className="flex space-x-4 lg:space-x-6 items-center">
+            {socialLinks.map(({ Icon, href, label }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white text-xl md:text-[22px] hover:opacity-80 transition-opacity"
+                aria-label={label}
+              >
+                <Icon />
+              </a>
+            ))}
           </div>
-
-          {/* Right side: Social Media Icons */}
-          <div className='flex space-x-4 md:space-x-5 lg:space-x-6 items-center'>
-            <a
-              href='https://youtube.com'
-              target='_blank'
-              rel='noopener noreferrer'
-              className='text-white hover:opacity-80 transition p-1'
-              aria-label='YouTube'
-            >
-              <FaYoutube className="text-xl md:text-[22px]" />
-            </a>
-            <a
-              href='https://instagram.com'
-              target='_blank'
-              rel='noopener noreferrer'
-              className='text-white hover:opacity-80 transition p-1'
-              aria-label='Instagram'
-            >
-              <FaInstagram className="text-xl md:text-[22px]" />
-            </a>
-            <a
-              href='https://facebook.com'
-              target='_blank'
-              rel='noopener noreferrer'
-              className='text-white hover:opacity-80 transition p-1'
-              aria-label='Facebook'
-            >
-              <FaFacebook className="text-xl md:text-[22px]" />
-            </a>
-            <a
-              href='https://linkedin.com'
-              target='_blank'
-              rel='noopener noreferrer'
-              className='text-white hover:opacity-80 transition p-1'
-              aria-label='LinkedIn'
-            >
-              <FaLinkedin className="text-xl md:text-[22px]" />
-            </a>
-            <a
-              href='https://twitter.com'
-              target='_blank'
-              rel='noopener noreferrer'
-              className='text-white hover:opacity-80 transition p-1'
-              aria-label='X/Twitter'
-            >
-              <FaXTwitter className="text-xl md:text-[22px]" />
-            </a>
-            <a
-              href='https://wa.me/+971506419857'
-              target='_blank'
-              rel='noopener noreferrer'
-              className='text-white hover:opacity-80 transition p-1'
-              aria-label='WhatsApp'
-            >
-              <FaWhatsapp className="text-xl md:text-[22px]" />
-            </a>          </div>
         </div>
       </div>
-      </footer>
-  )
-}
+    </footer>
+  );
+};
 
-export default Footer
+export default Footer;

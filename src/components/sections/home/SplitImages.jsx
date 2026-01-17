@@ -1,55 +1,43 @@
-import React, { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { heroIcons } from '../../../utils/localAssets'
-import { Link } from 'react-router-dom'
-import { OptimizedImage } from '../../ui'
+"use client";
+
+import React, { useState, useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { motion } from "framer-motion";
 
 const images = [
   {
-    id: 'ev',
-    title: 'EV Charging Infrastructure',
+    id: "ev",
+    title: "EV Charging Infrastructure",
     description:
-      'Powering the future of mobility with smart, efficient, and scalable EV charging solutions—designed for homes, businesses, and public spaces.',
-    button: 'Learn More',
-    img: '/assets/images/Home/split/split2.png',
-    icon: heroIcons.battery,
-    link: '/ev-charging'
+      "Powering the future of mobility with smart, efficient, and scalable EV charging solutions—designed for homes, businesses, and public spaces.",
+    button: "Learn More",
+    img: "/assets/images/Home/split/split2.png",
+    icon: "/assets/icons/battery.png",
+    link: "/ev-charging",
   },
   {
-    id: 'pollution',
-    title: 'Waste to Energy Solutions',
+    id: "pollution",
+    title: "Waste to Energy Solutions",
     description:
-      'From smart modular containerized plants to large-scale anaerobic digestion solutions, we transform organic waste into sustainable energy.',
-    button: 'Learn More',
-    img: '/assets/images/Home/split/split1.png',
-    icon: heroIcons.waterPure,
-    link: '/waste-to-energy'
-  }
-]
+      "From smart modular containerized plants to large-scale anaerobic digestion solutions, we transform organic waste into sustainable energy.",
+    button: "Learn More",
+    img: "/assets/images/Home/split/split1.png",
+    icon: "/assets/icons/waterpure.png",
+    link: "/waste-to-energy",
+  },
+];
 
-const SplitHoverImages = () => {
-  const [activeId, setActiveId] = useState(images[0].id)
-  const [playedId, setPlayedId] = useState(null)
-  const [isMobile, setIsMobile] = useState(false)
-  const [mobileInitialized, setMobileInitialized] = useState(false)
+const SplitImages = () => {
+  const [activeId, setActiveId] = useState(images[0].id);
+  const [isMobile, setIsMobile] = useState(false);
 
-  // Check if device is mobile on component mount and when window resizes
   useEffect(() => {
-    const checkIsMobile = () => {
-      setIsMobile(window.innerWidth < 768)
-    }
-    checkIsMobile()
-    window.addEventListener('resize', checkIsMobile)
-    return () => window.removeEventListener('resize', checkIsMobile)
-  }, [])
-
-  // Set all sections to show content on initial mobile load
-  useEffect(() => {
-    if (isMobile && !mobileInitialized) {
-      setPlayedId(images[0].id)
-      setMobileInitialized(true)
-    }
-  }, [isMobile, mobileInitialized])
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   return (
     <div 
@@ -70,7 +58,6 @@ const SplitHoverImages = () => {
             layout={!isMobile}
             className='relative cursor-pointer overflow-hidden'
             onMouseEnter={() => !isMobile && setActiveId(item.id)}
-            onClick={() => isMobile && setPlayedId(item.id)}
             style={{
               flexBasis: isMobile ? '100%' : isActive ? '66.66%' : '33.33%',
               transition: isMobile ? 'none' : 'flex-basis 0.8s cubic-bezier(0.83, 0, 0.17, 1)',
@@ -80,16 +67,15 @@ const SplitHoverImages = () => {
               backfaceVisibility: 'hidden'
             }}
           >
-            {/* Top-right Icon */}
-            <OptimizedImage
-              src={item.icon}
-              alt={`${item.id} icon`}
-              width={64}
-              height={64}
-              className='absolute top-4 sm:top-5 md:top-8 lg:top-12 xl:top-16 right-4 sm:right-5 md:right-8 lg:right-12 xl:right-16 w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-14 lg:h-14 xl:w-16 xl:h-16 z-20 opacity-100'
-              loading='eager'
-              decoding='async'
-            />
+            {/* Icon */}
+            <div className="absolute top-4 md:top-12 right-4 md:right-12 w-8 md:w-16 h-8 md:h-16 z-20">
+              <Image
+                src={item.icon}
+                alt={`${item.id} icon`}
+                fill
+                className="object-contain"
+              />
+            </div>
 
             {/* Image Background */}
             <div className="w-full absolute inset-0 overflow-hidden">
@@ -138,13 +124,13 @@ const SplitHoverImages = () => {
                   }}
                 />
 
-                <div className='ml-8 sm:ml-10 md:ml-10 lg:ml-12 xl:ml-14'>
+                <div className="ml-8 md:ml-12">
                   <motion.h2
                     className='md:mt-0 text-xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold mb-3 md:mb-4'
                     initial={false}
                     animate={{
-                      y: isActive || isPlayed ? 0 : 40,
-                      opacity: isActive || isPlayed ? 1 : 0
+                      y: showContent ? 0 : 40,
+                      opacity: showContent ? 1 : 0,
                     }}
                     transition={{ 
                       duration: isMobile ? 0 : 0.6, 
@@ -159,8 +145,8 @@ const SplitHoverImages = () => {
                     className='text-xs sm:text-sm md:text-base max-w-xs md:max-w-md mb-5 md:mb-6 lg:mb-8'
                     initial={false}
                     animate={{
-                      y: isActive || isPlayed ? 0 : 30,
-                      opacity: isActive || isPlayed ? 1 : 0
+                      y: showContent ? 0 : 30,
+                      opacity: showContent ? 1 : 0,
                     }}
                     transition={{ 
                       duration: isMobile ? 0 : 0.6, 
@@ -171,7 +157,7 @@ const SplitHoverImages = () => {
                     {item.description}
                   </motion.p>
 
-                  <Link to={item.link}>
+                  <Link href={item.link}>
                     <motion.button
                       className='border border-white px-3 py-1.5 sm:px-4 sm:py-2 md:px-5 md:py-3 lg:px-6 lg:py-4 rounded-full w-fit hover:bg-white hover:text-black transition-colors text-xs sm:text-sm md:text-base'
                       initial={false}
@@ -184,7 +170,8 @@ const SplitHoverImages = () => {
                         delay: isMobile ? 0 : 0.4,
                         ease: 'easeOut'
                       }}
-                      whileHover={{ scale: !isMobile ? 1.05 : 1 }}
+                      transition={{ duration: 0.5, delay: 0.4 }}
+                      whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
                       {item.button}
@@ -194,10 +181,10 @@ const SplitHoverImages = () => {
               </div>
             </motion.div>
           </motion.div>
-        )
+        );
       })}
     </div>
-  )
-}
+  );
+};
 
 export default SplitHoverImages
