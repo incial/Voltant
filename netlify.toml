@@ -1,60 +1,8 @@
 [build]
-command = "npm run build"
-
-base ="/"
-
-# Serve PDF files directly (don't redirect them to index.html)
-[[redirects]]
-from = "/pdfs/*"
-to = "/pdfs/:splat"
-status = 200
-force = true
-
-
-
-[functions]
-directory = "netlify/functions"
-node_bundler = "esbuild"
+  command = "npm run build"
 
 [build.environment]
   NODE_VERSION = "20"
 
-# Long-term caching for images (1 year, immutable)
-[[headers]]
-  for = "/images/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-[[headers]]
-  for = "*.webp"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-[[headers]]
-  for = "*.jpg"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-[[headers]]
-  for = "*.jpeg"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-[[headers]]
-  for = "*.png"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-# Cache JS/CSS assets
-[[headers]]
-  for = "/assets/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-# PDF headers for proper downloads
-[[headers]]
-  for = "/pdfs/*.pdf"
-  [headers.values]
-    Content-Type = "application/pdf"
-    Cache-Control = "public, max-age=3600"
-    Content-Disposition = "inline"
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
