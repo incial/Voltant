@@ -46,7 +46,7 @@ const SeamlessChargingSection = ({
           whileInView="visible"
           viewport={{ once: true, margin: "-120px" }}
           variants={fadeIn}
-          className="text-4xl text-gray-500 font-black text-center mb-24"
+          className="text-h2 text-gray-500 font-black text-center mb-24"
         >
           {title}
         </motion.h2>
@@ -57,8 +57,8 @@ const SeamlessChargingSection = ({
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-  variants={fadeIn}
-            className="text-gray-700 mb-6 text-center text-xl font-normal"
+            variants={fadeIn}
+            className="text-gray-700 mb-6 text-center font-normal text-body"
           >
             {paragraph}
           </motion.p>

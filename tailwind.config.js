@@ -1,7 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
-    "./index.html",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
@@ -10,8 +11,24 @@ export default {
          FONTS
       ======================= */
       fontFamily: {
-        sans: ['Cairo', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
-        cairo: ['Cairo', 'sans-serif'],
+        sans: ['var(--font-cairo)', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+        cairo: ['var(--font-cairo)', 'sans-serif'],
+      },
+      fontSize: {
+        // H1: Hero Title (30px -> 48px)
+        'h1': ['clamp(1.875rem, 5vw, 3rem)', { lineHeight: '1.1', fontWeight: '600' }],
+        
+        // H2: Section Title (28px -> 40px)
+        'h2': ['clamp(1.75rem, 4vw, 2.5rem)', { lineHeight: '1.2', fontWeight: '700' }],
+        
+        // H3: Card/Feature Title (20px -> 24px)
+        'h3': ['clamp(1.25rem, 3vw, 1.5rem)', { lineHeight: '1.1', fontWeight: '400' }],
+        
+        // P/Body: Standard Text (16px -> 18px)
+        'body': ['clamp(1rem, 2vw, 1.125rem)', { lineHeight: '1.6', fontWeight: '200' }],
+        
+        // Small/Meta (14px)
+        'small': ['0.875rem', { lineHeight: '1.5' }],
       },
 
       /* =======================

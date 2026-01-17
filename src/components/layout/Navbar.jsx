@@ -1,318 +1,223 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-// eslint-disable-next-line no-unused-vars
-import { motion, AnimatePresence } from 'framer-motion';
-import { whiteLogo, whiteLogoPng } from '../../utils/localAssets';
-import { useContactForm } from '../../context/ContactFormContext';
-import { OptimizedImage } from '../ui';
+"use client";
+
+import React, { useState, useEffect, useCallback } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
+import { useContactForm } from "@/context/ContactFormContext";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
-  const location = useLocation();
+  const [activeSection, setActiveSection] = useState("home");
+  const pathname = usePathname();
   const { toggleContactForm, isContactFormOpen } = useContactForm();
 
-  // Handle scroll effect for navbar background - optimized with useCallback
+  // Handle scroll effect
   const handleScroll = useCallback(() => {
-    const shouldBeScrolled = window.scrollY > 50;
-    if (scrolled !== shouldBeScrolled) {
-      setScrolled(shouldBeScrolled);
-    }
-  }, [scrolled]);
+    setScrolled(window.scrollY > 50);
+  }, []);
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
 
-  // Improved section tracking with debounce to prevent unnecessary re-renders
+  // Section tracking
   useEffect(() => {
-    // Handle initial active section based on the path
-    if (location.pathname !== '/') {
-      const section = location.pathname.slice(1) || 'home';
-      setActiveSection(section);
+    if (pathname !== "/") {
+      setActiveSection(pathname.slice(1) || "home");
       return;
     }
 
-    // Enhanced observer for "Who We Are" section
-    const whoAreWeSection = document.getElementById('who-are-we');
+    const whoAreWeSection = document.getElementById("who-are-we");
     if (!whoAreWeSection) return;
 
-    let timeout;
     const observer = new IntersectionObserver(
       (entries) => {
-        // Clear any existing timeouts to prevent multiple updates
-        if (timeout) clearTimeout(timeout);
-        
         entries.forEach((entry) => {
-          // Add a small delay to smooth out rapid changes
-          timeout = setTimeout(() => {
-            if (entry.isIntersecting) {
-              setActiveSection('who-are-we');
-            } else {
-              if (location.pathname === '/') {
-                setActiveSection('home');
-              }
-            }
-          }, 50);
+          setActiveSection(entry.isIntersecting ? "who-are-we" : "home");
         });
       },
-      { threshold: 0.3, rootMargin: '-10% 0px -10% 0px' }
+      { threshold: 0.3 }
     );
 
     observer.observe(whoAreWeSection);
-    return () => {
-      observer.disconnect();
-      if (timeout) clearTimeout(timeout);
-    };
-  }, [location.pathname]);
+    return () => observer.disconnect();
+  }, [pathname]);
 
-  // Close mobile menu when route changes
+  // Close mobile menu on route change
   useEffect(() => {
     setIsMobileMenuOpen(false);
-  }, [location.pathname]);
+  }, [pathname]);
 
-  // Toggle mobile menu
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
-    if (!isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
+    document.body.style.overflow = isMobileMenuOpen ? "auto" : "hidden";
   };
 
-  // Clean up body styles on unmount
   useEffect(() => {
     return () => {
-      document.body.style.overflow = 'auto';
+      document.body.style.overflow = "auto";
     };
   }, []);
 
-  // Helper function to determine if a link should be active
-  const isLinkActive = useCallback((path, section = null) => {
-    if (path === '/' && section === 'who-are-we') {
-      return location.pathname === '/' && activeSection === 'who-are-we';
-    } else if (path === '/' && !section) {
-      return location.pathname === '/' && activeSection === 'home';
-    }
-    return location.pathname === path;
-  }, [location.pathname, activeSection]);
+  const isLinkActive = useCallback(
+    (path) => {
+      if (path === "/") {
+        return pathname === "/" && activeSection === "home";
+      }
+      return pathname === path;
+    },
+    [pathname, activeSection]
+  );
+
+  const navLinks = [
+    { href: "/", label: "Home" },
+    { href: "/ev-charging", label: "EV Charging" },
+    { href: "/waste-to-energy", label: "Waste To Energy" },
+    { href: "/whoarewe", label: "Explore" },
+  ];
 
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'backdrop-blur-md bg-black/30' : 'bg-transparent'
-      } font-['Cairo']`}
+        scrolled ? "backdrop-blur-md bg-black/30" : "bg-transparent"
+      }`}
       id="navbar"
-      style={{
-        WebkitBackdropFilter: scrolled ? 'blur(8px)' : 'none',
-        backdropFilter: scrolled ? 'blur(8px)' : 'none',
-        MozBackdropFilter: scrolled ? 'blur(8px)' : 'none',
-        msBackdropFilter: scrolled ? 'blur(8px)' : 'none',
-      }}
     >
       <div className="relative max-w-7xl mx-auto flex justify-between items-center py-4 px-4 sm:px-6 lg:px-8">
-        {/* Logo */}        <div className="flex items-center z-10">          <Link to="/" className="flex items-center">
-            <OptimizedImage
-              src={whiteLogo}
-              fallbackSrc={whiteLogoPng}
-              alt="Voltant Energy"
-              width={160}
-              height={40}
-              className="h-8 w-auto object-contain md:h-10 md:w-[160px]"
-              loading="eager"
-              decoding="sync"
-              fetchPriority="high"
-              preload
-            />
-          </Link>
+        {/* Logo */}
+        <Link href="/" className="flex items-center z-10">
+          <Image
+            src="/assets/images/Home/Logo_white.png"
+            alt="Voltant Energy"
+            width={160}
+            height={40}
+            className="h-8 w-auto md:h-10"
+            priority
+          />
+        </Link>
+
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex items-center justify-center space-x-4 lg:space-x-6 text-lg font-normal mx-auto">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={`${
+                isLinkActive(link.href) ? "text-green-400" : "text-white"
+              } hover:text-blue-100 font-medium transition-colors px-2 relative`}
+            >
+              {link.label}
+              {link.href !== "/" && isLinkActive(link.href) && (
+                <motion.span
+                  className="absolute -bottom-1 left-0 h-0.5 bg-green-400 w-full"
+                  layoutId="underline"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                />
+              )}
+            </Link>
+          ))}
         </div>
 
-        {/* Desktop Navigation Links */}
-        <div className="hidden md:flex items-center justify-center space-x-2 sm:space-x-4 lg:space-x-6 text-xs sm:text-md md:text-lg lg:text-xl font-normal whitespace-nowrap mx-auto">
-          <NavLink
-            to="/"
-            label="Home"
-            isActive={isLinkActive('/')}
-          />
-          <NavLink
-            to="/ev-charging"
-            label="EV Charging"
-            isActive={isLinkActive('/ev-charging')}
-          />
-          <NavLink
-            to="/waste-to-energy"
-            label="Waste To Energy"
-            isActive={isLinkActive('/waste-to-energy')}
-          />
-          <NavLink
-            to="/whoarewe"
-            label="Explore"
-            isActive={isLinkActive('/whoarewe')}
-          />
-        </div>
-
-        {/* Call To Action Button (Desktop) */}
-       <div className="hidden md:block z-10">
+        {/* CTA Button (Desktop) */}
+        <div className="hidden md:block z-10">
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={toggleContactForm}
-            className="bg-transparent text-white border-white border-2 py-2 px-6 rounded-full font-medium cursor-pointer transition-colors hover:bg-white hover:bg-opacity-10"
-          style={{ border: '2px solid white' }}
+            className="bg-transparent text-white border-2 border-solid border-white py-2 px-6 rounded-full font-medium cursor-pointer transition-colors hover:bg-white/10"
+            style={{ border: "2px solid white" }}
           >
             Get in Touch
           </motion.button>
         </div>
 
         {/* Mobile Menu Button */}
-       <div className="md:hidden flex items-center mr-4">
-          <button
-            onClick={toggleMobileMenu}
-            className="text-white p-2"
-            aria-label="Toggle mobile menu"
+        <button
+          onClick={toggleMobileMenu}
+          className="md:hidden text-white p-2 z-10"
+          aria-label="Toggle menu"
+        >
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
           >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <circle cx="12" cy="12" r="10" stroke="white" fill="none" />
-              <AnimatePresence>
-                {isMobileMenuOpen ? (
-                  <motion.path
-                    key="close"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    d="M7 7 L17 17 M17 7 L7 17"
-                  />
-                ) : (
-                  <motion.g
-                    key="open"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                  >
-                    <path d="M7 10 H17" />
-                    <path d="M7 14 H17" />
-                  </motion.g>
-                )}
-              </AnimatePresence>
-            </svg>
-          </button>
-        </div>
+            {isMobileMenuOpen ? (
+              <path d="M6 6 L18 18 M18 6 L6 18" />
+            ) : (
+              <>
+                <path d="M4 6 H20" />
+                <path d="M4 12 H20" />
+                <path d="M4 18 H20" />
+              </>
+            )}
+          </svg>
+        </button>
       </div>
 
       {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, x: '100%' }}
+            initial={{ opacity: 0, x: "100%" }}
             animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: '100%' }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className={`md:hidden fixed top-0 left-0 w-full h-screen ${
-              scrolled ? 'bg-black/90' : 'bg-black/50'
-            } flex flex-col items-center justify-start z-[60]`}
-            style={{ 
-              paddingTop: 'calc(100px + env(safe-area-inset-top))',
-              WebkitBackdropFilter: 'blur(4px)',
-              backdropFilter: 'blur(4px)',
-              MozBackdropFilter: 'blur(4px)',
-              msBackdropFilter: 'blur(4px)'
-            }}
+            exit={{ opacity: 0, x: "100%" }}
+            transition={{ duration: 0.3 }}
+            className="md:hidden fixed inset-0 bg-black/90 backdrop-blur-md flex flex-col items-center justify-center z-[60]"
           >
-            <div className="w-full max-w-7xl mx-auto px-4 sm:px-6">              <div className="absolute top-4 left-4 sm:left-6 p-6 py-8">                <Link to="/" className="flex items-center">
-                  <OptimizedImage
-                    src={whiteLogo}
-                    fallbackSrc={whiteLogoPng}
-                    alt="Voltant Energy"
-                    className="h-8"
-                    loading="eager"
-                    decoding="sync"
-                    preload
-                  />
-                </Link>
-              </div>
-              <div className="absolute top-4 right-4 sm:right-6 py-7 px-4">
-                <button
+            <button
+              onClick={toggleMobileMenu}
+              className="absolute top-4 right-4 text-white p-2"
+              aria-label="Close menu"
+            >
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path d="M6 6 L18 18 M18 6 L6 18" />
+              </svg>
+            </button>
+
+            <div className="flex flex-col items-center space-y-6 text-white text-xl">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
                   onClick={toggleMobileMenu}
-                  className="w-10 h-10 flex items-center justify-center"
-                  aria-label="Close mobile menu"
+                  className={isLinkActive(link.href) ? "text-green-400" : ""}
                 >
-                  <svg
-                    width="36"
-                    height="36"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="white"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <circle cx="12" cy="12" r="10" />
-                    <path d="M8 8 L16 16" />
-                    <path d="M16 8 L8 16" />
-                  </svg>
-                </button>
-              </div>
-              <div className="flex flex-col items-center space-y-6 text-white text-lg mt-16">
-                <Link to="/" onClick={toggleMobileMenu}>
-                  <span
-                    className={
-                      isLinkActive('/') ? 'text-green-400' : ''
-                    }
-                  >
-                    Home
-                  </span>
+                  {link.label}
                 </Link>
-                <Link to="/ev-charging" onClick={toggleMobileMenu}>
-                  <span
-                    className={
-                      isLinkActive('/ev-charging') ? 'text-green-400' : ''
-                    }
-                  >
-                    EV Charging
-                  </span>
-                </Link>
-                <Link to="/waste-to-energy" onClick={toggleMobileMenu}>
-                  <span
-                    className={
-                      isLinkActive('/waste-to-energy') ? 'text-green-400' : ''
-                    }
-                  >
-                    Waste To Energy
-                  </span>
-                </Link>
-                <Link to="/whoarewe" onClick={toggleMobileMenu}>
-                  <span
-                    className={
-                      isLinkActive('/whoarewe') ? 'text-green-400' : ''
-                    }
-                  >
-                    Explore
-                  </span>
-                </Link>
-                <motion.button
-                  onClick={() => {
-                    toggleMobileMenu();
-                    setTimeout(() => toggleContactForm(), 300);
-                  }}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className={`${isContactFormOpen ? 'bg-white/10 text-green-400 border-green-400' : 'bg-transparent text-white border-white'} py-2 px-6 rounded-full font-medium border-2 cursor-pointer mt-4`}
-                >
-                  Get In Touch
-                </motion.button>
-              </div>
+              ))}
+              <motion.button
+                onClick={() => {
+                  toggleMobileMenu();
+                  setTimeout(toggleContactForm, 300);
+                }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className={`${
+                  isContactFormOpen
+                    ? "text-green-400 border-green-400"
+                    : "text-white border-white"
+                } py-2 px-6 rounded-full font-medium border-2 border-solid mt-4`}
+                style={{ borderWidth: "2px", borderStyle: "solid" }}
+              >
+                Get In Touch
+              </motion.button>
             </div>
           </motion.div>
         )}
@@ -320,32 +225,5 @@ const Navbar = () => {
     </nav>
   );
 };
-
-// Navigation Link component for desktop - optimized with memo for performance
-const NavLink = React.memo(({ to, label, isActive }) => (
-  <Link
-    to={to}
-    className={`${
-      isActive ? 'text-green-400' : 'text-white'
-    } hover:text-blue-100 font-medium relative group transition-colors px-2`}
-  >
-    {label}
-    <motion.span
-      className={`absolute -bottom-1 left-0 h-0.5 bg-current transition-colors`}
-      initial={false}
-      animate={{
-        width: isActive ? '100%' : '0%',
-        backgroundColor: isActive ? '#4AB757' : '#FFFFFF',
-        opacity: isActive ? 1 : 0
-      }}
-      transition={{ duration: 0.3, ease: "easeInOut" }}
-      style={{ 
-        transformOrigin: 'center',
-        WebkitTransformOrigin: 'center',
-        MozTransformOrigin: 'center'
-      }}
-    />
-  </Link>
-));
 
 export default Navbar;
