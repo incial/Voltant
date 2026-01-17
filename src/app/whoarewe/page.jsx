@@ -339,7 +339,7 @@ const WhoAreWePage = () => {
         <div className="flex justify-center">
           <button
             onClick={toggleContactForm}
-            className="text-[#7f7f7f] text-[16px] sm:text-[18px] md:text-[20px] px-[18px] rounded-[31px] w-[150px] sm:w-[165px] md:w-[176px] h-[52px] sm:h-[57px] md:h-[62px] flex items-center justify-center border-2 border-[#7f7f7f] hover:bg-[#7f7f7f] hover:text-white transition-colors"
+            className="text-[#7f7f7f] text-[16px] sm:text-[18px] md:text-[20px] px-[18px] rounded-[31px] w-[150px] sm:w-[165px] md:w-[176px] h-[52px] sm:h-[57px] md:h-[62px] flex items-center justify-center border-solid border-2 border-[#7f7f7f] hover:bg-[#7f7f7f] hover:text-white transition-colors"
           >
             Get in Touch
           </button>

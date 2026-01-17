@@ -81,7 +81,8 @@ const Navbar = () => {
   ];
 
   return (
-    <nav
+    <>
+      <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled ? "backdrop-blur-md bg-black/30" : "bg-transparent"
       }`}
@@ -163,6 +164,7 @@ const Navbar = () => {
           </svg>
         </button>
       </div>
+    </nav>
 
       {/* Mobile Menu */}
       <AnimatePresence>
@@ -191,7 +193,7 @@ const Navbar = () => {
               </svg>
             </button>
 
-            <div className="flex flex-col items-center space-y-6 text-white text-xl">
+            <div className="flex flex-col items-center space-y-10 text-white text-xl">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
@@ -222,7 +224,7 @@ const Navbar = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </>
   );
 };
 
