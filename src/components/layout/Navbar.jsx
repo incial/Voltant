@@ -174,7 +174,7 @@ const Navbar = () => {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ duration: 0.3 }}
-            className="md:hidden fixed inset-0 bg-black/90 backdrop-blur-md flex flex-col items-center justify-center z-[60]"
+            className="md:hidden fixed inset-0 bg-black/50 backdrop-blur-md flex flex-col items-center justify-center z-[60]"
           >
             <button
               onClick={toggleMobileMenu}

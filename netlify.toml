@@ -1,6 +1,6 @@
 [build]
 command = "npm run build"
-publish = "dist"
+
 base ="/"
 
 # Serve PDF files directly (don't redirect them to index.html)
@@ -10,18 +10,14 @@ to = "/pdfs/:splat"
 status = 200
 force = true
 
-# SPA fallback - redirect everything else to index.html
-[[redirects]]
-from = "/*"
-to = "/index.html"
-status = 200
+
 
 [functions]
 directory = "netlify/functions"
 node_bundler = "esbuild"
 
 [build.environment]
-  NODE_VERSION = "18"
+  NODE_VERSION = "20"
 
 # Long-term caching for images (1 year, immutable)
 [[headers]]
