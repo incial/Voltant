@@ -1,23 +1,23 @@
 import dynamic from "next/dynamic";
 import {
   HomeHeroSection as HeroSection,
-  SplitImages as SplitHoverImages,
   RecentWorks,
 } from "@/components/sections/home";
+import SplitHoverImages from "@/components/sections/home/SplitImages";
 
 // Lazy load components that appear below the fold
 const ConnectWithUs = dynamic(
   () => import("@/components/sections/home/ConnectWithUs"),
   {
     loading: () => <SectionLoader />,
-  }
+  },
 );
 
 const VideoBanner = dynamic(
   () => import("@/components/sections/home/VideoBanner"),
   {
     loading: () => <SectionLoader />,
-  }
+  },
 );
 
 // Simple loading component for below-the-fold sections
