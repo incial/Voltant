@@ -40,21 +40,31 @@ const SplitImages = () => {
   }, []);
 
   return (
-    <div className="flex md:flex-row flex-col md:h-screen w-full">
-      {images.map((item) => {
-        const isActive = activeId === item.id;
-        const showContent = isActive || isMobile;
+    <div 
+      className="flex md:flex-row flex-col md:h-screen w-full md:overflow-y-visible"
+      style={{
+        WebkitOverflowScrolling: 'touch',
+        height: isMobile ? 'auto' : undefined,
+        overflowY: isMobile ? 'visible' : undefined
+      }}
+    >
+      {images.map(item => {
+        const isActive = activeId === item.id
+        const isPlayed = playedId === item.id || (isMobile && mobileInitialized)
 
         return (
           <motion.div
             key={item.id}
-            layout
-            className="relative cursor-pointer overflow-hidden"
+            layout={!isMobile}
+            className='relative cursor-pointer overflow-hidden'
             onMouseEnter={() => !isMobile && setActiveId(item.id)}
             style={{
-              flexBasis: isMobile ? "100%" : isActive ? "66.66%" : "33.33%",
-              transition: "flex-basis 0.8s cubic-bezier(0.83, 0, 0.17, 1)",
-              minHeight: isMobile ? "100vh" : "100%",
+              flexBasis: isMobile ? '100%' : isActive ? '66.66%' : '33.33%',
+              transition: isMobile ? 'none' : 'flex-basis 0.8s cubic-bezier(0.83, 0, 0.17, 1)',
+              minHeight: isMobile ? '100vh' : '100%',
+              height: isMobile ? '100vh' : '100%',
+              WebkitBackfaceVisibility: 'hidden',
+              backfaceVisibility: 'hidden'
             }}
           >
             {/* Icon */}
@@ -67,71 +77,98 @@ const SplitImages = () => {
               />
             </div>
 
-            {/* Background Image */}
-            <motion.div
-              className="absolute inset-0"
-              initial={{ scale: 1 }}
-              animate={{ scale: !isMobile && isActive ? 1.02 : 1 }}
-              transition={{ duration: 0.6 }}
-            >
-              <Image
-                src={item.img}
-                alt={item.title}
-                fill
-                className="object-cover"
-                priority={item.id === images[0].id}
-                sizes="(max-width: 768px) 100vw, 66vw"
-              />
-            </motion.div>
+            {/* Image Background */}
+            <div className="w-full absolute inset-0 overflow-hidden">
+              <motion.div
+                className="w-full h-full"
+                initial={false}
+                animate={{ scale: !isMobile && isActive ? 1.02 : 1 }}
+                transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
+              >
+                <OptimizedImage
+                  src={item.img}
+                  alt={item.title}
+                  width={1920}
+                  height={1080}
+                  className='w-full h-full object-cover'
+                  loading='eager'
+                  decoding='async'
+                  fetchPriority={item.id === images[0].id ? 'high' : undefined}
+                  draggable={false}
+                  style={{ opacity: 1 }}
+                  preload={item.id === images[0].id}
+                />
+              </motion.div>
+            </div>
 
             {/* Overlay */}
             <motion.div
-              className="absolute inset-0 bg-black/30 p-6 md:p-12 text-white flex flex-col justify-center"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: showContent ? 1 : 0 }}
-              transition={{ duration: 0.5 }}
+              className='absolute inset-0 bg-black/30 p-5 sm:p-6 md:p-8 lg:p-12 xl:p-16 2xl:p-20 text-white flex flex-col justify-center pb-[env(safe-area-inset-bottom)] pt-[env(safe-area-inset-top)]'
+              initial={false}
+              animate={{ opacity: isActive || isPlayed ? 1 : 0 }}
+              transition={{ 
+                duration: isMobile ? 0 : 0.5, 
+                ease: 'easeInOut' 
+              }}
             >
-              <div className="relative flex flex-col">
-                {/* Vertical line */}
+              <div className='relative flex flex-col'>
+                {/* Standalone vertical line */}
                 <motion.div
-                  className="absolute top-0 left-0 bottom-0 w-[2px] bg-white rounded-full"
-                  initial={{ height: 0 }}
-                  animate={{ height: showContent ? "100%" : 0 }}
-                  transition={{ duration: 1, delay: 0.1 }}
+                  className='absolute top-0 left-0 bottom-0 w-[2px] bg-white rounded-full'
+                  initial={false}
+                  animate={{ height: isActive || isPlayed ? '100%' : 0 }}
+                  transition={{ 
+                    duration: isMobile ? 0 : 1, 
+                    delay: isMobile ? 0 : 0.1, 
+                    ease: 'easeOut' 
+                  }}
                 />
 
                 <div className="ml-8 md:ml-12">
                   <motion.h2
-                    className="text-xl md:text-3xl font-semibold mb-3 md:mb-4"
-                    initial={{ y: 40, opacity: 0 }}
+                    className='md:mt-0 text-xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold mb-3 md:mb-4'
+                    initial={false}
                     animate={{
                       y: showContent ? 0 : 40,
                       opacity: showContent ? 1 : 0,
                     }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
+                    transition={{ 
+                      duration: isMobile ? 0 : 0.6, 
+                      delay: isMobile ? 0 : 0.2, 
+                      ease: 'easeOut' 
+                    }}
                   >
                     {item.title}
                   </motion.h2>
 
                   <motion.p
-                    className="text-sm md:text-base max-w-md mb-6"
-                    initial={{ y: 30, opacity: 0 }}
+                    className='text-xs sm:text-sm md:text-base max-w-xs md:max-w-md mb-5 md:mb-6 lg:mb-8'
+                    initial={false}
                     animate={{
                       y: showContent ? 0 : 30,
                       opacity: showContent ? 1 : 0,
                     }}
-                    transition={{ duration: 0.6, delay: 0.3 }}
+                    transition={{ 
+                      duration: isMobile ? 0 : 0.6, 
+                      delay: isMobile ? 0 : 0.3, 
+                      ease: 'easeOut' 
+                    }}
                   >
                     {item.description}
                   </motion.p>
 
                   <Link href={item.link}>
                     <motion.button
-                      className="border border-white px-4 py-2 md:px-6 md:py-3 rounded-full hover:bg-white hover:text-black transition-colors text-sm md:text-base"
-                      initial={{ opacity: 0, scale: 0.95 }}
+                      className='border border-white px-3 py-1.5 sm:px-4 sm:py-2 md:px-5 md:py-3 lg:px-6 lg:py-4 rounded-full w-fit hover:bg-white hover:text-black transition-colors text-xs sm:text-sm md:text-base'
+                      initial={false}
                       animate={{
-                        opacity: showContent ? 1 : 0,
-                        scale: showContent ? 1 : 0.95,
+                        opacity: isActive || isPlayed ? 1 : 0,
+                        scale: isActive || isPlayed ? 1 : 0.95
+                      }}
+                      transition={{
+                        duration: isMobile ? 0 : 0.5,
+                        delay: isMobile ? 0 : 0.4,
+                        ease: 'easeOut'
                       }}
                       transition={{ duration: 0.5, delay: 0.4 }}
                       whileHover={{ scale: 1.05 }}
@@ -150,4 +187,4 @@ const SplitImages = () => {
   );
 };
 
-export default SplitImages;
+export default SplitHoverImages
