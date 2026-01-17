@@ -1,35 +1,19 @@
 [build]
-command = "npm run build"
-
-base ="/"
-
-# Serve PDF files directly (don't redirect them to index.html)
-[[redirects]]
-from = "/pdfs/*"
-to = "/pdfs/:splat"
-status = 200
-force = true
-
-
-
-[functions]
-directory = "netlify/functions"
-node_bundler = "esbuild"
+  command = "npm run build"
 
 [build.environment]
   NODE_VERSION = "20"
 
-# Long-term caching for images (1 year, immutable)
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+# Cache static assets in public/assets
 [[headers]]
-  for = "/images/*"
+  for = "/assets/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
-[[headers]]
-  for = "*.webp"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
+# Cache image files throughout the site
 [[headers]]
   for = "*.jpg"
   [headers.values]
@@ -45,16 +29,22 @@ node_bundler = "esbuild"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
-# Cache JS/CSS assets
 [[headers]]
-  for = "/assets/*"
+  for = "*.webp"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
-# PDF headers for proper downloads
 [[headers]]
-  for = "/pdfs/*.pdf"
+  for = "*.svg"
   [headers.values]
-    Content-Type = "application/pdf"
-    Cache-Control = "public, max-age=3600"
-    Content-Disposition = "inline"
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "*.gif"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "*.ico"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
