@@ -3,7 +3,7 @@ import {
   HomeHeroSection as HeroSection,
   RecentWorks,
 } from "@/components/sections/home";
-import SplitHoverImages from "@/components/sections/home/SplitImages";
+import SplitHoverImages from "@/components/sections/home/SplitImagesWrapper";
 
 // Lazy load components that appear below the fold
 const ConnectWithUs = dynamic(
