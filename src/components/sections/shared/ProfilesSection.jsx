@@ -1,7 +1,7 @@
-import React from 'react'
-import { motion } from 'framer-motion'
-import { useContactForm } from '../../../context/ContactFormContext'
-import { isIOS } from '../../../utils/device'
+import React from "react";
+import { motion } from "framer-motion";
+import { useContactForm } from "../../../context/ContactFormContext";
+import { isIOS } from "../../../utils/device";
 
 // ---------------- Animations ----------------
 const fadeIn = {
@@ -11,10 +11,10 @@ const fadeIn = {
     y: 0,
     transition: {
       duration: 0.6,
-      ease: [0.25, 0.1, 0.25, 1]
-    }
-  }
-}
+      ease: [0.25, 0.1, 0.25, 1],
+    },
+  },
+};
 
 const itemFadeIn = {
   hidden: { opacity: 0, y: 30 },
@@ -23,10 +23,10 @@ const itemFadeIn = {
     y: 0,
     transition: {
       duration: 0.6,
-      ease: [0.25, 0.1, 0.25, 1]
-    }
-  }
-}
+      ease: [0.25, 0.1, 0.25, 1],
+    },
+  },
+};
 
 const sectionFadeIn = {
   hidden: { opacity: 0 },
@@ -35,10 +35,10 @@ const sectionFadeIn = {
     transition: {
       duration: 0.8,
       staggerChildren: 0.25,
-      ease: 'easeOut'
-    }
-  }
-}
+      ease: "easeOut",
+    },
+  },
+};
 
 const buttonAnimation = {
   hidden: { opacity: 0, scale: 0.9 },
@@ -48,37 +48,40 @@ const buttonAnimation = {
     transition: {
       delay: 0.4,
       duration: 0.4,
-      ease: 'easeOut'
-    }
-  }
-}
+      ease: "easeOut",
+    },
+  },
+};
 
 // ProfileItem component that handles line breaks
 const ProfileItem = ({ title, description }) => {
   // Split description by double newlines to create separate paragraphs
-  const paragraphs = description.split('\n\n').filter(p => p.trim());
-  
+  const paragraphs = description.split("\n\n").filter((p) => p.trim());
+
   // Check if content contains bullet points (starts with •)
-  const hasBullets = description.includes('•');
-  
+  const hasBullets = description.includes("•");
+
   if (hasBullets) {
     // Split bullet lists on one or more newlines so each bullet appears on its own line
-    const items = description.split(/\n+/).map(l => l.trim()).filter(Boolean);
-    
+    const items = description
+      .split(/\n+/)
+      .map((l) => l.trim())
+      .filter(Boolean);
+
     return (
-      <motion.div 
+      <motion.div
         className="mb-8 md:mb-12 lg:mb-16 xl:mb-20"
         variants={itemFadeIn}
       >
         {title && (
-          <h3 className="!text-[#7F7F7F] text-lg md:text-xl lg:text-2xl font-medium mb-4 md:mb-6">
+          <h3 className="!text-[#7F7F7F] font-medium mb-4 md:mb-6 text-h3">
             {title}
           </h3>
         )}
 
         <div className="space-y-4 md:space-y-6">
           {items.map((item, index) => (
-            <p key={index} className="text-[#7F7F7F] text-sm sm:text-base md:text-lg lg:text-[18px] leading-relaxed">
+            <p key={index} className="text-[#7F7F7F] leading-relaxed text-body">
               {item}
             </p>
           ))}
@@ -86,53 +89,54 @@ const ProfileItem = ({ title, description }) => {
       </motion.div>
     );
   }
-  
+
   return (
-    <motion.div 
+    <motion.div
       className="mb-8 md:mb-12 lg:mb-16 xl:mb-20"
       variants={itemFadeIn}
     >
       {title && (
-        <h3 className="!text-[#7F7F7F] text-lg md:text-xl lg:text-2xl font-medium mb-2 md:mb-3">
+        <h3 className="!text-[#7F7F7F] font-medium mb-2 md:mb-3 text-h3">
           {title}
         </h3>
       )}
 
       <div className="space-y-4 md:space-y-6">
         {paragraphs.map((paragraph, index) => (
-          <p key={index} className="text-[#7F7F7F] text-sm sm:text-base md:text-lg lg:text-[18px] leading-relaxed">
+          <p key={index} className="text-[#7F7F7F] leading-relaxed text-body">
             {paragraph}
           </p>
         ))}
       </div>
     </motion.div>
   );
-}
+};
 
 // ProfileLayoutItem for single-column profile layout
 const ProfileLayoutItem = ({ title, items }) => {
   return (
-    <motion.div 
-      className="mb-8 md:mb-10"
-      variants={itemFadeIn}
-    >
+    <motion.div className="mb-8 md:mb-10" variants={itemFadeIn}>
       <h3 className="text-[#7F7F7F] text-sm md:text-base font-medium mb-3">
         {title}
       </h3>
       <div className="space-y-2">
-        {items && items.map((item, index) => (
-          <p key={index} className="text-[#BFBFBF] text-xs md:text-sm leading-relaxed">
-            {item}
-          </p>
-        ))}
+        {items &&
+          items.map((item, index) => (
+            <p
+              key={index}
+              className="text-[#BFBFBF] text-xs md:text-sm leading-relaxed"
+            >
+              {item}
+            </p>
+          ))}
       </div>
     </motion.div>
-  )
-}
+  );
+};
 
 // ---------------- Main Section ----------------
 const ProfilesSection = ({
-  sectionTitle = '',
+  sectionTitle = "",
   leftProfiles = [],
   rightProfiles = [],
   paragraph = "",
@@ -140,33 +144,42 @@ const ProfilesSection = ({
   showButton = true,
   layoutType,
   items = [],
-  downloads = {}
+  downloads = {},
 }) => {
-  const { toggleContactForm } = useContactForm()
-  const iosDevice = isIOS
+  const { toggleContactForm } = useContactForm();
+  const iosDevice = isIOS;
 
   // Determine if a downloadable profile is available
-  const downloadEnabled = !!(downloads && downloads.profile && downloads.profile.enabled && downloads.profile.url)
+  const downloadEnabled = !!(
+    downloads &&
+    downloads.profile &&
+    downloads.profile.enabled &&
+    downloads.profile.url
+  );
 
   // Label for primary button (download label if provided)
-  const primaryLabel = (downloadEnabled && downloads.profile.label) ? downloads.profile.label : buttonText
+  const primaryLabel =
+    downloadEnabled && downloads.profile.label
+      ? downloads.profile.label
+      : buttonText;
 
   // Get download URL and filename for native anchor
-  const downloadUrl = downloadEnabled ? downloads.profile.url : null
+  const downloadUrl = downloadEnabled ? downloads.profile.url : null;
   // Handler for non-download actions (contact form)
   const handleContactAction = () => {
-    toggleContactForm()
-  }
+    toggleContactForm();
+  };
 
   // Shared button styles
-  const buttonStyles = "text-base md:text-lg font-normal text-[#7F7F7F] text-center leading-none px-8 md:px-10 py-3.5 md:py-4 rounded-full border-[#BFBFBF] border-solid border-2 hover:bg-[rgba(127,127,127,0.1)] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[rgba(127,127,127,0.3)]"
+  const buttonStyles =
+    "text-base md:text-lg font-normal text-[#7F7F7F] text-center leading-none px-8 md:px-10 py-3.5 md:py-4 rounded-full border-[#BFBFBF] border-solid border-2 hover:bg-[rgba(127,127,127,0.1)] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[rgba(127,127,127,0.3)]";
 
   // Render button or anchor based on download availability
   const renderActionButton = (customStyles = buttonStyles) => {
     if (downloadEnabled) {
       return (
         <div className="flex flex-col items-center gap-2">
-          <a 
+          <a
             href={downloadUrl}
             target="_blank"
             rel="noopener noreferrer"
@@ -181,39 +194,35 @@ const ProfilesSection = ({
             </p>
           )}
         </div>
-      )
+      );
     }
 
     // If label explicitly requests contact (e.g., 'Get in Touch')
     if (/get\s+in\s+touch/i.test(buttonText)) {
       return (
-        <button 
-          onClick={handleContactAction} 
-          className={customStyles} 
+        <button
+          onClick={handleContactAction}
+          className={customStyles}
           aria-label={primaryLabel}
         >
           {primaryLabel}
         </button>
-      )
+      );
     }
 
     // For other labels without download URL, show disabled or no action
     return (
-      <button 
-        className={customStyles} 
-        aria-label={primaryLabel}
-        disabled
-      >
+      <button className={customStyles} aria-label={primaryLabel} disabled>
         {primaryLabel}
       </button>
-    )
-  }
+    );
+  };
 
   // Profile list layout
-  if (layoutType === 'profile' && items && items.length > 0) {
+  if (layoutType === "profile" && items && items.length > 0) {
     return (
       <motion.section
-      className="
+        className="
     flex flex-col items-center w-full
     py-12 md:py-16 lg:py-20
     lg:mt-[40px] lg:mb-[40px]
@@ -227,7 +236,7 @@ const ProfilesSection = ({
       >
         <div className="max-w-4xl w-full mx-auto flex flex-col">
           <motion.h2
-            className="text-[#7F7F7F] text-2xl sm:text-3xl md:text-4xl mb-8 md:mb-10 font-semibold leading-tight"
+            className="text-[#7F7F7F] mb-8 md:mb-10 font-semibold leading-tight text-h2"
             variants={fadeIn}
           >
             {sectionTitle}
@@ -236,40 +245,64 @@ const ProfilesSection = ({
           <motion.div
             className="mt-6 md:mt-8 space-y-8 md:space-y-10"
             variants={sectionFadeIn}
-  initial="hidden"
-  whileInView="visible"
-  viewport={{ amount: 0.1, once: true }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ amount: 0.1, once: true }}
           >
             {items.map((section, index) => (
-              <ProfileLayoutItem key={index} title={section.title} items={section.items} />
+              <ProfileLayoutItem
+                key={index}
+                title={section.title}
+                items={section.items}
+              />
             ))}
           </motion.div>
 
           {showButton && (
-            <motion.div className="flex items-center justify-center w-full mt-12 md:mt-16" variants={buttonAnimation}>
+            <motion.div
+              className="flex items-center justify-center w-full mt-12 md:mt-16"
+              variants={buttonAnimation}
+            >
               {renderActionButton()}
             </motion.div>
           )}
         </div>
       </motion.section>
-    )
+    );
   }
 
-  const useParagraphLayout = paragraph && (!leftProfiles.length && !rightProfiles.length)
+  const useParagraphLayout =
+    paragraph && !leftProfiles.length && !rightProfiles.length;
 
   return (
-    <motion.section className="flex flex-col items-center w-full py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8" initial="hidden" whileInView="visible" viewport={{ amount: 0.1, once: true }} variants={fadeIn}>
+    <motion.section
+      className="flex flex-col items-center w-full py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ amount: 0.1, once: true }}
+      variants={fadeIn}
+    >
       <div className="max-w-7xl w-full mx-auto flex flex-col">
-        <motion.h2 className="text-[#7F7F7F] text-xl sm:text-2xl md:text-3xl mb-8 md:mb-12 font-semibold leading-tight px-0" variants={fadeIn}>
+        <motion.h2
+          className="text-[#7F7F7F] mb-8 md:mb-12 font-semibold leading-tight px-0 text-h2"
+          variants={fadeIn}
+        >
           {sectionTitle}
         </motion.h2>
 
         {useParagraphLayout ? (
           <motion.div className="px-0" variants={sectionFadeIn}>
-            <p className="text-[#7F7F7F] text-base sm:text-lg md:text-xl lg:text-2xl font-light leading-relaxed md:leading-normal lg:leading-[48px] mb-6 md:mb-10 lg:mb-12">{paragraph}</p>
+            <p className="text-[#7F7F7F] font-light leading-relaxed md:leading-normal lg:leading-[48px] mb-6 md:mb-10 lg:mb-12 text-body">
+              {paragraph}
+            </p>
             {showButton && (
-              <motion.div className="flex items-center justify-center w-full py-6 md:py-8 lg:py-[40px] lg:my-[70px]" variants={buttonAnimation}>
-                {renderActionButton("text-sm sm:text-base md:text-lg font-normal text-center leading-none px-6 md:px-8 lg:px-9 py-3 md:py-[16px] rounded-[31px] border-[#7F7F7F] border-solid border-2 hover:bg-[rgba(127,127,127,0.1)] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[rgba(127,127,127,0.3)]")}
+              <motion.div
+                className="flex items-center justify-center w-full py-6 md:py-8 lg:py-[40px] lg:my-[70px]"
+                variants={buttonAnimation}
+              >
+                {renderActionButton(
+                  "text-sm sm:text-base md:text-lg font-normal text-center leading-none px-6 md:px-8 lg:px-9 py-3 md:py-[16px] rounded-[31px] border-[#7F7F7F] border-solid border-2 hover:bg-[rgba(127,127,127,0.1)] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[rgba(127,127,127,0.3)]"
+                )}
               </motion.div>
             )}
           </motion.div>
@@ -278,7 +311,11 @@ const ProfilesSection = ({
             <div className="w-full md:w-[45%]">
               <div className="text-[#7F7F7F] text-base md:text-lg font-light leading-relaxed">
                 {leftProfiles.map((profile, index) => (
-                  <ProfileItem key={index} title={profile.title} description={profile.description} />
+                  <ProfileItem
+                    key={index}
+                    title={profile.title}
+                    description={profile.description}
+                  />
                 ))}
               </div>
             </div>
@@ -287,22 +324,37 @@ const ProfilesSection = ({
               <div className="flex flex-col items-start text-[#7F7F7F]">
                 <div className="text-base md:text-lg font-light leading-relaxed">
                   {rightProfiles.map((profile, index) => (
-                    <ProfileItem key={index} title={profile.title} description={profile.description} />
+                    <ProfileItem
+                      key={index}
+                      title={profile.title}
+                      description={profile.description}
+                    />
                   ))}
                 </div>
               </div>
 
               {/* Desktop: absolutely positioned centered button opposite the paragraph */}
               {showButton && (
-                <motion.div className="hidden md:flex absolute left-1/2 z-10 -translate-x-1/2" style={{ top: '78%' }} variants={buttonAnimation}>
-                  {renderActionButton("text-sm sm:text-base font-medium text-[#7F7F7F] text-center leading-none px-8 md:px-10 py-3 md:py-3.5 rounded-full border-[#BFBFBF] border-solid border-2 hover:bg-[rgba(127,127,127,0.1)] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[rgba(127,127,127,0.3)]")}
+                <motion.div
+                  className="hidden md:flex absolute left-1/2 z-10 -translate-x-1/2"
+                  style={{ top: "78%" }}
+                  variants={buttonAnimation}
+                >
+                  {renderActionButton(
+                    "text-sm sm:text-base font-medium text-[#7F7F7F] text-center leading-none px-8 md:px-10 py-3 md:py-3.5 rounded-full border-[#BFBFBF] border-solid border-2 hover:bg-[rgba(127,127,127,0.1)] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[rgba(127,127,127,0.3)]"
+                  )}
                 </motion.div>
               )}
 
               {/* Mobile: keep button below content for small screens */}
               {showButton && (
-                <motion.div className="flex md:hidden items-center justify-start w-full mt-8" variants={buttonAnimation}>
-                  {renderActionButton("text-sm sm:text-base font-medium text-[#7F7F7F] text-center leading-none px-8 md:px-10 py-3 md:py-3.5 rounded-full border-[#BFBFBF] border-solid border-2 hover:bg-[rgba(127,127,127,0.1)] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[rgba(127,127,127,0.3)]")}
+                <motion.div
+                  className="flex md:hidden items-center justify-start w-full mt-8"
+                  variants={buttonAnimation}
+                >
+                  {renderActionButton(
+                    "text-sm sm:text-base font-medium text-[#7F7F7F] text-center leading-none px-8 md:px-10 py-3 md:py-3.5 rounded-full border-[#BFBFBF] border-solid border-2 hover:bg-[rgba(127,127,127,0.1)] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[rgba(127,127,127,0.3)]"
+                  )}
                 </motion.div>
               )}
             </div>
@@ -310,7 +362,7 @@ const ProfilesSection = ({
         )}
       </div>
     </motion.section>
-  )
-}
+  );
+};
 
-export default ProfilesSection
+export default ProfilesSection;

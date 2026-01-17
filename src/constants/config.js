@@ -11,8 +11,8 @@ const APP_CONFIG = {
   app: {
     name: 'Voltant Energy',
     version: '1.0.0',
-    environment: import.meta.env.MODE || 'development',
-    baseUrl: import.meta.env.BASE_URL || '/'
+    environment: process.env.NODE_ENV || 'development',
+    baseUrl: process.env.NEXT_PUBLIC_BASE_URL || '/'
   },
 
   /**
@@ -103,9 +103,9 @@ const APP_CONFIG = {
    * Analytics configuration
    */
   analytics: {
-    googleAnalyticsId: import.meta.env.VITE_GA_ID,
-    facebookPixelId: import.meta.env.VITE_FB_PIXEL_ID,
-    enabled: import.meta.env.VITE_ENABLE_ANALYTICS === 'true'
+    googleAnalyticsId: process.env.NEXT_PUBLIC_GA_ID,
+    facebookPixelId: process.env.NEXT_PUBLIC_FB_PIXEL_ID,
+    enabled: process.env.NEXT_PUBLIC_ENABLE_ANALYTICS === 'true'
   },
 
   /**

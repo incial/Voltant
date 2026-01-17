@@ -1,11 +1,13 @@
+"use client";
+
 import React, { useState, useRef, useEffect } from "react";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
-import { FaTimesCircle } from 'react-icons/fa';
-import emailjs from '@emailjs/browser';
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { FaTimesCircle } from "react-icons/fa";
+import emailjs from "@emailjs/browser";
 
 // Form validation schema
 const formSchema = yup.object().shape({
@@ -20,13 +22,16 @@ const formSchema = yup.object().shape({
   message: yup
     .string()
     .required("Message is required")
-    .min(10, "Message must be at least 10 characters")
+    .min(10, "Message must be at least 10 characters"),
 });
 
-// EmailJS configuration
-const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'your_service_id';
-const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'your_template_id';
-const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'your_public_key';
+// EmailJS configuration - Updated for Next.js
+const EMAILJS_SERVICE_ID =
+  process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "your_service_id";
+const EMAILJS_TEMPLATE_ID =
+  process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "your_template_id";
+const EMAILJS_PUBLIC_KEY =
+  process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "your_public_key";
 
 const ContactForm = ({ onClose }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -34,30 +39,30 @@ const ContactForm = ({ onClose }) => {
   const [submitError, setSubmitError] = useState(null);
   const formRef = useRef();
   const messageRef = useRef();
-  
+
   // React Hook Form setup with Yup resolver
-  const { 
-    register, 
-    handleSubmit, 
-    reset, 
-    formState: { errors } 
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
   } = useForm({
     resolver: yupResolver(formSchema),
     defaultValues: {
       name: "",
       email: "",
-      message: ""
-    }
+      message: "",
+    },
   });
 
   // When the form opens, ensure the view is centered properly
   useEffect(() => {
     if (formRef.current) {
       // Ensure form is in view
-      formRef.current.scrollIntoView({ 
-        behavior: 'auto',
-        block: 'center',
-        inline: 'center'
+      formRef.current.scrollIntoView({
+        behavior: "auto",
+        block: "center",
+        inline: "center",
       });
     }
   }, []);
@@ -68,14 +73,14 @@ const ContactForm = ({ onClose }) => {
     if (textarea) {
       // Set cursor to the bottom
       textarea.focus();
-      
+
       // Force text area to show cursor at bottom line
       setTimeout(() => {
         // Place cursor at the end of text
         const length = textarea.value.length;
         textarea.selectionStart = length;
         textarea.selectionEnd = length;
-        
+
         // Scroll to the bottom of the textarea
         textarea.scrollTop = textarea.scrollHeight;
       }, 10);
@@ -87,56 +92,59 @@ const ContactForm = ({ onClose }) => {
     setSubmitError(null);
 
     try {
-      if (import.meta.env.MODE === 'development' && import.meta.env.VITE_USE_MOCK === 'true') {
+      if (
+        process.env.NODE_ENV === "development" &&
+        process.env.NEXT_PUBLIC_USE_MOCK === "true"
+      ) {
         // In development mode with mock flag, just simulate sending email
-        console.log('Development mode - Email would be sent with:', data);
-        await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API delay
+        console.log("Development mode - Email would be sent with:", data);
+        await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate API delay
         setSubmitSuccess(true);
         reset();
-      } else {        
+      } else {
         // Initialize EmailJS (only needed once, can be done in useEffect)
         emailjs.init(EMAILJS_PUBLIC_KEY);
-        
+
         // Prepare template parameters for EmailJS
         const templateParams = {
           from_name: data.name,
           from_email: data.email,
           message: data.message,
-          to_name: 'Voltant Energy', // You can customize this
+          to_name: "Voltant Energy", // You can customize this
           reply_to: data.email,
         };
-        
-        console.log('Sending email via EmailJS with params:', templateParams);
-        
+
+        console.log("Sending email via EmailJS with params:", templateParams);
+
         // Send email using EmailJS
         const result = await emailjs.send(
           EMAILJS_SERVICE_ID,
           EMAILJS_TEMPLATE_ID,
           templateParams
         );
-        
-        console.log('EmailJS result:', result);
-        
+
+        console.log("EmailJS result:", result);
+
         if (result.status === 200) {
           setSubmitSuccess(true);
           reset();
         } else {
-          throw new Error('Failed to send email via EmailJS');
+          throw new Error("Failed to send email via EmailJS");
         }
       }
     } catch (error) {
       console.error("Error submitting form:", error);
-      
+
       // More specific error messages based on EmailJS errors
-      let errorMessage = 'Failed to send your message. Please try again later.';
-      
+      let errorMessage = "Failed to send your message. Please try again later.";
+
       if (error.text) {
         // EmailJS specific error
         errorMessage = `Email service error: ${error.text}`;
       } else if (error.message) {
         errorMessage = error.message;
       }
-      
+
       setSubmitError(errorMessage);
     } finally {
       setIsSubmitting(false);
@@ -151,9 +159,9 @@ const ContactForm = ({ onClose }) => {
       transition: {
         when: "beforeChildren",
         staggerChildren: 0.2,
-        duration: 0.5
-      }
-    }
+        duration: 0.5,
+      },
+    },
   };
 
   const itemVariants = {
@@ -163,9 +171,9 @@ const ContactForm = ({ onClose }) => {
       opacity: 1,
       transition: {
         duration: 0.5,
-        ease: "easeOut"
-      }
-    }
+        ease: "easeOut",
+      },
+    },
   };
 
   const buttonVariants = {
@@ -175,18 +183,18 @@ const ContactForm = ({ onClose }) => {
       opacity: 1,
       transition: {
         duration: 0.5,
-        delay: 0.5
-      }
+        delay: 0.5,
+      },
     },
     hover: {
       scale: 1.05,
       transition: {
-        duration: 0.3
-      }
+        duration: 0.3,
+      },
     },
     tap: {
-      scale: 0.95
-    }
+      scale: 0.95,
+    },
   };
 
   const successVariants = {
@@ -195,9 +203,9 @@ const ContactForm = ({ onClose }) => {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.3
-      }
-    }
+        duration: 0.3,
+      },
+    },
   };
 
   const closeButtonVariants = {
@@ -207,18 +215,18 @@ const ContactForm = ({ onClose }) => {
       scale: 1,
       transition: {
         duration: 0.3,
-        delay: 0.1
-      }
+        delay: 0.1,
+      },
     },
     hover: {
       scale: 1.1,
       transition: {
-        duration: 0.2
-      }
+        duration: 0.2,
+      },
     },
     tap: {
-      scale: 0.95
-    }
+      scale: 0.95,
+    },
   };
 
   return (
@@ -229,12 +237,12 @@ const ContactForm = ({ onClose }) => {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      style={{ 
-        backgroundColor: 'rgba(255, 255, 255, 0.08)',
-        WebkitBackdropFilter: 'blur(25px) saturate(150%)',
-        backdropFilter: 'blur(25px) saturate(150%)',
-        MozBackdropFilter: 'blur(25px) saturate(150%)',
-        msBackdropFilter: 'blur(25px) saturate(150%)'
+      style={{
+        backgroundColor: "rgba(255, 255, 255, 0.08)",
+        WebkitBackdropFilter: "blur(25px) saturate(150%)",
+        backdropFilter: "blur(25px) saturate(150%)",
+        MozBackdropFilter: "blur(25px) saturate(150%)",
+        msBackdropFilter: "blur(25px) saturate(150%)",
       }}
     >
       {/* Close button */}
@@ -252,17 +260,14 @@ const ContactForm = ({ onClose }) => {
         </motion.button>
       )}
 
-      <motion.div 
+      <motion.div
         className="text-white text-2xl sm:text-3xl md:text-4xl font-bold text-center w-full"
         variants={itemVariants}
       >
         Get In Touch
       </motion.div>
 
-      <motion.div 
-        className="w-full"
-        variants={itemVariants}
-      >
+      <motion.div className="w-full" variants={itemVariants}>
         <div className="relative mb-6">
           <input
             type="text"
@@ -271,24 +276,23 @@ const ContactForm = ({ onClose }) => {
             className="peer w-full bg-transparent border-b border-white pb-2 outline-none placeholder-transparent focus:border-white transition-all text-white text-sm"
             placeholder="Name"
             style={{
-              fontSize: '16px',
-              touchAction: 'manipulation'
+              fontSize: "16px",
+              touchAction: "manipulation",
             }}
           />
-          <label 
-            htmlFor="name" 
+          <label
+            htmlFor="name"
             className="absolute left-0 -top-5 text-white text-xs transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:text-white peer-placeholder-shown:top-0 peer-focus:-top-5 peer-focus:text-xs peer-focus:text-white"
           >
             Name
           </label>
-          {errors.name && <p className="text-red-400 text-xs mt-1">{errors.name.message}</p>}
+          {errors.name && (
+            <p className="text-red-400 text-xs mt-1">{errors.name.message}</p>
+          )}
         </div>
       </motion.div>
 
-      <motion.div 
-        className="w-full"
-        variants={itemVariants}
-      >
+      <motion.div className="w-full" variants={itemVariants}>
         <div className="relative mb-6">
           <input
             type="email"
@@ -297,24 +301,23 @@ const ContactForm = ({ onClose }) => {
             className="peer w-full bg-transparent border-b border-white pb-2 outline-none placeholder-transparent focus:border-white transition-all text-white text-sm"
             placeholder="Email"
             style={{
-              fontSize: '16px',
-              touchAction: 'manipulation'
+              fontSize: "16px",
+              touchAction: "manipulation",
             }}
           />
-          <label 
-            htmlFor="email" 
+          <label
+            htmlFor="email"
             className="absolute left-0 -top-5 text-white text-xs transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:text-white peer-placeholder-shown:top-0 peer-focus:-top-5 peer-focus:text-xs peer-focus:text-white"
           >
             Email
           </label>
-          {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email.message}</p>}
+          {errors.email && (
+            <p className="text-red-400 text-xs mt-1">{errors.email.message}</p>
+          )}
         </div>
       </motion.div>
 
-      <motion.div 
-        className="w-full"
-        variants={itemVariants}
-      >
+      <motion.div className="w-full" variants={itemVariants}>
         <div className="relative mb-6">
           <textarea
             id="message"
@@ -329,29 +332,33 @@ const ContactForm = ({ onClose }) => {
             {...register("message")}
             className="peer w-full bg-transparent border-b border-white pb-2 outline-none placeholder-transparent focus:border-white transition-all text-white text-sm min-h-[80px]"
             placeholder="Message"
-            style={{ 
-              verticalAlign: 'bottom',
-              resize: 'none',
-              lineHeight: '1.5',
-              paddingBottom: '1rem',
-              fontSize: '16px',
-              touchAction: 'manipulation',
-              position: 'relative',
-              display: 'block'
+            style={{
+              verticalAlign: "bottom",
+              resize: "none",
+              lineHeight: "1.5",
+              paddingBottom: "1rem",
+              fontSize: "16px",
+              touchAction: "manipulation",
+              position: "relative",
+              display: "block",
             }}
           ></textarea>
-          <label 
-            htmlFor="message" 
+          <label
+            htmlFor="message"
             className="absolute left-0 -top-5 text-white text-xs transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:text-white peer-placeholder-shown:top-0 peer-focus:-top-5 peer-focus:text-xs peer-focus:text-white"
           >
             Message
           </label>
-          {errors.message && <p className="text-red-400 text-xs mt-1">{errors.message.message}</p>}
+          {errors.message && (
+            <p className="text-red-400 text-xs mt-1">
+              {errors.message.message}
+            </p>
+          )}
         </div>
       </motion.div>
 
       {submitError && (
-        <motion.div 
+        <motion.div
           className="text-center text-red-400 mt-2 text-sm w-full"
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -368,16 +375,16 @@ const ContactForm = ({ onClose }) => {
         variants={buttonVariants}
         whileHover="hover"
         whileTap="tap"
-        style={{ 
-          WebkitTapHighlightColor: 'transparent',
-          touchAction: 'manipulation'
+        style={{
+          WebkitTapHighlightColor: "transparent",
+          touchAction: "manipulation",
         }}
       >
         {isSubmitting ? "Submitting..." : "Submit"}
       </motion.button>
 
       {submitSuccess && (
-        <motion.div 
+        <motion.div
           className="text-center text-green-400 mt-3 text-sm w-full"
           variants={successVariants}
           initial="hidden"

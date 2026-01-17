@@ -16,7 +16,7 @@ const API_BASE_URLS = {
 /**
  * Current environment
  */
-const ENVIRONMENT = import.meta.env.MODE || 'development';
+const ENVIRONMENT = process.env.NODE_ENV || 'development';
 
 /**
  * Active API base URL
@@ -50,9 +50,9 @@ export const API_ENDPOINTS = {
  * EmailJS configuration
  */
 export const EMAILJS_CONFIG = {
-  serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID,
-  templateId: import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-  publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+  serviceId: process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+  templateId: process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+  publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY,
   // Rate limiting
   maxAttemptsPerMinute: 3,
   cooldownPeriod: 60000 // 1 minute in milliseconds
