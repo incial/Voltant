@@ -141,7 +141,7 @@ const RecentWorks = () => {
                 <div
                   className={`relative w-full h-full transition-transform duration-500 ${
                     hoveredCard === idx ? "scale-110" : "scale-100"
-                  }`}
+                  } ${card.isImage22 || card.isImage19 ? "p-6" : ""}`}
                 >
                   <Image
                     src={card.src}
