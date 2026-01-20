@@ -5,15 +5,15 @@ import Image from "next/image";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const SHOWCASE_IMAGES = [
-  "Image 13.png",
+  "Image 37.png",
   "Image 14.png",
-  "Image 15.png",
+  "Image 38.png",
   "Image 34.png",
   "Image 33.png",
   "Image 32.png",
   "Image 31.png",
   "Image 28.png",
-  "Image 21.png",
+  "Image 35.png",
   "Image 30.png",
   "Image 29.png",
   "Image 24.png",
