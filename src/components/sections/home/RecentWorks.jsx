@@ -8,14 +8,14 @@ const SHOWCASE_IMAGES = [
   "Image 13.png",
   "Image 14.png",
   "Image 15.png",
-  "Image 16.png",
-  "Image 17.png",
-  "Image 18.png",
-  "Image 19.png",
-  "Image 20.png",
+  "Image 34.png",
+  "Image 33.png",
+  "Image 32.png",
+  "Image 31.png",
+  "Image 28.png",
   "Image 21.png",
-  "Image 22.png",
-  "Image 23.png",
+  "Image 30.png",
+  "Image 29.png",
   "Image 24.png",
 ];
 
@@ -122,7 +122,7 @@ const RecentWorks = () => {
               <div
                 key={`${card.src}-${idx}`}
                 data-card
-                className={`h-80 w-96 shrink-0 rounded-xl md:rounded-2xl shadow-md overflow-hidden cursor-pointer ${
+                className={`h-[420px] w-[360px] shrink-0 rounded-xl md:rounded-2xl shadow-md overflow-hidden cursor-pointer ${
                   card.isImage22
                     ? "bg-[#d4824a]"
                     : card.isImage19
@@ -152,7 +152,7 @@ const RecentWorks = () => {
                         ? "object-contain"
                         : "object-cover"
                     }`}
-                    sizes="384px"
+                    sizes="360px"
                   />
                 </div>
               </div>
