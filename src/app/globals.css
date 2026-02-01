@@ -9,13 +9,15 @@
   ============================================ */
 html {
   -webkit-overflow-scrolling: touch;
-  overscroll-behavior: none;
+  /* Allow normal scroll chaining and touchpad scrolling */
+  overscroll-behavior: auto;
 }
 
 body {
   -webkit-overflow-scrolling: touch;
-  overscroll-behavior: none;
-}
+  /* Allow normal scroll chaining and touchpad scrolling */
+  overscroll-behavior: auto;
+} 
 
 /* Prevent iOS image scaling issues */
 img {

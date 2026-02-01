@@ -187,7 +187,7 @@ const HeroSection = () => {
 
       {/* Loading Indicator */}
       {!isReady && (
-        <div className="absolute inset-0 z-50 bg-black flex items-center justify-center">
+        <div className="absolute inset-0 z-50 bg-black flex items-center justify-center pointer-events-none">
           <div className="w-8 h-8 border-2 border-white/20 border-t-white rounded-full animate-spin" />
         </div>
       )}
