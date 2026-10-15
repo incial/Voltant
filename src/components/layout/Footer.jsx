@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   FaYoutube,
   FaInstagram,
@@ -67,6 +68,23 @@ const Footer = () => {
         <p className="text-center text-xs">
           © Copyright {currentYear} Voltant Energy. All Rights Reserved
         </p>
+
+        {/* Legal links (open inside the website) */}
+        <div className="mt-3 flex items-center gap-4 text-xs">
+          <Link
+            href="/privacy-policy"
+            className="underline underline-offset-4 hover:text-green-400 transition-colors"
+          >
+            Privacy Policy
+          </Link>
+          <span className="h-3 w-px bg-white/50" aria-hidden="true" />
+          <Link
+            href="/terms-of-use"
+            className="underline underline-offset-4 hover:text-green-400 transition-colors"
+          >
+            Terms of Use
+          </Link>
+        </div>
       </div>
 
       {/* Desktop Layout */}
@@ -81,18 +99,37 @@ const Footer = () => {
               className="w-[200px] h-auto"
               style={{ width: "200px", height: "auto" }}
             />
-            <p className="text-xs md:text-sm">
-              © Copyright {currentYear} Voltant Energy. All Rights Reserved and
-              Designed by{" "}
-              <a
-                href="https://incial.in"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-semibold hover:underline"
-              >
-                Incial
-              </a>
-            </p>
+            <div className="flex flex-col gap-2">
+              <p className="text-xs md:text-sm">
+                © Copyright {currentYear} Voltant Energy. All Rights Reserved
+                and Designed by{" "}
+                <a
+                  href="https://incial.in"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold hover:underline"
+                >
+                  Incial
+                </a>
+              </p>
+
+              {/* Legal links (open inside the website) */}
+              <div className="flex items-center gap-4 text-xs md:text-sm">
+                <Link
+                  href="/privacy-policy"
+                  className="underline underline-offset-4 hover:text-green-400 transition-colors"
+                >
+                  Privacy Policy
+                </Link>
+                <span className="h-4 w-px bg-white/50" aria-hidden="true" />
+                <Link
+                  href="/terms-of-use"
+                  className="underline underline-offset-4 hover:text-green-400 transition-colors"
+                >
+                  Terms of Use
+                </Link>
+              </div>
+            </div>
           </div>
 
           <div className="flex space-x-4 lg:space-x-6 items-center">
